@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "school-potal-aaf0b"
+  },
+  "targets": {
+    "school-potal-aaf0b": {
+      "hosting": {
+        "school-potal": [
+          "school-potal-aaf0b"
+        ]
+      }
+    }
+  }
+}
