@@ -1,2 +1,20 @@
 <app-header></app-header>
-<router-outlet></router-outlet>
+
+<mat-drawer-container>
+
+  <!-- サイドナビ -->
+  <mat-drawer #sidenav mode="side" [opened]="true">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/">ジャンル</a>
+      <a mat-list-item routerLink="/">履歴</a>
+      <a mat-list-item routerLink="/">フォロー</a>
+    </mat-nav-list>
+  </mat-drawer>
+
+  <!-- メイン -->
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+
+</mat-drawer-container>
+
