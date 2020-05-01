@@ -11,23 +11,21 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireFunctionsModule, REGION } from '@angular/fire/functions';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatIconModule} from '@angular/material/icon';
-import {MatMenuModule} from '@angular/material/menu';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 import { HeaderComponent } from './header/header.component';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavigationComponent } from './navigation/navigation.component';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatListModule} from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    NavigationComponent
-  ],
+  declarations: [AppComponent, HeaderComponent, NavigationComponent],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -44,11 +42,9 @@ import {MatListModule} from '@angular/material/list';
     FormsModule,
     ReactiveFormsModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
   ],
-  providers: [
-    { provide: REGION, useValue: 'asia-northeast1' }
-  ],
-  bootstrap: [AppComponent]
+  providers: [{ provide: REGION, useValue: 'asia-northeast1' }],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
