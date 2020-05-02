@@ -3,16 +3,72 @@
 <mat-sidenav-container>
   <mat-sidenav
     #sidenav
-    mode="side"
+    mode="over"
     [opened]="opened$ | async"
     fixedInViewport
     [fixedTopGap]="105"
+    class="sidenav"
   >
     <mat-nav-list>
-      <a mat-list-item routerLink="/">ジャンル</a>
-      <a mat-list-item routerLink="/">履歴</a>
-      <a mat-list-item routerLink="/">フォロー</a>
+      <a mat-list-item routerLink="/">
+        <mat-icon class="mat-icon">home</mat-icon> ホーム</a
+      >
+      <a mat-list-item routerLink="/">
+        <mat-icon class="mat-icon">event</mat-icon>イベント</a
+      >
+      <mat-divider class="divider"></mat-divider>
+      <a mat-list-item routerLink="/">
+        <mat-icon class="mat-icon">code</mat-icon>プログラミング</a
+      >
+      <a mat-list-item routerLink="/">
+        <mat-icon class="mat-icon">language</mat-icon>外国語</a
+      >
+      <a mat-list-item routerLink="/">
+        <mat-icon class="mat-icon">business</mat-icon>ビジネス</a
+      >
+      <a mat-list-item routerLink="/">
+        <mat-icon class="mat-icon">directions_run</mat-icon>スポーツ</a
+      >
+      <a mat-list-item routerLink="/">
+        <mat-icon class="mat-icon">fitness_center</mat-icon>筋トレ</a
+      >
+      <a mat-list-item routerLink="/">
+        <mat-icon class="mat-icon">music_note</mat-icon>ダンス</a
+      >
+      <a mat-list-item routerLink="/">
+        <mat-icon class="mat-icon">accessibility</mat-icon>ダイエット</a
+      >
+      <a mat-list-item routerLink="/">
+        <mat-icon class="mat-icon">local_dining</mat-icon>料理</a
+      >
+      <a mat-list-item routerLink="/">
+        <mat-icon class="mat-icon">event_seat</mat-icon>インテリア</a
+      >
+      <a mat-list-item routerLink="/">
+        <mat-icon class="mat-icon">emoji_objects</mat-icon>モノづくり</a
+      >
+      <a mat-list-item routerLink="/">
+        <mat-icon class="mat-icon">graphic_eq</mat-icon>音楽</a
+      >
+      <mat-divider class="divider"></mat-divider>
+      <a mat-list-item routerLink="/">
+        <mat-icon class="mat-icon">people</mat-icon>フォロー</a
+      >
+      <a mat-list-item routerLink="/">
+        <mat-icon class="mat-icon">favorite</mat-icon>チップ</a
+      >
+      <a mat-list-item routerLink="/">
+        <mat-icon class="mat-icon">event</mat-icon>イベント</a
+      >
+      <mat-divider class="divider"></mat-divider>
     </mat-nav-list>
+
+    <footer class="footer">
+      <a mat-list-item routerLink="/">サービスについて</a>
+      <a mat-list-item routerLink="/">特定商取引</a>
+      <a mat-list-item routerLink="/">利用規約</a>
+      <p class="footer__copy">©️Yusuke Gunji Works</p>
+    </footer>
   </mat-sidenav>
 
   <mat-sidenav-content>
