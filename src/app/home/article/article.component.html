@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="article">
+    <div class="article__category">
+      <mat-icon class="mat-18 aticle__category-icon">code</mat-icon>
+      <p class="article__category-text">{{ article.category }}</p>
+    </div>
+
+    <figure class="article__thumbnail">
+      <img [src]="article.thumbnail" alt="" />
+    </figure>
+
+    <div class="article__body">
+      <div class="article__top">
+      <button class="article__avatar" mat-button>
+        <figure class="avatar"></figure>
+      </button>
+      <h2 class="article__title">{{ article.Title }}</h2>
+    </div>
+
+      <div class="article__description">
+        <p class="article__price">PRICE：{{ article.price }}</p>
+        <p class="article__up">{{ article.day }} UP</p>
+      </div>
+    </div>
+  </div>
+</div>
