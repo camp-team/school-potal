@@ -1,23 +1,39 @@
+@import '~@angular/material/theming';
+
 .container {
   background-color: rgba(38, 50, 56);
 }
 
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px,1fr));
+  gap: 24px;
+}
+
 .article {
   padding: 24px;
+  transition: .3s;
+  &:hover {
+    @include mat-elevation(4);
+  }
   &__category {
     display: flex;
     align-items: center;
     margin-bottom: 8px;
-    padding: 0;
+    padding: 2px;
+    background: #263238;
+    box-shadow: 1px 1px 1px rgba(55, 71, 79, .6);
+    border-radius: 3px;
+    max-width: 160px;
    }
     &__category-icon {
-      margin-right: 8px;
+      margin-right: 16px;
     }
     &__category-text {
       opacity: .8;
     }
   &__thumbnail {
-    padding: 8px 8px 0 8px;
+    padding: 8px 8px 8px 0;
   }
   &__top {
     display: flex;
@@ -26,9 +42,9 @@
   &__avatar {
     width: 40px;
     height: 40px;
-    background: #fff center/cover;
     border-radius: 50%;
     margin-right: 16px;
+    overflow: hidden;
   }
   &__price, &__up {
     opacity: .38;

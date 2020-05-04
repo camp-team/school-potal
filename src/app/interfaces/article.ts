@@ -1,8 +1,8 @@
 export interface Article {
-  id: string;
   thumbnail: string;
+  avatarURL: string;
   Title: string;
   category: string;
-  day: string;
+  createdAt: Date;
   price: string;
 }
