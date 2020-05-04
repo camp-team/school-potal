@@ -21,6 +21,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { CommonModule } from '@angular/common';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, NavigationComponent],
@@ -43,6 +44,7 @@ import { CommonModule } from '@angular/common';
     ReactiveFormsModule,
     MatSidenavModule,
     MatListModule,
+    MatDividerModule
   ],
   providers: [{ provide: REGION, useValue: 'asia-northeast1' }],
   bootstrap: [AppComponent],

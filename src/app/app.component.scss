@@ -1,0 +1,22 @@
+.sidenav {
+  background-color: rgba(38, 50, 56);
+}
+
+.mat-icon {
+  margin: 0 24px 0 16px;
+  opacity: .8;
+}
+
+.divider {
+  margin: 16px 0;
+}
+
+.footer {
+  margin: 16px;
+  text-align: center;
+  font-weight: 300;
+  color: rgba(#ffffff, .8);
+  &__copy {
+  color: rgba(#ffffff, .38);
+  }
+}

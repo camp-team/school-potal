@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="grid">
+    <a href="" class="article" *ngFor="let article of articles">
+      <div class="article__category">
+        <mat-icon class="mat-18 aticle__category-icon">code</mat-icon>
+        <p class="article__category-text">{{ article.category }}</p>
+      </div>
+
+      <figure class="article__thumbnail">
+        <img [src]="article.thumbnail" alt="" />
+      </figure>
+
+      <div class="article__body">
+        <div class="article__top">
+          <figure class="article__avatar">
+            <img [src]="article.avatarURL" alt="" />
+          </figure>
+          <h2 class="article__title">{{ article.title }}</h2>
+        </div>
+
+        <div class="article__description">
+          <p class="article__price">PRICE：{{ article.price }}</p>
+          <p class="article__up">
+            {{ article.createdAt | date: 'yyyy年M月d日' }} UP
+          </p>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
