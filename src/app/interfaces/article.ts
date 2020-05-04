@@ -1,7 +1,7 @@
 export interface Article {
   thumbnail: string;
   avatarURL: string;
-  Title: string;
+  title: string;
   category: string;
   createdAt: Date;
   price: string;
