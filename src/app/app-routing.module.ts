@@ -6,7 +6,12 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
+  },
+  {
+    path: 'intl',
+    loadChildren: () => import('./intl/intl.module').then(m => m.IntlModule)
   }
+
 ];
 
 @NgModule({
