@@ -3,13 +3,10 @@ import { CommonModule } from '@angular/common';
 
 import { IntlRoutingModule } from './intl-routing.module';
 import { RuleComponent } from './rule/rule.component';
-
+import { LegalComponent } from '../legal/legal.component';
 
 @NgModule({
-  declarations: [RuleComponent],
-  imports: [
-    CommonModule,
-    IntlRoutingModule
-  ]
+  declarations: [RuleComponent, LegalComponent],
+  imports: [CommonModule, IntlRoutingModule],
 })
-export class IntlModule { }
+export class IntlModule {}
