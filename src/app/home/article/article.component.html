@@ -1,6 +1,11 @@
 <div class="container">
   <div class="grid">
-    <a href="" class="article" *ngFor="let article of articles">
+    <a
+      routerLink="/article-detail"
+      href=""
+      class="article"
+      *ngFor="let article of articles"
+    >
       <div class="article__category">
         <mat-icon class="mat-18 aticle__category-icon">code</mat-icon>
         <p class="article__category-text">{{ article.category }}</p>
