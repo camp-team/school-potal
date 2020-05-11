@@ -1,0 +1,16 @@
+<h2>おすすめ</h2>
+
+<mat-card *ngFor="let article of articles">
+  <div class="article">
+    <figure class="article__thumbnail">
+      <img [src]="article.thumbnail" alt="" />
+    </figure>
+    <div class="article__body">
+      <p class="article__title">{{ article.title }}</p>
+      <p class="article__category">{{ article.category }}</p>
+      <p class="article__date">
+        {{ article.createdAt | date: 'yyyy年M月d日' }} UP
+      </p>
+    </div>
+  </div>
+</mat-card>
