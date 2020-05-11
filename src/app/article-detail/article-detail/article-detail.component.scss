@@ -1,0 +1,11 @@
+.container {
+  background-color: rgba(38, 50, 56);
+}
+
+.wrap {
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 24px;
+  margin: 0 auto;
+}
