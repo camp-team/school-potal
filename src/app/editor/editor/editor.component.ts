@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormControl } from '@angular/forms';
 
 interface Category {
   value: string;
@@ -12,7 +12,7 @@ interface Category {
   styleUrls: ['./editor.component.scss'],
 })
 export class EditorComponent implements OnInit {
-  categorys: Category[] = [
+  categoryGroup: Category[] = [
     { value: 'programing-0', viewValue: 'プログラミング' },
     { value: 'language-1', viewValue: '外国語' },
     { value: 'business-2', viewValue: 'ビジネス' },
@@ -34,6 +34,26 @@ export class EditorComponent implements OnInit {
   });
 
   constructor(private fb: FormBuilder) {}
+
+  get name(): FormControl {
+    return this.form.get('name') as FormControl;
+  }
+
+  get categorys(): FormControl {
+    return this.form.get('categorys') as FormControl;
+  }
+
+  get title(): FormControl {
+    return this.form.get('title') as FormControl;
+  }
+
+  get feature(): FormControl {
+    return this.form.get('feature') as FormControl;
+  }
+
+  get plan(): FormControl {
+    return this.form.get('plan') as FormControl;
+  }
 
   ngOnInit(): void {}
 
