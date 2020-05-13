@@ -18,6 +18,11 @@ const routes: Routes = [
         (m) => m.ArticleDetailModule
       ),
   },
+  {
+    path: 'editor',
+    loadChildren: () =>
+      import('./editor/editor.module').then((m) => m.EditorModule),
+  },
 ];
 
 @NgModule({

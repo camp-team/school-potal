@@ -1,0 +1,110 @@
+<mat-tab-group animationDuration="0ms">
+  <mat-tab label="記事一覧"></mat-tab>
+  <mat-tab label="記事作成">
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="edit-column">
+        <div class="edit-column__left">
+          <h2>メイン画像</h2>
+          <div class="main-img">
+            <p class="note">※ 1280px x 720px</p>
+            <button mat-mini-fab color="" class="img-button">
+              <mat-icon>insert_photo</mat-icon>
+            </button>
+          </div>
+          <mat-divider></mat-divider>
+
+          <h2>サービス名</h2>
+          <mat-form-field appearance="outline">
+            <input matInput formControlName="name" #name required />
+            <mat-hint align="end">{{ name.value.length }} / 100文字</mat-hint>
+          </mat-form-field>
+
+          <h2>サービスロゴ</h2>
+          <div class="logo-img">
+            <p class="note">※ 800px x 800px</p>
+            <button mat-mini-fab color="" class="img-button">
+              <mat-icon>insert_photo</mat-icon>
+            </button>
+          </div>
+
+          <h2>カテゴリー</h2>
+          <mat-form-field>
+            <mat-select formControlName="category">
+              <mat-option
+                *ngFor="let category of categorys"
+                [value]="category.value"
+              >
+                {{ category.viewValue }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-divider></mat-divider>
+        </div>
+
+        <div class="edit-column__center">
+          <h2>記事タイトル</h2>
+          <mat-form-field appearance="outline">
+            <input matInput formControlName="title" #title required />
+            <mat-hint align="end">{{ title.value.length }} / 100文字</mat-hint>
+          </mat-form-field>
+
+          <h2>サービスの特徴</h2>
+          <mat-form-field appearance="outline" class="feature">
+            <textarea
+              matInput
+              formControlName="feature"
+              #feature
+              matTextareaAutosize
+              [matAutosizeMinRows]="10"
+            ></textarea>
+            <mat-hint align="end"
+              >{{ feature.value.length }} / 400文字</mat-hint
+            >
+          </mat-form-field>
+          <mat-divider></mat-divider>
+
+          <h2>イメージ画像1</h2>
+          <div class="sub-img">
+            <p class="note">※ 640px x 360px</p>
+            <button mat-mini-fab color="" class="img-button">
+              <mat-icon>insert_photo</mat-icon>
+            </button>
+          </div>
+          <h2>イメージ画像2</h2>
+          <div class="sub-img">
+            <p class="note">※ 640px x 360px</p>
+            <button mat-mini-fab color="" class="img-button">
+              <mat-icon>insert_photo</mat-icon>
+            </button>
+          </div>
+          <mat-divider></mat-divider>
+        </div>
+
+        <div class="edit-column__right">
+          <h2>プラン</h2>
+          <mat-form-field appearance="outline" class="feature">
+            <textarea
+              matInput
+              formControlName="plan"
+              #plan
+              matTextareaAutosize
+              [matAutosizeMinRows]="10"
+            ></textarea>
+            <mat-hint align="end">{{ plan.value.length }} / 400文字</mat-hint>
+          </mat-form-field>
+          <mat-slide-toggle color="primary">非公開 / 公開</mat-slide-toggle>
+
+          <button
+            mat-fab
+            color="primary"
+            class="submit-button"
+            [disabled]="form.invalid || form.pristine"
+          >
+            GO
+          </button>
+        </div>
+      </div>
+    </form>
+  </mat-tab>
+  <mat-tab label="メンバー管理"> </mat-tab>
+</mat-tab-group>
