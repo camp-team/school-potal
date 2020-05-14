@@ -29,9 +29,9 @@
 
           <h2>カテゴリー</h2>
           <mat-form-field>
-            <mat-select formControlName="category">
+            <mat-select formControlName="categorys">
               <mat-option
-                *ngFor="let category of categorys"
+                *ngFor="let category of categoryGroup"
                 [value]="category.value"
               >
                 {{ category.viewValue }}
@@ -98,7 +98,7 @@
             mat-fab
             color="primary"
             class="submit-button"
-            [disabled]="form.invalid || form.pristine"
+            [disabled]="form.invalid"
           >
             GO
           </button>
