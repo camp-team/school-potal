@@ -1,7 +1,8 @@
 export interface User {
   id: string;
   photoURL: string;
-  plan: string;
+  name: string;
+  email: string;
   admin: boolean;
-  createdAt: string;
+  createdAt: Date;
 }

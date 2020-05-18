@@ -1,7 +1,13 @@
 import * as functions from 'firebase-functions';
+import * as admin from 'firebase-admin';
 
-const db = admin.firestore;
+const db = admin.firestore();
 
 export const createUser = functions.auth.user().onCreate((user) => {
-  db.doc(`users/${user.uid}`).set();
+  return db.doc(`users/${user.uid}`).set({
+    name: user.displayName,
+    photoURL: user.photoURL,
+    email: user.email,
+    createdAt: new Date(),
+  });
 });

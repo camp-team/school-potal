@@ -20,7 +20,9 @@ export class AuthService {
   }
 
   login() {
-    this.afAuth.signInWithPopup(new auth.GoogleAuthProvider()).then(() => {
+    const provider = new auth.GoogleAuthProvider();
+    provider.setCustomParameters({ prompt: 'select_account' });
+    this.afAuth.signInWithPopup(provider).then(() => {
       this.snackBar.open('ログインしました 🎉', null, {
         duration: 3000,
       });
