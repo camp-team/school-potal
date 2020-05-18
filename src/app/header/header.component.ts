@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DrawerService } from '../services/drawer.service';
 import { AuthService } from '../sevices/auth.service';
+import { Observable } from 'rxjs';
+import { User } from '../interfaces/users';
 
 @Component({
   selector: 'app-header',
@@ -8,7 +10,7 @@ import { AuthService } from '../sevices/auth.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  user$ = this.authService.afUser$;
+  user$ = this.authService.user$;
 
   constructor(
     private drawerService: DrawerService,

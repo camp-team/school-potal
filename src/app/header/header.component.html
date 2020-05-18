@@ -22,7 +22,6 @@
 
     <ng-container *ngIf="user$ | async as user; else default">
       <button
-        *ngIf="user"
         class="avatar"
         mat-icon-button
         [matMenuTriggerFor]="menu"
