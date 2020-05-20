@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormControl } from '@angular/forms';
+import { ArticleService } from 'src/app/sevices/article.service';
 
 interface Category {
   value: string;
@@ -33,7 +34,10 @@ export class EditorComponent implements OnInit {
     plan: ['', [Validators.required, Validators.maxLength(400)]],
   });
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private articleService: ArticleService
+  ) {}
 
   get name(): FormControl {
     return this.form.get('name') as FormControl;
@@ -57,7 +61,28 @@ export class EditorComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  // selectImages(event) {
+  //   if (event.target.files.length){
+  //   const images = event.target.files[0];
+  //   this.articleService.selectImages(
+  //     image
+  //   );
+  //   }
+  // }
+
   submit() {
     console.log(this.form.value);
+    const formData = this.form.value;
+    this.articleService.createArtile({
+      thumbnail: 'サムネイル',
+      avatarURL: 'logo',
+      name: formData.name,
+      title: formData.title,
+      category: formData.categorys,
+      createdAt: new Date(),
+      feature: formData.feature,
+      plan: formData.plan,
+      id: this.articleService.id,
+    });
   }
 }

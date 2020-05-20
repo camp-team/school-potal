@@ -1,8 +1,11 @@
 export interface Article {
   thumbnail: string;
   avatarURL: string;
+  name: string;
   title: string;
   category: string;
   createdAt: Date;
-  price: string;
+  feature: string;
+  plan: string;
+  id: string;
 }
