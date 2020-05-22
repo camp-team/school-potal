@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ArticleService } from 'src/app/sevices/article.service';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 interface Category {
   value: string;
@@ -13,6 +14,17 @@ interface Category {
   styleUrls: ['./editor.component.scss'],
 })
 export class EditorComponent implements OnInit {
+  @ViewChild('fileInput')
+  fileInput;
+
+  file: File | null = null;
+  images: {
+    thumbnail: null;
+    logo: null;
+    image1: null;
+    image2: null;
+  };
+
   categoryGroup: Category[] = [
     { value: 'programing-0', viewValue: 'プログラミング' },
     { value: 'language-1', viewValue: '外国語' },
@@ -36,7 +48,8 @@ export class EditorComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private articleService: ArticleService
+    private articleService: ArticleService,
+    private db: AngularFirestore
   ) {}
 
   get name(): FormControl {
@@ -61,28 +74,32 @@ export class EditorComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  // selectImages(event) {
-  //   if (event.target.files.length){
-  //   const images = event.target.files[0];
-  //   this.articleService.selectImages(
-  //     image
-  //   );
-  //   }
-  // }
+  // ボタンクリックでinputのイベントを発火させるメソッド
+  onClickFileInputButton(): void {
+    this.fileInput.nativeElement.click();
+  }
 
+  // エディター画面に画像をセットするメソッド
+  setImage(event, type: string) {
+    if (event.target.files.length) {
+      this.images[type] = event.target.files[0];
+    }
+  }
+
+  // submitでFireStoreへ記事投稿するメソッド
   submit() {
     console.log(this.form.value);
     const formData = this.form.value;
-    this.articleService.createArtile({
-      thumbnail: 'サムネイル',
-      avatarURL: 'logo',
-      name: formData.name,
-      title: formData.title,
-      category: formData.categorys,
-      createdAt: new Date(),
-      feature: formData.feature,
-      plan: formData.plan,
-      id: this.articleService.id,
-    });
+    this.articleService.createArtile(
+      {
+        name: formData.name,
+        title: formData.title,
+        category: formData.categorys,
+        createdAt: new Date(),
+        feature: formData.feature,
+        plan: formData.plan,
+      },
+      this.images
+    );
   }
 }

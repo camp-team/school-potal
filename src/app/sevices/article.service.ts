@@ -8,45 +8,52 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   providedIn: 'root',
 })
 export class ArticleService {
-  id = this.db.createId();
-
   constructor(
     private db: AngularFirestore,
     private storage: AngularFireStorage,
     private snackBar: MatSnackBar
   ) {}
 
-  createArtile(article: Article) {
+  // 記事作成メソッド
+  async createArtile(
+    article: Omit<Article, 'id'>,
+    images: {
+      thumbnail: File;
+      logo: File;
+      image1: File;
+      image2: File;
+    }
+  ) {
+    const id = this.db.createId();
+    const urls = await Promise.all(
+      Object.entries(images).map(async ([key, file]) => {
+        if (file) {
+          return await this.uploadImage(id, file);
+        } else {
+          return null;
+        }
+      })
+    );
+    const [thumbnail, logo, image1, image2] = urls;
     return this.db
-      .doc(`articles/${this.id}`)
-      .set(article)
+      .doc(`articles/${id}`)
+      .set({
+        ...article,
+        thumbnail,
+        logo,
+        image1,
+        image2,
+      })
       .then(() => {
         this.snackBar.open('記事を投稿しました！', null, {
           duration: 3000,
         });
       });
   }
+
+  // 記事のidに画像を紐付けるメソッド
+  async uploadImage(articleId: string, file: File): Promise<string> {
+    const result = await this.storage.ref(`articles/${articleId}`).put(file);
+    return await result.ref.getDownloadURL();
+  }
 }
-
-// async selectImages(){
-//   const ref = this.Storage.ref();
-//   const result = await ref.putString();
-//   return result.ref.getDownloadURL();
-// }
-
-// selectImages(id: string, files: File[]):Promise<void> {
-//   return Promise.all(
-//     files.map((file, index) => {
-//       const ref = this.Storage.ref(`posts/${id}-${index}`);
-//       return ref.put(file);
-//     })
-//   ).then(async task => {
-//     const imageURLs = [];
-//     for (const task of tasks) {
-//       imageURLs.push(await task.ref.getDownloadURL());
-//     }
-//     return this.db.doc(`posts/${id}`).update({
-//       imageURLs
-//     });
-//   });
-// }

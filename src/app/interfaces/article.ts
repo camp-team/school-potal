@@ -1,6 +1,4 @@
 export interface Article {
-  thumbnail: string;
-  avatarURL: string;
   name: string;
   title: string;
   category: string;
