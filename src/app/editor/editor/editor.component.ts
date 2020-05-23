@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ArticleService } from 'src/app/sevices/article.service';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 interface Category {
   value: string;
@@ -14,15 +15,24 @@ interface Category {
   styleUrls: ['./editor.component.scss'],
 })
 export class EditorComponent implements OnInit {
-  @ViewChild('fileInput')
-  fileInput;
-
-  file: File | null = null;
   images: {
-    thumbnail: null;
-    logo: null;
-    image1: null;
-    image2: null;
+    thumbnail: File;
+    logo: File;
+    image1?: File;
+    image2?: File;
+  } = {
+    thumbnail: null,
+    logo: null,
+  };
+
+  srcs: {
+    thumbnail: File;
+    logo: File;
+    image1?: File;
+    image2?: File;
+  } = {
+    thumbnail: null,
+    logo: null,
   };
 
   categoryGroup: Category[] = [
@@ -49,8 +59,18 @@ export class EditorComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private articleService: ArticleService,
-    private db: AngularFirestore
+    private db: AngularFirestore,
+    private snackBar: MatSnackBar
   ) {}
+
+  // ファイルをHTMLで扱えるURLに変換するメソッド
+  convertImage(file: File, type: string) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      this.srcs[type] = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
 
   get name(): FormControl {
     return this.form.get('name') as FormControl;
@@ -74,15 +94,11 @@ export class EditorComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  // ボタンクリックでinputのイベントを発火させるメソッド
-  onClickFileInputButton(): void {
-    this.fileInput.nativeElement.click();
-  }
-
   // エディター画面に画像をセットするメソッド
   setImage(event, type: string) {
     if (event.target.files.length) {
       this.images[type] = event.target.files[0];
+      this.convertImage(this.images[type], type);
     }
   }
 
@@ -90,16 +106,22 @@ export class EditorComponent implements OnInit {
   submit() {
     console.log(this.form.value);
     const formData = this.form.value;
-    this.articleService.createArtile(
-      {
-        name: formData.name,
-        title: formData.title,
-        category: formData.categorys,
-        createdAt: new Date(),
-        feature: formData.feature,
-        plan: formData.plan,
-      },
-      this.images
-    );
+    this.articleService
+      .createArtile(
+        {
+          name: formData.name,
+          title: formData.title,
+          category: formData.categorys,
+          createdAt: new Date(),
+          feature: formData.feature,
+          plan: formData.plan,
+        },
+        this.images
+      )
+      .then(() => {
+        this.snackBar.open('記事を投稿しました！', null, {
+          duration: 3000,
+        });
+      });
   }
 }

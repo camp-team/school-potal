@@ -6,30 +6,29 @@
         <div class="edit-column__left">
           <h2>メイン画像</h2>
           <div class="main-img">
-            <p class="note">※ 1280px x 720px</p>
+            <img *ngIf="srcs?.thumbnail" [src]="srcs.thumbnail" alt="" />
+            <p class="note" *ngIf="!srcs.thumbnail">
+              ※ 1280px x 720px
+            </p>
             <input
               type="file"
               style="display: none;"
-              #fileInput
+              #thumbnailInput
               (change)="setImage($event, 'thumbnail')"
-              multiple
               accept=".png, .img, .jpeg"
             />
             <button
               type="button"
-              (click)="onClickFileInputButton()"
+              (click)="thumbnailInput.click()"
               mat-mini-fab
               color=""
               class="img-button"
             >
-              <mat-icon>insert_photo</mat-icon>
+              <mat-icon>add_photo_alternate</mat-icon>
             </button>
-            <p class="file-name" *ngIf="!file; else fileName">
+            <p class="file-name" *ngIf="!srcs.thumbnail">
               ファイルが選択されていません
             </p>
-            <ng-template #fileName>
-              <p class="file-name">{{ file?.name }}</p>
-            </ng-template>
           </div>
           <mat-divider></mat-divider>
 
@@ -41,30 +40,29 @@
 
           <h2>サービスロゴ</h2>
           <div class="logo-img">
-            <p class="note">※ 800px x 800px</p>
+            <img *ngIf="srcs?.logo" [src]="srcs.logo" alt="" />
+            <p class="note" *ngIf="!srcs.logo">
+              ※ 800px x 800px
+            </p>
             <input
               type="file"
               style="display: none;"
-              #fileInput
+              #logoInput
               (change)="setImage($event, 'logo')"
-              multiple
               accept=".png, .img, .jpeg"
             />
             <button
               type="button"
-              (click)="onClickFileInputButton()"
+              (click)="logoInput.click()"
               mat-mini-fab
               color=""
               class="img-button"
             >
-              <mat-icon>insert_photo</mat-icon>
+              <mat-icon>add_photo_alternate</mat-icon>
             </button>
-            <p class="file-name" *ngIf="!file; else fileName">
+            <p class="file-name" *ngIf="!srcs.logo">
               ファイルが選択されていません
             </p>
-            <ng-template #fileName>
-              <p class="file-name">{{ file?.name }}</p>
-            </ng-template>
           </div>
 
           <h2>カテゴリー</h2>
@@ -105,58 +103,56 @@
 
           <h2>イメージ画像1</h2>
           <div class="sub-img">
-            <p class="note">※ 640px x 360px</p>
+            <img *ngIf="srcs?.image1" [src]="srcs.image1" alt="" />
+            <p class="note" *ngIf="!srcs.image1">
+              ※ 640px x 360px
+            </p>
             <input
               type="file"
               style="display: none;"
-              #fileInput
+              #image1Input
               (change)="setImage($event, 'image1')"
-              multiple
               accept=".png, .img, .jpeg"
             />
             <button
               type="button"
-              (click)="onClickFileInputButton()"
+              (click)="image1Input.click()"
               mat-mini-fab
               color=""
               class="img-button"
             >
-              <mat-icon>insert_photo</mat-icon>
+              <mat-icon>add_photo_alternate</mat-icon>
             </button>
-            <p class="file-name" *ngIf="!file; else fileName">
+            <p class="file-name" *ngIf="!srcs.image1">
               ファイルが選択されていません
             </p>
-            <ng-template #fileName>
-              <p class="file-name">{{ file?.name }}</p>
-            </ng-template>
           </div>
 
           <h2>イメージ画像2</h2>
           <div class="sub-img">
-            <p class="note">※ 640px x 360px</p>
+            <img *ngIf="srcs?.image2" [src]="srcs.image2" alt="" />
+            <p class="note" *ngIf="!srcs.image2">
+              ※ 640px x 360px
+            </p>
             <input
               type="file"
               style="display: none;"
-              #fileInput
+              #image2Input
               (change)="setImage($event, 'image2')"
-              multiple
               accept=".png, .img, .jpeg"
             />
             <button
               type="button"
-              (click)="onClickFileInputButton()"
+              (click)="image2Input.click()"
               mat-mini-fab
               color=""
               class="img-button"
             >
-              <mat-icon>insert_photo</mat-icon>
+              <mat-icon>add_photo_alternate</mat-icon>
             </button>
-            <p class="file-name" *ngIf="!file; else fileName">
+            <p class="file-name" *ngIf="!srcs.image2">
               ファイルが選択されていません
             </p>
-            <ng-template #fileName>
-              <p class="file-name">{{ file?.name }}</p>
-            </ng-template>
           </div>
           <mat-divider></mat-divider>
         </div>

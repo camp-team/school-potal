@@ -20,8 +20,8 @@ export class ArticleService {
     images: {
       thumbnail: File;
       logo: File;
-      image1: File;
-      image2: File;
+      image1?: File;
+      image2?: File;
     }
   ) {
     const id = this.db.createId();
@@ -35,20 +35,13 @@ export class ArticleService {
       })
     );
     const [thumbnail, logo, image1, image2] = urls;
-    return this.db
-      .doc(`articles/${id}`)
-      .set({
-        ...article,
-        thumbnail,
-        logo,
-        image1,
-        image2,
-      })
-      .then(() => {
-        this.snackBar.open('記事を投稿しました！', null, {
-          duration: 3000,
-        });
-      });
+    return this.db.doc(`articles/${id}`).set({
+      ...article,
+      thumbnail,
+      logo,
+      image1,
+      image2,
+    });
   }
 
   // 記事のidに画像を紐付けるメソッド
