@@ -1,23 +1,25 @@
 <section>
-  <div class="article">
+  <div class="article" *ngIf="article$ | async as article; else blank">
     <div class="hero">
       <figure class="hero__thumbnail">
-        <img src="./assets/images/thumbnail_02.png" alt="" />
+        <img [src]="article.thumbnailURL" alt="" />
       </figure>
       <button mat-flat-button color="primary">
         <mat-icon class="hero__category-icon">code</mat-icon>
-        <p class="hero__category-text">プログラミング</p>
+        <p class="hero__category-text">{{ article.category }}</p>
       </button>
 
       <h1>
-        オリジナルサービスを開発して起業もあり！即戦力となる実務スキルが身につくプログラミング版ライザップ
+        {{ article.title }}
       </h1>
 
       <div class="container">
         <figure class="hero__avatar">
           <img src="https://dummyimage.com/80x80.png" alt="" />
         </figure>
-        <h2 class="hero__title">CAMP</h2>
+        <h2 class="hero__title">
+          {{ article.name }}
+        </h2>
       </div>
     </div>
 
@@ -32,8 +34,7 @@
           <figure class="users__avatar">
             <img src="https://dummyimage.com/80x80.png" alt="" />
           </figure>
-          <p>オレ</p>
-          <p>オレ生徒</p>
+          <p>テスト生徒</p>
         </ng-template>
         <a href="https://twitter.com/yuutan_0202" class="users__name"
           ><h4>@oreore</h4></a
@@ -65,8 +66,7 @@
           <figure class="users__avatar">
             <img src="https://dummyimage.com/80x80.png" alt="" />
           </figure>
-          <p>オレ</p>
-          <p>オレ社長</p>
+          <p>テスト先生</p>
         </ng-template>
         <a href="https://twitter.com/yuutan_0202" class="users__name"
           ><h4>@oreore</h4></a
@@ -87,17 +87,18 @@
     </mat-tab-group>
 
     <h3>サービスの特徴</h3>
+    <img [src]="article.image1" alt="" />
+    <img [src]="article.image2" alt="" />
     <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt dolores
-      enim excepturi illum consequuntur aliquid nisi quia ullam eligendi placeat
-      voluptates nostrum fuga, ipsam iure, assumenda ut ab. Quos, quia?
+      {{ article.feature }}
     </p>
 
     <h3>プラン</h3>
     <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt dolores
-      enim excepturi illum consequuntur aliquid nisi quia ullam eligendi placeat
-      voluptates nostrum fuga, ipsam iure, assumenda ut ab. Quos, quia?
+      {{ article.plan }}
     </p>
   </div>
+  <ng-template #blank>
+    <p>{{ articleId }}はまだありません。</p>
+  </ng-template>
 </section>

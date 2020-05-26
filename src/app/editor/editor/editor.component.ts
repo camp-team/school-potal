@@ -3,6 +3,7 @@ import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ArticleService } from 'src/app/sevices/article.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Article } from 'src/app/interfaces/article';
 
 interface Category {
   value: string;
@@ -16,22 +17,22 @@ interface Category {
 })
 export class EditorComponent implements OnInit {
   images: {
-    thumbnail: File;
+    thumbnailURL: File;
     logo: File;
     image1?: File;
     image2?: File;
   } = {
-    thumbnail: null,
+    thumbnailURL: null,
     logo: null,
   };
 
   srcs: {
-    thumbnail: File;
+    thumbnailURL: File;
     logo: File;
     image1?: File;
     image2?: File;
   } = {
-    thumbnail: null,
+    thumbnailURL: null,
     logo: null,
   };
 
@@ -104,7 +105,6 @@ export class EditorComponent implements OnInit {
 
   // submitでFireStoreへ記事投稿するメソッド
   submit() {
-    console.log(this.form.value);
     const formData = this.form.value;
     this.articleService
       .createArtile(
@@ -115,6 +115,7 @@ export class EditorComponent implements OnInit {
           createdAt: new Date(),
           feature: formData.feature,
           plan: formData.plan,
+          id: articleId,
         },
         this.images
       )

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Article } from '../interfaces/article';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -10,15 +10,14 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class ArticleService {
   constructor(
     private db: AngularFirestore,
-    private storage: AngularFireStorage,
-    private snackBar: MatSnackBar
+    private storage: AngularFireStorage
   ) {}
 
-  // 記事作成メソッド
+  // 記事とidに紐付いた画像オブジェクトを作成
   async createArtile(
     article: Omit<Article, 'id'>,
     images: {
-      thumbnail: File;
+      thumbnailURL: File;
       logo: File;
       image1?: File;
       image2?: File;
@@ -26,7 +25,7 @@ export class ArticleService {
   ) {
     const id = this.db.createId();
     const urls = await Promise.all(
-      Object.entries(images).map(async ([key, file]) => {
+      Object.values(images).map(async (file) => {
         if (file) {
           return await this.uploadImage(id, file);
         } else {
@@ -34,19 +33,25 @@ export class ArticleService {
         }
       })
     );
-    const [thumbnail, logo, image1, image2] = urls;
-    return this.db.doc(`articles/${id}`).set({
+    const [thumbnailURL, logo, image1, image2] = urls;
+    return this.db.doc<Article>(`articles/${id}`).set({
       ...article,
-      thumbnail,
+      id,
+      thumbnailURL,
       logo,
       image1,
       image2,
     });
   }
 
-  // 記事のidに画像を紐付けるメソッド
+  // 記事のidに画像を紐付ける
   async uploadImage(articleId: string, file: File): Promise<string> {
     const result = await this.storage.ref(`articles/${articleId}`).put(file);
     return await result.ref.getDownloadURL();
+  }
+
+  // DBから記事データ（オブジェクト）を持ってくる
+  getArticle(articleId: string): Observable<Article> {
+    return this.db.doc<Article>(`articles/${articleId}`).valueChanges();
   }
 }

@@ -9,7 +9,7 @@ const routes: Routes = [
     component: ArticleDetailComponent,
     children: [
       {
-        path: ':id',
+        path: ':articleId',
         component: ArticleComponent,
       },
     ],

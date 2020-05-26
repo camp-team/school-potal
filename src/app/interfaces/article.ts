@@ -6,4 +6,8 @@ export interface Article {
   feature: string;
   plan: string;
   id: string;
+  thumbnailURL: string;
+  logo: string;
+  image1: string;
+  image2: string;
 }
