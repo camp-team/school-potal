@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Article } from '../interfaces/article';
 import { Observable } from 'rxjs';
+import { async } from '@angular/core/testing';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,10 @@ export class ArticleService {
 
   // 記事とidに紐付いた画像オブジェクトを作成
   async createArtile(
-    article: Omit<Article, 'id'>,
+    article: Omit<
+      Article,
+      'id' | 'thumbnailURL' | 'logo' | 'image1' | 'image2'
+    >,
     images: {
       thumbnailURL: File;
       logo: File;
@@ -24,15 +28,7 @@ export class ArticleService {
     }
   ) {
     const id = this.db.createId();
-    const urls = await Promise.all(
-      Object.values(images).map(async (file) => {
-        if (file) {
-          return await this.uploadImage(id, file);
-        } else {
-          return null;
-        }
-      })
-    );
+    const urls = await this.uploadImage(id, Object.values(images));
     const [thumbnailURL, logo, image1, image2] = urls;
     return this.db.doc<Article>(`articles/${id}`).set({
       ...article,
@@ -45,9 +41,25 @@ export class ArticleService {
   }
 
   // 記事のidに画像を紐付ける
-  async uploadImage(articleId: string, file: File): Promise<string> {
-    const result = await this.storage.ref(`articles/${articleId}`).put(file);
-    return await result.ref.getDownloadURL();
+  // async uploadImage(id: string, file: File): Promise<string> {
+  // storageのarticlesに画像URLを追加
+  //  const result = await this.storage.ref(`articles/${id}`)
+  //  .put(file);
+  //  return await result.ref.getDownloadURL();
+
+  async uploadImage(id: string, files: File[]): Promise<string[]> {
+    return Promise.all(
+      files.map((file, index) => {
+        const ref = this.storage.ref(`articles/${id}-${index}`);
+        return ref.put(file);
+      })
+    ).then(async (tasks) => {
+      const urls = [];
+      for (const task of tasks) {
+        urls.push(await task.ref.getDownloadURL());
+      }
+      return urls;
+    });
   }
 
   // DBから記事データ（オブジェクト）を持ってくる

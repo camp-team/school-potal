@@ -101,6 +101,7 @@ export class EditorComponent implements OnInit {
       this.images[type] = event.target.files[0];
       this.convertImage(this.images[type], type);
     }
+    console.log(type);
   }
 
   // submitでFireStoreへ記事投稿するメソッド
@@ -115,7 +116,6 @@ export class EditorComponent implements OnInit {
           createdAt: new Date(),
           feature: formData.feature,
           plan: formData.plan,
-          id: articleId,
         },
         this.images
       )

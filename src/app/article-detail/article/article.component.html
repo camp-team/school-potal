@@ -31,11 +31,11 @@
     <mat-tab-group>
       <mat-tab>
         <ng-template mat-tab-label>
-          <figure class="users__avatar">
-            <img src="https://dummyimage.com/80x80.png" alt="" />
-          </figure>
           <p>テスト生徒</p>
         </ng-template>
+        <figure class="users__avatar">
+          <img src="https://dummyimage.com/80x80.png" alt="" />
+        </figure>
         <a href="https://twitter.com/yuutan_0202" class="users__name"
           ><h4>@oreore</h4></a
         >
@@ -48,6 +48,9 @@
         <button class="users__button">話をきく</button>
       </mat-tab>
       <mat-tab label="Two">
+        <figure class="users__avatar">
+          <img src="https://dummyimage.com/80x80.png" alt="" />
+        </figure>
         <a href="" class="users__name"><h4>@oreore</h4></a>
         <p class="users__description">
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt dolores
@@ -63,11 +66,11 @@
     <mat-tab-group>
       <mat-tab>
         <ng-template mat-tab-label>
-          <figure class="users__avatar">
-            <img src="https://dummyimage.com/80x80.png" alt="" />
-          </figure>
           <p>テスト先生</p>
         </ng-template>
+        <figure class="users__avatar">
+          <img src="https://dummyimage.com/80x80.png" alt="" />
+        </figure>
         <a href="https://twitter.com/yuutan_0202" class="users__name"
           ><h4>@oreore</h4></a
         >
@@ -81,19 +84,30 @@
       </mat-tab>
 
       <mat-tab label="Two">
-        <h1>Some more tab content</h1>
-        <p>...</p>
+        <figure class="users__avatar">
+          <img src="https://dummyimage.com/80x80.png" alt="" />
+        </figure>
+        <a href="https://twitter.com/yuutan_0202" class="users__name"
+          ><h4>@oreore</h4></a
+        >
+        <p class="users__description">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt dolores
+          enim excepturi illum consequuntur aliquid nisi quia ullam eligendi
+          placeat voluptates nostrum fuga, ipsam iure, assumenda ut ab. Quos,
+          quia?
+        </p>
+        <button class="users__button">話をきく</button>
       </mat-tab>
     </mat-tab-group>
 
     <h3>サービスの特徴</h3>
     <img [src]="article.image1" alt="" />
-    <img [src]="article.image2" alt="" />
     <p>
       {{ article.feature }}
     </p>
 
     <h3>プラン</h3>
+    <img [src]="article.image2" alt="" />
     <p>
       {{ article.plan }}
     </p>

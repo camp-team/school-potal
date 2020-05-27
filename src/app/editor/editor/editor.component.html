@@ -6,15 +6,15 @@
         <div class="edit-column__left">
           <h2>メイン画像</h2>
           <div class="main-img">
-            <img *ngIf="srcs?.thumbnail" [src]="srcs.thumbnail" alt="" />
-            <p class="note" *ngIf="!srcs.thumbnail">
+            <img *ngIf="srcs?.thumbnailURL" [src]="srcs.thumbnailURL" alt="" />
+            <p class="note" *ngIf="!srcs.thumbnailURL">
               ※ 1280px x 720px
             </p>
             <input
               type="file"
               style="display: none;"
               #thumbnailInput
-              (change)="setImage($event, 'thumbnail')"
+              (change)="setImage($event, 'thumbnailURL')"
               accept=".png, .img, .jpeg"
             />
             <button
@@ -26,7 +26,7 @@
             >
               <mat-icon>add_photo_alternate</mat-icon>
             </button>
-            <p class="file-name" *ngIf="!srcs.thumbnail">
+            <p class="file-name" *ngIf="!srcs.thumbnailURL">
               ファイルが選択されていません
             </p>
           </div>
