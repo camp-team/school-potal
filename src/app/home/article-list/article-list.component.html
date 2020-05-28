@@ -4,7 +4,7 @@
       routerLink="/article-detail/xxx"
       href=""
       class="article"
-      *ngFor="let article of articles"
+      *ngFor="let article of articles$ | async"
     >
       <div class="article__category">
         <mat-icon class="mat-18 aticle__category-icon">code</mat-icon>

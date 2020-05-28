@@ -66,4 +66,12 @@ export class ArticleService {
   getArticle(articleId: string): Observable<Article> {
     return this.db.doc<Article>(`articles/${articleId}`).valueChanges();
   }
+
+  getArticles(): Observable<Article[]> {
+    return this.db
+      .collection<Article>('articles', (ref) => {
+        return ref.limit(15);
+      })
+      .valueChanges();
+  }
 }
