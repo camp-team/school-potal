@@ -1,7 +1,7 @@
 <div class="container">
   <div class="grid">
     <a
-      routerLink="/article-detail/xxx"
+      routerLink="/article-detail/{{ article.id }}"
       href=""
       class="article"
       *ngFor="let article of articles$ | async"
