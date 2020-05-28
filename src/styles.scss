@@ -1,13 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body {
+html,
+body {
   height: 100%;
 }
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
   background-color: rgba(38, 50, 56);
- }
+}
 
 a {
   color: inherit;
@@ -26,4 +27,8 @@ figure {
 
 img {
   max-width: 100%;
+}
+
+h1 {
+  margin: 0;
 }
