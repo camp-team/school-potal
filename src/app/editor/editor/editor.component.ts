@@ -3,7 +3,7 @@ import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ArticleService } from 'src/app/sevices/article.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Article } from 'src/app/interfaces/article';
+import { firestore } from 'firebase';
 
 interface Category {
   value: string;
@@ -113,7 +113,7 @@ export class EditorComponent implements OnInit {
           name: formData.name,
           title: formData.title,
           category: formData.categorys,
-          createdAt: new Date(),
+          createdAt: firestore.Timestamp.now(),
           feature: formData.feature,
           plan: formData.plan,
         },

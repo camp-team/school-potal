@@ -1,8 +1,10 @@
+import { firestore } from 'firebase';
+
 export interface Article {
   name: string;
   title: string;
   category: string;
-  createdAt: Date;
+  createdAt: firestore.Timestamp;
   feature: string;
   plan: string;
   id: string;
