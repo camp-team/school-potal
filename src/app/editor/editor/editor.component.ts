@@ -37,16 +37,16 @@ export class EditorComponent implements OnInit {
   };
 
   categoryGroup: Category[] = [
-    { value: 'programing-0', viewValue: 'プログラミング' },
-    { value: 'language-1', viewValue: '外国語' },
-    { value: 'business-2', viewValue: 'ビジネス' },
-    { value: 'sports-3', viewValue: 'スポーツ' },
-    { value: 'dance-4', viewValue: 'ダンス' },
-    { value: 'beauty-5', viewValue: '美容' },
-    { value: 'cooking-6', viewValue: '料理' },
-    { value: 'create-7', viewValue: 'モノづくり' },
-    { value: 'music-8', viewValue: '音楽' },
-    { value: 'other-9', viewValue: 'その他' },
+    { value: 'プログラミング', viewValue: 'プログラミング' },
+    { value: '外国語', viewValue: '外国語' },
+    { value: 'ビジネス', viewValue: 'ビジネス' },
+    { value: 'スポーツ', viewValue: 'スポーツ' },
+    { value: 'ダンス', viewValue: 'ダンス' },
+    { value: '美容', viewValue: '美容' },
+    { value: '料理', viewValue: '料理' },
+    { value: 'モノづくり', viewValue: 'モノづくり' },
+    { value: '音楽', viewValue: '音楽' },
+    { value: 'その他', viewValue: 'その他' },
   ];
 
   form = this.fb.group({

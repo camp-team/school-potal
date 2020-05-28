@@ -14,8 +14,8 @@
       </h1>
 
       <div class="container">
-        <figure class="hero__avatar">
-          <img src="https://dummyimage.com/80x80.png" alt="" />
+        <figure class="hero__logo">
+          <img [src]="article.logo" alt="" />
         </figure>
         <h2 class="hero__title">
           {{ article.name }}
@@ -23,94 +23,110 @@
       </div>
     </div>
 
-    <div class="users">
-      <h3 class="users__title">CAMPのユーザー</h3>
-      <button class="users__button">もっと見る</button>
+    <div class="users-section">
+      <div class="users">
+        <h3 class="users__title">CAMPのユーザー</h3>
+        <button class="users__button">もっと見る</button>
+      </div>
+
+      <mat-tab-group>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <p>テスト生徒</p>
+          </ng-template>
+          <figure class="users__avatar">
+            <img src="https://dummyimage.com/80x80.png" alt="" />
+          </figure>
+          <a href="https://twitter.com/yuutan_0202" class="users__name"
+            ><h4>@oreore</h4></a
+          >
+          <p class="users__description">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt
+            dolores enim excepturi illum consequuntur aliquid nisi quia ullam
+            eligendi placeat voluptates nostrum fuga, ipsam iure, assumenda ut
+            ab. Quos, quia?
+          </p>
+          <button class="users__button">話をきく</button>
+        </mat-tab>
+        <mat-tab label="Two">
+          <figure class="users__avatar">
+            <img src="https://dummyimage.com/80x80.png" alt="" />
+          </figure>
+          <a href="" class="users__name"><h4>@oreore</h4></a>
+          <p class="users__description">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt
+            dolores enim excepturi illum consequuntur aliquid nisi quia ullam
+            eligendi placeat voluptates nostrum fuga, ipsam iure, assumenda ut
+            ab. Quos, quia?
+          </p>
+          <button class="users__button">話をきく</button>
+        </mat-tab>
+      </mat-tab-group>
+
+      <h3>講師・メンター</h3>
+      <mat-tab-group>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <p>テスト先生</p>
+          </ng-template>
+          <figure class="users__avatar">
+            <img src="https://dummyimage.com/80x80.png" alt="" />
+          </figure>
+          <a href="https://twitter.com/yuutan_0202" class="users__name"
+            ><h4>@oreore</h4></a
+          >
+          <p class="users__description">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt
+            dolores enim excepturi illum consequuntur aliquid nisi quia ullam
+            eligendi placeat voluptates nostrum fuga, ipsam iure, assumenda ut
+            ab. Quos, quia?
+          </p>
+          <button class="users__button">話をきく</button>
+        </mat-tab>
+
+        <mat-tab label="Two">
+          <figure class="users__avatar">
+            <img src="https://dummyimage.com/80x80.png" alt="" />
+          </figure>
+          <a href="https://twitter.com/yuutan_0202" class="users__name"
+            ><h4>@oreore</h4></a
+          >
+          <p class="users__description">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt
+            dolores enim excepturi illum consequuntur aliquid nisi quia ullam
+            eligendi placeat voluptates nostrum fuga, ipsam iure, assumenda ut
+            ab. Quos, quia?
+          </p>
+          <button class="users__button">話をきく</button>
+        </mat-tab>
+      </mat-tab-group>
     </div>
 
-    <mat-tab-group>
-      <mat-tab>
-        <ng-template mat-tab-label>
-          <p>テスト生徒</p>
-        </ng-template>
-        <figure class="users__avatar">
-          <img src="https://dummyimage.com/80x80.png" alt="" />
-        </figure>
-        <a href="https://twitter.com/yuutan_0202" class="users__name"
-          ><h4>@oreore</h4></a
-        >
-        <p class="users__description">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt dolores
-          enim excepturi illum consequuntur aliquid nisi quia ullam eligendi
-          placeat voluptates nostrum fuga, ipsam iure, assumenda ut ab. Quos,
-          quia?
+    <div class="feature-section">
+      <h3 class="feature-section__title">サービスの特徴</h3>
+      <div class="feature">
+        <img class="feature__image" [src]="article.image1" alt="" />
+        <p class="feature__text">
+          {{ article.feature }}
         </p>
-        <button class="users__button">話をきく</button>
-      </mat-tab>
-      <mat-tab label="Two">
-        <figure class="users__avatar">
-          <img src="https://dummyimage.com/80x80.png" alt="" />
-        </figure>
-        <a href="" class="users__name"><h4>@oreore</h4></a>
-        <p class="users__description">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt dolores
-          enim excepturi illum consequuntur aliquid nisi quia ullam eligendi
-          placeat voluptates nostrum fuga, ipsam iure, assumenda ut ab. Quos,
-          quia?
+      </div>
+
+      <div class="feature">
+        <img class="feature__image" [src]="article.image2" alt="" />
+        <p class="feature__text">
+          {{ article.feature }}
         </p>
-        <button class="users__button">話をきく</button>
-      </mat-tab>
-    </mat-tab-group>
+      </div>
+    </div>
 
-    <h3>講師・メンター</h3>
-    <mat-tab-group>
-      <mat-tab>
-        <ng-template mat-tab-label>
-          <p>テスト先生</p>
-        </ng-template>
-        <figure class="users__avatar">
-          <img src="https://dummyimage.com/80x80.png" alt="" />
-        </figure>
-        <a href="https://twitter.com/yuutan_0202" class="users__name"
-          ><h4>@oreore</h4></a
-        >
-        <p class="users__description">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt dolores
-          enim excepturi illum consequuntur aliquid nisi quia ullam eligendi
-          placeat voluptates nostrum fuga, ipsam iure, assumenda ut ab. Quos,
-          quia?
+    <div class="plan-section">
+      <h3 class="plan-section__title">プラン</h3>
+      <div class="plan">
+        <p class="plan__text">
+          {{ article.plan }}
         </p>
-        <button class="users__button">話をきく</button>
-      </mat-tab>
-
-      <mat-tab label="Two">
-        <figure class="users__avatar">
-          <img src="https://dummyimage.com/80x80.png" alt="" />
-        </figure>
-        <a href="https://twitter.com/yuutan_0202" class="users__name"
-          ><h4>@oreore</h4></a
-        >
-        <p class="users__description">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt dolores
-          enim excepturi illum consequuntur aliquid nisi quia ullam eligendi
-          placeat voluptates nostrum fuga, ipsam iure, assumenda ut ab. Quos,
-          quia?
-        </p>
-        <button class="users__button">話をきく</button>
-      </mat-tab>
-    </mat-tab-group>
-
-    <h3>サービスの特徴</h3>
-    <img [src]="article.image1" alt="" />
-    <p>
-      {{ article.feature }}
-    </p>
-
-    <h3>プラン</h3>
-    <img [src]="article.image2" alt="" />
-    <p>
-      {{ article.plan }}
-    </p>
+      </div>
+    </div>
   </div>
   <ng-template #blank>
     <p>{{ articleId }}はまだありません。</p>
