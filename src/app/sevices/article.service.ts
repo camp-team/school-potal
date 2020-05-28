@@ -40,13 +40,6 @@ export class ArticleService {
     });
   }
 
-  // 記事のidに画像を紐付ける
-  // async uploadImage(id: string, file: File): Promise<string> {
-  // storageのarticlesに画像URLを追加
-  //  const result = await this.storage.ref(`articles/${id}`)
-  //  .put(file);
-  //  return await result.ref.getDownloadURL();
-
   async uploadImage(id: string, files: File[]): Promise<string[]> {
     return Promise.all(
       files.map((file, index) => {
