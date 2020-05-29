@@ -5,9 +5,10 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home/home.component';
 import { ArticleListComponent } from './article-list/article-list.component';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [HomeComponent, ArticleListComponent],
-  imports: [CommonModule, HomeRoutingModule, MatIconModule],
+  imports: [CommonModule, HomeRoutingModule, MatIconModule, MatButtonModule],
 })
 export class HomeModule {}

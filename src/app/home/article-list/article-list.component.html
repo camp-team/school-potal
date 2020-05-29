@@ -6,10 +6,9 @@
       class="article"
       *ngFor="let article of articles$ | async"
     >
-      <div class="article__category">
-        <mat-icon class="mat-18 aticle__category-icon">code</mat-icon>
+      <button mat-flat-button color="primary">
         <p class="article__category-text">{{ article.category }}</p>
-      </div>
+      </button>
 
       <figure class="article__thumbnail">
         <img [src]="article.thumbnailURL" alt="" />
@@ -17,9 +16,7 @@
 
       <div class="article__body">
         <div class="article__top">
-          <figure class="article__avatar">
-            <img [src]="article.logo" alt="" />
-          </figure>
+          <img class="article__logo" [src]="article.logo" alt="" />
           <h2 class="article__title">{{ article.title }}</h2>
         </div>
 
