@@ -3,15 +3,12 @@ import { CommonModule } from '@angular/common';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home/home.component';
-import { ArticleComponent } from './article/article.component';
+import { ArticleListComponent } from './article-list/article-list.component';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
-  declarations: [HomeComponent, ArticleComponent],
-  imports: [
-    CommonModule,
-    HomeRoutingModule,
-    MatIconModule
-  ]
+  declarations: [HomeComponent, ArticleListComponent],
+  imports: [CommonModule, HomeRoutingModule, MatIconModule, MatButtonModule],
 })
-export class HomeModule { }
+export class HomeModule {}

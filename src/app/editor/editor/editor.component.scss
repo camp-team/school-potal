@@ -37,9 +37,8 @@
 
 .img-button {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  bottom: 0;
+  right: -48px;
 }
 
 h2 {
@@ -68,4 +67,13 @@ mat-slide-toggle {
   position: fixed;
   right: 50px;
   bottom: 50px;
+}
+
+.file-name {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 9px;
+  opacity: 0.6;
 }

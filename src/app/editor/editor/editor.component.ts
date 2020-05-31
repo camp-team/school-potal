@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators, FormControl } from '@angular/forms';
+import { ArticleService } from 'src/app/sevices/article.service';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { firestore } from 'firebase';
 
 interface Category {
   value: string;
@@ -12,17 +16,37 @@ interface Category {
   styleUrls: ['./editor.component.scss'],
 })
 export class EditorComponent implements OnInit {
+  images: {
+    thumbnailURL: File;
+    logo: File;
+    image1?: File;
+    image2?: File;
+  } = {
+    thumbnailURL: null,
+    logo: null,
+  };
+
+  srcs: {
+    thumbnailURL: File;
+    logo: File;
+    image1?: File;
+    image2?: File;
+  } = {
+    thumbnailURL: null,
+    logo: null,
+  };
+
   categoryGroup: Category[] = [
-    { value: 'programing-0', viewValue: 'プログラミング' },
-    { value: 'language-1', viewValue: '外国語' },
-    { value: 'business-2', viewValue: 'ビジネス' },
-    { value: 'sports-3', viewValue: 'スポーツ' },
-    { value: 'dance-4', viewValue: 'ダンス' },
-    { value: 'beauty-5', viewValue: '美容' },
-    { value: 'cooking-6', viewValue: '料理' },
-    { value: 'create-7', viewValue: 'モノづくり' },
-    { value: 'music-8', viewValue: '音楽' },
-    { value: 'other-9', viewValue: 'その他' },
+    { value: 'プログラミング', viewValue: 'プログラミング' },
+    { value: '外国語', viewValue: '外国語' },
+    { value: 'ビジネス', viewValue: 'ビジネス' },
+    { value: 'スポーツ', viewValue: 'スポーツ' },
+    { value: 'ダンス', viewValue: 'ダンス' },
+    { value: '美容', viewValue: '美容' },
+    { value: '料理', viewValue: '料理' },
+    { value: 'モノづくり', viewValue: 'モノづくり' },
+    { value: '音楽', viewValue: '音楽' },
+    { value: 'その他', viewValue: 'その他' },
   ];
 
   form = this.fb.group({
@@ -33,7 +57,21 @@ export class EditorComponent implements OnInit {
     plan: ['', [Validators.required, Validators.maxLength(400)]],
   });
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private articleService: ArticleService,
+    private db: AngularFirestore,
+    private snackBar: MatSnackBar
+  ) {}
+
+  // ファイルをHTMLで扱えるURLに変換するメソッド
+  convertImage(file: File, type: string) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      this.srcs[type] = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
 
   get name(): FormControl {
     return this.form.get('name') as FormControl;
@@ -57,7 +95,34 @@ export class EditorComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  // エディター画面に画像をセットするメソッド
+  setImage(event, type: string) {
+    if (event.target.files.length) {
+      this.images[type] = event.target.files[0];
+      this.convertImage(this.images[type], type);
+    }
+    console.log(type);
+  }
+
+  // submitでFireStoreへ記事投稿するメソッド
   submit() {
-    console.log(this.form.value);
+    const formData = this.form.value;
+    this.articleService
+      .createArtile(
+        {
+          name: formData.name,
+          title: formData.title,
+          category: formData.categorys,
+          createdAt: firestore.Timestamp.now(),
+          feature: formData.feature,
+          plan: formData.plan,
+        },
+        this.images
+      )
+      .then(() => {
+        this.snackBar.open('記事を投稿しました！', null, {
+          duration: 3000,
+        });
+      });
   }
 }

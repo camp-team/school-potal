@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Article } from 'src/app/interfaces/article';
 
 const ARTICLE = {
-  thumbnail: './assets/images/thumbnail-01.png',
+  thumbnailURL: './assets/images/thumbnail-01.png',
   avatarURL: 'https://dummyimage.com/80x80.png',
   title:
     'オリジナルサービスを開発して起業もあり！即戦力となる実務スキルが身につくプログラミング版ライザップ',

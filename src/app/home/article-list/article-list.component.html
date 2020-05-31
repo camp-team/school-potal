@@ -1,32 +1,29 @@
 <div class="container">
   <div class="grid">
     <a
-      routerLink="/article-detail/xxx"
+      routerLink="/article-detail/{{ article.id }}"
       href=""
       class="article"
-      *ngFor="let article of articles"
+      *ngFor="let article of articles$ | async"
     >
-      <div class="article__category">
-        <mat-icon class="mat-18 aticle__category-icon">code</mat-icon>
+      <button mat-flat-button color="primary">
         <p class="article__category-text">{{ article.category }}</p>
-      </div>
+      </button>
 
       <figure class="article__thumbnail">
-        <img [src]="article.thumbnail" alt="" />
+        <img [src]="article.thumbnailURL" alt="" />
       </figure>
 
       <div class="article__body">
         <div class="article__top">
-          <figure class="article__avatar">
-            <img [src]="article.avatarURL" alt="" />
-          </figure>
+          <img class="article__logo" [src]="article.logo" alt="" />
           <h2 class="article__title">{{ article.title }}</h2>
         </div>
 
         <div class="article__description">
-          <p class="article__price">PRICE：{{ article.price }}</p>
+          <p class="article__price">PRICE：{{ article.plan }}</p>
           <p class="article__up">
-            {{ article.createdAt | date: 'yyyy年M月d日' }} UP
+            {{ article.createdAt.toDate() | date: 'yyyy年M月d日' }} UP
           </p>
         </div>
       </div>

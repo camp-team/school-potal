@@ -2,6 +2,7 @@
 
 .container {
   background-color: rgba(38, 50, 56);
+  padding: 32px;
 }
 
 .grid {
@@ -23,11 +24,7 @@
     padding: 2px;
     background: #263238;
     box-shadow: 1px 1px 1px rgba(55, 71, 79, 0.6);
-    border-radius: 3px;
     max-width: 160px;
-  }
-  &__category-icon {
-    margin-right: 16px;
   }
   &__category-text {
     opacity: 0.8;
@@ -35,16 +32,25 @@
   &__thumbnail {
     padding: 8px 8px 8px 0;
   }
-  &__top {
-    display: flex;
-    align-items: center;
+  &__body {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-area: 16px;
   }
-  &__avatar {
+  &__top {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  &__logo {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    margin-right: 16px;
     overflow: hidden;
+  }
+  &__title {
+    font-size: 16px;
   }
   &__price,
   &__up {
