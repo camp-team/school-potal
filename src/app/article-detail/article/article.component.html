@@ -106,16 +106,26 @@
       <h3 class="feature-section__title">サービスの特徴</h3>
       <div class="feature">
         <img class="feature__image" [src]="article.image1" alt="" />
-        <p class="feature__text">
-          {{ article.feature }}
-        </p>
+        <div class="feature__body">
+          <h4 class="feature__title">
+            {{ article.featureTitle1 }}
+          </h4>
+          <p class="feature__p">
+            {{ article.featureBody1 }}
+          </p>
+        </div>
       </div>
 
       <div class="feature">
         <img class="feature__image" [src]="article.image2" alt="" />
-        <p class="feature__text">
-          {{ article.feature }}
-        </p>
+        <div class="feature__body">
+          <h4 class="feature__title">
+            {{ article.featureTitle2 }}
+          </h4>
+          <p class="feature__p">
+            {{ article.featureBody2 }}
+          </p>
+        </div>
       </div>
     </div>
 

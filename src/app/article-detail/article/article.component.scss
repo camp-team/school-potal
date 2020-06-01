@@ -108,7 +108,11 @@ mat-tab-group {
     height: 100px;
     border-radius: 20px;
   }
-  &__text {
-    margin: 16px;
+  &__title {
+    margin: 8px 16px;
+  }
+  &__p {
+    margin: 8px 16px;
+    font-size: 14px;
   }
 }

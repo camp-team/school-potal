@@ -29,8 +29,8 @@
 }
 .sub-img {
   position: relative;
-  width: 160px;
-  height: 90px;
+  width: 100px;
+  height: 100px;
   border: dashed 1px;
   margin: 0 auto;
 }
@@ -43,6 +43,15 @@
 
 h2 {
   font-size: 18px;
+  font-weight: 500;
+  background: rgba(rgb(36, 36, 36), 0.6);
+  padding-left: 8px;
+  margin-bottom: 16px;
+  border-left: solid 2px #c2185b;
+}
+
+h3 {
+  font-size: 14px;
   font-weight: 500;
 }
 
