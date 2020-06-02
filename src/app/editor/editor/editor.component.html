@@ -210,6 +210,11 @@
             ></textarea>
             <mat-hint align="end">{{ plan.value.length }} / 400文字</mat-hint>
           </mat-form-field>
+
+          <h2>サービスURL</h2>
+          <mat-form-field appearance="outline">
+            <input matInput formControlName="serviceURL" required />
+          </mat-form-field>
           <mat-slide-toggle color="primary">非公開 / 公開</mat-slide-toggle>
 
           <button

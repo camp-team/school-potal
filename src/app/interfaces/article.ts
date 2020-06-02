@@ -10,6 +10,7 @@ export interface Article {
   featureTitle2: string;
   featureBody2: string;
   plan: string;
+  serviceURL: string;
   id: string;
   thumbnailURL: string;
   logo: string;

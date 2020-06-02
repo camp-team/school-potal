@@ -58,6 +58,7 @@ export class EditorComponent implements OnInit {
     featureTitle2: ['', [Validators.required, Validators.maxLength(50)]],
     featureBody2: ['', [Validators.required, Validators.maxLength(200)]],
     plan: ['', [Validators.required, Validators.maxLength(400)]],
+    serviceURL: [''],
   });
 
   constructor(
@@ -105,6 +106,10 @@ export class EditorComponent implements OnInit {
     return this.form.get('plan') as FormControl;
   }
 
+  get seviceURL(): FormControl {
+    return this.form.get('serviceURL') as FormControl;
+  }
+
   ngOnInit(): void {}
 
   // エディター画面に画像をセットするメソッド
@@ -131,6 +136,7 @@ export class EditorComponent implements OnInit {
           featureTitle2: formData.featureTitle2,
           featureBody2: formData.featureBody2,
           plan: formData.plan,
+          serviceURL: formData.serviceURL,
         },
         this.images
       )
