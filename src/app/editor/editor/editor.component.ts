@@ -59,6 +59,7 @@ export class EditorComponent implements OnInit {
     featureBody2: ['', [Validators.required, Validators.maxLength(200)]],
     plan: ['', [Validators.required, Validators.maxLength(400)]],
     serviceURL: [''],
+    type: [''],
   });
 
   constructor(
