@@ -71,7 +71,16 @@
               ファイルが選択されていません
             </p>
           </div>
-          <mat-divider></mat-divider>
+
+          <h2>タイプ</h2>
+          <mat-radio-group
+            color="primary"
+            aria-label="Select an option"
+            formControlName="type"
+          >
+            <mat-radio-button value="1">スクール</mat-radio-button>
+            <mat-radio-button value="2">オンラインサロン</mat-radio-button>
+          </mat-radio-group>
 
           <h2>カテゴリー</h2>
           <mat-form-field>

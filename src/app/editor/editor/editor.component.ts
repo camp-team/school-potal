@@ -106,8 +106,12 @@ export class EditorComponent implements OnInit {
     return this.form.get('plan') as FormControl;
   }
 
-  get seviceURL(): FormControl {
+  get serviceURL(): FormControl {
     return this.form.get('serviceURL') as FormControl;
+  }
+
+  get type(): FormControl {
+    return this.form.get('type') as FormControl;
   }
 
   ngOnInit(): void {}
@@ -137,6 +141,7 @@ export class EditorComponent implements OnInit {
           featureBody2: formData.featureBody2,
           plan: formData.plan,
           serviceURL: formData.serviceURL,
+          type: formData.type,
         },
         this.images
       )

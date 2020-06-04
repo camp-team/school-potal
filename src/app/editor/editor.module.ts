@@ -13,6 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [EditorComponent],
@@ -30,6 +31,7 @@ import { MatTableModule } from '@angular/material/table';
     MatSlideToggleModule,
     MatTabsModule,
     MatTableModule,
+    MatRadioModule,
   ],
 })
 export class EditorModule {}

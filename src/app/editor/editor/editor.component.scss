@@ -48,6 +48,7 @@ h2 {
   padding-left: 8px;
   margin-bottom: 16px;
   border-left: solid 2px #c2185b;
+  margin-top: 16px;
 }
 
 h3 {
@@ -65,6 +66,10 @@ mat-divider {
 
 mat-slide-toggle {
   float: right;
+}
+
+mat-radio-button {
+  margin-right: 16px;
 }
 
 .note {
