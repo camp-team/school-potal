@@ -11,7 +11,7 @@ export interface Article {
   featureBody2: string;
   plan: string;
   serviceURL: string;
-  type: number;
+  type: 'school' | 'salon' | null;
   id: string;
   thumbnailURL: string;
   logo: string;

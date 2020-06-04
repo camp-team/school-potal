@@ -78,8 +78,8 @@
             aria-label="Select an option"
             formControlName="type"
           >
-            <mat-radio-button [value]="1">スクール</mat-radio-button>
-            <mat-radio-button [value]="2">オンラインサロン</mat-radio-button>
+            <mat-radio-button value="school">スクール</mat-radio-button>
+            <mat-radio-button value="salon">オンラインサロン</mat-radio-button>
           </mat-radio-group>
 
           <h2>カテゴリー</h2>
@@ -127,12 +127,7 @@
 
           <h3>タイトル</h3>
           <mat-form-field appearance="outline">
-            <input
-              matInput
-              formControlName="featureTitle1"
-              #featureTitle1
-              required
-            />
+            <input matInput formControlName="featureTitle1" required />
             <mat-hint align="end"
               >{{ featureTitle1.value.length }} / 50文字</mat-hint
             >
@@ -142,7 +137,6 @@
             <textarea
               matInput
               formControlName="featureBody1"
-              #featureBody1
               matTextareaAutosize
               [matAutosizeMinRows]="4"
             ></textarea>
@@ -181,12 +175,7 @@
 
           <h3>タイトル</h3>
           <mat-form-field appearance="outline">
-            <input
-              matInput
-              formControlName="featureTitle2"
-              #featureTitle2
-              required
-            />
+            <input matInput formControlName="featureTitle2" required />
             <mat-hint align="end"
               >{{ featureTitle2.value.length }} / 50文字</mat-hint
             >
@@ -196,7 +185,6 @@
             <textarea
               matInput
               formControlName="featureBody2"
-              #featureBody2
               matTextareaAutosize
               [matAutosizeMinRows]="4"
             ></textarea>
