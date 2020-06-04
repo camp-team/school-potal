@@ -3,10 +3,9 @@
 <mat-sidenav-container>
   <mat-sidenav
     #sidenav
-    mode="over"
     [opened]="opened$ | async"
     fixedInViewport
-    [fixedTopGap]="105"
+    [fixedTopGap]="89"
     class="sidenav"
   >
     <mat-nav-list>
@@ -16,7 +15,11 @@
       <a mat-list-item routerLink="/">
         <mat-icon class="mat-icon">event</mat-icon>イベント</a
       >
+      <a mat-list-item routerLink="/">
+        <mat-icon class="mat-icon">history</mat-icon>履歴</a
+      >
       <mat-divider class="divider"></mat-divider>
+      <h3 mat-subheader>カテゴリー</h3>
       <a mat-list-item routerLink="/">
         <mat-icon class="mat-icon">code</mat-icon>プログラミング</a
       >
@@ -30,19 +33,16 @@
         <mat-icon class="mat-icon">directions_run</mat-icon>スポーツ</a
       >
       <a mat-list-item routerLink="/">
-        <mat-icon class="mat-icon">fitness_center</mat-icon>筋トレ</a
-      >
-      <a mat-list-item routerLink="/">
         <mat-icon class="mat-icon">music_note</mat-icon>ダンス</a
       >
       <a mat-list-item routerLink="/">
-        <mat-icon class="mat-icon">accessibility</mat-icon>ダイエット</a
+        <mat-icon class="mat-icon">accessibility</mat-icon>美容</a
       >
       <a mat-list-item routerLink="/">
         <mat-icon class="mat-icon">local_dining</mat-icon>料理</a
       >
       <a mat-list-item routerLink="/">
-        <mat-icon class="mat-icon">event_seat</mat-icon>インテリア</a
+        <mat-icon class="mat-icon">medical_services</mat-icon>医療</a
       >
       <a mat-list-item routerLink="/">
         <mat-icon class="mat-icon">emoji_objects</mat-icon>モノづくり</a
@@ -50,15 +50,19 @@
       <a mat-list-item routerLink="/">
         <mat-icon class="mat-icon">graphic_eq</mat-icon>音楽</a
       >
+      <a mat-list-item routerLink="/">
+        <mat-icon class="mat-icon">more_horiz</mat-icon>その他</a
+      >
+
       <mat-divider class="divider"></mat-divider>
       <a mat-list-item routerLink="/">
-        <mat-icon class="mat-icon">people</mat-icon>フォロー</a
+        <mat-icon class="mat-icon">people</mat-icon>参加済</a
       >
       <a mat-list-item routerLink="/">
-        <mat-icon class="mat-icon">favorite</mat-icon>チップ</a
+        <mat-icon class="mat-icon">textsms</mat-icon>メッセージ</a
       >
       <a mat-list-item routerLink="/">
-        <mat-icon class="mat-icon">event</mat-icon>イベント</a
+        <mat-icon class="mat-icon">settings</mat-icon>設定</a
       >
       <mat-divider class="divider"></mat-divider>
     </mat-nav-list>

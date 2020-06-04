@@ -4,6 +4,13 @@
     <form [formGroup]="form" (ngSubmit)="submit()">
       <div class="edit-column">
         <div class="edit-column__left">
+          <h2>記事タイトル</h2>
+          <mat-form-field appearance="outline">
+            <input matInput formControlName="title" #title required />
+            <mat-hint align="end">{{ title.value.length }} / 150文字</mat-hint>
+          </mat-form-field>
+          <mat-divider></mat-divider>
+
           <h2>メイン画像</h2>
           <div class="main-img">
             <img *ngIf="srcs?.thumbnailURL" [src]="srcs.thumbnailURL" alt="" />
@@ -35,7 +42,7 @@
           <h2>サービス名</h2>
           <mat-form-field appearance="outline">
             <input matInput formControlName="name" #name required />
-            <mat-hint align="end">{{ name.value.length }} / 100文字</mat-hint>
+            <mat-hint align="end">{{ name.value.length }} / 50文字</mat-hint>
           </mat-form-field>
 
           <h2>サービスロゴ</h2>
@@ -65,6 +72,16 @@
             </p>
           </div>
 
+          <h2>タイプ</h2>
+          <mat-radio-group
+            color="primary"
+            aria-label="Select an option"
+            formControlName="type"
+          >
+            <mat-radio-button value="school">スクール</mat-radio-button>
+            <mat-radio-button value="salon">オンラインサロン</mat-radio-button>
+          </mat-radio-group>
+
           <h2>カテゴリー</h2>
           <mat-form-field>
             <mat-select formControlName="categorys">
@@ -80,32 +97,12 @@
         </div>
 
         <div class="edit-column__center">
-          <h2>記事タイトル</h2>
-          <mat-form-field appearance="outline">
-            <input matInput formControlName="title" #title required />
-            <mat-hint align="end">{{ title.value.length }} / 100文字</mat-hint>
-          </mat-form-field>
-
           <h2>サービスの特徴</h2>
-          <mat-form-field appearance="outline" class="feature">
-            <textarea
-              matInput
-              formControlName="feature"
-              #feature
-              matTextareaAutosize
-              [matAutosizeMinRows]="10"
-            ></textarea>
-            <mat-hint align="end"
-              >{{ feature.value.length }} / 400文字</mat-hint
-            >
-          </mat-form-field>
-          <mat-divider></mat-divider>
-
-          <h2>イメージ画像1</h2>
+          <h3>イメージ画像1</h3>
           <div class="sub-img">
             <img *ngIf="srcs?.image1" [src]="srcs.image1" alt="" />
             <p class="note" *ngIf="!srcs.image1">
-              ※ 640px x 360px
+              ※ 800px x 800px
             </p>
             <input
               type="file"
@@ -128,11 +125,32 @@
             </p>
           </div>
 
-          <h2>イメージ画像2</h2>
+          <h3>タイトル</h3>
+          <mat-form-field appearance="outline">
+            <input matInput formControlName="featureTitle1" required />
+            <mat-hint align="end"
+              >{{ featureTitle1.value.length }} / 50文字</mat-hint
+            >
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="feature">
+            <textarea
+              matInput
+              formControlName="featureBody1"
+              matTextareaAutosize
+              [matAutosizeMinRows]="4"
+            ></textarea>
+            <mat-hint align="end"
+              >{{ featureBody1.value.length }} / 200文字</mat-hint
+            >
+          </mat-form-field>
+          <mat-divider></mat-divider>
+
+          <h3>イメージ画像2</h3>
           <div class="sub-img">
             <img *ngIf="srcs?.image2" [src]="srcs.image2" alt="" />
             <p class="note" *ngIf="!srcs.image2">
-              ※ 640px x 360px
+              ※ 800px x 800px
             </p>
             <input
               type="file"
@@ -154,6 +172,26 @@
               ファイルが選択されていません
             </p>
           </div>
+
+          <h3>タイトル</h3>
+          <mat-form-field appearance="outline">
+            <input matInput formControlName="featureTitle2" required />
+            <mat-hint align="end"
+              >{{ featureTitle2.value.length }} / 50文字</mat-hint
+            >
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="feature">
+            <textarea
+              matInput
+              formControlName="featureBody2"
+              matTextareaAutosize
+              [matAutosizeMinRows]="4"
+            ></textarea>
+            <mat-hint align="end"
+              >{{ featureBody2.value.length }} / 200文字</mat-hint
+            >
+          </mat-form-field>
           <mat-divider></mat-divider>
         </div>
 
@@ -168,6 +206,11 @@
               [matAutosizeMinRows]="10"
             ></textarea>
             <mat-hint align="end">{{ plan.value.length }} / 400文字</mat-hint>
+          </mat-form-field>
+
+          <h2>サービスURL</h2>
+          <mat-form-field appearance="outline">
+            <input matInput formControlName="serviceURL" required />
           </mat-form-field>
           <mat-slide-toggle color="primary">非公開 / 公開</mat-slide-toggle>
 

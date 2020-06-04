@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ArticleService } from 'src/app/sevices/article.service';
 import { AngularFirestore } from '@angular/fire/firestore';
@@ -50,11 +50,16 @@ export class EditorComponent implements OnInit {
   ];
 
   form = this.fb.group({
-    name: ['', [Validators.required, Validators.maxLength(100)]],
+    name: ['', [Validators.required, Validators.maxLength(50)]],
     categorys: ['', [Validators.required]],
-    title: ['', [Validators.required, Validators.maxLength(100)]],
-    feature: ['', [Validators.required, Validators.maxLength(400)]],
+    title: ['', [Validators.required, Validators.maxLength(150)]],
+    featureTitle1: ['', [Validators.required, Validators.maxLength(50)]],
+    featureBody1: ['', [Validators.required, Validators.maxLength(200)]],
+    featureTitle2: ['', [Validators.required, Validators.maxLength(50)]],
+    featureBody2: ['', [Validators.required, Validators.maxLength(200)]],
     plan: ['', [Validators.required, Validators.maxLength(400)]],
+    serviceURL: [''],
+    type: [''],
   });
 
   constructor(
@@ -85,12 +90,29 @@ export class EditorComponent implements OnInit {
     return this.form.get('title') as FormControl;
   }
 
-  get feature(): FormControl {
-    return this.form.get('feature') as FormControl;
+  get featureTitle1(): FormControl {
+    return this.form.get('featureTitle1') as FormControl;
+  }
+  get featureBody1(): FormControl {
+    return this.form.get('featureBody1') as FormControl;
+  }
+  get featureTitle2(): FormControl {
+    return this.form.get('featureTitle2') as FormControl;
+  }
+  get featureBody2(): FormControl {
+    return this.form.get('featureBody2') as FormControl;
   }
 
   get plan(): FormControl {
     return this.form.get('plan') as FormControl;
+  }
+
+  get serviceURL(): FormControl {
+    return this.form.get('serviceURL') as FormControl;
+  }
+
+  get type(): FormControl {
+    return this.form.get('type') as FormControl;
   }
 
   ngOnInit(): void {}
@@ -114,8 +136,13 @@ export class EditorComponent implements OnInit {
           title: formData.title,
           category: formData.categorys,
           createdAt: firestore.Timestamp.now(),
-          feature: formData.feature,
+          featureTitle1: formData.featureTitle1,
+          featureBody1: formData.featureBody1,
+          featureTitle2: formData.featureTitle2,
+          featureBody2: formData.featureBody2,
           plan: formData.plan,
+          serviceURL: formData.serviceURL,
+          type: formData.type,
         },
         this.images
       )

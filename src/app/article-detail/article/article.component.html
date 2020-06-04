@@ -5,7 +5,6 @@
         <img [src]="article.thumbnailURL" alt="" />
       </figure>
       <button mat-flat-button color="primary">
-        <mat-icon class="hero__category-icon">code</mat-icon>
         <p class="hero__category-text">{{ article.category }}</p>
       </button>
 
@@ -18,14 +17,16 @@
           <img [src]="article.logo" alt="" />
         </figure>
         <h2 class="hero__title">
-          {{ article.name }}
+          <a href="{{ article.serviceURL }}" target="_blank">{{
+            article.name
+          }}</a>
         </h2>
       </div>
     </div>
 
     <div class="users-section">
       <div class="users">
-        <h3 class="users__title">CAMPのユーザー</h3>
+        <h3 class="users__title">{{ article.name }}のユーザー</h3>
         <button class="users__button">もっと見る</button>
       </div>
 
@@ -106,16 +107,26 @@
       <h3 class="feature-section__title">サービスの特徴</h3>
       <div class="feature">
         <img class="feature__image" [src]="article.image1" alt="" />
-        <p class="feature__text">
-          {{ article.feature }}
-        </p>
+        <div class="feature__body">
+          <h4 class="feature__title">
+            {{ article.featureTitle1 }}
+          </h4>
+          <p class="feature__description">
+            {{ article.featureBody1 }}
+          </p>
+        </div>
       </div>
 
       <div class="feature">
         <img class="feature__image" [src]="article.image2" alt="" />
-        <p class="feature__text">
-          {{ article.feature }}
-        </p>
+        <div class="feature__body">
+          <h4 class="feature__title">
+            {{ article.featureTitle2 }}
+          </h4>
+          <p class="feature__description">
+            {{ article.featureBody2 }}
+          </p>
+        </div>
       </div>
     </div>
 
@@ -126,6 +137,12 @@
           {{ article.plan }}
         </p>
       </div>
+    </div>
+
+    <div class="link-button">
+      <a mat-flat-button href="{{ article.serviceURL }}" target="_blank">
+        {{ article.name }} を見てみる
+      </a>
     </div>
   </div>
   <ng-template #blank>

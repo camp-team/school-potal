@@ -5,8 +5,13 @@ export interface Article {
   title: string;
   category: string;
   createdAt: firestore.Timestamp;
-  feature: string;
+  featureTitle1: string;
+  featureBody1: string;
+  featureTitle2: string;
+  featureBody2: string;
   plan: string;
+  serviceURL: string;
+  type: 'school' | 'salon' | null;
   id: string;
   thumbnailURL: string;
   logo: string;

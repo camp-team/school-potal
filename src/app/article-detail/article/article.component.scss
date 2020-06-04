@@ -1,6 +1,6 @@
 section {
   background-color: rgba(38, 50, 56);
-  padding: 48px 0;
+  padding: 48px 24px;
 }
 
 .article {
@@ -15,10 +15,6 @@ section {
   margin-bottom: 24px;
   &__thumbnail {
     max-width: 100%;
-  }
-  &__category-icon {
-    margin-right: 8px;
-    opacity: 0.6;
   }
   &__category-text {
     opacity: 0.6;
@@ -37,6 +33,7 @@ section {
 
 h1 {
   font-size: 20px;
+  margin-bottom: 8px;
 }
 h2 {
   font-size: 20px;
@@ -108,7 +105,18 @@ mat-tab-group {
     height: 100px;
     border-radius: 20px;
   }
-  &__text {
-    margin: 16px;
+  &__title {
+    margin: 8px 16px;
   }
+  &__description {
+    margin: 8px 16px;
+    font-size: 14px;
+  }
+}
+
+.link-button a {
+  width: 100%;
+  background-color: #2aa1f1;
+  border-radius: 25px;
+  margin: 48px auto;
 }
