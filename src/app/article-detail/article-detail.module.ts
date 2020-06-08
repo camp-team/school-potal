@@ -10,9 +10,16 @@ import { ArticleComponent } from './article/article.component';
 import { SideComponent } from './side/side.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatDialogModule } from '@angular/material/dialog';
+import { StudentsDialogComponent } from './students-dialog/students-dialog.component';
 
 @NgModule({
-  declarations: [ArticleDetailComponent, ArticleComponent, SideComponent],
+  declarations: [
+    ArticleDetailComponent,
+    ArticleComponent,
+    SideComponent,
+    StudentsDialogComponent,
+  ],
   imports: [
     CommonModule,
     ArticleDetailRoutingModule,
@@ -21,6 +28,7 @@ import { MatDividerModule } from '@angular/material/divider';
     MatButtonModule,
     MatCardModule,
     MatDividerModule,
+    MatDialogModule,
   ],
 })
 export class ArticleDetailModule {}

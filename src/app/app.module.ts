@@ -23,6 +23,7 @@ import { MatListModule } from '@angular/material/list';
 import { CommonModule } from '@angular/common';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { StudentsDialogComponent } from './article-detail/students-dialog/students-dialog.component';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, NavigationComponent],
@@ -50,5 +51,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
   ],
   providers: [{ provide: REGION, useValue: 'asia-northeast1' }],
   bootstrap: [AppComponent],
+  entryComponents: [StudentsDialogComponent],
 })
 export class AppModule {}

@@ -57,12 +57,12 @@ h3 {
     margin-right: 24px;
   }
   &__button {
-    width: 80px;
-    height: 24px;
+    width: 100px;
+    line-height: 1;
+    padding: 8px;
     border-radius: 30px;
     background-color: #2aa1f1;
     color: #fff;
-    border-style: none;
   }
   &__avatar {
     width: 80px;

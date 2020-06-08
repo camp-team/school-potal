@@ -1,0 +1,35 @@
+<h1 matDialogTitle class="dialog-header">{{ data.article.name }}のユーザー</h1>
+
+<mat-dialog-content>
+  <div class="students">
+    <figure class="students__avatar">
+      <img src="https://dummyimage.com/80x80.png" alt="" />
+    </figure>
+    <a href="https://twitter.com/yuutan_0202" class="students__name">
+      <h2>@yuutan_0202</h2>
+    </a>
+    <p class="students__description">
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt dolores
+      enim excepturi illum consequuntur aliquid nisi quia ullam eligendi placeat
+      voluptates nostrum fuga, ipsam iure, assumenda ut ab. Quos, quia?
+    </p>
+    <button mat-flat-button class="students__button">話をきく</button>
+    <figure class="students__avatar">
+      <img src="https://dummyimage.com/80x80.png" alt="" />
+    </figure>
+    <a href="https://twitter.com/yuutan_0202" class="students__name">
+      <h2>@yuutan_0202</h2>
+    </a>
+    <p class="students__description">
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt dolores
+      enim excepturi illum consequuntur aliquid nisi quia ullam eligendi placeat
+      voluptates nostrum fuga, ipsam iure, assumenda ut ab. Quos, quia?
+    </p>
+    <button mat-flat-button class="students__button">話をきく</button>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button matDialogClose>キャンセル</button>
+  <button mat-button>{{ data.article.name }}を見てみる</button>
+</mat-dialog-actions>
