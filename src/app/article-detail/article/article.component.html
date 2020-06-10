@@ -1,5 +1,5 @@
 <section>
-  <div class="article" *ngIf="article$ | async as article; else blank">
+  <div class="article" *ngIf="article$ | async as article">
     <div class="hero">
       <figure class="hero__thumbnail">
         <img [src]="article.thumbnailURL" alt="" />
@@ -27,7 +27,13 @@
     <div class="users-section">
       <div class="users">
         <h3 class="users__title">{{ article.name }}のユーザー</h3>
-        <button class="users__button">もっと見る</button>
+        <button
+          mat-flat-button
+          class="users__button"
+          (click)="openStudentsDialog(article)"
+        >
+          もっと見る
+        </button>
       </div>
 
       <mat-tab-group>
@@ -47,7 +53,7 @@
             eligendi placeat voluptates nostrum fuga, ipsam iure, assumenda ut
             ab. Quos, quia?
           </p>
-          <button class="users__button">話をきく</button>
+          <button mat-flat-button class="users__button">話をきく</button>
         </mat-tab>
         <mat-tab label="Two">
           <figure class="users__avatar">
@@ -60,7 +66,7 @@
             eligendi placeat voluptates nostrum fuga, ipsam iure, assumenda ut
             ab. Quos, quia?
           </p>
-          <button class="users__button">話をきく</button>
+          <button mat-flat-button class="users__button">話をきく</button>
         </mat-tab>
       </mat-tab-group>
 
@@ -82,7 +88,7 @@
             eligendi placeat voluptates nostrum fuga, ipsam iure, assumenda ut
             ab. Quos, quia?
           </p>
-          <button class="users__button">話をきく</button>
+          <button mat-flat-button class="users__button">話をきく</button>
         </mat-tab>
 
         <mat-tab label="Two">
@@ -98,7 +104,7 @@
             eligendi placeat voluptates nostrum fuga, ipsam iure, assumenda ut
             ab. Quos, quia?
           </p>
-          <button class="users__button">話をきく</button>
+          <button mat-flat-button class="users__button">話をきく</button>
         </mat-tab>
       </mat-tab-group>
     </div>
@@ -145,7 +151,4 @@
       </a>
     </div>
   </div>
-  <ng-template #blank>
-    <p>{{ articleId }}はまだありません。</p>
-  </ng-template>
 </section>

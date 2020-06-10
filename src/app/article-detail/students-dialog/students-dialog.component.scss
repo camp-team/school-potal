@@ -1,0 +1,32 @@
+.students {
+  &__button {
+    width: 100px;
+    line-height: 1;
+    padding: 8px;
+    border-radius: 30px;
+    background-color: #2aa1f1;
+    color: #fff;
+  }
+  &__avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 16px;
+  }
+  &__description {
+    margin: 16px 0;
+  }
+  &__name {
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+}
+
+.close {
+  margin-left: auto;
+  &__icon {
+    color: white;
+  }
+}
