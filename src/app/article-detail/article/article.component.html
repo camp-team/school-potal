@@ -1,5 +1,5 @@
 <section>
-  <div class="article" *ngIf="article$ | async as article; else blank">
+  <div class="article" *ngIf="article$ | async as article">
     <div class="hero">
       <figure class="hero__thumbnail">
         <img [src]="article.thumbnailURL" alt="" />
@@ -151,7 +151,4 @@
       </a>
     </div>
   </div>
-  <ng-template #blank>
-    <p>{{ articleId }}はまだありません。</p>
-  </ng-template>
 </section>

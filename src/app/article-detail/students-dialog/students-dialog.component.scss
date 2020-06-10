@@ -15,12 +15,18 @@
     margin: 16px;
   }
   &__description {
-    margin-bottom: 32px;
+    margin: 16px 0;
   }
   &__name {
-    margin: 24px 0;
     &:hover {
       opacity: 0.6;
     }
+  }
+}
+
+.close {
+  margin-left: auto;
+  &__icon {
+    color: white;
   }
 }

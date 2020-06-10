@@ -1,6 +1,4 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { ArticleService } from 'src/app/sevices/article.service';
-import { ActivatedRoute } from '@angular/router';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Article } from 'src/app/interfaces/article';
 
@@ -14,10 +12,10 @@ export class StudentsDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA)
     public data: {
       article: Article;
-    },
-    private articleService: ArticleService,
-    private route: ActivatedRoute
-  ) {}
+    }
+  ) {
+    console.log(data.article);
+  }
 
   ngOnInit(): void {}
 }

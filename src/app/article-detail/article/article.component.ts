@@ -3,7 +3,7 @@ import { ArticleService } from 'src/app/sevices/article.service';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { Article } from 'src/app/interfaces/article';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, tap } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { StudentsDialogComponent } from '../students-dialog/students-dialog.component';
 
@@ -20,8 +20,6 @@ export class ArticleComponent implements OnInit {
     })
   );
 
-  articleId: string;
-
   constructor(
     private articleService: ArticleService,
     private route: ActivatedRoute,
@@ -35,7 +33,8 @@ export class ArticleComponent implements OnInit {
       width: '400px',
       autoFocus: false,
       restoreFocus: false,
-      data: article,
+      data: { article },
     });
+    console.log(article);
   }
 }
