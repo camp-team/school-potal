@@ -1,8 +1,17 @@
 <div class="list-container">
   <table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="number">
+      <th mat-header-cell *matHeaderCellDef>No.</th>
+      <td mat-cell *matCellDef="let element; index as i">
+        {{ i + 1 }}
+      </td>
+    </ng-container>
+
     <ng-container matColumnDef="status">
       <th mat-header-cell *matHeaderCellDef>状態</th>
-      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+      <td mat-cell *matCellDef="let element">
+        ○
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="id">
@@ -17,7 +26,16 @@
 
     <ng-container matColumnDef="createdAt">
       <th mat-header-cell *matHeaderCellDef>作成日</th>
-      <td mat-cell *matCellDef="let element">{{ element.createdAt }}</td>
+      <td mat-cell *matCellDef="let element">
+        {{ element.createdAt.toDate() | date: 'yyyy/MM/dd HH:mm' }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="updatedAt">
+      <th mat-header-cell *matHeaderCellDef>更新日</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.createdAt.toDate() | date: 'yyyy/MM/dd HH:mm' }}
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="category">
@@ -30,8 +48,8 @@
     <ng-container matColumnDef="menu">
       <th mat-header-cell *matHeaderCellDef>操作メニュー</th>
       <td mat-cell *matCellDef="let element">
-        <mat-icon>edit</mat-icon>
-        <mat-icon>delete</mat-icon>
+        <button mat-button><mat-icon>edit</mat-icon></button>
+        <button mat-button><mat-icon>delete</mat-icon></button>
       </td>
     </ng-container>
 
@@ -42,7 +60,7 @@
   </table>
 
   <mat-paginator
-    [pageSizeOptions]="[5, 10, 20]"
+    [pageSizeOptions]="[10, 20, 50]"
     showFirstLastButtons
   ></mat-paginator>
 </div>

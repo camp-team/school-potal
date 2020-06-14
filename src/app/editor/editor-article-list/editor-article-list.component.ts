@@ -2,8 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { ArticleService } from 'src/app/sevices/article.service';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
 import { Article } from 'src/app/interfaces/article';
 import { tap } from 'rxjs/operators';
 import { LoadingService } from 'src/app/services/loading.service';
@@ -15,28 +13,33 @@ import { LoadingService } from 'src/app/services/loading.service';
 })
 export class EditorArticleListComponent implements OnInit {
   displayedColumns: string[] = [
+    'number',
     'status',
     'id',
     'name',
     'createdAt',
+    'updatedAt',
     'category',
     'menu',
   ];
-  dataSource = this.articleService
-    .getArticles()
-    .pipe(tap(() => this.loadingService.toggleLoading(false)));
+  dataSource: MatTableDataSource<Article>;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   constructor(
     private articleService: ArticleService,
-    private db: AngularFirestore,
     private loadingService: LoadingService
   ) {
     this.loadingService.toggleLoading(true);
   }
 
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
+    this.articleService
+      .getArticles()
+      .pipe(tap(() => this.loadingService.toggleLoading(false)))
+      .subscribe((data) => {
+        this.dataSource = new MatTableDataSource<Article>(data);
+        this.dataSource.paginator = this.paginator;
+      });
   }
 }
