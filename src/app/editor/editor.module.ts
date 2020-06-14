@@ -17,6 +17,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { EditorArticleListComponent } from './editor-article-list/editor-article-list.component';
 import { EditorMemberListComponent } from './editor-member-list/editor-member-list.component';
 import { EditorHomeComponent } from './editor-home/editor-home.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { EditorHomeComponent } from './editor-home/editor-home.component';
     MatTabsModule,
     MatTableModule,
     MatRadioModule,
+    MatPaginatorModule,
   ],
 })
 export class EditorModule {}
