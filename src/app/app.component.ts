@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { DrawerService } from './services/drawer.service';
 import { Observable } from 'rxjs';
+import { LoadingService } from './services/loading.service';
 
 @Component({
   selector: 'app-root',
@@ -8,8 +9,13 @@ import { Observable } from 'rxjs';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'school-potal';
-  opened$: Observable<boolean> = this.drawerservice.isOpen$;
+  title = 'Players Hub';
 
-  constructor(private drawerservice: DrawerService) {}
+  opened$: Observable<boolean> = this.drawerservice.isOpen$;
+  loading$ = this.loadingService.loading$;
+
+  constructor(
+    private drawerservice: DrawerService,
+    private loadingService: LoadingService
+  ) {}
 }
