@@ -24,6 +24,7 @@ import { CommonModule } from '@angular/common';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { StudentsDialogComponent } from './article-detail/students-dialog/students-dialog.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, NavigationComponent],
@@ -48,6 +49,7 @@ import { StudentsDialogComponent } from './article-detail/students-dialog/studen
     MatListModule,
     MatDividerModule,
     MatSnackBarModule,
+    MatProgressSpinnerModule,
   ],
   providers: [{ provide: REGION, useValue: 'asia-northeast1' }],
   bootstrap: [AppComponent],

@@ -6,6 +6,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Article } from 'src/app/interfaces/article';
 import { tap } from 'rxjs/operators';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-editor-article-list',
@@ -21,14 +22,19 @@ export class EditorArticleListComponent implements OnInit {
     'category',
     'menu',
   ];
-  dataSource = this.articleService.getArticles();
+  dataSource = this.articleService
+    .getArticles()
+    .pipe(tap(() => this.loadingService.toggleLoading(false)));
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   constructor(
     private articleService: ArticleService,
-    private db: AngularFirestore
-  ) {}
+    private db: AngularFirestore,
+    private loadingService: LoadingService
+  ) {
+    this.loadingService.toggleLoading(true);
+  }
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
