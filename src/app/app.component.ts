@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { DrawerService } from './services/drawer.service';
 import { Observable } from 'rxjs';
-import { LoadingService } from './services/loading.service';
 
 @Component({
   selector: 'app-root',
@@ -12,10 +11,6 @@ export class AppComponent {
   title = 'Players Hub';
 
   opened$: Observable<boolean> = this.drawerservice.isOpen$;
-  loading$ = this.loadingService.loading$;
 
-  constructor(
-    private drawerservice: DrawerService,
-    private loadingService: LoadingService
-  ) {}
+  constructor(private drawerservice: DrawerService) {}
 }

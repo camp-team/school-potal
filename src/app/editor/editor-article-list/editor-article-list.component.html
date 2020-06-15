@@ -1,4 +1,4 @@
-<div class="list-container">
+<div class="list-container" *ngIf="dataSource; else loading">
   <table mat-table [dataSource]="dataSource">
     <ng-container matColumnDef="number">
       <th mat-header-cell *matHeaderCellDef>No.</th>
@@ -53,8 +53,6 @@
       </td>
     </ng-container>
 
-    <!-- <mat-text-column name="menu"></mat-text-column> -->
-
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
@@ -64,3 +62,7 @@
     showFirstLastButtons
   ></mat-paginator>
 </div>
+
+<ng-template #loading class="spinner">
+  <mat-spinner></mat-spinner>
+</ng-template>

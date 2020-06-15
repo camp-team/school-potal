@@ -18,6 +18,7 @@ import { EditorArticleListComponent } from './editor-article-list/editor-article
 import { EditorMemberListComponent } from './editor-member-list/editor-member-list.component';
 import { EditorHomeComponent } from './editor-home/editor-home.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatTableModule,
     MatRadioModule,
     MatPaginatorModule,
+    MatProgressSpinnerModule,
   ],
 })
 export class EditorModule {}
