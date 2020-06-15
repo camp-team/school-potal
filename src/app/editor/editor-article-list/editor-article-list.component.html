@@ -48,8 +48,12 @@
     <ng-container matColumnDef="menu">
       <th mat-header-cell *matHeaderCellDef>操作メニュー</th>
       <td mat-cell *matCellDef="let element">
-        <button mat-button><mat-icon>edit</mat-icon></button>
-        <button mat-button><mat-icon>delete</mat-icon></button>
+        <button mat-button matTooltip="編集" matTooltipPosition="before">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-button matTooltip="削除" matTooltipPosition="after">
+          <mat-icon>delete</mat-icon>
+        </button>
       </td>
     </ng-container>
 
