@@ -8,7 +8,8 @@ import { Observable } from 'rxjs';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'school-potal';
+  title = 'Players Hub';
+
   opened$: Observable<boolean> = this.drawerservice.isOpen$;
 
   constructor(private drawerservice: DrawerService) {}

@@ -21,6 +21,12 @@
   }
 }
 
+.loading {
+  margin: 64px auto;
+  display: flex;
+  justify-content: center;
+}
+
 mat-nav-list a {
   margin-right: 16px;
 }

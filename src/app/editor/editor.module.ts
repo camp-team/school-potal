@@ -14,9 +14,19 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
 import { MatRadioModule } from '@angular/material/radio';
+import { EditorArticleListComponent } from './editor-article-list/editor-article-list.component';
+import { EditorMemberListComponent } from './editor-member-list/editor-member-list.component';
+import { EditorHomeComponent } from './editor-home/editor-home.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
-  declarations: [EditorComponent],
+  declarations: [
+    EditorComponent,
+    EditorArticleListComponent,
+    EditorMemberListComponent,
+    EditorHomeComponent,
+  ],
   imports: [
     CommonModule,
     EditorRoutingModule,
@@ -32,6 +42,8 @@ import { MatRadioModule } from '@angular/material/radio';
     MatTabsModule,
     MatTableModule,
     MatRadioModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
   ],
 })
 export class EditorModule {}
