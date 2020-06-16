@@ -48,7 +48,12 @@
     <ng-container matColumnDef="menu">
       <th mat-header-cell *matHeaderCellDef>操作メニュー</th>
       <td mat-cell *matCellDef="let element">
-        <button mat-button matTooltip="編集" matTooltipPosition="before">
+        <button
+          mat-button
+          matTooltip="編集"
+          matTooltipPosition="before"
+          routerLink="editor/{{ element.id }}"
+        >
           <mat-icon>edit</mat-icon>
         </button>
         <button mat-button matTooltip="削除" matTooltipPosition="after">
