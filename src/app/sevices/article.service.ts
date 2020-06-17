@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Article } from '../interfaces/article';
 import { Observable } from 'rxjs';
+import { firestore } from 'firebase';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +18,7 @@ export class ArticleService {
   async createArtile(
     article: Omit<
       Article,
-      'id' | 'thumbnailURL' | 'logo' | 'image1' | 'image2'
+      'id' | 'thumbnailURL' | 'logo' | 'image1' | 'image2' | 'updatedAt'
     >,
     images: {
       thumbnailURL: File;
@@ -32,6 +33,7 @@ export class ArticleService {
     return this.db.doc<Article>(`articles/${id}`).set({
       ...article,
       id,
+      updatedAt: firestore.Timestamp.now(),
       thumbnailURL,
       logo,
       image1,
@@ -54,7 +56,7 @@ export class ArticleService {
     });
   }
 
-  // DBから記事データ（オブジェクト）を持ってくる
+  // DBから記事データを持ってくる
   getArticle(articleId: string): Observable<Article> {
     return this.db.doc<Article>(`articles/${articleId}`).valueChanges();
   }
@@ -65,5 +67,35 @@ export class ArticleService {
         return ref.limit(15);
       })
       .valueChanges();
+  }
+
+  // 記事データの更新
+  async updateArticle(
+    article: Omit<
+      Article,
+      'thumbnailURL' | 'logo' | 'image1' | 'image2' | 'createdAt'
+    >,
+    images: {
+      thumbnailURL?: File;
+      logo?: File;
+      image1?: File;
+      image2?: File;
+    }
+  ): Promise<void> {
+    const id: any = this.db.createId;
+    const urls = await this.uploadImage(article.id, Object.values(images));
+    const [thumbnailURL, logo, image1, image2] = urls;
+    return this.db.doc<Article>(`articles/${article.id}`).set(
+      {
+        ...article,
+        id,
+        createdAt: firestore.Timestamp.now(),
+        thumbnailURL,
+        logo,
+        image1,
+        image2,
+      },
+      { merge: true }
+    );
   }
 }

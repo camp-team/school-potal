@@ -6,6 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./article-edit.component.scss'],
 })
 export class ArticleEditComponent implements OnInit {
+  navLinks = [
+    {
+      label: '記事編集',
+      path: 'edit',
+    },
+  ];
+
   constructor() {}
 
   ngOnInit(): void {}
