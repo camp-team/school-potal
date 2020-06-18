@@ -27,8 +27,8 @@ export class EditComponent implements OnInit {
   );
 
   images: {
-    thumbnailURL: File;
-    logo: File;
+    thumbnailURL?: File;
+    logo?: File;
     image1?: File;
     image2?: File;
   } = {
@@ -37,8 +37,8 @@ export class EditComponent implements OnInit {
   };
 
   srcs: {
-    thumbnailURL: File;
-    logo: File;
+    thumbnailURL?: File;
+    logo?: File;
     image1?: File;
     image2?: File;
   };
@@ -134,6 +134,7 @@ export class EditComponent implements OnInit {
 
   submit() {
     const formData = this.form.value;
+    console.log(this.images);
     this.articleService
       .updateArticle(
         {

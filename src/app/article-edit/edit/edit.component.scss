@@ -1,0 +1,89 @@
+.edit-column {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin: 24px;
+  &__left {
+    border-right: 1px solid rgba(grey, 0.38);
+    padding-right: 20px;
+  }
+  &__center {
+    border-right: 1px solid rgba(grey, 0.38);
+    padding-right: 20px;
+  }
+}
+
+.main-img {
+  position: relative;
+  width: 320px;
+  height: 180px;
+  border: dashed 1px;
+  margin: 0 auto;
+}
+.logo-img {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border: dashed 1px;
+  margin: 0 auto;
+}
+.sub-img {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border: dashed 1px;
+  margin: 0 auto;
+}
+
+.img-button {
+  position: absolute;
+  bottom: 0;
+  right: -48px;
+}
+
+h2 {
+  font-size: 18px;
+  font-weight: 500;
+  background: rgba(rgb(36, 36, 36), 0.6);
+  padding-left: 8px;
+  margin-bottom: 16px;
+  border-left: solid 2px #c2185b;
+  margin-top: 16px;
+}
+
+h3 {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-divider {
+  margin: 16px;
+}
+
+mat-radio-button {
+  margin-right: 16px;
+}
+
+.note {
+  font-size: 9px;
+  opacity: 0.6;
+}
+
+.submit-button {
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
+}
+
+.file-name {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 9px;
+  opacity: 0.6;
+}

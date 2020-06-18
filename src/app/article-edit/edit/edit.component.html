@@ -7,9 +7,8 @@
           <input
             matInput
             formControlName="title"
-            #title
             required
-            value="{{ article.title }}"
+            [(ngModel)]="article.title"
           />
           <mat-hint align="end">{{ title.value.length }} / 150文字</mat-hint>
         </mat-form-field>
@@ -17,8 +16,12 @@
 
         <h2>メイン画像</h2>
         <div class="main-img">
-          <img *ngIf="srcs?.thumbnailURL" [src]="srcs.thumbnailURL" alt="" />
-          <p class="note" *ngIf="!srcs.thumbnailURL">
+          <img
+            *ngIf="article?.thumbnailURL"
+            [src]="article.thumbnailURL"
+            alt=""
+          />
+          <p class="note" *ngIf="!article.thumbnailURL">
             ※ 1280px x 720px
           </p>
           <input
@@ -27,7 +30,6 @@
             #thumbnailInput
             (change)="setImage($event, 'thumbnailURL')"
             accept=".png, .img, .jpeg"
-            value="{{ article.thumbnailURL }}"
           />
           <button
             type="button"
@@ -38,7 +40,7 @@
           >
             <mat-icon>add_photo_alternate</mat-icon>
           </button>
-          <p class="file-name" *ngIf="!srcs.thumbnailURL">
+          <p class="file-name" *ngIf="!article.thumbnailURL">
             ファイルが選択されていません
           </p>
         </div>
@@ -51,15 +53,15 @@
             formControlName="name"
             #name
             required
-            value="{{ article.name }}"
+            [(ngModel)]="article.name"
           />
           <mat-hint align="end">{{ name.value.length }} / 50文字</mat-hint>
         </mat-form-field>
 
         <h2>サービスロゴ</h2>
         <div class="logo-img">
-          <img *ngIf="srcs?.logo" [src]="srcs.logo" alt="" />
-          <p class="note" *ngIf="!srcs.logo">
+          <img *ngIf="article?.logo" [src]="article.logo" alt="" />
+          <p class="note" *ngIf="!article.logo">
             ※ 800px x 800px
           </p>
           <input
@@ -68,7 +70,6 @@
             #logoInput
             (change)="setImage($event, 'logo')"
             accept=".png, .img, .jpeg"
-            value="{{ article.logo }}"
           />
           <button
             type="button"
@@ -79,7 +80,7 @@
           >
             <mat-icon>add_photo_alternate</mat-icon>
           </button>
-          <p class="file-name" *ngIf="!srcs.logo">
+          <p class="file-name" *ngIf="!article.logo">
             ファイルが選択されていません
           </p>
         </div>
@@ -89,6 +90,7 @@
           color="primary"
           aria-label="Select an option"
           formControlName="type"
+          [(ngModel)]="article.type"
         >
           <mat-radio-button value="school">スクール</mat-radio-button>
           <mat-radio-button value="salon">オンラインサロン</mat-radio-button>
@@ -112,8 +114,8 @@
         <h2>サービスの特徴</h2>
         <h3>イメージ画像1</h3>
         <div class="sub-img">
-          <img *ngIf="srcs?.image1" [src]="srcs.image1" alt="" />
-          <p class="note" *ngIf="!srcs.image1">
+          <img *ngIf="article?.image1" [src]="article.image1" alt="" />
+          <p class="note" *ngIf="!article.image1">
             ※ 800px x 800px
           </p>
           <input
@@ -122,7 +124,6 @@
             #image1Input
             (change)="setImage($event, 'image1')"
             accept=".png, .img, .jpeg"
-            value="{{ article.image1 }}"
           />
           <button
             type="button"
@@ -133,7 +134,7 @@
           >
             <mat-icon>add_photo_alternate</mat-icon>
           </button>
-          <p class="file-name" *ngIf="!srcs.image1">
+          <p class="file-name" *ngIf="!article.image1">
             ファイルが選択されていません
           </p>
         </div>
@@ -144,7 +145,7 @@
             matInput
             formControlName="featureTitle1"
             required
-            value="{{ article.featureTitle1 }}"
+            [(ngModel)]="article.featureTitle1"
           />
           <mat-hint align="end"
             >{{ featureTitle1.value.length }} / 50文字</mat-hint
@@ -157,7 +158,7 @@
             formControlName="featureBody1"
             matTextareaAutosize
             [matAutosizeMinRows]="4"
-            value="{{ article.featureBody1 }}"
+            [(ngModel)]="article.featureBody1"
           ></textarea>
           <mat-hint align="end"
             >{{ featureBody1.value.length }} / 200文字</mat-hint
@@ -167,8 +168,8 @@
 
         <h3>イメージ画像2</h3>
         <div class="sub-img">
-          <img *ngIf="srcs?.image2" [src]="srcs.image2" alt="" />
-          <p class="note" *ngIf="!srcs.image2">
+          <img *ngIf="article?.image2" [src]="article.image2" alt="" />
+          <p class="note" *ngIf="!article.image2">
             ※ 800px x 800px
           </p>
           <input
@@ -177,7 +178,6 @@
             #image2Input
             (change)="setImage($event, 'image2')"
             accept=".png, .img, .jpeg"
-            value="{{ article.image2 }}"
           />
           <button
             type="button"
@@ -188,7 +188,7 @@
           >
             <mat-icon>add_photo_alternate</mat-icon>
           </button>
-          <p class="file-name" *ngIf="!srcs.image2">
+          <p class="file-name" *ngIf="!article.image2">
             ファイルが選択されていません
           </p>
         </div>
@@ -199,7 +199,7 @@
             matInput
             formControlName="featureTitle2"
             required
-            value="{{ article.featureTitle2 }}"
+            [(ngModel)]="article.featureTitle2"
           />
           <mat-hint align="end"
             >{{ featureTitle2.value.length }} / 50文字</mat-hint
@@ -212,7 +212,7 @@
             formControlName="featureBody2"
             matTextareaAutosize
             [matAutosizeMinRows]="4"
-            value=" {{ article.featureBody2 }} "
+            [(ngModel)]="article.featureBody2"
           ></textarea>
           <mat-hint align="end"
             >{{ featureBody2.value.length }} / 200文字</mat-hint
@@ -230,7 +230,7 @@
             #plan
             matTextareaAutosize
             [matAutosizeMinRows]="10"
-            value="{{ article.plan }}"
+            [(ngModel)]="article.plan"
           ></textarea>
           <mat-hint align="end">{{ plan.value.length }} / 400文字</mat-hint>
         </mat-form-field>
@@ -241,7 +241,7 @@
             matInput
             formControlName="serviceURL"
             required
-            value="{{ article.serviceURL }}"
+            [(ngModel)]="article.serviceURL"
           />
         </mat-form-field>
 

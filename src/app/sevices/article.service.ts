@@ -14,7 +14,6 @@ export class ArticleService {
     private storage: AngularFireStorage
   ) {}
 
-  // 記事とidに紐付いた画像オブジェクトを作成
   async createArtile(
     article: Omit<
       Article,
@@ -56,7 +55,6 @@ export class ArticleService {
     });
   }
 
-  // DBから記事データを持ってくる
   getArticle(articleId: string): Observable<Article> {
     return this.db.doc<Article>(`articles/${articleId}`).valueChanges();
   }
@@ -69,7 +67,6 @@ export class ArticleService {
       .valueChanges();
   }
 
-  // 記事データの更新
   async updateArticle(
     article: Omit<
       Article,
