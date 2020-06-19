@@ -23,6 +23,9 @@ export class EditComponent implements OnInit {
     switchMap((map) => {
       const articleId = map.get('articleId');
       return this.articleService.getArticle(articleId);
+    }),
+    tap((article) => {
+      console.log(article);
     })
   );
 
@@ -78,14 +81,6 @@ export class EditComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
 
-  convertImage(file: File, type: string) {
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      this.srcs[type] = e.target.result;
-    };
-    reader.readAsDataURL(file);
-  }
-
   get name(): FormControl {
     return this.form.get('name') as FormControl;
   }
@@ -125,6 +120,14 @@ export class EditComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  convertImage(file: File, type: string) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      this.srcs[type] = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
   setImage(event, type: string) {
     if (event.target.files.length) {
       this.images[type] = event.target.files[0];
@@ -134,7 +137,6 @@ export class EditComponent implements OnInit {
 
   submit() {
     const formData = this.form.value;
-    console.log(this.images);
     this.articleService
       .updateArticle(
         {
