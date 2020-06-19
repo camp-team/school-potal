@@ -88,9 +88,9 @@
         <h2>タイプ</h2>
         <mat-radio-group
           color="primary"
+          name="type"
           aria-label="Select an option"
           formControlName="type"
-          [(ngModel)]="article.type"
         >
           <mat-radio-button value="school">スクール</mat-radio-button>
           <mat-radio-button value="salon">オンラインサロン</mat-radio-button>
@@ -98,7 +98,10 @@
 
         <h2>カテゴリー</h2>
         <mat-form-field>
-          <mat-select formControlName="categorys">
+          <mat-select
+            formControlName="categorys"
+            [(ngModel)]="article.category"
+          >
             <mat-option
               *ngFor="let category of categoryGroup"
               [value]="category.value"
