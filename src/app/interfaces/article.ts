@@ -4,7 +4,7 @@ export interface Article {
   name: string;
   title: string;
   category: string;
-  createdAt: firestore.Timestamp;
+  createdAt?: firestore.Timestamp;
   updatedAt: firestore.Timestamp;
   featureTitle1: string;
   featureBody1: string;
