@@ -4,23 +4,14 @@
       <div class="edit-column__left">
         <h2>記事タイトル</h2>
         <mat-form-field appearance="outline">
-          <input
-            matInput
-            formControlName="title"
-            required
-            [(ngModel)]="article.title"
-          />
+          <input matInput formControlName="title" required />
           <mat-hint align="end">{{ title.value.length }} / 150文字</mat-hint>
         </mat-form-field>
         <mat-divider></mat-divider>
 
         <h2>メイン画像</h2>
-        <div class="main-img">
-          <img
-            *ngIf="article?.thumbnailURL"
-            [src]="article.thumbnailURL"
-            alt=""
-          />
+        <div class="main-img" *ngIf="article.thumbnailURL">
+          <img [src]="srcs.thumbnailURL || article.thumbnailURL" alt="" />
           <p class="note" *ngIf="!article.thumbnailURL">
             ※ 1280px x 720px
           </p>
@@ -44,23 +35,18 @@
             ファイルが選択されていません
           </p>
         </div>
+
         <mat-divider></mat-divider>
 
         <h2>サービス名</h2>
         <mat-form-field appearance="outline">
-          <input
-            matInput
-            formControlName="name"
-            #name
-            required
-            [(ngModel)]="article.name"
-          />
+          <input matInput formControlName="name" #name required />
           <mat-hint align="end">{{ name.value.length }} / 50文字</mat-hint>
         </mat-form-field>
 
         <h2>サービスロゴ</h2>
         <div class="logo-img">
-          <img *ngIf="article?.logo" [src]="article.logo" alt="" />
+          <img *ngIf="article?.logo" [src]="srcs.logo || article.logo" alt="" />
           <p class="note" *ngIf="!article.logo">
             ※ 800px x 800px
           </p>
@@ -90,7 +76,6 @@
           color="primary"
           aria-label="Select an option"
           formControlName="type"
-          [(ngModel)]="article.type"
         >
           <mat-radio-button value="school">スクール</mat-radio-button>
           <mat-radio-button value="salon">オンラインサロン</mat-radio-button>
@@ -98,10 +83,7 @@
 
         <h2>カテゴリー</h2>
         <mat-form-field>
-          <mat-select
-            formControlName="categorys"
-            [(ngModel)]="article.category"
-          >
+          <mat-select formControlName="category">
             <mat-option
               *ngFor="let category of categoryGroup"
               [value]="category.value"
@@ -117,7 +99,11 @@
         <h2>サービスの特徴</h2>
         <h3>イメージ画像1</h3>
         <div class="sub-img">
-          <img *ngIf="article?.image1" [src]="article.image1" alt="" />
+          <img
+            *ngIf="article?.image1"
+            [src]="srcs.image1 || article.image1"
+            alt=""
+          />
           <p class="note" *ngIf="!article.image1">
             ※ 800px x 800px
           </p>
@@ -144,13 +130,8 @@
 
         <h3>タイトル</h3>
         <mat-form-field appearance="outline">
-          <input
-            matInput
-            formControlName="featureTitle1"
-            required
-            [(ngModel)]="article.featureTitle1"
-          />
-          <mat-hint align="end"
+          <input matInput formControlName="featureTitle1" required />
+          <mat-hint align="end" *ngIf="article.featureTitle1"
             >{{ featureTitle1.value.length }} / 50文字</mat-hint
           >
         </mat-form-field>
@@ -161,9 +142,8 @@
             formControlName="featureBody1"
             matTextareaAutosize
             [matAutosizeMinRows]="4"
-            [(ngModel)]="article.featureBody1"
           ></textarea>
-          <mat-hint align="end"
+          <mat-hint align="end" *ngIf="article.featureBody1"
             >{{ featureBody1.value.length }} / 200文字</mat-hint
           >
         </mat-form-field>
@@ -171,7 +151,11 @@
 
         <h3>イメージ画像2</h3>
         <div class="sub-img">
-          <img *ngIf="article?.image2" [src]="article.image2" alt="" />
+          <img
+            *ngIf="article?.image2"
+            [src]="srcs.image2 || article.image2"
+            alt=""
+          />
           <p class="note" *ngIf="!article.image2">
             ※ 800px x 800px
           </p>
@@ -198,13 +182,8 @@
 
         <h3>タイトル</h3>
         <mat-form-field appearance="outline">
-          <input
-            matInput
-            formControlName="featureTitle2"
-            required
-            [(ngModel)]="article.featureTitle2"
-          />
-          <mat-hint align="end"
+          <input matInput formControlName="featureTitle2" required />
+          <mat-hint align="end" *ngIf="article.featureTitle2"
             >{{ featureTitle2.value.length }} / 50文字</mat-hint
           >
         </mat-form-field>
@@ -215,9 +194,8 @@
             formControlName="featureBody2"
             matTextareaAutosize
             [matAutosizeMinRows]="4"
-            [(ngModel)]="article.featureBody2"
           ></textarea>
-          <mat-hint align="end"
+          <mat-hint align="end" *ngIf="article.featureBody2"
             >{{ featureBody2.value.length }} / 200文字</mat-hint
           >
         </mat-form-field>
@@ -233,19 +211,18 @@
             #plan
             matTextareaAutosize
             [matAutosizeMinRows]="10"
-            [(ngModel)]="article.plan"
           ></textarea>
           <mat-hint align="end">{{ plan.value.length }} / 400文字</mat-hint>
         </mat-form-field>
 
         <h2>サービスURL</h2>
         <mat-form-field appearance="outline">
-          <input
-            matInput
-            formControlName="serviceURL"
-            required
-            [(ngModel)]="article.serviceURL"
-          />
+          <input matInput formControlName="serviceURL" required />
+        </mat-form-field>
+
+        <h2>記事ID</h2>
+        <mat-form-field appearance="outline">
+          <input matInput formControlName="id" required />
         </mat-form-field>
 
         <button
