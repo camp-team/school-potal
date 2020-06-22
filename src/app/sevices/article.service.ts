@@ -72,27 +72,35 @@ export class ArticleService {
       Article,
       'thumbnailURL' | 'logo' | 'image1' | 'image2' | 'createdAt'
     >,
-    images: {
-      thumbnailURL?: File;
-      logo?: File;
-      image1?: File;
-      image2?: File;
+    images?: {
+      thumbnailURL?: File | null;
+      logo?: File | null;
+      image1?: File | null;
+      image2?: File | null;
     }
   ): Promise<void> {
-    const id: any = this.db.createId;
-    const urls = await this.uploadImage(article.id, Object.values(images));
-    const [thumbnailURL, logo, image1, image2] = urls;
-    return this.db.doc<Article>(`articles/${article.id}`).set(
-      {
-        ...article,
-        id,
-        createdAt: firestore.Timestamp.now(),
-        thumbnailURL,
-        logo,
-        image1,
-        image2,
-      },
-      { merge: true }
-    );
+    if (!Object.values(images).filter((item) => !!item).length) {
+      console.log(article);
+      return this.db.doc<Article>(`articles/${article.id}`).set(
+        {
+          ...article,
+        },
+        { merge: true }
+      );
+    } else {
+      console.log(images);
+      const urls = await this.uploadImage(article.id, Object.values(images));
+      const [thumbnailURL, logo, image1, image2] = urls;
+      return this.db.doc<Article>(`articles/${article.id}`).set(
+        {
+          ...article,
+          thumbnailURL,
+          logo,
+          image1,
+          image2,
+        },
+        { merge: true }
+      );
+    }
   }
 }

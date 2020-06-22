@@ -13,7 +13,7 @@ export interface Article {
   plan: string;
   serviceURL: string;
   type: 'school' | 'salon' | null;
-  id: string;
+  id?: string;
   thumbnailURL?: string;
   logo?: string;
   image1?: string;

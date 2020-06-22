@@ -19,61 +19,6 @@ interface Category {
   styleUrls: ['./edit.component.scss'],
 })
 export class EditComponent implements OnInit {
-  article$: Observable<Article> = this.route.paramMap.pipe(
-    switchMap((map) => {
-      const articleId = map.get('articleId');
-      return this.articleService.getArticle(articleId);
-    }),
-    tap((article) => {
-      console.log(article);
-    })
-  );
-
-  images: {
-    thumbnailURL?: File;
-    logo?: File;
-    image1?: File;
-    image2?: File;
-  } = {
-    thumbnailURL: null,
-    logo: null,
-  };
-
-  srcs: {
-    thumbnailURL?: File;
-    logo?: File;
-    image1?: File;
-    image2?: File;
-  };
-
-  categoryGroup: Category[] = [
-    { value: 'プログラミング', viewValue: 'プログラミング' },
-    { value: '外国語', viewValue: '外国語' },
-    { value: 'ビジネス', viewValue: 'ビジネス' },
-    { value: 'スポーツ', viewValue: 'スポーツ' },
-    { value: 'ダンス', viewValue: 'ダンス' },
-    { value: '美容', viewValue: '美容' },
-    { value: '料理', viewValue: '料理' },
-    { value: 'モノづくり', viewValue: 'モノづくり' },
-    { value: '音楽', viewValue: '音楽' },
-    { value: 'その他', viewValue: 'その他' },
-  ];
-
-  form = this.fb.group({
-    name: ['', [Validators.required, Validators.maxLength(50)]],
-    categorys: ['', [Validators.required]],
-    title: ['', [Validators.required, Validators.maxLength(150)]],
-    featureTitle1: ['', [Validators.required, Validators.maxLength(50)]],
-    featureBody1: ['', [Validators.required, Validators.maxLength(200)]],
-    featureTitle2: ['', [Validators.required, Validators.maxLength(50)]],
-    featureBody2: ['', [Validators.required, Validators.maxLength(200)]],
-    plan: ['', [Validators.required, Validators.maxLength(400)]],
-    serviceURL: [''],
-    type: [''],
-  });
-
-  id: string;
-
   constructor(
     private fb: FormBuilder,
     private articleService: ArticleService,
@@ -118,7 +63,72 @@ export class EditComponent implements OnInit {
     return this.form.get('type') as FormControl;
   }
 
-  ngOnInit(): void {}
+  article$: Observable<Article> = this.route.paramMap.pipe(
+    switchMap((map) => {
+      const articleId = map.get('articleId');
+      return this.articleService.getArticle(articleId);
+    }),
+    tap((article) => {
+      console.log(article);
+    })
+  );
+
+  categoryGroup: Category[] = [
+    { value: 'プログラミング', viewValue: 'プログラミング' },
+    { value: '外国語', viewValue: '外国語' },
+    { value: 'ビジネス', viewValue: 'ビジネス' },
+    { value: 'スポーツ', viewValue: 'スポーツ' },
+    { value: 'ダンス', viewValue: 'ダンス' },
+    { value: '美容', viewValue: '美容' },
+    { value: '料理', viewValue: '料理' },
+    { value: 'モノづくり', viewValue: 'モノづくり' },
+    { value: '音楽', viewValue: '音楽' },
+    { value: 'その他', viewValue: 'その他' },
+  ];
+
+  form = this.fb.group({
+    name: ['', [Validators.required, Validators.maxLength(50)]],
+    category: ['', [Validators.required]],
+    title: ['', [Validators.required, Validators.maxLength(150)]],
+    featureTitle1: ['', [Validators.required, Validators.maxLength(50)]],
+    featureBody1: ['', [Validators.required, Validators.maxLength(200)]],
+    featureTitle2: ['', [Validators.required, Validators.maxLength(50)]],
+    featureBody2: ['', [Validators.required, Validators.maxLength(200)]],
+    plan: ['', [Validators.required, Validators.maxLength(400)]],
+    serviceURL: [''],
+    type: [''],
+    id: [''],
+  });
+
+  id: string;
+
+  images: {
+    thumbnailURL?: File;
+    logo?: File;
+    image1?: File;
+    image2?: File;
+  } = {
+    thumbnailURL: null,
+    logo: null,
+    image1: null,
+    image2: null,
+  };
+
+  srcs: {
+    thumbnailURL?: File;
+    logo?: File;
+    image1?: File;
+    image2?: File;
+  } = {
+    thumbnailURL: null,
+    logo: null,
+    image1: null,
+    image2: null,
+  };
+
+  ngOnInit(): void {
+    this.article$.subscribe((article) => this.form.patchValue(article));
+  }
 
   convertImage(file: File, type: string) {
     const reader = new FileReader();
@@ -132,6 +142,7 @@ export class EditComponent implements OnInit {
     if (event.target.files.length) {
       this.images[type] = event.target.files[0];
       this.convertImage(this.images[type], type);
+      console.log(this.images);
     }
   }
 
@@ -142,7 +153,7 @@ export class EditComponent implements OnInit {
         {
           name: formData.name,
           title: formData.title,
-          category: formData.categorys,
+          category: formData.category,
           updatedAt: firestore.Timestamp.now(),
           featureTitle1: formData.featureTitle1,
           featureBody1: formData.featureBody1,
@@ -151,7 +162,7 @@ export class EditComponent implements OnInit {
           plan: formData.plan,
           serviceURL: formData.serviceURL,
           type: formData.type,
-          id: this.id,
+          id: formData.id,
         },
         this.images
       )
