@@ -73,14 +73,13 @@ export class ArticleService {
       'thumbnailURL' | 'logo' | 'image1' | 'image2' | 'createdAt'
     >,
     images?: {
-      thumbnailURL?: File | null;
-      logo?: File | null;
-      image1?: File | null;
-      image2?: File | null;
+      thumbnailURL?: File;
+      logo?: File;
+      image1?: File;
+      image2?: File;
     }
   ): Promise<void> {
     if (!Object.values(images).filter((item) => !!item).length) {
-      console.log(article);
       return this.db.doc<Article>(`articles/${article.id}`).set(
         {
           ...article,
@@ -88,16 +87,28 @@ export class ArticleService {
         { merge: true }
       );
     } else {
-      console.log(images);
-      const urls = await this.uploadImage(article.id, Object.values(images));
-      const [thumbnailURL, logo, image1, image2] = urls;
+      const urls = await this.uploadImage(
+        article.id,
+        Object.values(images).filter((item) => item !== null)
+      );
+      const [thumbnailURL, logo, image1, image2]: Array<string | null> = urls;
+
+      const data = {
+        ...article,
+        thumbnailURL,
+        logo,
+        image1,
+        image2,
+      };
+
+      Object.keys(data).forEach((key) => {
+        if (!data[key]) {
+          delete data[key];
+        }
+      });
       return this.db.doc<Article>(`articles/${article.id}`).set(
         {
-          ...article,
-          thumbnailURL,
-          logo,
-          image1,
-          image2,
+          ...data,
         },
         { merge: true }
       );
