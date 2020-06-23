@@ -19,6 +19,7 @@ import { EditorMemberListComponent } from './editor-member-list/editor-member-li
 import { EditorHomeComponent } from './editor-home/editor-home.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatRadioModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
+    MatTooltipModule,
   ],
 })
 export class EditorModule {}

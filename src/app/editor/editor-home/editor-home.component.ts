@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class EditorHomeComponent implements OnInit {
   navLinks = [
     {
-      label: '記事作成',
+      label: '新規作成',
       path: 'editor',
     },
     {
