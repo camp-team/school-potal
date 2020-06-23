@@ -5,7 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { firestore } from 'firebase';
 import { Observable } from 'rxjs';
 import { Article } from 'src/app/interfaces/article';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap, tap } from 'rxjs/operators';
 
 interface Category {
@@ -23,7 +23,8 @@ export class EditComponent implements OnInit {
     private fb: FormBuilder,
     private articleService: ArticleService,
     private snackBar: MatSnackBar,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   get name(): FormControl {
@@ -167,6 +168,7 @@ export class EditComponent implements OnInit {
         this.images
       )
       .then(() => {
+        this.router.navigateByUrl('/');
         this.snackBar.open('記事を更新しました！', null, {
           duration: 3000,
         });
