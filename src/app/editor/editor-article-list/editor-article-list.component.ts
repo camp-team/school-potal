@@ -5,6 +5,8 @@ import { ArticleService } from 'src/app/sevices/article.service';
 import { Article } from 'src/app/interfaces/article';
 import { tap } from 'rxjs/operators';
 import { LoadingService } from 'src/app/services/loading.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'app-editor-article-list',
@@ -28,7 +30,8 @@ export class EditorArticleListComponent implements OnInit {
 
   constructor(
     private articleService: ArticleService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private dialog: MatDialog
   ) {
     this.loadingService.toggleLoading(true);
   }
@@ -41,5 +44,9 @@ export class EditorArticleListComponent implements OnInit {
         this.dataSource = new MatTableDataSource<Article>(data);
         this.dataSource.paginator = this.paginator;
       });
+  }
+
+  openDeleteDialog() {
+    this.dialog.open(DeleteDialogComponent);
   }
 }
