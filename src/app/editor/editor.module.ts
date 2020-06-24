@@ -20,6 +20,8 @@ import { EditorHomeComponent } from './editor-home/editor-home.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     EditorArticleListComponent,
     EditorMemberListComponent,
     EditorHomeComponent,
+    DeleteDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -46,6 +49,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatPaginatorModule,
     MatProgressSpinnerModule,
     MatTooltipModule,
+    MatDialogModule,
   ],
 })
 export class EditorModule {}

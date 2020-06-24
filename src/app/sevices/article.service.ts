@@ -4,6 +4,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { Article } from '../interfaces/article';
 import { Observable } from 'rxjs';
 import { firestore } from 'firebase';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,8 @@ import { firestore } from 'firebase';
 export class ArticleService {
   constructor(
     private db: AngularFirestore,
-    private storage: AngularFireStorage
+    private storage: AngularFireStorage,
+    private snackBar: MatSnackBar
   ) {}
 
   async createArtile(
@@ -113,5 +115,14 @@ export class ArticleService {
         { merge: true }
       );
     }
+  }
+
+  deleteArticle(articleId: string): Promise<void> {
+    return this.db
+      .doc(`articles/${articleId}`)
+      .delete()
+      .then(() => {
+        this.snackBar.open('記事を削除しました', null, { duration: 3000 });
+      });
   }
 }
