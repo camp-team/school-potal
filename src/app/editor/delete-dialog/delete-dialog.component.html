@@ -1,1 +1,18 @@
-<p>delete-dialog works!</p>
+<h1 matDialogTitle class="dialog-header">
+  {{ data.article.name }}
+</h1>
+
+<mat-divider></mat-divider>
+
+<mat-dialog-content align="center">
+  <div class="dialog-content">
+    <p>この記事を完全に削除しますか？</p>
+  </div>
+</mat-dialog-content>
+
+<mat-divider></mat-divider>
+
+<mat-dialog-actions align="end">
+  <button mat-button matDialogClose>キャンセル</button>
+  <button color="warn" mat-flat-button>削除</button>
+</mat-dialog-actions>
