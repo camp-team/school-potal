@@ -3,7 +3,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { ArticleService } from 'src/app/sevices/article.service';
 import { Article } from 'src/app/interfaces/article';
-import { tap } from 'rxjs/operators';
+import { tap, switchMap } from 'rxjs/operators';
 import { LoadingService } from 'src/app/services/loading.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
@@ -46,7 +46,13 @@ export class EditorArticleListComponent implements OnInit {
       });
   }
 
-  openDeleteDialog() {
-    this.dialog.open(DeleteDialogComponent);
+  openDeleteDialog(article: Article) {
+    this.dialog.open(DeleteDialogComponent, {
+      width: '400px',
+      autoFocus: false,
+      // restoreFocus: false,
+      data: { article },
+    });
+    console.log(article);
   }
 }
