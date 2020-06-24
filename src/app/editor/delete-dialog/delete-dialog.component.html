@@ -14,5 +14,7 @@
 
 <mat-dialog-actions align="end">
   <button mat-button matDialogClose>キャンセル</button>
-  <button color="warn" mat-flat-button>削除</button>
+  <button color="warn" mat-flat-button [mat-dialog-close]="true">
+    削除
+  </button>
 </mat-dialog-actions>
