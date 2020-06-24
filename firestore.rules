@@ -10,8 +10,8 @@ service cloud.firestore {
     match /articles/{articleId} {
       allow read: if true;
       allow create: if true;
-      allow update: if true;
-      allow delete: if request.auth.uid == resource.data.uid;
+      allow update: if request.auth.uid == '30PZBOAxKFhUwrDFBdnQz5txp7o2';
+      allow delete: if request.auth.uid == '30PZBOAxKFhUwrDFBdnQz5txp7o2';
     }
   }
 }
