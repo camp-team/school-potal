@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import { ArticleService } from 'src/app/sevices/article.service';
+import { ArticleService } from 'src/app/services/article.service';
 import { Article } from 'src/app/interfaces/article';
 import { tap } from 'rxjs/operators';
 import { LoadingService } from 'src/app/services/loading.service';
