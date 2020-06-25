@@ -45,6 +45,9 @@ export class EditorArticleListComponent implements OnInit {
       .subscribe((data) => {
         this.dataSource = new MatTableDataSource<Article>(data);
         this.dataSource.paginator = this.paginator;
+      }),
+      tap((articles) => {
+        console.log(articles);
       });
   }
 

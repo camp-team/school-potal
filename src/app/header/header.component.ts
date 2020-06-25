@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DrawerService } from '../services/drawer.service';
-import { AuthService } from '../sevices/auth.service';
+import { AuthService } from '../services/auth.service';
 import { Observable } from 'rxjs';
 import { User } from '../interfaces/users';
 
