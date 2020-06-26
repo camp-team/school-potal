@@ -6,6 +6,7 @@ import { Article } from 'src/app/interfaces/article';
 import { switchMap, tap } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { StudentsDialogComponent } from '../students-dialog/students-dialog.component';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-article',
@@ -17,14 +18,18 @@ export class ArticleComponent implements OnInit {
     switchMap((map) => {
       const articleId = map.get('articleId');
       return this.articleService.getArticle(articleId);
-    })
+    }),
+    tap(() => this.loadingService.toggleLoading(false))
   );
 
   constructor(
     private articleService: ArticleService,
     private route: ActivatedRoute,
-    private dialog: MatDialog
-  ) {}
+    private dialog: MatDialog,
+    private loadingService: LoadingService
+  ) {
+    this.loadingService.toggleLoading(true);
+  }
 
   ngOnInit(): void {}
 
