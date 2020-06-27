@@ -1,0 +1,66 @@
+.login-section {
+  height: 100vh;
+  background: #263238;
+}
+
+.card {
+  width: 400px;
+  margin: 0 auto;
+  border-radius: 5px;
+  position: absolute;
+  top: calc(50% - 89px);
+  left: 50%;
+  transform: translate(-50%, -50%);
+  // box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25), 0 3px 6px rgba(0, 0, 0, 0.22);
+  &__header {
+    padding: 48px 16px;
+  }
+  &__header img {
+    margin-bottom: 16px;
+  }
+  &__login {
+    display: block;
+    height: 48px;
+    width: 80%;
+    margin: 16px auto;
+    padding: 2px 25px;
+    border-radius: 30px;
+    line-height: 48px;
+    color: #fff;
+    transition: ease-in-out 0.5s;
+    &--g {
+      background: #263238;
+      border: 2px solid #fff;
+    }
+    &--t {
+      background: #263238;
+      border: 2px solid #fff;
+      margin-bottom: 48px;
+    }
+    &--g:hover {
+      cursor: pointer;
+      border-left: 2px solid #4285f4;
+      border-top: 2px solid #db4437;
+      border-right: 2px solid #f4b400;
+      border-bottom: 2px solid #0f9d58;
+      background: rgba(255, 255, 255, 0.6);
+      color: rgba(0, 0, 0, 0.6);
+    }
+    &--t:hover {
+      cursor: pointer;
+      border: 2px solid #2aa1f1;
+      background: rgba(255, 255, 255, 0.6);
+      color: rgba(0, 0, 0, 0.6);
+    }
+  }
+}
+
+h1 {
+  font-size: 20px;
+  font-weight: 500;
+  text-align: center;
+}
+
+p {
+  text-align: center;
+}
