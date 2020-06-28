@@ -29,7 +29,7 @@ export class AuthService {
     private snackBar: MatSnackBar
   ) {}
 
-  login() {
+  googleLogin() {
     const provider = new auth.GoogleAuthProvider();
     provider.setCustomParameters({ prompt: 'select_account' });
     this.afAuth.signInWithPopup(provider).then(() => {
@@ -37,6 +37,17 @@ export class AuthService {
         duration: 3000,
       });
     });
+    this.router.navigateByUrl('/');
+  }
+
+  twitterLogin() {
+    const provider = new auth.TwitterAuthProvider();
+    this.afAuth.signInWithPopup(provider).then(() => {
+      this.snackBar.open('ログインしました 🎉', null, {
+        duration: 3000,
+      });
+    });
+    this.router.navigateByUrl('/');
   }
 
   logout() {

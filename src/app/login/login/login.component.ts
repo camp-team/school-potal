@@ -11,7 +11,11 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  login() {
-    this.authService.login();
+  googleLogin() {
+    this.authService.googleLogin();
+  }
+
+  twitterLogin() {
+    this.authService.twitterLogin();
   }
 }

@@ -23,10 +23,6 @@ export class HeaderComponent implements OnInit {
     this.drawerService.toggle();
   }
 
-  login() {
-    this.authService.login();
-  }
-
   logout() {
     this.authService.logout();
   }
