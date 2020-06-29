@@ -42,6 +42,7 @@ export class AuthService {
 
   twitterLogin() {
     const provider = new auth.TwitterAuthProvider();
+    provider.setCustomParameters({ prompt: 'select_account' });
     this.afAuth.signInWithPopup(provider).then(() => {
       this.snackBar.open('ログインしました 🎉', null, {
         duration: 3000,
