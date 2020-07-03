@@ -8,6 +8,7 @@ export const createUserWithGoogle = functions
   .auth.user()
   .onCreate((user) => {
     return db.doc(`users/${user.uid}`).set({
+      uid: user.uid,
       name: user.displayName,
       photoURL: user.photoURL,
       email: user.email,
@@ -20,6 +21,7 @@ export const createUserWithTwitter = functions
   .auth.user()
   .onCreate((user) => {
     return db.doc(`users/${user.uid}`).set({
+      uid: user.uid,
       name: user.displayName,
       photoURL: user.photoURL,
       email: user.email,
