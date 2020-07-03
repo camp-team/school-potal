@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { RuleComponent } from './rule/rule.component';
 import { LegalComponent } from '../legal/legal.component';
+import { PrivacyComponent } from './privacy/privacy.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path: 'legal',
     component: LegalComponent,
+  },
+  {
+    path: 'privacy',
+    component: PrivacyComponent,
   },
 ];
 
