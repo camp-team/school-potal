@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { User } from '../interfaces/users';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,6 @@ export class UserService {
       .doc(`users/&{userId}`)
       .get()
       .subscribe(async (doc) => {
-        console.log(userId);
         if (!doc.exists) {
           return this.afAuth.getRedirectResult().then(async (result) => {
             const uid = result.user.providerData[0].uid;
@@ -31,5 +31,9 @@ export class UserService {
           });
         }
       });
+  }
+
+  getUserData(userId: string) {
+    return this.db.doc<User>(`users/${userId}`).valueChanges();
   }
 }
