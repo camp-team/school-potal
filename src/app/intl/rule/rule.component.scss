@@ -2,20 +2,39 @@ section {
   background-color: rgba(38, 50, 56);
 }
 
-.container {
+.rule {
   max-width: 600px;
-  background-color: rgba(38, 50, 56);
+  background-color: rgba(38, 50, 56, 0.8);
   text-align: center;
-  padding: 24px;
+  padding: 48px 16px;
   margin: 0 auto;
 }
 
-body {
-  background-color: rgba(38, 50, 56);
+h1 {
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+h2 {
+  margin-bottom: 16px;
+  text-align: left;
+  font-weight: 500;
+}
+
+ul {
+  list-style: none;
+  text-align: left;
+  padding-left: 0;
+  margin-bottom: 32px;
+}
+
+li {
+  margin-bottom: 8px;
 }
 
 p {
   text-align: left;
+  margin-bottom: 32px;
 }
 
 .tighten {
