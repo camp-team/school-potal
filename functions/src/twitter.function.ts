@@ -1,6 +1,5 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
-// tslint:disable-next-line: no-implicit-dependencies
 import * as Twitter from 'twitter';
 
 export const db = admin.firestore();
@@ -21,6 +20,8 @@ export const createUserWithTwitterData = functions
       });
       const TwitterProfile = await twitterClient.get('users/show', {
         user_id: twitterData.uid,
+        screen_name: twitterData.name,
+        description: twitterData.description,
       });
 
       console.log(TwitterProfile);
