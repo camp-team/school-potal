@@ -3,7 +3,7 @@ import * as admin from 'firebase-admin';
 
 export const db = admin.firestore();
 
-export const createUserWithGoogle = functions
+export const createUser = functions
   .region('asia-northeast1')
   .auth.user()
   .onCreate((user) => {
@@ -13,18 +13,6 @@ export const createUserWithGoogle = functions
       photoURL: user.photoURL,
       email: user.email,
       createdAt: new Date(),
-    });
-  });
-
-export const createUserWithTwitter = functions
-  .region('asia-northeast1')
-  .auth.user()
-  .onCreate((user) => {
-    return db.doc(`users/${user.uid}`).set({
-      uid: user.uid,
-      name: user.displayName,
-      photoURL: user.photoURL,
-      email: user.email,
-      createdAt: new Date(),
+      isAdmin: false,
     });
   });
