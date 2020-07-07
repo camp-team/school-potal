@@ -3,9 +3,6 @@ import * as admin from 'firebase-admin';
 
 admin.initializeApp(functions.config().firebase);
 
-export {
-  createUserWithGoogle,
-  createUserWithTwitter,
-} from './create-user.function';
+export { createUser } from './create-user.function';
 
-export { createUserWithTwitterData } from './twitter.function';
+export { updateUser } from './twitter.function';

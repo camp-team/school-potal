@@ -4,7 +4,7 @@ import * as Twitter from 'twitter';
 
 export const db = admin.firestore();
 
-export const createUserWithTwitterData = functions
+export const updateUser = functions
   .region('asia-northeast1')
   .https.onCall(async (data) => {
     const twitterData = await (
