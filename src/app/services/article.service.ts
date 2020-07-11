@@ -5,6 +5,8 @@ import { Article } from '../interfaces/article';
 import { Observable } from 'rxjs';
 import { firestore } from 'firebase';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Teacher } from '../interfaces/teacher';
+import { AngularFireFunctions } from '@angular/fire/functions';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +15,8 @@ export class ArticleService {
   constructor(
     private db: AngularFirestore,
     private storage: AngularFireStorage,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private fns: AngularFireFunctions
   ) {}
 
   async createArtile(
@@ -57,6 +60,18 @@ export class ArticleService {
     });
   }
 
+  setTeacherData(teacherId: string) {
+    this.db
+      .doc<Article>(`articles/${teacherId}`)
+      .valueChanges()
+      .subscribe(() => {
+        const setFn = this.fns.httpsCallable('setTeacherDataById');
+        return setFn({
+          teacherId,
+        }).toPromise();
+      });
+  }
+
   getArticle(articleId: string): Observable<Article> {
     return this.db.doc<Article>(`articles/${articleId}`).valueChanges();
   }
@@ -65,6 +80,14 @@ export class ArticleService {
     return this.db
       .collection<Article>('articles', (ref) => {
         return ref.limit(15);
+      })
+      .valueChanges();
+  }
+
+  getTeachers(): Observable<Teacher[]> {
+    return this.db
+      .collection<Teacher>(`teachers`, (ref) => {
+        return ref.limit(3);
       })
       .valueChanges();
   }

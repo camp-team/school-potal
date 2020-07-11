@@ -5,4 +5,4 @@ admin.initializeApp(functions.config().firebase);
 
 export { createUser } from './create-user.function';
 
-export { updateUser } from './twitter.function';
+export { setTeacherDataById } from './twitter.function';

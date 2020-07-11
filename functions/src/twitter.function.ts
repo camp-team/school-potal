@@ -4,11 +4,11 @@ import * as Twitter from 'twitter';
 
 export const db = admin.firestore();
 
-export const updateUser = functions
+export const setTeacherDataById = functions
   .region('asia-northeast1')
   .https.onCall(async (data) => {
-    const twitterData = await (
-      await db.doc(`users/${data.uid}/private/twitter`).get()
+    const twitterData = (
+      await db.doc(`articles/${data.uId}/private/twitter`).get()
     ).data();
 
     if (twitterData) {
@@ -19,12 +19,13 @@ export const updateUser = functions
         access_token_secret: twitterData.secret,
       });
       const TwitterProfile = await twitterClient.get('users/show', {
-        user_id: twitterData.uid,
-        screen_name: twitterData.name,
-        description: twitterData.description,
+        user_id: data.teacherId,
       });
-
-      console.log(TwitterProfile);
+      await db.doc(`articles/${data.teacherId}/teachers/teacherData`).set({
+        screen_name: TwitterProfile.screen_name,
+        description: TwitterProfile.description,
+        profile_banner_url: TwitterProfile.profile_banner_url,
+      });
       return true;
     } else {
       throw new Error('認証に失敗しました');

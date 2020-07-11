@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { User } from '../interfaces/users';
+import { Observable } from 'rxjs';
+import { Teacher } from '../interfaces/teacher';
+import { Article } from '../interfaces/article';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +14,7 @@ export class UserService {
 
   async createUserWithTwitterData(userId: string): Promise<any> {
     this.db
-      .doc(`users/&{userId}`)
+      .doc(`users/${userId}`)
       .get()
       .subscribe(async (doc) => {
         if (!doc.exists) {
