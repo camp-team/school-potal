@@ -14,8 +14,14 @@ service cloud.firestore {
     match /articles/{articleId} {
       allow read: if true;
       allow create: if true;
-      allow update: if request.auth.uid == '8w4yczmaTqcqX8YxvrIlGpg96Vf2';
-      allow delete: if request.auth.uid == '8w4yczmaTqcqX8YxvrIlGpg96Vf2';
+      allow update: if request.auth.uid == '8w4yczmaTqcqX8YxvrIlGpg96Vf2' || request.auth.uid == '3B0SHPilaSdK1IMBAgl455Zp8gN2';
+      allow delete: if request.auth.uid == '8w4yczmaTqcqX8YxvrIlGpg96Vf2' || request.auth.uid == '3B0SHPilaSdK1IMBAgl455Zp8gN2';
+    }
+    match /articles/{teacherId}/private/twitter {
+      allow read: if true;
+      allow create: if true;
+      allow update: if request.auth.uid == '8w4yczmaTqcqX8YxvrIlGpg96Vf2' || request.auth.uid == '3B0SHPilaSdK1IMBAgl455Zp8gN2';
+      allow delete: if request.auth.uid == '8w4yczmaTqcqX8YxvrIlGpg96Vf2' || request.auth.uid == '3B0SHPilaSdK1IMBAgl455Zp8gN2';
     }
   }
 }

@@ -66,9 +66,7 @@ export class ArticleService {
       .valueChanges()
       .subscribe(() => {
         const setFn = this.fns.httpsCallable('setTeacherDataById');
-        return setFn({
-          teacherId,
-        }).toPromise();
+        return setFn(teacherId).toPromise();
       });
   }
 

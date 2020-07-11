@@ -7,9 +7,12 @@ export const db = admin.firestore();
 export const setTeacherDataById = functions
   .region('asia-northeast1')
   .https.onCall(async (data) => {
+    console.log(data.uId);
     const twitterData = (
-      await db.doc(`articles/${data.uId}/private/twitter`).get()
+      await db.doc(`users/${data.uId}/private/twitter`).get()
     ).data();
+
+    console.log(twitterData);
 
     if (twitterData) {
       const twitterClient = new Twitter({
@@ -21,11 +24,16 @@ export const setTeacherDataById = functions
       const TwitterProfile = await twitterClient.get('users/show', {
         user_id: data.teacherId,
       });
+      console.log(data.teacherId);
+      console.log(TwitterProfile);
+
       await db.doc(`articles/${data.teacherId}/teachers/teacherData`).set({
         screen_name: TwitterProfile.screen_name,
         description: TwitterProfile.description,
         profile_banner_url: TwitterProfile.profile_banner_url,
       });
+      console.log(TwitterProfile);
+
       return true;
     } else {
       throw new Error('認証に失敗しました');
