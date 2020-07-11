@@ -7,6 +7,7 @@ import { switchMap, tap } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { StudentsDialogComponent } from '../students-dialog/students-dialog.component';
 import { LoadingService } from 'src/app/services/loading.service';
+import { Teacher } from 'src/app/interfaces/teacher';
 
 @Component({
   selector: 'app-article',
@@ -21,6 +22,8 @@ export class ArticleComponent implements OnInit {
     }),
     tap(() => this.loadingService.toggleLoading(false))
   );
+
+  teacher$: Observable<Teacher[]> = this.articleService.getTeachers();
 
   constructor(
     private articleService: ArticleService,
