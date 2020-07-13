@@ -11,7 +11,9 @@ import { firestore } from 'firebase';
 import { Observable } from 'rxjs';
 import { Article } from 'src/app/interfaces/article';
 import { ActivatedRoute, Router } from '@angular/router';
-import { switchMap, tap } from 'rxjs/operators';
+import { switchMap, tap, map } from 'rxjs/operators';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { AuthService } from 'src/app/services/auth.service';
 
 interface Category {
   value: string;
@@ -24,13 +26,27 @@ interface Category {
   styleUrls: ['./edit.component.scss'],
 })
 export class EditComponent implements OnInit {
+  uid: string;
+
   constructor(
     private fb: FormBuilder,
     private articleService: ArticleService,
     private snackBar: MatSnackBar,
     private route: ActivatedRoute,
-    private router: Router
-  ) {}
+    private router: Router,
+    private db: AngularFirestore,
+    private authService: AuthService
+  ) {
+    this.authService.user$
+      .pipe(
+        map((user) => {
+          return user.uid;
+        })
+      )
+      .subscribe((uid) => {
+        this.uid = uid;
+      });
+  }
 
   get name(): FormControl {
     return this.form.get('name') as FormControl;
@@ -70,8 +86,8 @@ export class EditComponent implements OnInit {
   }
 
   article$: Observable<Article> = this.route.paramMap.pipe(
-    switchMap((map) => {
-      const articleId = map.get('articleId');
+    switchMap((param) => {
+      const articleId = param.get('articleId');
       return this.articleService.getArticle(articleId);
     }),
     tap((article) => {
@@ -186,10 +202,6 @@ export class EditComponent implements OnInit {
         },
         this.images
       )
-      .then(() => {
-        const teacherId = this.form.value.teacherId;
-        this.articleService.setTeacherData(teacherId);
-      })
       .then(() => {
         this.router.navigateByUrl('/');
         this.snackBar.open('記事を更新しました！', null, {
