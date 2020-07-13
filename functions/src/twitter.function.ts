@@ -6,10 +6,10 @@ export const db = admin.firestore();
 
 export const setTeacherDataById = functions
   .region('asia-northeast1')
-  .https.onCall(async (data) => {
-    console.log(data.uId);
+  .https.onCall(async (teacherId) => {
+    const masterId: string = functions.config().masterid;
     const twitterData = (
-      await db.doc(`users/${data.uId}/private/twitter`).get()
+      await db.doc(`users/${masterId}/private/twitter`).get()
     ).data();
 
     console.log(twitterData);
@@ -18,16 +18,14 @@ export const setTeacherDataById = functions
       const twitterClient = new Twitter({
         consumer_key: functions.config().twitter.consumer_key,
         consumer_secret: functions.config().twitter.consumer_secret,
-        access_token_key: twitterData.accessToken,
-        access_token_secret: twitterData.secret,
+        access_token_key: functions.config().twitter.token_key,
+        access_token_secret: functions.config().twitter.toke_secret,
       });
       const TwitterProfile = await twitterClient.get('users/show', {
-        user_id: data.teacherId,
+        screen_name: teacherId,
       });
-      console.log(data.teacherId);
-      console.log(TwitterProfile);
 
-      await db.doc(`articles/${data.teacherId}/teachers/teacherData`).set({
+      await db.doc(`articles/${teacherId}/teachers/teacherData`).set({
         screen_name: TwitterProfile.screen_name,
         description: TwitterProfile.description,
         profile_banner_url: TwitterProfile.profile_banner_url,
