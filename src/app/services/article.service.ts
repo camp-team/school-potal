@@ -7,7 +7,6 @@ import { firestore } from 'firebase';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Teacher } from '../interfaces/teacher';
 import { AngularFireFunctions } from '@angular/fire/functions';
-import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root',
@@ -61,10 +60,10 @@ export class ArticleService {
     });
   }
 
-  setTeacherData(teacherId: string) {
+  setTeacherData(articleId: string, teacherId: string) {
     const setFn = this.fns.httpsCallable('setTeacherDataById');
-    console.log(teacherId);
-    return setFn(teacherId).toPromise();
+    console.log(articleId, teacherId);
+    return setFn({ articleId, teacherId }).toPromise();
   }
 
   getArticle(articleId: string): Observable<Article> {
@@ -79,11 +78,10 @@ export class ArticleService {
       .valueChanges();
   }
 
-  getTeachers(): Observable<Teacher[]> {
+  getTeachers(articleId: string): Observable<Teacher[]> {
+    console.log(articleId);
     return this.db
-      .collection<Teacher>(`teachers`, (ref) => {
-        return ref.limit(3);
-      })
+      .collection<Teacher>(`articles/${articleId}/teachers`)
       .valueChanges();
   }
 
@@ -136,7 +134,7 @@ export class ArticleService {
         )
         .then(() => {
           const teacherId = article.teacherId;
-          this.setTeacherData(teacherId);
+          this.setTeacherData(article.id, teacherId);
         });
     }
   }

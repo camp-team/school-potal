@@ -3,7 +3,7 @@ import { ArticleService } from 'src/app/services/article.service';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { Article } from 'src/app/interfaces/article';
-import { switchMap, tap } from 'rxjs/operators';
+import { switchMap, tap, map } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { StudentsDialogComponent } from '../students-dialog/students-dialog.component';
 import { LoadingService } from 'src/app/services/loading.service';
@@ -16,14 +16,19 @@ import { Teacher } from 'src/app/interfaces/teacher';
 })
 export class ArticleComponent implements OnInit {
   article$: Observable<Article> = this.route.paramMap.pipe(
-    switchMap((map) => {
-      const articleId = map.get('articleId');
+    switchMap((param) => {
+      const articleId = param.get('articleId');
       return this.articleService.getArticle(articleId);
     }),
     tap(() => this.loadingService.toggleLoading(false))
   );
 
-  teacher$: Observable<Teacher[]> = this.articleService.getTeachers();
+  teachers$: Observable<Teacher[]> = this.route.paramMap.pipe(
+    switchMap((data) => {
+      const articleId = data.get('articleId');
+      return this.articleService.getTeachers(articleId);
+    })
+  );
 
   constructor(
     private articleService: ArticleService,
@@ -43,6 +48,5 @@ export class ArticleComponent implements OnInit {
       restoreFocus: false,
       data: { article },
     });
-    console.log(article);
   }
 }

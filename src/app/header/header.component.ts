@@ -12,12 +12,11 @@ import { tap } from 'rxjs/operators';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  user$ = this.authService.user$.pipe(
+  user$: Observable<User> = this.authService.user$.pipe(
     tap((user) => {
       if (user) {
         this.userService.getUserData(user.uid).subscribe(() => {
           this.userService.createUserWithTwitterData(user.uid);
-          console.log(user);
         });
       }
     })
