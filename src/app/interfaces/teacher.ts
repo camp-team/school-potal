@@ -1,6 +1,7 @@
 export interface Teacher {
   id: string;
+  name: string;
   screen_name: string;
   description: string;
-  profile_banner_url: string;
+  profile_image_url: string;
 }

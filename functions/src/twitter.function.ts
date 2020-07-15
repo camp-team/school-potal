@@ -28,9 +28,10 @@ export const setTeacherDataById = functions
       await db
         .doc(`articles/${param.articleId}/teachers/${param.teacherId}`)
         .set({
+          name: TwitterProfile.name,
           screen_name: TwitterProfile.screen_name,
           description: TwitterProfile.description,
-          profile_banner_url: TwitterProfile.profile_banner_url,
+          profile_image_url: TwitterProfile.profile_image_url_https,
         });
       console.log(TwitterProfile);
 
