@@ -117,7 +117,7 @@ mat-spinner {
     overflow: hidden;
   }
   &__description {
-    background: #37474f;
+    background: #314047;
     padding: 16px;
     border-radius: 8px;
   }
@@ -128,5 +128,22 @@ mat-spinner {
     border-radius: 30px;
     background-color: #2aa1f1;
     color: #fff;
+  }
+}
+.plan {
+  &:hover button {
+    display: block;
+  }
+  &__head-wrap {
+    display: grid;
+    grid-template-columns: 1fr 40px;
+    margin-bottom: 24px;
+  }
+  & button {
+    display: none;
+  }
+  & small {
+    font-size: 12px;
+    color: rgba(236, 236, 236, 0.6);
   }
 }

@@ -94,9 +94,19 @@
     </div>
 
     <div class="plan">
-      <h3 class="plan__title">プラン</h3>
-      <p><small>※最新の情報ではない可能性があります。</small></p>
-      <div class="plan">
+      <div class="plan__head-wrap">
+        <div class="plan__head">
+          <h3 class="plan__title">プラン/料金</h3>
+          <p><small>※最新の情報ではない可能性があります。</small></p>
+        </div>
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon class="mat-18">more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item><mat-icon>flag</mat-icon>報告</button>
+        </mat-menu>
+      </div>
+      <div class="plan__body">
         <p class="plan__text">
           {{ article.plan }}
         </p>
