@@ -1,10 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  Validators,
-  FormArray,
-} from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ArticleService } from 'src/app/services/article.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { firestore } from 'firebase';
@@ -121,12 +116,7 @@ export class EditComponent implements OnInit {
     type: [''],
     id: [''],
     teacherId: [''],
-    // teacherIds: this.fb.array([]),
   });
-
-  // get teacherIds(): FormArray {
-  //   return this.form.get('teacherIds') as FormArray;
-  // }
 
   id: string;
 
@@ -157,13 +147,6 @@ export class EditComponent implements OnInit {
   ngOnInit(): void {
     this.article$.subscribe((article) => this.form.patchValue(article));
   }
-
-  // addTeacherId() {
-  //   const teacherIdFormControl = this.fb.control({
-  //     teacherId: [''],
-  //   });
-  //   this.teacherIds.push(teacherIdFormControl);
-  // }
 
   convertImage(file: File, type: string) {
     const reader = new FileReader();
