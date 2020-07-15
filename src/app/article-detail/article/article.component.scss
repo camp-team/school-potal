@@ -12,7 +12,7 @@ section {
 .hero {
   max-width: 800px;
   margin: 0 auto;
-  margin-bottom: 24px;
+  margin-bottom: 40px;
   &__thumbnail {
     max-width: 100%;
   }
@@ -23,11 +23,15 @@ section {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    margin-right: 16px;
+    margin: 0 16px 0 16px;
     overflow: hidden;
   }
   &__title {
     font-weight: 500;
+  }
+  &__body {
+    display: flex;
+    align-items: center;
   }
 }
 
@@ -45,49 +49,8 @@ h3 {
   font-weight: 500;
 }
 
-.container {
-  display: flex;
-  align-items: center;
-}
-
-.users {
-  display: flex;
-  align-items: center;
-  &__title {
-    margin-right: 24px;
-  }
-  &__button {
-    width: 100px;
-    line-height: 1;
-    padding: 8px;
-    border-radius: 30px;
-    background-color: #2aa1f1;
-    color: #fff;
-  }
-  &__avatar {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin: 16px;
-  }
-  &__description {
-    margin-bottom: 32px;
-  }
-  &__name {
-    margin: 24px 0;
-    &:hover {
-      opacity: 0.6;
-    }
-  }
-}
-
 p {
   display: inline-block;
-}
-
-mat-tab-group {
-  margin-bottom: 48px;
 }
 
 .feature-section {
@@ -115,7 +78,8 @@ mat-tab-group {
 }
 
 .link-button a {
-  width: 100%;
+  display: block;
+  width: 60%;
   background-color: #2aa1f1;
   border-radius: 25px;
   margin: 48px auto;
@@ -123,4 +87,46 @@ mat-tab-group {
 
 mat-spinner {
   margin: 64px auto;
+}
+
+.menta {
+  margin-bottom: 48px;
+  &__head {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+  &__title {
+    margin-right: 16px;
+  }
+  &__hero {
+    width: 144px;
+    height: 144px;
+    margin-bottom: 16px;
+    text-align: center;
+    transition: ease-in-out 1s;
+    box-sizing: border-box;
+    &:hover {
+      border-bottom: 1px solid rgb(236, 236, 236);
+    }
+  }
+  &__avatar {
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  &__description {
+    background: #37474f;
+    padding: 16px;
+    border-radius: 8px;
+  }
+  &__button {
+    width: 100px;
+    line-height: 1;
+    padding: 8px;
+    border-radius: 30px;
+    background-color: #2aa1f1;
+    color: #fff;
+  }
 }

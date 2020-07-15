@@ -12,7 +12,7 @@
         {{ article.title }}
       </h1>
 
-      <div class="container">
+      <div class="hero__body">
         <figure class="hero__logo">
           <img [src]="article.logo" alt="" />
         </figure>
@@ -24,89 +24,46 @@
       </div>
     </div>
 
-    <div class="users-section">
-      <div class="users">
-        <h3 class="users__title">{{ article.name }}のユーザー</h3>
+    <div class="menta">
+      <div class="menta__head">
+        <h3 class="menta__title">講師・メンター</h3>
         <button
           mat-flat-button
-          class="users__button"
+          class="menta__button"
           (click)="openStudentsDialog(article)"
         >
           もっと見る
         </button>
       </div>
+      <div *ngIf="teachers$ | async as teachers; else zero">
+        <div *ngFor="let teacher of teachers">
+          <div class="menta__hero">
+            <figure>
+              <img
+                class="menta__avatar"
+                src="{{ teacher.profile_image_url }}"
+                alt=""
+              />
+            </figure>
+          </div>
 
-      <mat-tab-group>
-        <mat-tab>
-          <ng-template mat-tab-label>
-            <p>テスト生徒</p>
-          </ng-template>
-          <figure class="users__avatar">
-            <img src="https://dummyimage.com/80x80.png" alt="" />
-          </figure>
-          <a href="https://twitter.com/yuutan_0202" class="users__name"
-            ><h4>@oreore</h4></a
-          >
-          <p class="users__description">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt
-            dolores enim excepturi illum consequuntur aliquid nisi quia ullam
-            eligendi placeat voluptates nostrum fuga, ipsam iure, assumenda ut
-            ab. Quos, quia?
-          </p>
-          <button mat-flat-button class="users__button">話をきく</button>
-        </mat-tab>
-        <mat-tab label="Two">
-          <figure class="users__avatar">
-            <img src="https://dummyimage.com/80x80.png" alt="" />
-          </figure>
-          <a href="" class="users__name"><h4>@oreore</h4></a>
-          <p class="users__description">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt
-            dolores enim excepturi illum consequuntur aliquid nisi quia ullam
-            eligendi placeat voluptates nostrum fuga, ipsam iure, assumenda ut
-            ab. Quos, quia?
-          </p>
-          <button mat-flat-button class="users__button">話をきく</button>
-        </mat-tab>
-      </mat-tab-group>
-
-      <h3>講師・メンター</h3>
-      <mat-tab-group>
-        <mat-tab>
-          <ng-template mat-tab-label>
-            <p>テスト先生</p>
-          </ng-template>
-          <figure class="users__avatar">
-            <img src="https://dummyimage.com/80x80.png" alt="" />
-          </figure>
-          <a href="https://twitter.com/yuutan_0202" class="users__name"
-            ><h4>@oreore</h4></a
-          >
-          <p class="users__description">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt
-            dolores enim excepturi illum consequuntur aliquid nisi quia ullam
-            eligendi placeat voluptates nostrum fuga, ipsam iure, assumenda ut
-            ab. Quos, quia?
-          </p>
-          <button mat-flat-button class="users__button">話をきく</button>
-        </mat-tab>
-
-        <mat-tab label="Two">
-          <figure class="users__avatar">
-            <img src="https://dummyimage.com/80x80.png" alt="" />
-          </figure>
-          <a href="https://twitter.com/yuutan_0202" class="users__name"
-            ><h4>@oreore</h4></a
-          >
-          <p class="users__description">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt
-            dolores enim excepturi illum consequuntur aliquid nisi quia ullam
-            eligendi placeat voluptates nostrum fuga, ipsam iure, assumenda ut
-            ab. Quos, quia?
-          </p>
-          <button mat-flat-button class="users__button">話をきく</button>
-        </mat-tab>
-      </mat-tab-group>
+          <div class="menta__description">
+            <a
+              href="https://twitter.com/{{ teacher.screen_name }}"
+              class="menta__link"
+              target="_blank"
+              ><h4>{{ teacher.name }}<br />@{{ teacher.screen_name }}</h4></a
+            >
+            <p class="menta__description">{{ teacher.description }}</p>
+            <button mat-flat-button class="menta__button">話をきく</button>
+          </div>
+        </div>
+      </div>
+      <ng-template #zero>
+        <p>
+          講師・メンターの登録がまだありません🙏
+        </p>
+      </ng-template>
     </div>
 
     <div class="feature-section">
@@ -136,8 +93,9 @@
       </div>
     </div>
 
-    <div class="plan-section">
-      <h3 class="plan-section__title">プラン</h3>
+    <div class="plan">
+      <h3 class="plan__title">プラン</h3>
+      <p><small>※最新の情報ではない可能性があります。</small></p>
       <div class="plan">
         <p class="plan__text">
           {{ article.plan }}
