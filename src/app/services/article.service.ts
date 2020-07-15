@@ -34,15 +34,21 @@ export class ArticleService {
     const id = this.db.createId();
     const urls = await this.uploadImage(id, Object.values(images));
     const [thumbnailURL, logo, image1, image2] = urls;
-    return this.db.doc<Article>(`articles/${id}`).set({
-      ...article,
-      id,
-      updatedAt: firestore.Timestamp.now(),
-      thumbnailURL,
-      logo,
-      image1,
-      image2,
-    });
+    return this.db
+      .doc<Article>(`articles/${id}`)
+      .set({
+        ...article,
+        id,
+        updatedAt: firestore.Timestamp.now(),
+        thumbnailURL,
+        logo,
+        image1,
+        image2,
+      })
+      .then(() => {
+        const teacherId = article.teacherId;
+        this.setTeacherData(id, teacherId);
+      });
   }
 
   async uploadImage(id: string, files: File[]): Promise<string[]> {
