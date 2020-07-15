@@ -98,12 +98,18 @@ export class ArticleService {
     }
   ): Promise<void> {
     if (!Object.values(images).filter((item) => !!item).length) {
-      return this.db.doc<Article>(`articles/${article.id}`).set(
-        {
-          ...article,
-        },
-        { merge: true }
-      );
+      return this.db
+        .doc<Article>(`articles/${article.id}`)
+        .set(
+          {
+            ...article,
+          },
+          { merge: true }
+        )
+        .then(() => {
+          const teacherId = article.teacherId;
+          this.setTeacherData(article.id, teacherId);
+        });
     } else {
       const urls = await this.uploadImage(
         article.id,
