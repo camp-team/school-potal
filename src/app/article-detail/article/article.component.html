@@ -24,42 +24,42 @@
       </div>
     </div>
 
-    <div class="menta">
-      <div class="menta__head">
-        <h3 class="menta__title">講師・メンター</h3>
+    <div class="teacher">
+      <div class="teacher__head">
+        <h3 class="teacher__title">講師・メンター</h3>
         <button
           mat-flat-button
-          class="menta__button"
+          class="teacher__button"
           (click)="openStudentsDialog(article)"
         >
           もっと見る
         </button>
       </div>
-      <div *ngIf="teachers$ | async as teachers; else zero">
+      <div *ngIf="teachers$ | async as teachers; else blank">
         <div *ngFor="let teacher of teachers">
-          <div class="menta__hero">
+          <div class="teacher__hero">
             <figure>
               <img
-                class="menta__avatar"
+                class="teacher__avatar"
                 src="{{ teacher.profile_image_url }}"
                 alt=""
               />
             </figure>
           </div>
 
-          <div class="menta__description">
+          <div class="teacher__description">
             <a
               href="https://twitter.com/{{ teacher.screen_name }}"
-              class="menta__link"
+              class="teacher__link"
               target="_blank"
               ><h4>{{ teacher.name }}<br />@{{ teacher.screen_name }}</h4></a
             >
-            <p class="menta__description">{{ teacher.description }}</p>
-            <button mat-flat-button class="menta__button">話をきく</button>
+            <p class="teacher__description">{{ teacher.description }}</p>
+            <button mat-flat-button class="teacher__button">話をきく</button>
           </div>
         </div>
       </div>
-      <ng-template #zero>
+      <ng-template #blank>
         <p>
           講師・メンターの登録がまだありません🙏
         </p>

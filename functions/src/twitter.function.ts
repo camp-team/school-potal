@@ -29,9 +29,9 @@ export const setTeacherDataById = functions
         .doc(`articles/${param.articleId}/teachers/${param.teacherId}`)
         .set({
           name: TwitterProfile.name,
-          screen_name: TwitterProfile.screen_name,
+          screenName: TwitterProfile.screen_name,
           description: TwitterProfile.description,
-          profile_image_url: TwitterProfile.profile_image_url_https,
+          profileImageUrl: TwitterProfile.profile_image_url_https,
         });
       console.log(TwitterProfile);
 
