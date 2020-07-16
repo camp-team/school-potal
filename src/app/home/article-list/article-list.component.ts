@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Article } from 'src/app/interfaces/article';
-import { ArticleService } from 'src/app/sevices/article.service';
+import { ArticleService } from 'src/app/services/article.service';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-article-list',
@@ -9,9 +11,16 @@ import { Observable } from 'rxjs';
   styleUrls: ['./article-list.component.scss'],
 })
 export class ArticleListComponent implements OnInit {
-  articles$: Observable<Article[]> = this.articleService.getArticles();
+  articles$: Observable<Article[]> = this.articleService
+    .getArticles()
+    .pipe(tap(() => this.loadingService.toggleLoading(false)));
 
-  constructor(private articleService: ArticleService) {}
+  constructor(
+    private articleService: ArticleService,
+    private loadingService: LoadingService
+  ) {
+    this.loadingService.toggleLoading(true);
+  }
 
   ngOnInit(): void {}
 }

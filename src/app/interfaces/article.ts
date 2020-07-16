@@ -18,4 +18,5 @@ export interface Article {
   logo?: string;
   image1?: string;
   image2?: string;
+  teacherId: string;
 }

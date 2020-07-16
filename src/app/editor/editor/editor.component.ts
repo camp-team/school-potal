@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormControl } from '@angular/forms';
-import { ArticleService } from 'src/app/sevices/article.service';
+import { ArticleService } from 'src/app/services/article.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { firestore } from 'firebase';
@@ -60,6 +60,7 @@ export class EditorComponent implements OnInit {
     plan: ['', [Validators.required, Validators.maxLength(400)]],
     serviceURL: [''],
     type: [''],
+    teacherId: [''],
   });
 
   constructor(
@@ -115,6 +116,10 @@ export class EditorComponent implements OnInit {
     return this.form.get('type') as FormControl;
   }
 
+  get teacherId(): FormControl {
+    return this.form.get('teacherId') as FormControl;
+  }
+
   ngOnInit(): void {}
 
   // エディター画面に画像をセットするメソッド
@@ -143,6 +148,7 @@ export class EditorComponent implements OnInit {
           plan: formData.plan,
           serviceURL: formData.serviceURL,
           type: formData.type,
+          teacherId: formData.teacherId,
         },
         this.images
       )

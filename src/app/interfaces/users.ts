@@ -3,4 +3,6 @@ export interface User {
   photoURL: string;
   email: string;
   createdAt: Date;
+  uid: string;
+  isAdmin: boolean;
 }

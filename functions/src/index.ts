@@ -3,4 +3,6 @@ import * as admin from 'firebase-admin';
 
 admin.initializeApp(functions.config().firebase);
 
-export * from './create-user.function';
+export { createUser } from './create-user.function';
+
+export { setTeacherDataById } from './twitter.function';

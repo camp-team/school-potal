@@ -5,6 +5,8 @@ import { Article } from '../interfaces/article';
 import { Observable } from 'rxjs';
 import { firestore } from 'firebase';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Teacher } from '../interfaces/teacher';
+import { AngularFireFunctions } from '@angular/fire/functions';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +15,8 @@ export class ArticleService {
   constructor(
     private db: AngularFirestore,
     private storage: AngularFireStorage,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private fns: AngularFireFunctions
   ) {}
 
   async createArtile(
@@ -31,15 +34,21 @@ export class ArticleService {
     const id = this.db.createId();
     const urls = await this.uploadImage(id, Object.values(images));
     const [thumbnailURL, logo, image1, image2] = urls;
-    return this.db.doc<Article>(`articles/${id}`).set({
-      ...article,
-      id,
-      updatedAt: firestore.Timestamp.now(),
-      thumbnailURL,
-      logo,
-      image1,
-      image2,
-    });
+    return this.db
+      .doc<Article>(`articles/${id}`)
+      .set({
+        ...article,
+        id,
+        updatedAt: firestore.Timestamp.now(),
+        thumbnailURL,
+        logo,
+        image1,
+        image2,
+      })
+      .then(() => {
+        const teacherId = article.teacherId;
+        this.setTeacherData(id, teacherId);
+      });
   }
 
   async uploadImage(id: string, files: File[]): Promise<string[]> {
@@ -57,6 +66,12 @@ export class ArticleService {
     });
   }
 
+  setTeacherData(articleId: string, teacherId: string) {
+    const setFn = this.fns.httpsCallable('setTeacherDataById');
+    console.log(articleId, teacherId);
+    return setFn({ articleId, teacherId }).toPromise();
+  }
+
   getArticle(articleId: string): Observable<Article> {
     return this.db.doc<Article>(`articles/${articleId}`).valueChanges();
   }
@@ -66,6 +81,13 @@ export class ArticleService {
       .collection<Article>('articles', (ref) => {
         return ref.limit(15);
       })
+      .valueChanges();
+  }
+
+  getTeachers(articleId: string): Observable<Teacher[]> {
+    console.log(articleId);
+    return this.db
+      .collection<Teacher>(`articles/${articleId}/teachers`)
       .valueChanges();
   }
 
@@ -82,12 +104,18 @@ export class ArticleService {
     }
   ): Promise<void> {
     if (!Object.values(images).filter((item) => !!item).length) {
-      return this.db.doc<Article>(`articles/${article.id}`).set(
-        {
-          ...article,
-        },
-        { merge: true }
-      );
+      return this.db
+        .doc<Article>(`articles/${article.id}`)
+        .set(
+          {
+            ...article,
+          },
+          { merge: true }
+        )
+        .then(() => {
+          const teacherId = article.teacherId;
+          this.setTeacherData(article.id, teacherId);
+        });
     } else {
       const urls = await this.uploadImage(
         article.id,
@@ -108,12 +136,18 @@ export class ArticleService {
           delete data[key];
         }
       });
-      return this.db.doc<Article>(`articles/${article.id}`).set(
-        {
-          ...data,
-        },
-        { merge: true }
-      );
+      return this.db
+        .doc<Article>(`articles/${article.id}`)
+        .set(
+          {
+            ...data,
+          },
+          { merge: true }
+        )
+        .then(() => {
+          const teacherId = article.teacherId;
+          this.setTeacherData(article.id, teacherId);
+        });
     }
   }
 

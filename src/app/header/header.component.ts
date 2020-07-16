@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DrawerService } from '../services/drawer.service';
-import { AuthService } from '../sevices/auth.service';
+import { AuthService } from '../services/auth.service';
 import { Observable } from 'rxjs';
 import { User } from '../interfaces/users';
 
@@ -10,7 +10,7 @@ import { User } from '../interfaces/users';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  user$ = this.authService.user$;
+  user$: Observable<User> = this.authService.user$;
 
   constructor(
     private drawerService: DrawerService,
@@ -21,10 +21,6 @@ export class HeaderComponent implements OnInit {
 
   toggle() {
     this.drawerService.toggle();
-  }
-
-  login() {
-    this.authService.login();
   }
 
   logout() {

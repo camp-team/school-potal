@@ -3,15 +3,31 @@ service cloud.firestore {
   match /databases/{database}/documents {
     match /users/{userId} {
       allow read: if true;
-      allow create: if request.auth.uid != null;
-      allow update: if request.auth.uid == resource.data.uid;
+      allow create: if true;
+      allow update: if true;
       allow delete: if request.auth.uid == resource.data.uid;
+    }
+    match /users/{userId}/private/twitter {
+      allow read: if false;
+      allow write: if request.auth.uid == userId;
     }
     match /articles/{articleId} {
       allow read: if true;
       allow create: if true;
-      allow update: if request.auth.uid == '30PZBOAxKFhUwrDFBdnQz5txp7o2';
-      allow delete: if request.auth.uid == '30PZBOAxKFhUwrDFBdnQz5txp7o2';
+      allow update: if get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true;
+      allow delete: if get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true;
+    }
+    match /articles/{articleId}/teachers/{teacherId} {
+      allow read: if true;
+      allow create: if true;
+      allow update: if get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true;
+      allow delete: if get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true;
+    }
+    match /articles/{teacherId}/teachers {
+      allow read: if true;
+      allow create: if true;
+      allow update: if get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true;
+      allow delete: if get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true;
     }
   }
 }

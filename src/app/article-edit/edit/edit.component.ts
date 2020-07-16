@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { ArticleService } from 'src/app/sevices/article.service';
+import { ArticleService } from 'src/app/services/article.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { firestore } from 'firebase';
 import { Observable } from 'rxjs';
 import { Article } from 'src/app/interfaces/article';
 import { ActivatedRoute, Router } from '@angular/router';
-import { switchMap, tap } from 'rxjs/operators';
+import { switchMap, tap, map } from 'rxjs/operators';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { AuthService } from 'src/app/services/auth.service';
 
 interface Category {
   value: string;
@@ -19,13 +21,27 @@ interface Category {
   styleUrls: ['./edit.component.scss'],
 })
 export class EditComponent implements OnInit {
+  uid: string;
+
   constructor(
     private fb: FormBuilder,
     private articleService: ArticleService,
     private snackBar: MatSnackBar,
     private route: ActivatedRoute,
-    private router: Router
-  ) {}
+    private router: Router,
+    private db: AngularFirestore,
+    private authService: AuthService
+  ) {
+    this.authService.user$
+      .pipe(
+        map((user) => {
+          return user.uid;
+        })
+      )
+      .subscribe((uid) => {
+        this.uid = uid;
+      });
+  }
 
   get name(): FormControl {
     return this.form.get('name') as FormControl;
@@ -65,8 +81,8 @@ export class EditComponent implements OnInit {
   }
 
   article$: Observable<Article> = this.route.paramMap.pipe(
-    switchMap((map) => {
-      const articleId = map.get('articleId');
+    switchMap((param) => {
+      const articleId = param.get('articleId');
       return this.articleService.getArticle(articleId);
     }),
     tap((article) => {
@@ -99,6 +115,7 @@ export class EditComponent implements OnInit {
     serviceURL: [''],
     type: [''],
     id: [''],
+    teacherId: [''],
   });
 
   id: string;
@@ -164,6 +181,7 @@ export class EditComponent implements OnInit {
           serviceURL: formData.serviceURL,
           type: formData.type,
           id: formData.id,
+          teacherId: formData.teacherId,
         },
         this.images
       )

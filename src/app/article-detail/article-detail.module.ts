@@ -12,6 +12,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatDialogModule } from '@angular/material/dialog';
 import { StudentsDialogComponent } from './students-dialog/students-dialog.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { StudentsDialogComponent } from './students-dialog/students-dialog.compo
     MatCardModule,
     MatDividerModule,
     MatDialogModule,
+    MatProgressSpinnerModule,
+    MatMenuModule,
   ],
 })
 export class ArticleDetailModule {}

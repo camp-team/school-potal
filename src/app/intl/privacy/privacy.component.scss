@@ -1,11 +1,9 @@
 section {
-  background-color: rgba(38, 50, 56);
+  background: rgba(38, 50, 56);
 }
 
-.rule {
+.privacy {
   max-width: 600px;
-  background-color: rgba(38, 50, 56, 0.8);
-  text-align: center;
   padding: 48px 16px;
   margin: 0 auto;
 }
@@ -21,23 +19,12 @@ h2 {
   font-weight: 500;
 }
 
-ul {
-  list-style: none;
+ol {
   text-align: left;
-  padding-left: 0;
   margin-bottom: 32px;
-}
-
-li {
-  margin-bottom: 8px;
 }
 
 p {
   text-align: left;
   margin-bottom: 32px;
-}
-
-.tighten {
-  text-align: right;
-  margin-top: 24px;
 }
