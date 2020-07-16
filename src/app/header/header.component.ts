@@ -3,8 +3,6 @@ import { DrawerService } from '../services/drawer.service';
 import { AuthService } from '../services/auth.service';
 import { Observable } from 'rxjs';
 import { User } from '../interfaces/users';
-import { UserService } from '../services/user.service';
-import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
@@ -12,20 +10,11 @@ import { tap } from 'rxjs/operators';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  user$: Observable<User> = this.authService.user$.pipe(
-    tap((user) => {
-      if (user) {
-        this.userService.getUserData(user.uid).subscribe(() => {
-          this.userService.createUserWithTwitterData(user.uid);
-        });
-      }
-    })
-  );
+  user$: Observable<User> = this.authService.user$;
 
   constructor(
     private drawerService: DrawerService,
-    private authService: AuthService,
-    private userService: UserService
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {}
