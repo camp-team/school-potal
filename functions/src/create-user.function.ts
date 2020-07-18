@@ -3,7 +3,7 @@ import * as admin from 'firebase-admin';
 
 export const db = admin.firestore();
 
-export const createUserTokyo = functions
+export const createUser = functions
   .region('asia-northeast1')
   .auth.user()
   .onCreate((user) => {
