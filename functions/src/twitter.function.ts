@@ -12,8 +12,6 @@ export const setTeacherDataById = functions
       await db.doc(`users/${masterId}/private/twitter`).get()
     ).data();
 
-    console.log(twitterData);
-
     if (twitterData) {
       const twitterClient = new Twitter({
         consumer_key: functions.config().credential.twitter.consumer_key,
@@ -31,9 +29,11 @@ export const setTeacherDataById = functions
           name: TwitterProfile.name,
           screenName: TwitterProfile.screen_name,
           description: TwitterProfile.description,
-          profileImageUrl: TwitterProfile.profile_image_url_https,
+          profileImageUrl: TwitterProfile.profile_image_url_https.replace(
+            '_normal',
+            ''
+          ),
         });
-      console.log(TwitterProfile);
 
       return true;
     } else {
