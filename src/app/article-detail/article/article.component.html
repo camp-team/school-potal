@@ -41,7 +41,7 @@
             <figure>
               <img
                 class="teacher__avatar"
-                src="{{ teacher.profile_image_url }}"
+                src="{{ teacher.profileImageUrl }}"
                 alt=""
               />
             </figure>
@@ -49,10 +49,10 @@
 
           <div class="teacher__description">
             <a
-              href="https://twitter.com/{{ teacher.screen_name }}"
+              href="https://twitter.com/{{ teacher.screenName }}"
               class="teacher__link"
               target="_blank"
-              ><h4>{{ teacher.name }}<br />@{{ teacher.screen_name }}</h4></a
+              ><h4>{{ teacher.name }}<br />@{{ teacher.screenName }}</h4></a
             >
             <p class="teacher__description">{{ teacher.description }}</p>
             <button mat-flat-button class="teacher__button">話をきく</button>
