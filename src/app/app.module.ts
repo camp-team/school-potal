@@ -25,6 +25,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { StudentsDialogComponent } from './article-detail/students-dialog/students-dialog.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, NavigationComponent],
@@ -50,6 +51,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatDividerModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
+    MatAutocompleteModule,
   ],
   providers: [{ provide: REGION, useValue: 'asia-northeast1' }],
   bootstrap: [AppComponent],
