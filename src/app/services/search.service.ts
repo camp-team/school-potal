@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import algoliasearch from 'algoliasearch/lite';
 
-const searchCliant = algoliasearch(
+const searchClient = algoliasearch(
   environment.algolia.appId,
   environment.algolia.searchKey
 );
@@ -11,7 +11,9 @@ const searchCliant = algoliasearch(
   providedIn: 'root',
 })
 export class SearchService {
-  index = searchCliant.initIndex('articles');
+  index = {
+    item: searchClient.initIndex('articles'),
+  };
 
   constructor() {}
 }
