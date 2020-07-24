@@ -5,18 +5,31 @@
   <a class="logo" href="">LOGO</a>
   <span class="spacer"></span>
 
-  <form class="search">
+  <form class="search" (ngSubmit)="routeSearch(searchControl.value)">
     <input
       class="search__input"
       type="text"
       placeholder="スキルや場所、人名で探す"
       autocomplete="off"
       [matAutocomplete]="auto"
+      [formControl]="searchControl"
     />
-    <button type="submit" mat-icon-button><mat-icon>search</mat-icon></button>
+    <button
+      type="submit"
+      (click)="routeSearch(searchControl.value)"
+      mat-icon-button
+    >
+      <mat-icon>search</mat-icon>
+    </button>
   </form>
-  <mat-autocomplete #auto="matAutocomplete">
-    <mat-option>xxx</mat-option>
+  <mat-autocomplete
+    #auto="matAutocomplete"
+    (optionActivated)="setSearchQuery($event.option?.value)"
+    (optionSelected)="routeSearch($event.option?.value)"
+  >
+    <mat-option *ngFor="let option of searchOptions" [value]="option.name">{{
+      option.name
+    }}</mat-option>
   </mat-autocomplete>
 
   <ng-template #default>
