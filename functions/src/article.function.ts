@@ -10,8 +10,20 @@ export const createArticle = functions
     const data = snap.data();
     return algolia.saveRecord({
       indexName: 'articles',
-      largeConcentKey: 'body',
-      data,
+      largeConcentKey: 'features',
+      data: {
+        id: data.id,
+        name: data.name,
+        title: data.title,
+        category: data.category,
+        createdAt: data.createdAt,
+        updatedAt: data.updatedAt,
+        type: data.type,
+        featureTitle1: data.featureTitile1,
+        featureBody1: data.featureBody1,
+        featureTitle2: data.featureTitile2,
+        featureBody2: data.featureBody2,
+      },
     });
   });
 
@@ -37,6 +49,18 @@ export const updateArticle = functions
       indexName: 'articles',
       largeConcentKey: 'body',
       isUpdate: true,
-      data,
+      data: {
+        id: data.id,
+        name: data.name,
+        title: data.title,
+        category: data.category,
+        createdAt: data.createdAt,
+        updatedAt: data.updatedAt,
+        type: data.type,
+        featureTitle1: data.featureTitile1,
+        featureBody1: data.featureBody1,
+        featureTitle2: data.featureTitile2,
+        featureBody2: data.featureBody2,
+      },
     });
   });
