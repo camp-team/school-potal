@@ -6,29 +6,50 @@
   background-color: rgba(38, 50, 56);
   border-bottom: 1px solid rgba(55, 71, 79, 0.6);
   box-shadow: 1px 1px 1px rgba(55, 71, 79, 0.6);
-  &__left {
-    display: flex;
-    align-items: center;
-  }
-  &__logo,
-  &__menu {
-    color: #fff;
-    margin-left: 16px;
-  }
 }
 
-.account-menu {
-  background-color: rgba(38, 50, 56);
+.logo,
+.navigation {
+  color: #fff;
+  margin-left: 16px;
 }
 
-.buttons {
+.spacer {
+  flex: 1;
+}
+
+.search {
   display: flex;
   align-items: center;
-  &__button {
+  flex: 1;
+  max-width: 320px;
+  background: #314047;
+  border-radius: 20px;
+  padding-left: 16px;
+  &__input {
+    flex: 1;
+    background: #314047;
+    border-radius: 20px;
+    border: none;
     color: #fff;
-    padding: 16px;
-    line-height: 1;
+    outline: none;
   }
+  &__input::placeholder {
+    color: rgba(255, 255, 255, 0.8);
+  }
+  & button {
+    height: 40px;
+    border-radius: 20px;
+    background: #314047;
+    color: #fff;
+    outline: none;
+  }
+}
+
+.login {
+  color: #fff;
+  padding: 16px;
+  line-height: 1;
 }
 
 .avatar {

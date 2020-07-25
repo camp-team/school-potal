@@ -25,9 +25,16 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { StudentsDialogComponent } from './article-detail/students-dialog/students-dialog.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { SearchResultComponent } from './search-result/search-result.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, NavigationComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    NavigationComponent,
+    SearchResultComponent,
+  ],
   imports: [
     CommonModule,
     BrowserModule,
@@ -50,6 +57,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatDividerModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
+    MatAutocompleteModule,
   ],
   providers: [{ provide: REGION, useValue: 'asia-northeast1' }],
   bootstrap: [AppComponent],

@@ -1,53 +1,70 @@
 <div class="header">
-  <div class="header__left">
-    <button class="header__menu" mat-icon-button (click)="toggle()">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <a class="header__logo" href="">LOGO</a>
-  </div>
+  <button class="navigation" mat-icon-button (click)="toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <a class="logo" href="">LOGO</a>
+  <span class="spacer"></span>
 
-  <div class="buttons">
-    <button class="buttons__button" mat-button>
+  <form class="search" (ngSubmit)="routeSearch(searchControl.value)">
+    <input
+      class="search__input"
+      type="text"
+      placeholder="スキルや場所、人名で探す"
+      autocomplete="off"
+      [matAutocomplete]="auto"
+      [formControl]="searchControl"
+    />
+    <button
+      type="submit"
+      (click)="routeSearch(searchControl.value)"
+      mat-icon-button
+    >
       <mat-icon>search</mat-icon>
     </button>
-    <button class="buttons__button" mat-button>
-      <mat-icon>notifications</mat-icon>
+  </form>
+  <mat-autocomplete
+    #auto="matAutocomplete"
+    (optionActivated)="setSearchQuery($event.option?.value)"
+    (optionSelected)="routeSearch($event.option?.value)"
+  >
+    <mat-option *ngFor="let option of searchOptions" [value]="option.name">{{
+      option.name
+    }}</mat-option>
+  </mat-autocomplete>
+
+  <ng-template #default>
+    <button mat-button routerLink="/login" class="login">
+      ログイン
     </button>
+  </ng-template>
 
-    <ng-template #default>
-      <button mat-button routerLink="/login" class="buttons__button">
-        ログイン
+  <ng-container *ngIf="user$ | async as user; else default">
+    <button
+      class="avatar"
+      mat-icon-button
+      [matMenuTriggerFor]="menu"
+      [style.background-image]="'url(' + user.photoURL + ')'"
+    ></button>
+
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>account_circle</mat-icon>
+        <span>マイページ</span>
       </button>
-    </ng-template>
+      <button mat-menu-item>
+        <mat-icon>settings</mat-icon>
+        <span>設定</span>
+      </button>
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>ログアウト</span>
+      </button>
+      <mat-divider class="divider"></mat-divider>
 
-    <ng-container *ngIf="user$ | async as user; else default">
-      <button
-        class="avatar"
-        mat-icon-button
-        [matMenuTriggerFor]="menu"
-        [style.background-image]="'url(' + user.photoURL + ')'"
-      ></button>
-
-      <mat-menu #menu="matMenu" class="account-menu">
-        <button mat-menu-item>
-          <mat-icon>account_circle</mat-icon>
-          <span>マイページ</span>
-        </button>
-        <button mat-menu-item>
-          <mat-icon>settings</mat-icon>
-          <span>設定</span>
-        </button>
-        <button mat-menu-item (click)="logout()">
-          <mat-icon>exit_to_app</mat-icon>
-          <span>ログアウト</span>
-        </button>
-        <mat-divider class="divider"></mat-divider>
-
-        <button mat-menu-item routerLink="/editor">
-          <mat-icon>edit</mat-icon>
-          <span>管理者メニュー</span>
-        </button>
-      </mat-menu>
-    </ng-container>
-  </div>
+      <button mat-menu-item routerLink="/editor">
+        <mat-icon>edit</mat-icon>
+        <span>管理者メニュー</span>
+      </button>
+    </mat-menu>
+  </ng-container>
 </div>
