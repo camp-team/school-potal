@@ -1,15 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Article } from 'src/app/interfaces/article';
-
-const ARTICLE = {
-  thumbnailURL: './assets/images/thumbnail-01.png',
-  avatarURL: 'https://dummyimage.com/80x80.png',
-  title:
-    'オリジナルサービスを開発して起業もあり！即戦力となる実務スキルが身につくプログラミング版ライザップ',
-  category: 'プログラミング',
-  createdAt: new Date(),
-  price: '12,500円 /月',
-};
+import { ArticleService } from 'src/app/services/article.service';
+import { Observable } from 'rxjs';
+import { SearchIndex } from 'algoliasearch/lite';
+import { SearchService } from 'src/app/services/search.service';
+import { ActivatedRoute } from '@angular/router';
+import { switchMap, map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-side',
@@ -17,10 +13,37 @@ const ARTICLE = {
   styleUrls: ['./side.component.scss'],
 })
 export class SideComponent implements OnInit {
-  @Input() article: Article;
-  articles: Article[] = new Array(15).fill(ARTICLE);
+  article: Article;
+  index: SearchIndex = this.searchService.index.item;
+  articles: Article[];
+  result: {
+    nbHits: number;
+  };
 
-  constructor() {}
+  constructor(
+    private articleService: ArticleService,
+    private searchService: SearchService,
+    private route: ActivatedRoute
+  ) {
+    this.route.paramMap
+      .pipe(
+        switchMap((param) => {
+          const articleId = param.get('articleId');
+          return this.articleService.getArticle(articleId);
+        })
+      )
+      .subscribe((article) => {
+        this.article = article;
+        const categoryFilter = `category: ${article.category}`;
+        this.index
+          .search('', {
+            facetFilters: categoryFilter,
+          })
+          .then((result) => {
+            this.articles = result.hits as any[];
+          });
+      });
+  }
 
   ngOnInit(): void {}
 }
