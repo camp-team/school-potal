@@ -85,7 +85,6 @@ export class ArticleService {
   }
 
   getTeachers(articleId: string): Observable<Teacher[]> {
-    console.log(articleId);
     return this.db
       .collection<Teacher>(`articles/${articleId}/teachers`)
       .valueChanges();
