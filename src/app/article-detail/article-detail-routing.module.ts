@@ -7,12 +7,6 @@ const routes: Routes = [
   {
     path: '',
     component: ArticleDetailComponent,
-    children: [
-      {
-        path: ':articleId',
-        component: ArticleComponent,
-      },
-    ],
   },
 ];
 

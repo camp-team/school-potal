@@ -86,10 +86,6 @@ p {
   margin: 48px auto;
 }
 
-mat-spinner {
-  margin: 64px auto;
-}
-
 .teacher {
   margin-bottom: 48px;
   &__head {
@@ -131,6 +127,7 @@ mat-spinner {
     color: #fff;
   }
 }
+
 .plan {
   &:hover button {
     display: block;
