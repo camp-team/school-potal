@@ -9,12 +9,12 @@
     </h2>
   </div>
   <div class="result-list">
-    <ng-container *ngIf="result.hits.length !== 0">
+    <ng-container *ngIf="result?.hits.length">
       <h2 class="result-list__hits">
         結果： {{ result?.nbHits }} 件見つかりました
       </h2>
     </ng-container>
-    <ng-container *ngIf="result.hits.length !== 0; else notFound">
+    <ng-container *ngIf="result?.hits.length; else notFound">
       <div *ngFor="let article of articles$ | async">
         <div class="result-list__item">
           <div class="result-list__thumbnail">
