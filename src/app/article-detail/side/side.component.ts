@@ -37,7 +37,7 @@ export class SideComponent implements OnInit {
         const categoryFilter = `category: ${article.category}`;
         this.index
           .search('', {
-            facetFilters: categoryFilter,
+            facetFilters: [categoryFilter, `id: -${article.id}`],
           })
           .then((result) => {
             this.articles = result.hits as any[];
