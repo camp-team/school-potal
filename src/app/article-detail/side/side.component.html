@@ -2,14 +2,17 @@
 
 <mat-card *ngFor="let article of articles">
   <div class="article">
-    <figure class="article__thumbnail">
+    <a routerLink="/article-detail/{{ article.id }}" class="article__thumbnail">
       <img [src]="article.thumbnailURL" alt="" />
-    </figure>
+      <div class="article__icon">
+        <mat-icon>exit_to_app</mat-icon>
+      </div>
+    </a>
     <div class="article__body">
-      <p class="article__title">{{ article.title }}</p>
+      <a class="article__title">{{ article.title }}</a>
       <p class="article__category">{{ article.category }}</p>
       <p class="article__date">
-        {{ article.createdAt | date: 'yyyy年M月d日' }} UP
+        {{ article.createdAt | date: 'yyyy/MM/dd' }} UP
       </p>
     </div>
   </div>

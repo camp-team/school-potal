@@ -1,16 +1,49 @@
 .article {
   display: grid;
-  grid-template-columns: 168px 1fr;
+  grid-template-columns: 48% 1fr;
   gap: 8px;
   &__thumbnail {
-    width: 168px;
-    height: 94px;
+    width: 100%;
+    position: relative;
   }
+  &__icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+  }
+  &__thumbnail:hover img {
+    filter: grayscale(50%) blur(2px);
+  }
+  &__thumbnail:hover &__icon {
+    display: grid;
+    place-items: center;
+    color: #47c5fc;
+    background: rgba(25, 39, 53, 0.6);
+  }
+
   &__title {
-    font-size: 11px;
+    max-height: 40px;
+    font-size: 13px;
     font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: wrap;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
   }
-  &__category,
+  &__title:hover {
+    color: #47c5fc;
+  }
+  &__category {
+    font-size: 9px;
+    opacity: 0.38;
+  }
   &__date {
     font-size: 9px;
     opacity: 0.38;
@@ -19,12 +52,13 @@
 
 mat-card {
   padding: 8px;
-  margin-bottom: 8px;
-  background-color: rgba(38, 50, 56, 0.8);
+  margin-bottom: 16px;
+  background-color: rgba(23, 35, 45, 0.8);
   cursor: pointer;
 }
 
 h2 {
   font-size: 18px;
   font-weight: 500;
+  margin: 48px 0 16px 0;
 }
