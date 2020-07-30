@@ -1,12 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ArticleService } from 'src/app/services/article.service';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { Article } from 'src/app/interfaces/article';
-import { switchMap, tap, map } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { StudentsDialogComponent } from '../students-dialog/students-dialog.component';
-import { LoadingService } from 'src/app/services/loading.service';
 import { Teacher } from 'src/app/interfaces/teacher';
 
 @Component({
@@ -15,13 +14,7 @@ import { Teacher } from 'src/app/interfaces/teacher';
   styleUrls: ['./article.component.scss'],
 })
 export class ArticleComponent implements OnInit {
-  article$: Observable<Article> = this.route.paramMap.pipe(
-    switchMap((param) => {
-      const articleId = param.get('articleId');
-      return this.articleService.getArticle(articleId);
-    }),
-    tap(() => this.loadingService.toggleLoading(false))
-  );
+  @Input() article: Article;
 
   teachers$: Observable<Teacher[]> = this.route.paramMap.pipe(
     switchMap((data) => {
@@ -33,11 +26,8 @@ export class ArticleComponent implements OnInit {
   constructor(
     private articleService: ArticleService,
     private route: ActivatedRoute,
-    private dialog: MatDialog,
-    private loadingService: LoadingService
-  ) {
-    this.loadingService.toggleLoading(true);
-  }
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {}
 

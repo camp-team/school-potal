@@ -23,6 +23,7 @@ export const createArticle = functions
         featureBody1: data.featureBody1,
         featureTitle2: data.featureTitile2,
         featureBody2: data.featureBody2,
+        thumbnailURL: data.thumbnailURL,
       },
     });
   });
@@ -61,6 +62,7 @@ export const updateArticle = functions
         featureBody1: data.featureBody1,
         featureTitle2: data.featureTitile2,
         featureBody2: data.featureBody2,
+        thumbnailURL: data.thumbnailURL,
       },
     });
   });
