@@ -1,22 +1,22 @@
-@import '~@angular/material/theming';
-
 .container {
-  background-color: rgba(38, 50, 56);
+  background-color: rgba(23, 35, 45);
   padding: 24px;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(352px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  @media (max-width: 960px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media (max-width: 415px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .article {
-  padding: 24px;
-  transition: 0.3s;
-  &:hover {
-    @include mat-elevation(4);
-  }
+  padding: 16px;
   &__category {
     display: flex;
     align-items: center;
@@ -51,6 +51,12 @@
   }
   &__title {
     font-size: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: wrap;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    display: -webkit-box;
   }
   &__price,
   &__up {
