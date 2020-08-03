@@ -1,31 +1,33 @@
 <div class="container">
-  <h2>新着のオンラインサロン</h2>
-  <swiper [config]="config" [(index)]="index">
-    <div class="flex swiper-slide" *ngFor="let salon of salons$ | async">
-      <a routerLink="/article-detail/{{ salon.id }}" href="" class="article">
-        <button mat-flat-button color="primary">
-          <p class="article__category-text">{{ salon.category }}</p>
-        </button>
+  <ng-container *ngIf="salons$ | async as salons; else loading">
+    <h2>新着のオンラインサロン</h2>
+    <swiper [config]="config" [(index)]="index">
+      <div class="flex swiper-slide" *ngFor="let salon of salons">
+        <a routerLink="/article-detail/{{ salon.id }}" href="" class="article">
+          <button mat-flat-button color="primary">
+            <p class="article__category-text">{{ salon.category }}</p>
+          </button>
 
-        <figure class="article__thumbnail">
-          <img [src]="salon.thumbnailURL" alt="" />
-        </figure>
+          <figure class="article__thumbnail">
+            <img [src]="salon.thumbnailURL" alt="" />
+          </figure>
 
-        <div class="article__body">
-          <div class="article__top">
-            <img class="article__logo" [src]="salon.logo" alt="" />
-            <h2 class="article__title">{{ salon.title }}</h2>
+          <div class="article__body">
+            <div class="article__top">
+              <img class="article__logo" [src]="salon.logo" alt="" />
+              <h2 class="article__title">{{ salon.title }}</h2>
+            </div>
+
+            <div class="article__description">
+              <p class="article__up">
+                {{ salon.createdAt.toDate() | date: 'yyyy年M月d日' }} UP
+              </p>
+            </div>
           </div>
-
-          <div class="article__description">
-            <p class="article__up">
-              {{ salon.createdAt.toDate() | date: 'yyyy年M月d日' }} UP
-            </p>
-          </div>
-        </div>
-      </a>
-    </div>
-  </swiper>
+        </a>
+      </div>
+    </swiper>
+  </ng-container>
 
   <mat-divider></mat-divider>
 
