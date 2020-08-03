@@ -84,6 +84,28 @@ export class ArticleService {
       .valueChanges();
   }
 
+  getSchools(): Observable<Article[]> {
+    return this.db
+      .collection<Article>('articles', (ref) => {
+        return ref
+          .where('type', '==', 'school')
+          .orderBy('createdAt', 'desc')
+          .limit(8);
+      })
+      .valueChanges();
+  }
+
+  getSalons(): Observable<Article[]> {
+    return this.db
+      .collection<Article>('articles', (ref) => {
+        return ref
+          .where('type', '==', 'salon')
+          .orderBy('createdAt', 'desc')
+          .limit(8);
+      })
+      .valueChanges();
+  }
+
   getTeachers(articleId: string): Observable<Teacher[]> {
     return this.db
       .collection<Teacher>(`articles/${articleId}/teachers`)
