@@ -8,9 +8,7 @@ export const setTeacherDataById = functions
   .region('asia-northeast1')
   .https.onCall(async (param) => {
     const masterId: string = functions.config().twitter.masterid;
-    const twitterData = (
-      await db.doc(`users/${masterId}/private/twitter`).get()
-    ).data();
+    const twitterData = (await db.doc(`users/${masterId}`).get()).data();
 
     if (twitterData) {
       const twitterClient = new Twitter({
