@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Article } from 'src/app/interfaces/article';
 import { tap } from 'rxjs/operators';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+import { newArray } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-latest-school',
@@ -31,6 +32,8 @@ export class LatestSchoolComponent implements OnInit {
   };
 
   index: number;
+
+  spins = newArray(5);
 
   schools$: Observable<Article[]> = this.articleService
     .getSchools()

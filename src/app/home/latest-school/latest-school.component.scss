@@ -62,13 +62,11 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 16px;
+  margin: 96px 0;
   @media (max-width: 960px) {
     grid-template-columns: repeat(3, 1fr);
   }
   @media (max-width: 415px) {
     grid-template-columns: 1fr;
-  }
-  &__item {
-    margin: 96px 0;
   }
 }

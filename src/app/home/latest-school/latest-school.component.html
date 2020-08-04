@@ -1,6 +1,6 @@
 <div class="container">
+  <h2>新着のスクール</h2>
   <ng-container *ngIf="schools$ | async as schools; else loading">
-    <h2>新着のスクール</h2>
     <swiper [config]="config" [(index)]="index">
       <div class="flex swiper-slide" *ngFor="let school of schools">
         <a routerLink="/article-detail/{{ school.id }}" href="" class="article">
@@ -33,11 +33,9 @@
 
   <ng-template #loading>
     <div class="loading-grid">
-      <div class="loading-grid__item"><mat-spinner></mat-spinner></div>
-      <div class="loading-grid__item"><mat-spinner></mat-spinner></div>
-      <div class="loading-grid__item"><mat-spinner></mat-spinner></div>
-      <div class="loading-grid__item"><mat-spinner></mat-spinner></div>
-      <div class="loading-grid__item"><mat-spinner></mat-spinner></div>
+      <div *ngFor="let spin of spins">
+        <div class="loading-grid__item"><mat-spinner></mat-spinner></div>
+      </div>
     </div>
   </ng-template>
 </div>
