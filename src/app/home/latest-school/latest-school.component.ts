@@ -14,7 +14,7 @@ import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 export class LatestSchoolComponent implements OnInit {
   config: SwiperConfigInterface = {
     loop: true,
-    loopedSlides: 3,
+    loopedSlides: 1,
     slidesPerView: 5,
     observer: true,
     watchOverflow: true,
