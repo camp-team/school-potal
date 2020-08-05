@@ -1,0 +1,25 @@
+.comment {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 16px;
+  &__avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: center/cover
+      url(http://unsplash.it/200/200?random&gravity=center);
+  }
+  &__header {
+    display: flex;
+    margin-bottom: 8px;
+  }
+  &__name {
+    font-size: 13px;
+    font-weight: 500;
+    margin-right: 8px;
+  }
+  &__date {
+    font-size: 13px;
+    color: rgba(#fff, 0.6);
+  }
+}
