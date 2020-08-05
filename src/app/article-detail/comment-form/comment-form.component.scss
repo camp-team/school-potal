@@ -1,0 +1,32 @@
+.comment {
+  width: 100%;
+  padding: 16px 0;
+  &__title {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+  &__avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #bbb;
+    margin-right: 16px;
+  }
+  &__body {
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+}
+
+form {
+  width: calc(100% - 40px);
+}
+mat-form-field {
+  width: 100%;
+}
+
+mat-divider {
+  margin: 24px auto;
+}
