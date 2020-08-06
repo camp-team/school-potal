@@ -1,8 +1,11 @@
 <mat-divider></mat-divider>
-<div class="comment">
-  <h2 class="comment__title">XXX件のコメント</h2>
+<h2 class="title">XXX件のコメント</h2>
+<div class="comment" *ngIf="user$ | async as user">
   <div class="comment__body">
-    <figure class="comment__avatar" [style.backgroud-image]="'url()'"></figure>
+    <figure
+      class="comment__avatar"
+      [style.background-image]="'url(' + user.photoURL + ')'"
+    ></figure>
 
     <form (ngSubmit)="submit()">
       <mat-form-field>

@@ -1,17 +1,18 @@
+.title {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
 .comment {
   width: 100%;
   padding: 16px 0;
-  &__title {
-    font-size: 18px;
-    font-weight: 500;
-    margin-bottom: 16px;
-  }
   &__avatar {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: #bbb;
     margin-right: 16px;
+    background: center/cover;
   }
   &__body {
     width: 100%;
