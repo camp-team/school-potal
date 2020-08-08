@@ -1,5 +1,12 @@
 <mat-divider></mat-divider>
-<h2 class="title">XXX件のコメント</h2>
+<ng-container *ngIf="comments$ | async as comments; else default">
+  <h2 class="title">{{ comments.length }}件のコメント</h2>
+</ng-container>
+<ng-template #default>
+  <h2 class="title">
+    コメントはまだありません。最初のコメントを投稿しませんか？
+  </h2>
+</ng-template>
 <div class="comment" *ngIf="user$ | async as user">
   <div class="comment__body">
     <figure
@@ -11,7 +18,7 @@
       <mat-form-field>
         <textarea
           matInput
-          placeholder="サービスを使った感想や質問などの公開コメントを入力"
+          placeholder="参加した感想やサービスへの質問など、公開コメントを入力"
           [formControl]="commentForm"
           #body
           autocomplete="off"
