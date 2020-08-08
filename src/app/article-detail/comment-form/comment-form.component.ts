@@ -3,10 +3,11 @@ import { FormControl, Validators } from '@angular/forms';
 import { CommentService } from 'src/app/services/comment.service';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-import { map, tap } from 'rxjs/operators';
+import { map, tap, switchMap } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/interfaces/users';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Comment } from 'src/app/interfaces/comment';
 
 @Component({
   selector: 'app-comment-form',
@@ -23,6 +24,13 @@ export class CommentFormComponent implements OnInit {
   uId: string;
 
   user$: Observable<User> = this.authService.user$;
+
+  comments$: Observable<Comment[]> = this.route.paramMap.pipe(
+    switchMap((param) => {
+      const articleId = param.get('articleId');
+      return this.commentService.getCommentsByArticleId(articleId);
+    })
+  );
 
   constructor(
     private commentService: CommentService,
