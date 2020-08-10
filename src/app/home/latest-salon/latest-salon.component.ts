@@ -45,7 +45,6 @@ export class LatestSalonComponent implements OnInit {
     private loadingService: LoadingService
   ) {
     this.loadingService.toggleLoading(true);
-    console.log(this.index);
   }
 
   ngOnInit(): void {}
