@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CommentService } from 'src/app/services/comment.service';
-import { ActivatedRoute } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { CommentWithUser } from 'src/app/interfaces/comment';
 import { User } from 'src/app/interfaces/users';
 import { AuthService } from 'src/app/services/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-comment-list',
@@ -13,21 +12,23 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./comment-list.component.scss'],
 })
 export class CommentListComponent implements OnInit {
-  user$: Observable<User> = this.authService.user$;
+  @Input() comment: CommentWithUser;
 
-  articleId: string;
-  comments$: Observable<CommentWithUser[]> = this.route.paramMap.pipe(
-    switchMap((map) => {
-      this.articleId = map.get('articleId');
-      return this.commentService.getCommentsWithUserByArticleId(this.articleId);
-    })
-  );
+  user$: Observable<User> = this.authService.user$;
 
   constructor(
     private commentService: CommentService,
     private authService: AuthService,
-    private route: ActivatedRoute
+    private snackBar: MatSnackBar
   ) {}
+
+  deleteComment(): void {
+    this.commentService
+      .deleteComment(this.comment)
+      .then(() =>
+        this.snackBar.open('コメントを削除しました', null, { duration: 3000 })
+      );
+  }
 
   ngOnInit(): void {}
 }

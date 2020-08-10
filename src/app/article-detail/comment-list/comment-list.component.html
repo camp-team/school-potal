@@ -1,4 +1,4 @@
-<div class="comment" *ngFor="let comment of comments$ | async as comments">
+<div class="comment">
   <div
     class="comment__avatar"
     [style.background-image]="'url(' + comment.user.photoURL + ')'"
@@ -26,7 +26,9 @@
 
     <mat-menu #menu="matMenu">
       <button mat-menu-item><mat-icon>edit</mat-icon>編集</button>
-      <button mat-menu-item><mat-icon>delete</mat-icon>削除</button>
+      <button mat-menu-item (click)="deleteComment()">
+        <mat-icon>delete</mat-icon>削除
+      </button>
     </mat-menu>
   </ng-container>
 
