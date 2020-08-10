@@ -25,7 +25,11 @@
           required
           matTextareaAutosize
         ></textarea>
-        <button mat-icon-button matSuffix [disabled]="commentForm.invalid">
+        <button
+          mat-icon-button
+          matSuffix
+          [disabled]="commentForm.invalid || isProcessing"
+        >
           <mat-icon>send</mat-icon>
         </button>
         <mat-error *ngIf="commentForm.hasError('required')"

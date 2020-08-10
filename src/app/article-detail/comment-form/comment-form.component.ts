@@ -25,10 +25,16 @@ export class CommentFormComponent implements OnInit {
 
   user$: Observable<User> = this.authService.user$;
 
-  comments$: Observable<Comment[]> = this.route.paramMap.pipe(
-    switchMap((param) => {
-      const articleId = param.get('articleId');
-      return this.commentService.getCommentsByArticleId(articleId);
+  articleId$: Observable<string> = this.route.paramMap.pipe(
+    map((param) => {
+      return param.get('articleId');
+    }),
+    tap((data) => console.log(data))
+  );
+
+  comments$: Observable<Comment[]> = this.articleId$.pipe(
+    switchMap((id) => {
+      return this.commentService.getCommentsByArticleId(id);
     })
   );
 
@@ -48,17 +54,10 @@ export class CommentFormComponent implements OnInit {
         this.uId = uid;
       });
 
-    this.route.paramMap
-      .pipe(
-        map((param) => {
-          return param.get('articleId');
-        }),
-        tap((articleId) => console.log(articleId))
-      )
-      .subscribe((id) => {
-        this.articleId = id;
-      });
+    this.articleId$.subscribe((id) => (this.articleId = id));
   }
+
+  isProcessing: boolean;
 
   ngOnInit(): void {}
 
@@ -74,6 +73,8 @@ export class CommentFormComponent implements OnInit {
       })
       .then(() => {
         this.snackBar.open('コメントを投稿しました', null, { duration: 3000 });
-      });
+      })
+      .then(() => (this.isProcessing = false))
+      .finally(() => this.commentForm.setValue(''));
   }
 }
