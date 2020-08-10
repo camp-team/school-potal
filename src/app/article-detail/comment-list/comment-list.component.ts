@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommentService } from 'src/app/services/comment.service';
 import { ActivatedRoute } from '@angular/router';
-import { switchMap, tap } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { CommentWithUser } from 'src/app/interfaces/comment';
 import { User } from 'src/app/interfaces/users';
@@ -20,8 +20,7 @@ export class CommentListComponent implements OnInit {
     switchMap((map) => {
       this.articleId = map.get('articleId');
       return this.commentService.getCommentsWithUserByArticleId(this.articleId);
-    }),
-    tap((data) => console.log(data))
+    })
   );
 
   constructor(

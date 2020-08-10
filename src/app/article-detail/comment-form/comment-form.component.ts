@@ -3,7 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { CommentService } from 'src/app/services/comment.service';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-import { map, tap, switchMap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/interfaces/users';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -28,8 +28,7 @@ export class CommentFormComponent implements OnInit {
   articleId$: Observable<string> = this.route.paramMap.pipe(
     map((param) => {
       return param.get('articleId');
-    }),
-    tap((data) => console.log(data))
+    })
   );
 
   comments$: Observable<Comment[]> = this.articleId$.pipe(
@@ -63,8 +62,6 @@ export class CommentFormComponent implements OnInit {
 
   submit() {
     const formData = this.commentForm.value;
-    console.log(formData);
-    console.log(this.articleId);
     this.commentService
       .addComment({
         body: formData,
