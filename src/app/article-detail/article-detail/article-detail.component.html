@@ -3,7 +3,10 @@
     <div>
       <app-article [article]="article"></app-article>
       <app-comment-form></app-comment-form>
-      <app-comment-list></app-comment-list>
+      <app-comment-list
+        *ngFor="let comment of comments$ | async as comments"
+        [comment]="comment"
+      ></app-comment-list>
     </div>
     <app-side></app-side>
   </div>
