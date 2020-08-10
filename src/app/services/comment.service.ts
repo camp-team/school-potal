@@ -6,6 +6,7 @@ import { Observable, of, combineLatest } from 'rxjs';
 import { switchMap, map } from 'rxjs/operators';
 import { User } from '../interfaces/users';
 import { UserService } from './user.service';
+import { Article } from '../interfaces/article';
 
 @Injectable({
   providedIn: 'root',
@@ -71,5 +72,11 @@ export class CommentService {
           })
         );
     }
+  }
+
+  deleteComment(comment: Comment): Promise<void> {
+    return this.db
+      .doc<Article>(`articles/${comment.articleId}/comments/${comment.id}`)
+      .delete();
   }
 }
