@@ -1,0 +1,20 @@
+<h1 matDialogTitle class="dialog-header">
+  削除しますか？
+</h1>
+
+<mat-divider></mat-divider>
+
+<mat-dialog-content align="center">
+  <div class="dialog-content">
+    <p>一度削除すると元に戻せません。</p>
+  </div>
+</mat-dialog-content>
+
+<mat-divider></mat-divider>
+
+<mat-dialog-actions align="end">
+  <button mat-button matDialogClose>キャンセル</button>
+  <button color="warn" mat-raised-button [mat-dialog-close]="true">
+    削除
+  </button>
+</mat-dialog-actions>

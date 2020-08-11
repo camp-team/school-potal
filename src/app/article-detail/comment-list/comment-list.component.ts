@@ -7,6 +7,8 @@ import { AuthService } from 'src/app/services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormControl, Validators } from '@angular/forms';
 import { firestore } from 'firebase';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteDialogComponent } from 'src/app/shared/delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'app-comment-list',
@@ -28,7 +30,8 @@ export class CommentListComponent implements OnInit {
   constructor(
     private commentService: CommentService,
     private authService: AuthService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog
   ) {}
 
   isEditMode() {
@@ -52,12 +55,21 @@ export class CommentListComponent implements OnInit {
       });
   }
 
-  deleteComment(): void {
-    this.commentService
-      .deleteComment(this.comment)
-      .then(() =>
-        this.snackBar.open('コメントを削除しました', null, { duration: 3000 })
-      );
+  openDeleteDialog() {
+    this.dialog
+      .open(DeleteDialogComponent)
+      .afterClosed()
+      .subscribe((result) => {
+        if (result) {
+          this.commentService.deleteComment(this.comment).then(() =>
+            this.snackBar.open('コメントを削除しました', null, {
+              duration: 3000,
+            })
+          );
+        } else {
+          return;
+        }
+      });
   }
 
   ngOnInit(): void {}
