@@ -74,6 +74,15 @@ export class CommentService {
     }
   }
 
+  updateComment(comment: Comment): Promise<void> {
+    return this.db
+      .doc<Comment>(`articles/${comment.articleId}/comments/${comment.id}`)
+      .update({
+        ...comment,
+        updatedAt: firestore.Timestamp.now(),
+      });
+  }
+
   deleteComment(comment: Comment): Promise<void> {
     return this.db
       .doc<Article>(`articles/${comment.articleId}/comments/${comment.id}`)
