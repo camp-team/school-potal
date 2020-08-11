@@ -38,3 +38,18 @@
     white-space: pre-wrap;
   }
 }
+
+.form {
+  width: 100%;
+  display: block;
+  &__actions {
+    float: right;
+  }
+  &__btn {
+    margin-right: 8px;
+  }
+}
+
+mat-form-field {
+  width: 100%;
+}
