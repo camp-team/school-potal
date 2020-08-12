@@ -21,7 +21,7 @@ export class CommentFormComponent implements OnInit {
   ]);
 
   articleId: string;
-  uId: string;
+  uid: string;
 
   user$: Observable<User> = this.authService.user$;
 
@@ -50,7 +50,7 @@ export class CommentFormComponent implements OnInit {
         })
       )
       .subscribe((uid) => {
-        this.uId = uid;
+        this.uid = uid;
       });
 
     this.articleId$.subscribe((id) => (this.articleId = id));
@@ -65,7 +65,7 @@ export class CommentFormComponent implements OnInit {
     this.commentService
       .addComment({
         body: formData,
-        uId: this.uId,
+        uid: this.uid,
         articleId: this.articleId,
       })
       .then(() => {

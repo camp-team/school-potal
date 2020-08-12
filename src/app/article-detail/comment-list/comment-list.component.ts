@@ -45,7 +45,7 @@ export class CommentListComponent implements OnInit {
     this.commentService
       .updateComment({
         body: this.commentForm.value,
-        uId: this.comment.uId,
+        uid: this.comment.uid,
         articleId: this.comment.articleId,
         id: this.comment.id,
         updatedAt: firestore.Timestamp.now(),

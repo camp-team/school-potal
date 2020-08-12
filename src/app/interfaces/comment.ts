@@ -3,7 +3,7 @@ import { User } from '../interfaces/users';
 
 export interface Comment {
   id: string;
-  uId: string;
+  uid: string;
   body: string;
   updatedAt: firestore.Timestamp;
   articleId: string;

@@ -47,7 +47,7 @@ export class CommentService {
           switchMap((comments: Comment[]) => {
             if (comments.length) {
               const postedUids: string[] = [
-                ...new Set(comments.map((comment) => comment.uId)),
+                ...new Set(comments.map((comment) => comment.uid)),
               ];
 
               const users$: Observable<User[]> = combineLatest(
@@ -63,7 +63,7 @@ export class CommentService {
               return comments.map((comment: Comment) => {
                 return {
                   ...comment,
-                  user: users.find((user: User) => comment.uId === user?.uid),
+                  user: users.find((user: User) => comment.uid === user?.uid),
                 };
               });
             } else {
