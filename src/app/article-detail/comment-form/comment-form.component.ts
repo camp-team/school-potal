@@ -72,6 +72,7 @@ export class CommentFormComponent implements OnInit {
         this.snackBar.open('コメントを投稿しました', null, { duration: 3000 });
       })
       .then(() => (this.isProcessing = false))
-      .finally(() => this.commentForm.setValue(''));
+      .then(() => this.commentForm[''])
+      .finally(() => this.commentForm.reset(null));
   }
 }
