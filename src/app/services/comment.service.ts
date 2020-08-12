@@ -46,12 +46,12 @@ export class CommentService {
         .pipe(
           switchMap((comments: Comment[]) => {
             if (comments.length) {
-              const postedUids: string[] = [
-                ...new Set(comments.map((comment) => comment.uid)),
-              ];
+              const unduplicatedUids: string[] = Array.from(
+                new Set(comments.map((comment) => comment.uid))
+              );
 
               const users$: Observable<User[]> = combineLatest(
-                postedUids.map((uid) => this.userService.getUserData(uid))
+                unduplicatedUids.map((uid) => this.userService.getUserData(uid))
               );
               return combineLatest([of(comments), users$]);
             } else {
