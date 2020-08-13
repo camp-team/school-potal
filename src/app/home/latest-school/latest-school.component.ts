@@ -17,6 +17,7 @@ export class LatestSchoolComponent implements OnInit {
     loop: true,
     loopedSlides: 1,
     slidesPerView: 5,
+    navigation: true,
     observer: true,
     watchOverflow: true,
     breakpoints: {
