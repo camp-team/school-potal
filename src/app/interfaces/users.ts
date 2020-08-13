@@ -5,4 +5,7 @@ export interface User {
   createdAt: Date;
   uid: string;
   isAdmin: boolean;
+  plan: 'free' | 'owner' | 'premium';
+  profile: string;
+  skills: string;
 }

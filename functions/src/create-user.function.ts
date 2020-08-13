@@ -14,5 +14,6 @@ export const createUser = functions
       email: user.email,
       createdAt: new Date(),
       isAdmin: false,
+      plan: 'free',
     });
   });
