@@ -35,9 +35,11 @@ export class LatestSchoolComponent implements OnInit {
 
   spins = newArray(5);
 
-  schools$: Observable<Article[]> = this.articleService
-    .getSchools()
-    .pipe(tap(() => this.loadingService.toggleLoading(false)));
+  schools$: Observable<Article[]> = this.articleService.getSchools().pipe(
+    tap(() => {
+      this.loadingService.toggleLoading(false);
+    })
+  );
 
   constructor(
     private articleService: ArticleService,

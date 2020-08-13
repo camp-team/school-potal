@@ -14,6 +14,13 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { StudentsDialogComponent } from './students-dialog/students-dialog.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatMenuModule } from '@angular/material/menu';
+import { CommentFormComponent } from './comment-form/comment-form.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { CommentListComponent } from './comment-list/comment-list.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +28,8 @@ import { MatMenuModule } from '@angular/material/menu';
     ArticleComponent,
     SideComponent,
     StudentsDialogComponent,
+    CommentFormComponent,
+    CommentListComponent,
   ],
   imports: [
     CommonModule,
@@ -33,6 +42,12 @@ import { MatMenuModule } from '@angular/material/menu';
     MatDialogModule,
     MatProgressSpinnerModule,
     MatMenuModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatSnackBarModule,
+    SharedModule,
   ],
 })
 export class ArticleDetailModule {}
