@@ -6,12 +6,13 @@ import { SettingComponent } from './setting/setting.component';
 const routes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
     component: AccountComponent,
-  },
-  {
-    path: 'setting',
-    component: SettingComponent,
+    children: [
+      {
+        path: 'setting',
+        component: SettingComponent,
+      },
+    ],
   },
 ];
 
