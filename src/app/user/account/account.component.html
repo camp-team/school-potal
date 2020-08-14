@@ -1,17 +1,23 @@
 <section>
-  <div class="account" *ngIf="user$ | async as user">
-    <figure
-      class="account__avatar"
-      [style.background-image]="'url(' + user.photoURL + ')'"
-    ></figure>
-    <div class="account__body">
-      <h2 class="account__name">{{ user.name }}</h2>
-      <p class="account__plan">プラン：{{ user.plan }}</p>
-      <p class="account__create">
-        {{ user.createdAt.toDate() | date: 'yyyy年MM月dd日' }}から利用しています
-      </p>
+  <ng-container *ngIf="user$ | async as user">
+    <div class="account">
+      <figure
+        class="account__avatar"
+        [style.background-image]="'url(' + user.photoURL + ')'"
+      ></figure>
+      <div class="account__body">
+        <h2 class="account__name">{{ user.name }}</h2>
+        <p class="account__plan">プラン：{{ user.plan }}</p>
+        <p class="account__create">
+          {{
+            user.createdAt.toDate() | date: 'yyyy年MM月dd日'
+          }}から利用しています
+        </p>
+      </div>
+      <button mat-flat-button routerLink="setting">
+        編集
+      </button>
     </div>
-  </div>
-
-  <router-outlet></router-outlet>
+    <router-outlet></router-outlet>
+  </ng-container>
 </section>
