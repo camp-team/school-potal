@@ -1,1 +1,87 @@
-<p>setting works!</p>
+<ng-container *ngIf="user$ | async as user">
+  <form [formGroup]="form" (ngSubmit)="submit()" class="edit">
+    <h2 class="edit__item">表示名</h2>
+    <mat-form-field class="edit__form">
+      <input matInput formControlName="name" #name autocomplete="off" />
+      <mat-hint align="end">{{ name.value.length }} / 50文字</mat-hint>
+    </mat-form-field>
+
+    <h2 class="edit__item">プロフィール</h2>
+    <mat-form-field class="edit__form">
+      <textarea
+        matInput
+        formControlName="profile"
+        placeholder="自己紹介をしましょう"
+        #profile
+        autocomplete="off"
+        matTextareaAutosize
+      ></textarea>
+      <mat-error>必須入力です</mat-error>
+      <mat-error>最大文字数を超えています</mat-error>
+      <mat-hint align="end">{{ profile.value.length }}/400文字</mat-hint>
+    </mat-form-field>
+
+    <h2 class="edit__item">リンク</h2>
+    <mat-form-field class="edit__form">
+      <textarea
+        matInput
+        formControlName="link"
+        placeholder="SNSやポートフォリオのリンクを共有しましょう"
+        #link
+        autocomplete="off"
+        matTextareaAutosize
+      ></textarea>
+      <mat-error>必須入力です</mat-error>
+      <mat-error>最大文字数を超えています</mat-error>
+      <mat-hint align="end">{{ link.value.length }}/400文字</mat-hint>
+    </mat-form-field>
+
+    <h2 class="edit__item">スキルリスト</h2>
+    <mat-chip-list class="edit__form">
+      <mat-chip>One fish</mat-chip>
+      <mat-chip>Two fish</mat-chip>
+      <mat-chip color="primary" selected>Primary fish</mat-chip>
+      <mat-chip color="accent" selected>Accent fish</mat-chip>
+    </mat-chip-list>
+
+    <h2 class="edit__item">参加済 or 購入済サービス</h2>
+    <mat-form-field class="edit__form edit__form--last">
+      <input matInput formControlName="joins" #joins autocomplete="off" />
+      <mat-hint align="end">{{ joins.value.length }} / 50文字</mat-hint>
+    </mat-form-field>
+
+    <button
+      class="edit__submit"
+      mat-button
+      [disabled]="form.invalid || form.pristine"
+    >
+      更新
+    </button>
+  </form>
+
+  <div class="unsubscribe">
+    <h2 class="unsubscribe__title">退会</h2>
+    <p class="unsubscribe__text">
+      退会すると利用データが失われ、あとから復元できません。
+    </p>
+
+    <mat-form-field class="unsubscribe__form">
+      <input
+        class="unsubscribe__input"
+        matInput
+        placeholder="登録ユーザー名を入力して手続きを進める"
+        #input
+        autocomplete="off"
+      />
+      <mat-hint align="end">{{ user.name }}</mat-hint>
+    </mat-form-field>
+
+    <button
+      class="unsubscribe__btn"
+      mat-button
+      [disabled]="user.name !== input.value"
+    >
+      退会
+    </button>
+  </div>
+</ng-container>

@@ -1,0 +1,39 @@
+.edit {
+  max-width: 60%;
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 24px;
+  margin: 0 auto;
+  &__item {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+  &__form {
+    margin-bottom: 24px;
+  }
+  &__submit {
+    margin-bottom: 96px;
+  }
+}
+
+.unsubscribe {
+  width: 60%;
+  margin: 0 auto 24px;
+  display: grid;
+  &__title {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 16px;
+  }
+  &__text {
+    font-size: 13px;
+  }
+  &__form {
+    width: 50%;
+    margin-bottom: 24px;
+  }
+  &__btn {
+    width: 120px;
+  }
+}
