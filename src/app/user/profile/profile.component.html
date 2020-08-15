@@ -1,0 +1,19 @@
+<ng-container *ngIf="user$ | async as user">
+  <div class="profile">
+    <mat-icon class="mat-18">history</mat-icon>
+    <h3 class="profile__title">自己紹介</h3>
+    <p class="profile__body">{{ user.profile }}</p>
+  </div>
+  <div class="skills">
+    <mat-icon class="mat-18">military_tech</mat-icon>
+    <h3 class="skills__title">スキル</h3>
+    <p class="skills__body">{{ user.tags }}</p>
+  </div>
+  <div class="links">
+    <mat-icon class="mat-18">link</mat-icon>
+    <h3 class="links__title">関連ページ</h3>
+    <a class="links__body" href="{{ user.links }}" target="_blank">{{
+      user.links
+    }}</a>
+  </div>
+</ng-container>
