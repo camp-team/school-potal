@@ -10,9 +10,11 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatButtonModule } from '@angular/material/button';
+import { SharedModule } from '../shared/shared.module';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
-  declarations: [AccountComponent, SettingComponent],
+  declarations: [AccountComponent, SettingComponent, ProfileComponent],
   imports: [
     CommonModule,
     UserRoutingModule,
@@ -23,6 +25,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatInputModule,
     MatChipsModule,
     MatButtonModule,
+    SharedModule,
   ],
 })
 export class UserModule {}

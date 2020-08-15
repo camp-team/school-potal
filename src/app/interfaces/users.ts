@@ -5,9 +5,11 @@ export interface User {
   photoURL: string;
   email: string;
   createdAt: firestore.Timestamp;
+  updatedAt: firestore.Timestamp;
   uid: string;
   isAdmin: boolean;
   plan: 'free' | 'owner' | 'premium';
   profile: string;
-  skills: string;
+  links: string[];
+  tags: string[];
 }
