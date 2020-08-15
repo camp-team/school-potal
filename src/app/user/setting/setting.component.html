@@ -1,5 +1,5 @@
 <ng-container *ngIf="user$ | async as user">
-  <form [formGroup]="form" (ngSubmit)="submit()" class="edit">
+  <form [formGroup]="form" (ngSubmit)="updateUser()" class="edit">
     <h2 class="edit__item">表示名</h2>
     <mat-form-field class="edit__form">
       <input matInput formControlName="name" #name autocomplete="off" />
@@ -25,7 +25,7 @@
     <mat-form-field class="edit__form">
       <textarea
         matInput
-        formControlName="link"
+        formControlName="links"
         placeholder="SNSやポートフォリオのリンクを共有しましょう"
         #link
         autocomplete="off"
@@ -37,17 +37,27 @@
     </mat-form-field>
 
     <h2 class="edit__item">スキルリスト</h2>
-    <mat-chip-list class="edit__form">
-      <mat-chip>One fish</mat-chip>
-      <mat-chip>Two fish</mat-chip>
-      <mat-chip color="primary" selected>Primary fish</mat-chip>
-      <mat-chip color="accent" selected>Accent fish</mat-chip>
-    </mat-chip-list>
-
-    <h2 class="edit__item">参加済 or 購入済サービス</h2>
-    <mat-form-field class="edit__form edit__form--last">
-      <input matInput formControlName="joins" #joins autocomplete="off" />
-      <mat-hint align="end">{{ joins.value.length }} / 50文字</mat-hint>
+    <mat-form-field>
+      <mat-chip-list #chipList aria-label="tag selection">
+        <mat-chip
+          *ngFor="let tag of tags"
+          [selectable]="selectable"
+          [removable]="removable"
+          (removed)="remove(tag)"
+        >
+          {{ tag }}
+          <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+        <input
+          placeholder="習得済みのスキルを登録しましょう"
+          #tagsInput
+          [matChipInputFor]="chipList"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          [matChipInputAddOnBlur]="addOnBlur"
+          (matChipInputTokenEnd)="add($event)"
+          formControlName="tags"
+        />
+      </mat-chip-list>
     </mat-form-field>
 
     <button
@@ -80,6 +90,7 @@
       class="unsubscribe__btn"
       mat-button
       [disabled]="user.name !== input.value"
+      (click)="openDeleteDialod()"
     >
       退会
     </button>
