@@ -1,10 +1,14 @@
 section {
   background: #16202b;
-  padding: 24px;
+}
+
+.wrapper {
+  max-width: 100%;
+  background: #182d41;
 }
 
 .account {
-  width: 80%;
+  max-width: 60%;
   display: grid;
   grid-template-columns: 80px 1fr;
   gap: 16px;
