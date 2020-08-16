@@ -10,12 +10,13 @@ const routes: Routes = [
     component: AccountComponent,
     children: [
       {
-        path: '',
-        component: ProfileComponent,
-      },
-      {
         path: 'setting',
         component: SettingComponent,
+      },
+      {
+        path: '',
+        pathMatch: 'full',
+        component: ProfileComponent,
       },
     ],
   },

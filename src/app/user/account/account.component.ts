@@ -15,19 +15,20 @@ import { User } from 'src/app/interfaces/users';
 export class AccountComponent implements OnInit {
   uId: string;
   plan: string;
+  profileId: string;
 
-  userId$: Observable<string> = this.route.paramMap.pipe(
-    map((param) => {
-      this.uId = param.get('uid');
-      return this.uId;
-    })
+  user$: Observable<User> = this.route.paramMap.pipe(
+    switchMap((param) => {
+      const profileId = param.get('uid');
+      return this.userService.getUserData(profileId);
+    }),
+    tap((user) => console.log(user))
   );
 
-  user$: Observable<User> = this.authService.user$;
-
-  constructor(private route: ActivatedRoute, private authService: AuthService) {
-    this.userId$.subscribe((uid) => (this.uId = uid));
-  }
+  constructor(
+    private route: ActivatedRoute,
+    private userService: UserService
+  ) {}
 
   ngOnInit(): void {}
 }
