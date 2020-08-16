@@ -14,9 +14,11 @@
           }}から利用しています
         </p>
       </div>
-      <button mat-flat-button routerLink="setting">
-        編集
-      </button>
+      <ng-container *ngIf="isMypage">
+        <button mat-flat-button routerLink="setting">
+          編集
+        </button>
+      </ng-container>
     </div>
     <router-outlet></router-outlet>
   </ng-container>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { Observable, of, combineLatest } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { switchMap, map, tap } from 'rxjs/operators';
 import { UserService } from 'src/app/services/user.service';
@@ -13,8 +13,7 @@ import { User } from 'src/app/interfaces/users';
   styleUrls: ['./account.component.scss'],
 })
 export class AccountComponent implements OnInit {
-  uId: string;
-  plan: string;
+  myId: string;
   profileId: string;
 
   user$: Observable<User> = this.route.paramMap.pipe(
@@ -25,10 +24,31 @@ export class AccountComponent implements OnInit {
     tap((user) => console.log(user))
   );
 
+  myId$: Observable<string> = this.user$.pipe(
+    map((user) => {
+      return user.uid;
+    }),
+    tap((uid) => console.log(uid))
+  );
+
+  profileId$: Observable<string> = this.route.paramMap.pipe(
+    map((param) => {
+      return param.get('uid');
+    }),
+    tap((uid) => console.log(uid))
+  );
+
+  isMypage: boolean = !!(this.myId === this.profileId);
+
   constructor(
     private route: ActivatedRoute,
-    private userService: UserService
-  ) {}
+    private userService: UserService,
+    private authService: AuthService
+  ) {
+    this.myId$.subscribe((uid) => (this.myId = uid));
+    this.profileId$.subscribe((uid) => (this.profileId = uid));
+    console.log(this.profileId);
+  }
 
   ngOnInit(): void {}
 }
