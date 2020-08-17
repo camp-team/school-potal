@@ -57,8 +57,6 @@ export class UserService {
         this.snackBar.open('ユーザー情報を更新しました', null, {
           duration: 3000,
         });
-      })
-      .then(() => {
         this.router.navigate(['/user', `${user.uid}`]);
       });
   }
