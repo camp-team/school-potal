@@ -1,0 +1,27 @@
+<section>
+  <ng-container *ngIf="user$ | async as user">
+    <div class="wrapper">
+      <div class="account">
+        <figure
+          class="account__avatar"
+          [style.background-image]="'url(' + user.photoURL + ')'"
+        ></figure>
+        <div class="account__body">
+          <h2 class="account__name">{{ user.name }}</h2>
+          <p class="account__plan">プラン：{{ user.plan }}</p>
+          <p class="account__create">
+            {{
+              user.createdAt.toDate() | date: 'yyyy年MM月dd日'
+            }}から利用しています
+          </p>
+        </div>
+        <ng-container *ngIf="isMypage">
+          <button mat-flat-button routerLink="setting">
+            編集
+          </button>
+        </ng-container>
+      </div>
+    </div>
+    <router-outlet></router-outlet>
+  </ng-container>
+</section>

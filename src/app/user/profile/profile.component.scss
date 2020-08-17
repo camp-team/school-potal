@@ -1,0 +1,50 @@
+.grid {
+  width: 60%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 60% 40%;
+  gap: 32px;
+}
+
+.card {
+  padding: 24px;
+  padding-left: 32px;
+  background: #182d41;
+  position: relative;
+  margin-bottom: 32px;
+  &__icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #6b1bf6;
+    position: absolute;
+    top: 8px;
+    left: -24px;
+    &--pink {
+      background: #e30075;
+    }
+    &--yellow {
+      background: #f9d401;
+      color: #182d41;
+    }
+  }
+  &__icon-position {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+  }
+  &__title {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+  &__body {
+    white-space: pre-wrap;
+    &--link:hover {
+      color: #47c5fc;
+    }
+  }
+}

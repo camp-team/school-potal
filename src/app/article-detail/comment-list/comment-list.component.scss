@@ -9,6 +9,7 @@
     height: 40px;
     border-radius: 50%;
     background: center/cover;
+    cursor: pointer;
   }
   &__header {
     display: flex;
@@ -18,6 +19,7 @@
     font-size: 13px;
     font-weight: 500;
     margin-right: 8px;
+    cursor: pointer;
   }
   &__date {
     font-size: 13px;

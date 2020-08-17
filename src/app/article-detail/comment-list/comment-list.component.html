@@ -1,12 +1,15 @@
 <div class="comment">
-  <div
+  <a
     class="comment__avatar"
     [style.background-image]="'url(' + comment.user.photoURL + ')'"
-  ></div>
+    routerLink="/user/{{ comment.user.uid }}"
+  ></a>
   <ng-template #view>
     <div class="comment__body">
       <div class="comment__header">
-        <p class="comment__name">{{ comment.user.name }}</p>
+        <a class="comment__name" routerLink="/user/{{ comment.user.uid }}">{{
+          comment.user.name
+        }}</a>
         <p class="comment__date">
           {{ comment.updatedAt.toDate() | date: 'yyyy/MM/dd HH:mm' }}
         </p>
