@@ -12,7 +12,6 @@ import { User } from 'src/app/interfaces/users';
   styleUrls: ['./account.component.scss'],
 })
 export class AccountComponent implements OnInit {
-  uId: string;
   profileId: string;
 
   user$: Observable<User> = this.route.paramMap.pipe(
