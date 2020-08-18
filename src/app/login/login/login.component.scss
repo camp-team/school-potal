@@ -1,6 +1,5 @@
 .login-section {
   height: 100vh;
-  background: #263238;
 }
 
 .card {
@@ -26,13 +25,13 @@
     border-radius: 30px;
     line-height: 48px;
     color: #fff;
-    transition: ease-in-out 0.5s;
+    transition: ease-in-out 0.3s;
     &--google {
-      background: #263238;
+      background: #303030;
       border: 2px solid #fff;
     }
     &--twitter {
-      background: #263238;
+      background: #303030;
       border: 2px solid #fff;
       margin-bottom: 48px;
     }
@@ -42,12 +41,12 @@
       border-top: 2px solid #db4437;
       border-right: 2px solid #f4b400;
       border-bottom: 2px solid #0f9d58;
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(30, 30, 30, 0.6);
     }
     &--twitter:hover {
       cursor: pointer;
       border: 2px solid #2aa1f1;
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(30, 30, 30, 0.6);
     }
   }
 }

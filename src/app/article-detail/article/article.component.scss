@@ -1,17 +1,13 @@
-section {
-  background-color: rgba(38, 50, 56);
-  padding: 48px 24px;
-}
+// section {
+//   padding: 48px 24px;
+// }
 
 .article {
-  background-color: rgba(38, 50, 56);
   max-width: 800px;
   margin: 0 auto;
 }
 
 .hero {
-  max-width: 800px;
-  margin: 0 auto;
   margin-bottom: 40px;
   &__thumbnail {
     max-width: 100%;
@@ -81,7 +77,6 @@ p {
 .link-button a {
   display: block;
   width: 60%;
-  background-color: #2aa1f1;
   border-radius: 25px;
   margin: 48px auto;
 }
@@ -114,7 +109,6 @@ p {
     overflow: hidden;
   }
   &__description {
-    background: #314047;
     padding: 16px;
     border-radius: 8px;
   }
@@ -123,7 +117,6 @@ p {
     line-height: 1;
     padding: 8px;
     border-radius: 30px;
-    background-color: #2aa1f1;
     color: #fff;
   }
 }

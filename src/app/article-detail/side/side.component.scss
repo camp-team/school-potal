@@ -1,7 +1,7 @@
 .article {
   display: grid;
   grid-template-columns: 48% 1fr;
-  gap: 8px;
+  gap: 16px;
   &__thumbnail {
     width: 100%;
     position: relative;
@@ -23,7 +23,6 @@
     display: grid;
     place-items: center;
     color: #47c5fc;
-    background: rgba(25, 39, 53, 0.6);
   }
 
   &__title {
@@ -53,12 +52,11 @@
 mat-card {
   padding: 8px;
   margin-bottom: 16px;
-  background-color: rgba(23, 35, 45, 0.8);
   cursor: pointer;
 }
 
 h2 {
   font-size: 18px;
   font-weight: 500;
-  margin: 48px 0 16px 0;
+  margin-bottom: 24px;
 }

@@ -1,13 +1,10 @@
-.container {
-  background-color: rgba(38, 50, 56);
-}
-
 .wrap {
   max-width: 1200px;
+  height: 100%;
   display: grid;
   grid-template-columns: 1fr 400px;
-  gap: 24px;
-  margin: 0 auto;
+  gap: 32px;
+  margin: 48px auto;
 }
 
 mat-spinner {

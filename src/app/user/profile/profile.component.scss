@@ -1,5 +1,6 @@
 .grid {
   width: 60%;
+  height: 100vh;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 60% 40%;
@@ -9,9 +10,9 @@
 .card {
   padding: 24px;
   padding-left: 32px;
-  background: #182d41;
   position: relative;
   margin-bottom: 32px;
+  background: #424242;
   &__icon {
     width: 40px;
     height: 40px;
@@ -21,10 +22,10 @@
     top: 8px;
     left: -24px;
     &--pink {
-      background: #e30075;
+      background: #f50057;
     }
     &--yellow {
-      background: #f9d401;
+      background: #ffea00;
       color: #182d41;
     }
   }
