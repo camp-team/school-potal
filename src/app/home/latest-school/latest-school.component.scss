@@ -1,6 +1,17 @@
+@import 'mixins';
+
 .container {
-  background-color: rgba(23, 35, 45);
+  max-width: 100%;
   padding: 24px;
+  @include sp {
+    padding: 8px;
+  }
+}
+
+h2 {
+  @include sp {
+    margin-bottom: 16px;
+  }
 }
 
 .flex {
@@ -11,12 +22,14 @@
 .article {
   padding: 24px;
   transition: 0.3s;
+  @include sp {
+    padding: 0;
+  }
   &__category {
     display: flex;
     align-items: center;
     margin-bottom: 8px;
     padding: 2px;
-    background: #263238;
     box-shadow: 1px 1px 1px rgba(55, 71, 79, 0.6);
     max-width: 160px;
   }
@@ -63,10 +76,16 @@
   grid-template-columns: repeat(5, 1fr);
   gap: 16px;
   margin: 96px 0;
-  @media (max-width: 960px) {
+  @include tab {
     grid-template-columns: repeat(3, 1fr);
   }
-  @media (max-width: 415px) {
+  @include sp {
     grid-template-columns: 1fr;
+  }
+}
+
+mat-divider {
+  @include sp {
+    margin: 16px;
   }
 }
