@@ -1,5 +1,5 @@
 .sidenav {
-  background-color: rgba(38, 50, 56);
+  background: #212121;
 }
 
 .mat-icon {
@@ -21,16 +21,14 @@
   }
 }
 
-.loading {
-  margin: 64px auto;
-  display: flex;
-  justify-content: center;
-}
-
 mat-nav-list a {
   margin-right: 16px;
 }
 
 mat-nav-list h3 {
   margin-left: 16px;
+}
+
+mat-sidenav-content {
+  padding-top: 73px;
 }
