@@ -1,15 +1,17 @@
 <div class="dialog">
+  <div class="dialog__heading">
+    <p>スキルやキーワードで探す</p>
+  </div>
+
   <mat-dialog-content>
     <form class="search" (ngSubmit)="routeSearch(searchControl.value)">
-      <mat-form-field>
-        <input
-          class="search__input"
-          type="text"
-          autocomplete="off"
-          [matAutocomplete]="auto"
-          [formControl]="searchControl"
-        />
-      </mat-form-field>
+      <input
+        class="search__input"
+        type="text"
+        autocomplete="off"
+        [matAutocomplete]="auto"
+        [formControl]="searchControl"
+      />
     </form>
 
     <mat-autocomplete
@@ -24,12 +26,15 @@
   </mat-dialog-content>
 
   <mat-dialog-actions align="end">
-    <button mat-button matDialogClose><mat-icon>close</mat-icon></button>
+    <button mat-mini-fab color="" matDialogClose>
+      <mat-icon>close</mat-icon>
+    </button>
     <button
       type="submit"
       (click)="routeSearch(searchControl.value)"
-      mat-icon-button
+      mat-mini-fab
       [mat-dialog-close]="true"
+      color=""
     >
       <mat-icon>search</mat-icon>
     </button>
