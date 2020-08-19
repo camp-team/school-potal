@@ -1,7 +1,5 @@
 .hero {
-  width: 100%;
-  height: 500px;
-  background: url(/assets/images/hero_02.png) center/cover;
+  max-width: 100%;
   &__title {
     position: absolute;
     top: 120px;
@@ -32,29 +30,4 @@
       outline: 0;
     }
   }
-}
-
-button {
-  height: 50px;
-  border: none;
-  border-radius: 25px;
-  padding: 10px 25px;
-  background: #2aa1f1;
-  color: #fff;
-  font-size: 12px;
-  cursor: pointer;
-  opacity: 0;
-  &:hover {
-    background: #1181cc;
-  }
-}
-
-button,
-input {
-  transition: all 0.3s ease-in-out;
-}
-
-form input:focus ~ button {
-  // display: inline-block;
-  opacity: 1;
 }
