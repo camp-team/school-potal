@@ -1,3 +1,5 @@
+@import 'mixins';
+
 .login-section {
   height: 100vh;
 }
@@ -29,11 +31,22 @@
     &--google {
       background: #303030;
       border: 2px solid #fff;
+      @include sp {
+        border-left: 2px solid #4285f4;
+        border-top: 2px solid #db4437;
+        border-right: 2px solid #f4b400;
+        border-bottom: 2px solid #0f9d58;
+        background: rgba(30, 30, 30, 0.6);
+      }
     }
     &--twitter {
       background: #303030;
       border: 2px solid #fff;
       margin-bottom: 48px;
+      @include sp {
+        border: 2px solid #2aa1f1;
+        background: rgba(30, 30, 30, 0.6);
+      }
     }
     &--google:hover {
       cursor: pointer;

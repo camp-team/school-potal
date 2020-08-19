@@ -1,16 +1,18 @@
-<div class="wrap">
-  <div *ngIf="article$ | async as article; else loading">
-    <app-article [article]="article"></app-article>
-    <app-comment-form></app-comment-form>
-    <app-comment-list
-      *ngFor="let comment of comments$ | async as comments"
-      [comment]="comment"
-    ></app-comment-list>
+<div class="container">
+  <div class="article">
+    <div *ngIf="article$ | async as article; else loading">
+      <app-article [article]="article"></app-article>
+      <app-comment-form></app-comment-form>
+      <app-comment-list
+        *ngFor="let comment of comments$ | async as comments"
+        [comment]="comment"
+      ></app-comment-list>
+    </div>
+
+    <ng-template #loading>
+      <mat-spinner [diameter]="40"></mat-spinner>
+    </ng-template>
+
+    <app-side></app-side>
   </div>
-
-  <ng-template #loading>
-    <mat-spinner [diameter]="40"></mat-spinner>
-  </ng-template>
-
-  <app-side></app-side>
 </div>
