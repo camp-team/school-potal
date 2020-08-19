@@ -1,0 +1,26 @@
+mat-dialog-container {
+  padding: 0;
+}
+
+.dialog {
+  &__title {
+    font-size: 20px;
+  }
+}
+
+.search {
+  display: grid;
+  align-items: center;
+  flex: 1;
+  max-width: 320px;
+  height: 60px;
+  background: #303030;
+  border-radius: 30px;
+  padding-left: 16px;
+  &__input {
+    flex: 1;
+    border-radius: 30px;
+    border: none;
+    outline: none;
+  }
+}

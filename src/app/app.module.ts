@@ -27,6 +27,10 @@ import { StudentsDialogComponent } from './article-detail/students-dialog/studen
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { SearchResultComponent } from './search-result/search-result.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { SearchDialogComponent } from './search-dialog/search-dialog.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -34,6 +38,7 @@ import { SearchResultComponent } from './search-result/search-result.component';
     HeaderComponent,
     NavigationComponent,
     SearchResultComponent,
+    SearchDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -58,6 +63,9 @@ import { SearchResultComponent } from './search-result/search-result.component';
     MatSnackBarModule,
     MatProgressSpinnerModule,
     MatAutocompleteModule,
+    MatDialogModule,
+    MatInputModule,
+    MatFormFieldModule,
   ],
   providers: [{ provide: REGION, useValue: 'asia-northeast1' }],
   bootstrap: [AppComponent],
