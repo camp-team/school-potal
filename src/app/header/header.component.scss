@@ -1,17 +1,49 @@
+@import 'mixins';
+
 .header {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 16px;
-  background-color: rgba(38, 50, 56);
-  border-bottom: 1px solid rgba(55, 71, 79, 0.6);
-  box-shadow: 1px 1px 1px rgba(55, 71, 79, 0.6);
+  background: #212121;
+  border-bottom: 1px solid rgba(33, 33, 33, 0.38);
+  box-shadow: 1px 1px 1px rgba(33, 33, 33, 0.38);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-sizing: border-box;
 }
 
 .logo,
-.navigation {
+.nav {
   color: #fff;
   margin-left: 16px;
+  @include sp {
+    margin-left: 0;
+  }
+}
+
+.logo {
+  font-size: 24px;
+  color: #6a11cb;
+  background: linear-gradient(to right, #d500f9 0%, #2979ff 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: block;
+  line-height: 1;
+  text-indent: 2;
+  margin-right: 16px;
+}
+
+.description {
+  font-size: 14px;
+  color: #fff;
+  @include sp {
+    display: none;
+  }
 }
 
 .spacer {
@@ -23,12 +55,15 @@
   align-items: center;
   flex: 1;
   max-width: 320px;
-  background: #314047;
+  background: #303030;
   border-radius: 20px;
   padding-left: 16px;
+  @include sp {
+    display: none;
+  }
   &__input {
     flex: 1;
-    background: #314047;
+    background: #303030;
     border-radius: 20px;
     border: none;
     color: #fff;
@@ -40,9 +75,17 @@
   button {
     height: 40px;
     border-radius: 20px;
-    background: #314047;
+    background: #303030;
     color: #fff;
     outline: none;
+  }
+}
+
+.search-sp {
+  display: none;
+  @include sp {
+    display: block;
+    color: #fff;
   }
 }
 
@@ -50,6 +93,7 @@
   color: #fff;
   padding: 16px;
   line-height: 1;
+  margin-left: 16px;
 }
 
 .avatar {
