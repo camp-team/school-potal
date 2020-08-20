@@ -23,6 +23,7 @@
     border-radius: 0;
     position: static;
     transform: none;
+    box-sizing: border-box;
   }
 }
 
@@ -54,10 +55,8 @@
       padding: 0 8px 0 8px !important;
     }
     @include sp {
-      width: 80%;
-      height: 32px;
-      border-radius: 16px;
-      margin-bottom: 16px;
+      font-size: 13px;
+      padding: 0 !important;
     }
     &:hover {
       background: #424242;
@@ -65,6 +64,10 @@
     }
     mat-icon {
       margin-right: 8px;
+      @include sp {
+        margin: 0 4px;
+        font-size: 18px;
+      }
     }
   }
 }
