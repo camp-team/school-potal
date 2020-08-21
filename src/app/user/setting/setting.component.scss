@@ -1,9 +1,15 @@
+@import 'mixins';
+
 .edit {
   max-width: 60%;
   display: grid;
   grid-template-columns: 1fr;
   padding: 24px;
   margin: 0 auto;
+  @include sp {
+    max-width: 100%;
+    padding: 16px;
+  }
   &__item {
     font-size: 16px;
     font-weight: 500;
@@ -22,6 +28,10 @@
   width: 60%;
   margin: 0 auto 24px;
   display: grid;
+  @include sp {
+    width: 100%;
+    margin: 0 16px 24px;
+  }
   &__title {
     font-size: 16px;
     font-weight: 400;
@@ -33,6 +43,9 @@
   &__form {
     width: 50%;
     margin-bottom: 24px;
+    @include sp {
+      width: 80%;
+    }
   }
   &__btn {
     width: 120px;

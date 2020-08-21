@@ -1,17 +1,26 @@
+@import 'mixins';
+
 .grid {
-  width: 60%;
+  height: 100vh;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 60% 40%;
   gap: 32px;
+  @include sp {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
 }
 
 .card {
   padding: 24px;
   padding-left: 32px;
-  background: #182d41;
   position: relative;
-  margin-bottom: 32px;
+  background: #424242;
+  margin-bottom: 16px;
+  @include sp {
+    padding: 16px;
+  }
   &__icon {
     width: 40px;
     height: 40px;
@@ -19,12 +28,12 @@
     background: #6b1bf6;
     position: absolute;
     top: 8px;
-    left: -24px;
+    left: -16px;
     &--pink {
-      background: #e30075;
+      background: #f50057;
     }
     &--yellow {
-      background: #f9d401;
+      background: #ffea00;
       color: #182d41;
     }
   }
@@ -40,11 +49,19 @@
     font-size: 16px;
     font-weight: 500;
     margin-bottom: 16px;
+    @include sp {
+      margin-left: 16px;
+    }
   }
   &__body {
     white-space: pre-wrap;
     &--link:hover {
       color: #47c5fc;
     }
+  }
+}
+.card--sp {
+  @include sp {
+    margin-bottom: 0;
   }
 }

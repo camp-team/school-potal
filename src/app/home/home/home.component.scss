@@ -1,60 +1,73 @@
+@import 'mixins';
+
 .hero {
-  width: 100%;
-  height: 500px;
-  background: url(/assets/images/hero_02.png) center/cover;
-  &__title {
-    position: absolute;
-    top: 120px;
-    left: 300px;
-    letter-spacing: 6px;
-    font-weight: 500;
-    margin-bottom: 32px;
+  max-width: 100%;
+  position: relative;
+  img {
+    vertical-align: bottom;
   }
-  &__form {
-    display: block;
-    height: 100px;
-    width: 500px;
-    position: absolute;
-    top: 250px;
-    left: 285px;
+}
+
+.btns-wrap {
+  width: 60%;
+  height: 60px;
+  background: #fff;
+  border-radius: 40px;
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  @include tab {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    position: static;
+    transform: none;
+    box-sizing: border-box;
   }
-  &__input {
-    height: 10px;
-    border: none;
-    border-bottom: 2px solid #ddd;
-    border-radius: 25px;
-    padding: 20px 35px;
-    width: 200px;
-    font-size: 1em;
-    border: 2px solid #777777;
-    &:focus {
-      width: 250px;
-      outline: 0;
+}
+
+.btns {
+  width: 80%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  @include tab {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 48px;
+  }
+  &__btn {
+    width: 32%;
+    height: 48px;
+    border-radius: 24px;
+    margin: 0 24px;
+    background: #fff;
+    color: #424242;
+    transition: ease-in-out 0.1s;
+    @include tab {
+      width: 32%;
+      border-radius: 0;
+      margin: 0 !important;
+      padding: 0 8px 0 8px !important;
+    }
+    @include sp {
+      font-size: 13px;
+      padding: 0 !important;
+    }
+    &:hover {
+      background: #424242;
+      color: #fff;
+    }
+    mat-icon {
+      margin-right: 8px;
+      @include sp {
+        margin: 0 4px;
+        font-size: 18px;
+      }
     }
   }
-}
-
-button {
-  height: 50px;
-  border: none;
-  border-radius: 25px;
-  padding: 10px 25px;
-  background: #2aa1f1;
-  color: #fff;
-  font-size: 12px;
-  cursor: pointer;
-  opacity: 0;
-  &:hover {
-    background: #1181cc;
-  }
-}
-
-button,
-input {
-  transition: all 0.3s ease-in-out;
-}
-
-form input:focus ~ button {
-  // display: inline-block;
-  opacity: 1;
 }

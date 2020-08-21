@@ -1,21 +1,19 @@
+@import 'mixins';
+
 .login-section {
   height: 100vh;
-  background: #263238;
 }
 
 .card {
-  width: 400px;
+  max-width: 400px;
   margin: 0 auto;
-  border-radius: 5px;
   position: absolute;
   top: calc(50% - 89px);
   left: 50%;
   transform: translate(-50%, -50%);
+  text-align: center;
   &__header {
     padding: 48px 16px;
-  }
-  &__header img {
-    margin-bottom: 16px;
   }
   &__login {
     display: block;
@@ -26,15 +24,26 @@
     border-radius: 30px;
     line-height: 48px;
     color: #fff;
-    transition: ease-in-out 0.5s;
+    transition: ease-in-out 0.3s;
     &--google {
-      background: #263238;
+      background: #303030;
       border: 2px solid #fff;
+      @include sp {
+        border-left: 2px solid #4285f4;
+        border-top: 2px solid #db4437;
+        border-right: 2px solid #f4b400;
+        border-bottom: 2px solid #0f9d58;
+        background: rgba(30, 30, 30, 0.6);
+      }
     }
     &--twitter {
-      background: #263238;
+      background: #303030;
       border: 2px solid #fff;
       margin-bottom: 48px;
+      @include sp {
+        border: 2px solid #2aa1f1;
+        background: rgba(30, 30, 30, 0.6);
+      }
     }
     &--google:hover {
       cursor: pointer;
@@ -42,20 +51,14 @@
       border-top: 2px solid #db4437;
       border-right: 2px solid #f4b400;
       border-bottom: 2px solid #0f9d58;
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(30, 30, 30, 0.6);
     }
     &--twitter:hover {
       cursor: pointer;
       border: 2px solid #2aa1f1;
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(30, 30, 30, 0.6);
     }
   }
-}
-
-h1 {
-  font-size: 20px;
-  font-weight: 500;
-  text-align: center;
 }
 
 p {

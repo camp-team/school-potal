@@ -1,9 +1,40 @@
 <div class="hero">
-  <h1 class="hero__title">やってみたいを<br />カタチにする</h1>
-  <form class="hero__form">
-    <input class="hero__input" type="text" placeholder="キーワードで探す" />
-    <button type="submit">SEARCH</button>
-  </form>
+  <picture>
+    <source
+      media="(min-width: 1366px)"
+      srcset="../assets/images/hero_pc.png"
+      sizes="1920px"
+    />
+    <source
+      media="(min-width: 960px)"
+      srcset="../assets/images/hero_pc.png"
+      sizes="100vw"
+    />
+    <source
+      media="(min-width: 641px)"
+      srcset="../assets/images/hero_tab.png"
+      sizes="100vw"
+    />
+    <img
+      media="(min-width: 640px)"
+      srcset="../assets/images/hero_sp.png"
+      sizes="100vw"
+    />
+  </picture>
+
+  <div class="btns-wrap">
+    <div class="btns">
+      <button mat-flat-button class="btns__btn">
+        <mat-icon>search</mat-icon>さがす
+      </button>
+      <button mat-flat-button class="btns__btn">
+        <mat-icon>hearing</mat-icon>リクエスト
+      </button>
+      <button mat-flat-button class="btns__btn">
+        <mat-icon>web</mat-icon>つくる
+      </button>
+    </div>
+  </div>
 </div>
 
 <app-latest-school></app-latest-school>

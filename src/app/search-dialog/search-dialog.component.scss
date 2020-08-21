@@ -1,0 +1,27 @@
+.dialog {
+  &__heading {
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    font-size: 16px;
+  }
+}
+
+.search {
+  display: grid;
+  align-items: center;
+  height: 40px;
+  border-radius: 20px;
+  &__input {
+    flex: 1;
+    height: 40px;
+    border-radius: 20px;
+    background: #303030;
+    color: #fff;
+    font-size: 16px;
+    padding: 0 8px;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+  }
+}

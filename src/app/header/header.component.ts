@@ -8,6 +8,8 @@ import { SearchService } from '../services/search.service';
 import { SearchIndex } from 'algoliasearch/lite';
 import { Router } from '@angular/router';
 import { startWith, debounceTime } from 'rxjs/operators';
+import { MatDialog } from '@angular/material/dialog';
+import { SearchDialogComponent } from '../search-dialog/search-dialog.component';
 
 @Component({
   selector: 'app-header',
@@ -30,7 +32,8 @@ export class HeaderComponent implements OnInit {
     private drawerService: DrawerService,
     private authService: AuthService,
     private searchService: SearchService,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) {
     this.searchControl.valueChanges
       .pipe(startWith(''), debounceTime(500))
@@ -62,5 +65,14 @@ export class HeaderComponent implements OnInit {
       queryParamsHandling: 'merge',
       queryParams: { searchQuery },
     });
+  }
+
+  openSearchDialog() {
+    this.dialog
+      .open(SearchDialogComponent, {
+        width: '100%',
+        autoFocus: false,
+      })
+      .afterClosed();
   }
 }

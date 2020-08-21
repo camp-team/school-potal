@@ -1,8 +1,16 @@
 <div class="header">
-  <button class="navigation" mat-icon-button (click)="toggle()">
+  <button class="nav" mat-icon-button (click)="toggle()">
     <mat-icon>menu</mat-icon>
   </button>
-  <a class="logo" href="">LOGO</a>
+  <a class="logo" routerLink="/"
+    ><object
+      type="image/svg+xml"
+      data="../../assets/images/logo_grad.svg"
+      width="100px"
+      height="32px"
+    ></object
+  ></a>
+  <p class="description">スキル開発ポータルメディア</p>
   <span class="spacer"></span>
 
   <form class="search" (ngSubmit)="routeSearch(searchControl.value)">
@@ -31,6 +39,10 @@
       option.name
     }}</mat-option>
   </mat-autocomplete>
+
+  <button (click)="openSearchDialog()" mat-icon-button class="search-sp">
+    <mat-icon>search</mat-icon>
+  </button>
 
   <ng-template #default>
     <button mat-button routerLink="/login" class="login">

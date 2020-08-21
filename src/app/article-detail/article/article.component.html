@@ -47,13 +47,14 @@
             </figure>
           </div>
 
-          <div class="teacher__description">
+          <div class="teacher__body">
             <a
               href="https://twitter.com/{{ teacher.screenName }}"
-              class="teacher__link"
               target="_blank"
-              ><h4>{{ teacher.name }}<br />@{{ teacher.screenName }}</h4></a
-            >
+              ><p class="teacher__name">
+                {{ teacher.name }}<br />@{{ teacher.screenName }}
+              </p>
+            </a>
             <p class="teacher__description">{{ teacher.description }}</p>
             <button mat-flat-button class="teacher__button">話をきく</button>
           </div>
@@ -119,7 +120,12 @@
     </div>
 
     <div class="link-button">
-      <a mat-flat-button href="{{ article.serviceURL }}" target="_blank">
+      <a
+        color="primary"
+        mat-flat-button
+        href="{{ article.serviceURL }}"
+        target="_blank"
+      >
         {{ article.name }} を見てみる
       </a>
     </div>

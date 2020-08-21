@@ -1,21 +1,15 @@
-section {
-  background-color: rgba(38, 50, 56);
-  padding: 48px 24px;
-}
+@import 'mixins';
 
 .article {
-  background-color: rgba(38, 50, 56);
   max-width: 800px;
   margin: 0 auto;
 }
 
 .hero {
-  max-width: 800px;
-  margin: 0 auto;
   margin-bottom: 40px;
   &__thumbnail {
     max-width: 100%;
-    margin-bottom: 8px;
+    margin: 0 0 8px 0;
   }
   &__category {
     opacity: 0.6;
@@ -24,7 +18,7 @@ section {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    margin: 0 16px 0 16px;
+    margin-right: 16px;
     overflow: hidden;
   }
   &__title {
@@ -81,9 +75,11 @@ p {
 .link-button a {
   display: block;
   width: 60%;
-  background-color: #2aa1f1;
   border-radius: 25px;
   margin: 48px auto;
+  @include sp {
+    width: 80%;
+  }
 }
 
 .teacher {
@@ -97,14 +93,10 @@ p {
     margin-right: 16px;
   }
   &__hero {
-    width: 144px;
-    height: 144px;
-    margin-bottom: 16px;
-    text-align: center;
-    transition: ease-in-out 1s;
+    margin-bottom: 24px;
     box-sizing: border-box;
-    &:hover {
-      border-bottom: 1px solid rgb(236, 236, 236);
+    @include sp {
+      text-align: center;
     }
   }
   &__avatar {
@@ -112,10 +104,14 @@ p {
     height: 128px;
     border-radius: 50%;
     overflow: hidden;
+    @include sp {
+      display: block;
+      margin: 0 auto;
+    }
   }
-  &__description {
-    background: #314047;
-    padding: 16px;
+  &__body {
+    padding: 8px;
+    background: #424242;
     border-radius: 8px;
   }
   &__button {
@@ -123,8 +119,15 @@ p {
     line-height: 1;
     padding: 8px;
     border-radius: 30px;
-    background-color: #2aa1f1;
+    background: #303030;
     color: #fff;
+  }
+  &__name {
+    margin-bottom: 8px;
+  }
+  &__description {
+    display: block;
+    margin-bottom: 16px;
   }
 }
 
@@ -139,6 +142,9 @@ p {
   }
   & button {
     display: none;
+    @include sp {
+      display: block;
+    }
   }
   & small {
     font-size: 12px;

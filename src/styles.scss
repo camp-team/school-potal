@@ -1,5 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'material-custom';
 
+/* You can add global styles to this file, and also import other style files */
 html,
 body {
   height: 100%;
@@ -7,7 +8,7 @@ body {
 body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
-  background-color: #16202b;
+  background: #303030;
 }
 
 a {
@@ -37,12 +38,18 @@ h4 {
   margin: 0;
 }
 
+.container {
+  max-width: 1200px;
+  padding: 0 24px;
+  margin: 0 auto;
+}
+
 .swiper-button-next,
 .swiper-button-prev {
   width: 40px !important;
   height: 40px !important;
   border-radius: 50%;
-  background: rgba(55, 71, 79, 0.6);
+  background: rgba(21, 21, 21, 0.6);
   background-image: none !important;
   top: 33% !important;
 }

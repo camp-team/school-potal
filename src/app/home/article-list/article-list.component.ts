@@ -4,6 +4,7 @@ import { ArticleService } from 'src/app/services/article.service';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { LoadingService } from 'src/app/services/loading.service';
+import { newArray } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-article-list',
@@ -14,6 +15,8 @@ export class ArticleListComponent implements OnInit {
   articles$: Observable<Article[]> = this.articleService
     .getArticles()
     .pipe(tap(() => this.loadingService.toggleLoading(false)));
+
+  spins = newArray(5);
 
   constructor(
     private articleService: ArticleService,

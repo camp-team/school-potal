@@ -1,13 +1,18 @@
+@import 'mixins';
+
 .container {
-  background-color: rgba(38, 50, 56);
+  padding: 0 8px;
 }
 
-.wrap {
-  max-width: 1200px;
+.article {
   display: grid;
   grid-template-columns: 1fr 400px;
-  gap: 24px;
-  margin: 0 auto;
+  gap: 32px;
+  margin: 48px auto;
+  @include sp {
+    display: block;
+    margin: 0 auto;
+  }
 }
 
 mat-spinner {
