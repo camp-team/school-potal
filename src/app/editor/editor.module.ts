@@ -22,6 +22,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
+import { QuillModule } from 'ngx-quill';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,8 @@ import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
     MatProgressSpinnerModule,
     MatTooltipModule,
     MatDialogModule,
+    QuillModule.forRoot(),
+    MatChipsModule,
   ],
 })
 export class EditorModule {}
