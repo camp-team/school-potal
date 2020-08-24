@@ -4,6 +4,8 @@ import { ArticleService } from 'src/app/services/article.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { firestore } from 'firebase';
+import { ENTER, COMMA } from '@angular/cdk/keycodes';
+import { MatChipInputEvent } from '@angular/material/chips';
 
 interface Category {
   value: string;
@@ -19,8 +21,6 @@ export class EditorComponent implements OnInit {
   images: {
     thumbnailURL: File;
     logo: File;
-    image1?: File;
-    image2?: File;
   } = {
     thumbnailURL: null,
     logo: null,
@@ -29,12 +29,17 @@ export class EditorComponent implements OnInit {
   srcs: {
     thumbnailURL: File;
     logo: File;
-    image1?: File;
-    image2?: File;
   } = {
     thumbnailURL: null,
     logo: null,
   };
+
+  visible = true;
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
+  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+  tags: string[] = [];
 
   categoryGroup: Category[] = [
     { value: 'プログラミング', viewValue: 'プログラミング' },
@@ -53,14 +58,12 @@ export class EditorComponent implements OnInit {
     name: ['', [Validators.required, Validators.maxLength(50)]],
     categorys: ['', [Validators.required]],
     title: ['', [Validators.required, Validators.maxLength(150)]],
-    featureTitle1: ['', [Validators.required, Validators.maxLength(50)]],
-    featureBody1: ['', [Validators.required, Validators.maxLength(200)]],
-    featureTitle2: ['', [Validators.required, Validators.maxLength(50)]],
-    featureBody2: ['', [Validators.required, Validators.maxLength(200)]],
+    feature: [''],
     plan: ['', [Validators.required, Validators.maxLength(400)]],
     serviceURL: [''],
     type: [''],
     teacherId: [''],
+    tags: [['']],
   });
 
   constructor(
@@ -70,7 +73,7 @@ export class EditorComponent implements OnInit {
     private snackBar: MatSnackBar
   ) {}
 
-  // ファイルをHTMLで扱えるURLに変換するメソッド
+  // ファイルをHTMLで扱えるURLに変換するメソッド.
   convertImage(file: File, type: string) {
     const reader = new FileReader();
     reader.onload = (e) => {
@@ -91,16 +94,7 @@ export class EditorComponent implements OnInit {
     return this.form.get('title') as FormControl;
   }
 
-  get featureTitle1(): FormControl {
-    return this.form.get('featureTitle1') as FormControl;
-  }
-  get featureBody1(): FormControl {
-    return this.form.get('featureBody1') as FormControl;
-  }
-  get featureTitle2(): FormControl {
-    return this.form.get('featureTitle2') as FormControl;
-  }
-  get featureBody2(): FormControl {
+  get feature(): FormControl {
     return this.form.get('featureBody2') as FormControl;
   }
 
@@ -120,7 +114,32 @@ export class EditorComponent implements OnInit {
     return this.form.get('teacherId') as FormControl;
   }
 
+  get tagsControl(): FormControl {
+    return this.form.get('tags') as FormControl;
+  }
+
   ngOnInit(): void {}
+
+  add(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+
+    if ((value || '').trim()) {
+      this.tags.push(value.trim());
+    }
+
+    if (input) {
+      input.value = '';
+    }
+  }
+
+  remove(tag: string): void {
+    const index = this.tags.indexOf(tag);
+
+    if (index >= 0) {
+      this.tags.splice(index, 1);
+    }
+  }
 
   // エディター画面に画像をセットするメソッド
   setImage(event, type: string) {
@@ -141,14 +160,12 @@ export class EditorComponent implements OnInit {
           title: formData.title,
           category: formData.categorys,
           createdAt: firestore.Timestamp.now(),
-          featureTitle1: formData.featureTitle1,
-          featureBody1: formData.featureBody1,
-          featureTitle2: formData.featureTitle2,
-          featureBody2: formData.featureBody2,
+          feature: formData.feature,
           plan: formData.plan,
           serviceURL: formData.serviceURL,
           type: formData.type,
           teacherId: formData.teacherId,
+          tags: this.tags,
         },
         this.images
       )
