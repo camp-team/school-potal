@@ -1,15 +1,41 @@
-.edit-column {
+.grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 70% 28%;
   gap: 24px;
   margin: 24px;
-  &__left {
-    border-right: 1px solid rgba(grey, 0.38);
-    padding-right: 20px;
+  margin-bottom: 80px;
+  &__main {
+    padding: 24px;
+    background: #212121;
+    border-radius: 8px;
   }
-  &__center {
-    border-right: 1px solid rgba(grey, 0.38);
-    padding-right: 20px;
+  &__side {
+    padding: 24px;
+    background: #212121;
+    border-radius: 8px;
+  }
+}
+
+.type,
+.image {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-area: 24px;
+  &__category,
+  &__main {
+    margin-right: 24px;
+  }
+}
+
+.type {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-area: 24px;
+  &__category {
+    margin-right: 24px;
+  }
+  &__radio {
+    text-align: center;
   }
 }
 
@@ -44,10 +70,11 @@
 h2 {
   font-size: 18px;
   font-weight: 500;
-  padding-left: 8px;
+  padding: 4px;
   margin-bottom: 16px;
-  border-left: solid 2px #c2185b;
+  border-left: solid 3px #d500f9;
   margin-top: 16px;
+  background: #303030;
 }
 
 h3 {
@@ -61,6 +88,10 @@ mat-form-field {
 
 mat-divider {
   margin: 16px;
+}
+
+mat-slide-toggle {
+  float: right;
 }
 
 mat-radio-button {

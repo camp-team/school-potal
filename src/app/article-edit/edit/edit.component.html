@@ -1,109 +1,121 @@
-<div class="article" *ngIf="article$ | async as article">
+<ng-container class="article" *ngIf="article$ | async as article">
   <form [formGroup]="form" (ngSubmit)="submit()">
-    <div class="edit-column">
-      <div class="edit-column__left">
-        <h2>記事タイトル</h2>
-        <mat-form-field appearance="outline">
-          <input matInput formControlName="title" required />
-          <mat-hint align="end">{{ title.value.length }} / 150文字</mat-hint>
-        </mat-form-field>
-        <mat-divider></mat-divider>
-
-        <h2>メイン画像</h2>
-        <div class="main-img" *ngIf="article.thumbnailURL">
-          <img [src]="srcs.thumbnailURL || article.thumbnailURL" alt="" />
-          <p class="note" *ngIf="!article.thumbnailURL">
-            ※ 1280px x 720px
-          </p>
-          <input
-            type="file"
-            style="display: none;"
-            #thumbnailInput
-            (change)="setImage($event, 'thumbnailURL')"
-            accept=".png, .img, .jpeg"
-          />
-          <button
-            type="button"
-            (click)="thumbnailInput.click()"
-            mat-mini-fab
-            color=""
-            class="img-button"
-          >
-            <mat-icon>add_photo_alternate</mat-icon>
-          </button>
-          <p class="file-name" *ngIf="!article.thumbnailURL">
-            ファイルが選択されていません
-          </p>
-        </div>
-
-        <mat-divider></mat-divider>
-
+    <div class="grid">
+      <div class="grid__main">
         <h2>サービス名</h2>
         <mat-form-field appearance="outline">
           <input matInput formControlName="name" #name required />
           <mat-hint align="end">{{ name.value.length }} / 50文字</mat-hint>
         </mat-form-field>
 
-        <h2>サービスロゴ</h2>
-        <div class="logo-img">
-          <img *ngIf="article?.logo" [src]="srcs.logo || article.logo" alt="" />
-          <p class="note" *ngIf="!article.logo">
-            ※ 800px x 800px
-          </p>
-          <input
-            type="file"
-            style="display: none;"
-            #logoInput
-            (change)="setImage($event, 'logo')"
-            accept=".png, .img, .jpeg"
-          />
-          <button
-            type="button"
-            (click)="logoInput.click()"
-            mat-mini-fab
-            color=""
-            class="img-button"
-          >
-            <mat-icon>add_photo_alternate</mat-icon>
-          </button>
-          <p class="file-name" *ngIf="!article.logo">
-            ファイルが選択されていません
-          </p>
+        <div class="type">
+          <div class="type__category">
+            <h2>カテゴリー</h2>
+            <mat-form-field>
+              <mat-select formControlName="category">
+                <mat-option
+                  *ngFor="let category of categoryGroup"
+                  [value]="category.value"
+                >
+                  {{ category.viewValue }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="type__type">
+            <h2>タイプ</h2>
+            <mat-radio-group
+              color="primary"
+              aria-label="Select an option"
+              formControlName="type"
+            >
+              <mat-radio-button value="school">スクール</mat-radio-button>
+              <mat-radio-button value="salon"
+                >オンラインサロン</mat-radio-button
+              >
+            </mat-radio-group>
+          </div>
         </div>
 
-        <h2>タイプ</h2>
-        <mat-radio-group
-          color="primary"
-          aria-label="Select an option"
-          formControlName="type"
-        >
-          <mat-radio-button value="school">スクール</mat-radio-button>
-          <mat-radio-button value="salon">オンラインサロン</mat-radio-button>
-        </mat-radio-group>
+        <div class="image">
+          <div class="image__main">
+            <h2>メイン画像</h2>
+            <div class="main-img" *ngIf="article.thumbnailURL">
+              <img [src]="srcs.thumbnailURL || article.thumbnailURL" alt="" />
+              <p class="note" *ngIf="!article.thumbnailURL">
+                ※ 1280px x 720px
+              </p>
+              <input
+                type="file"
+                style="display: none;"
+                #thumbnailInput
+                (change)="setImage($event, 'thumbnailURL')"
+                accept=".png, .img, .jpeg"
+              />
+              <button
+                type="button"
+                (click)="thumbnailInput.click()"
+                mat-mini-fab
+                color=""
+                class="img-button"
+              >
+                <mat-icon>add_photo_alternate</mat-icon>
+              </button>
+              <p class="file-name" *ngIf="!article.thumbnailURL">
+                ファイルが選択されていません
+              </p>
+            </div>
+          </div>
 
-        <h2>カテゴリー</h2>
-        <mat-form-field>
-          <mat-select formControlName="category">
-            <mat-option
-              *ngFor="let category of categoryGroup"
-              [value]="category.value"
-            >
-              {{ category.viewValue }}
-            </mat-option>
-          </mat-select>
+          <div class="image__logo">
+            <h2>サービスロゴ</h2>
+            <div class="logo-img">
+              <img
+                *ngIf="article?.logo"
+                [src]="srcs.logo || article.logo"
+                alt=""
+              />
+              <p class="note" *ngIf="!article.logo">
+                ※ 800px x 800px
+              </p>
+              <input
+                type="file"
+                style="display: none;"
+                #logoInput
+                (change)="setImage($event, 'logo')"
+                accept=".png, .img, .jpeg"
+              />
+              <button
+                type="button"
+                (click)="logoInput.click()"
+                mat-mini-fab
+                color=""
+                class="img-button"
+              >
+                <mat-icon>add_photo_alternate</mat-icon>
+              </button>
+              <p class="file-name" *ngIf="!article.logo">
+                ファイルが選択されていません
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <h2>記事タイトル</h2>
+        <mat-form-field appearance="outline">
+          <input matInput formControlName="title" required />
+          <mat-hint align="end">{{ title.value.length }} / 150文字</mat-hint>
         </mat-form-field>
-        <mat-divider></mat-divider>
-      </div>
 
-      <div class="edit-column__center">
         <h2>サービスの特徴</h2>
-
-        <mat-divider></mat-divider>
-
-        <h3>イメージ画像2</h3>
+        <quill-editor
+          formControlName="feature"
+          [styles]="{ height: '320px' }"
+        ></quill-editor>
       </div>
 
-      <div class="edit-column__right">
+      <div class="grid__side">
         <h2>プラン</h2>
         <mat-form-field appearance="outline" class="feature">
           <textarea
@@ -140,13 +152,13 @@
               <mat-icon matChipRemove>cancel</mat-icon>
             </mat-chip>
             <input
-              placeholder="習得済みのスキルを登録しましょう"
               #tagsInput
               [matChipInputFor]="chipList"
               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
               [matChipInputAddOnBlur]="addOnBlur"
               (matChipInputTokenEnd)="add($event)"
               formControlName="tags"
+              placeholder="JavaScript, 東京, オンライン..."
             />
           </mat-chip-list>
         </mat-form-field>
@@ -167,4 +179,4 @@
       </div>
     </div>
   </form>
-</div>
+</ng-container>

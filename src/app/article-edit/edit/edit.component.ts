@@ -109,7 +109,7 @@ export class EditComponent implements OnInit {
     name: ['', [Validators.required, Validators.maxLength(50)]],
     category: ['', [Validators.required]],
     title: ['', [Validators.required, Validators.maxLength(150)]],
-    feature: ['', [Validators.required, Validators.maxLength(50)]],
+    feature: [''],
     plan: ['', [Validators.required, Validators.maxLength(400)]],
     serviceURL: [''],
     type: [''],
