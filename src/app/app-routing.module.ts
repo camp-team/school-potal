@@ -1,11 +1,21 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SearchResultComponent } from './search-result/search-result.component';
+import { TagSearchResultComponent } from './tag-search-result/tag-search-result.component';
+import { CategorySearchResultComponent } from './category-search-result/category-search-result.component';
 
 const routes: Routes = [
   {
     path: 'search',
     component: SearchResultComponent,
+  },
+  {
+    path: 'tags/:tag',
+    component: TagSearchResultComponent,
+  },
+  {
+    path: 'categories/:category',
+    component: CategorySearchResultComponent,
   },
   {
     path: '',
