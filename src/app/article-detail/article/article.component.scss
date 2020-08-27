@@ -48,28 +48,10 @@ p {
   display: inline-block;
 }
 
-.feature-section {
+.feature {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 24px;
   margin-bottom: 48px;
-}
-
-.feature {
-  display: flex;
-  align-items: center;
-  &__image {
-    width: 100px;
-    height: 100px;
-    border-radius: 20px;
-  }
-  &__title {
-    margin: 8px 16px;
-  }
-  &__description {
-    margin: 8px 16px;
-    font-size: 14px;
-  }
 }
 
 .link-button a {

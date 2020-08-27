@@ -1,12 +1,17 @@
 <section>
   <div class="article" *ngIf="article">
     <div class="hero">
-      <figure class="hero__thumbnail">
-        <img [src]="article.thumbnailURL" alt="" />
-      </figure>
       <button mat-flat-button color="primary">
         <p class="hero__category">{{ article.category }}</p>
       </button>
+      <figure class="hero__thumbnail">
+        <img [src]="article.thumbnailURL" alt="" />
+      </figure>
+      <mat-chip-list #chiplist>
+        <mat-chip *ngFor="let tag of article.tags">
+          {{ tag }}
+        </mat-chip>
+      </mat-chip-list>
 
       <h1>
         {{ article.title }}
@@ -67,10 +72,11 @@
       </ng-template>
     </div>
 
-    <div class="feature-section">
-      <h3 class="feature-section__title">サービスの特徴</h3>
-      <div class="feature">
-        {{ article.feature }}
+    <div class="feature">
+      <h3 class="feature__title">サービスの特徴</h3>
+      <div class="feature__body">
+        <quill-view-html [content]="article.feature" theme="snow">
+        </quill-view-html>
       </div>
     </div>
 
