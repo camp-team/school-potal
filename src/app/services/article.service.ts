@@ -70,11 +70,7 @@ export class ArticleService {
   }
 
   getArticles(): Observable<Article[]> {
-    return this.db
-      .collection<Article>('articles', (ref) => {
-        return ref.limit(15);
-      })
-      .valueChanges();
+    return this.db.collection<Article>('articles').valueChanges();
   }
 
   getSchools(): Observable<Article[]> {

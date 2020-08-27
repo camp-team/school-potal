@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Article } from '../interfaces/article';
 import { ArticleService } from 'src/app/services/article.service';
-import { tap, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { LoadingService } from '../services/loading.service';
 
 @Component({
