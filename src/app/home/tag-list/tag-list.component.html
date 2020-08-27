@@ -5,15 +5,15 @@
       *ngFor="let category of categoryGroup"
       [routerLink]="'/categories/' + category.value"
     >
-      <img matCardImage src="{{ category.photoURL }}" />
-      <mat-card-content>
+      <img mat-card-image src="{{ category.photoURL }}" />
+      <mat-card-content class="grid__txt">
         {{ category.value }}
       </mat-card-content>
     </mat-card>
   </div>
 
   <div class="tags">
-    <h3 class="tags__title">人気のタグ</h3>
+    <h3 class="tags__title">人気のキーワード</h3>
     <mat-chip-list #chipList aria-label="tag selection">
       <mat-chip *ngFor="let tag of tags" [value]="tag.value">
         <a [routerLink]="'/tags/' + tag.value"

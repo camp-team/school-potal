@@ -8,22 +8,12 @@
   grid-template-columns: repeat(5, 1fr);
   gap: 16px;
   margin-bottom: 16px;
-}
-
-.item {
-  max-width: 100%;
-  height: 160px;
-  background: #424242;
-  padding: 8px;
-  &__photo {
-    max-width: 100%;
-    height: 120px;
-    background: url(https://dummyimage.com/160x80.png) no-repeat center/cover;
+  cursor: pointer;
+  img {
+    margin: 0 auto;
   }
-  &__text {
-    text-align: right;
-    height: 40px;
-    padding: 8px;
+  &__txt {
+    text-align: center;
   }
 }
 
