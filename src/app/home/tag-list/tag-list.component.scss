@@ -1,6 +1,11 @@
+@import 'mixins';
+
 .title {
   margin-bottom: 24px;
   font-size: 20px;
+  @include sp {
+    margin-top: 0;
+  }
 }
 
 .grid {
@@ -9,6 +14,9 @@
   gap: 16px;
   margin-bottom: 16px;
   cursor: pointer;
+  @include sp {
+    grid-template-columns: repeat(2, 1fr);
+  }
   img {
     margin: 0 auto;
   }

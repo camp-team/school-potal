@@ -1,14 +1,14 @@
 @import 'mixins';
 
 .container {
-  max-width: 100%;
-  padding: 24px;
   @include sp {
     padding: 8px;
   }
 }
 
 h2 {
+  font-size: 20px;
+  font-weight: 600;
   @include sp {
     margin-bottom: 16px;
   }
@@ -20,10 +20,9 @@ h2 {
 }
 
 .article {
-  padding: 24px;
-  transition: 0.3s;
+  margin: 8px 8px 24px 8px;
   @include sp {
-    padding: 0;
+    padding: 8px;
   }
   &__category {
     display: flex;
@@ -86,6 +85,7 @@ h2 {
 }
 
 mat-divider {
+  margin-bottom: 24px;
   @include sp {
     margin: 16px;
   }
