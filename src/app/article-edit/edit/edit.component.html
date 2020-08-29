@@ -51,13 +51,12 @@
                 style="display: none;"
                 #thumbnailInput
                 (change)="setImage($event, 'thumbnailURL')"
-                accept=".png, .img, .jpeg"
+                accept="image/png, image/jpeg"
               />
               <button
                 type="button"
                 (click)="thumbnailInput.click()"
                 mat-mini-fab
-                color=""
                 class="img-button"
               >
                 <mat-icon>add_photo_alternate</mat-icon>
@@ -84,13 +83,12 @@
                 style="display: none;"
                 #logoInput
                 (change)="setImage($event, 'logo')"
-                accept=".png, .img, .jpeg"
+                accept="image/png, image/jpeg"
               />
               <button
                 type="button"
                 (click)="logoInput.click()"
                 mat-mini-fab
-                color=""
                 class="img-button"
               >
                 <mat-icon>add_photo_alternate</mat-icon>

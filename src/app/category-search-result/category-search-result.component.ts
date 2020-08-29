@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Article } from '../interfaces/article';
 import { SearchIndex } from 'algoliasearch/lite';
 import { SearchService } from '../services/search.service';
-import { Observable } from 'rxjs';
 import { ArticleService } from '../services/article.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -34,14 +33,11 @@ export class CategorySearchResultComponent implements OnInit {
 
   constructor(
     private searchService: SearchService,
-    private articleService: ArticleService,
     private route: ActivatedRoute
   ) {
     this.route.paramMap.subscribe((map) => {
       this.category = map.get('category');
       this.categoryFilter = `category: ${this.category}`;
-      console.log(this.category);
-      console.log(this.categoryFilter);
     });
 
     this.index
@@ -51,7 +47,6 @@ export class CategorySearchResultComponent implements OnInit {
       .then((result) => {
         this.result = result;
         this.articles = result.hits as any[];
-        console.log(this.articles);
       });
   }
 

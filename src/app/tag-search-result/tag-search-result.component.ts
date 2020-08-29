@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Article } from '../interfaces/article';
 import { SearchIndex } from 'algoliasearch/lite';
 import { SearchService } from '../services/search.service';
-import { Route, ActivatedRoute } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
-import { ArticleService } from '../services/article.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-tag-search-result',
@@ -35,14 +32,11 @@ export class TagSearchResultComponent implements OnInit {
 
   constructor(
     private searchService: SearchService,
-    private route: ActivatedRoute,
-    private articleService: ArticleService
+    private route: ActivatedRoute
   ) {
     this.route.paramMap.subscribe((map) => {
       this.tag = map.get('tag');
       this.tagFilter = `tags: ${this.tag}`;
-      console.log(this.tagFilter);
-      console.log(this.tag);
     });
     this.index
       .search('', {
@@ -51,7 +45,6 @@ export class TagSearchResultComponent implements OnInit {
       .then((result) => {
         this.result = result;
         this.articles = result.hits as any[];
-        console.log(this.articles);
       });
   }
 

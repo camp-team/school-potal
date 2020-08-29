@@ -26,14 +26,16 @@
                 </div></a
               >
             </div>
+
             <div class="result-list__body">
               <a routerLink="/article-detail/{{ article.id }}"
-                >{{ article.title }}<br /><span
-                  class="result-list__body--dark"
-                  >{{ article.name }}</span
-                ></a
+                >{{ article.title }}
+                <p class="result-list__body result-list__body--dark">
+                  {{ article.name }}
+                </p></a
               >
             </div>
+
             <div class="result-list__footer">
               <mat-icon>today</mat-icon>
               <p>{{ article.createdAt | date: 'yyyy/MM/dd' }}</p>
@@ -45,9 +47,11 @@
 
       <ng-template #notFound>
         <figure class="not-found">
-          <img src="assets/images/search_01.png" alt="" />
+          <img src="assets/images/search-01.png" alt="" />
         </figure>
-        一致するアイテムがありませんでした🙏
+        <p>
+          一致するアイテムがありませんでした🙏
+        </p>
         <p>
           キーワードを変えて試してみるか、フィルターを削除してみてください。
         </p>

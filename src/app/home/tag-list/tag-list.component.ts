@@ -24,27 +24,27 @@ export class TagListComponent implements OnInit {
     {
       value: 'プログラミング',
       viewValue: 'プログラミング',
-      photoURL: 'assets/images/category_program.png',
+      photoURL: 'assets/images/category-program.png',
     },
     {
       value: '外国語',
       viewValue: '外国語',
-      photoURL: 'assets/images/category_lang.png',
+      photoURL: 'assets/images/category-lang.png',
     },
     {
       value: 'スポーツ',
       viewValue: 'スポーツ',
-      photoURL: 'assets/images/category_sport.png',
+      photoURL: 'assets/images/category-sport.png',
     },
     {
       value: '美容',
       viewValue: '美容',
-      photoURL: 'assets/images/category_beauty.png',
+      photoURL: 'assets/images/category-beauty.png',
     },
     {
       value: '音楽',
       viewValue: '音楽',
-      photoURL: 'assets/images/category_music.png',
+      photoURL: 'assets/images/category-music.png',
     },
   ];
 

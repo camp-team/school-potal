@@ -73,7 +73,6 @@ export class EditorComponent implements OnInit {
     private snackBar: MatSnackBar
   ) {}
 
-  // ファイルをHTMLで扱えるURLに変換するメソッド.
   convertImage(file: File, type: string) {
     const reader = new FileReader();
     reader.onload = (e) => {
@@ -124,7 +123,7 @@ export class EditorComponent implements OnInit {
     const input = event.input;
     const value = event.value;
 
-    if ((value || '').trim()) {
+    if (value?.trim()) {
       this.tags.push(value.trim());
     }
 
@@ -141,7 +140,6 @@ export class EditorComponent implements OnInit {
     }
   }
 
-  // エディター画面に画像をセットするメソッド
   setImage(event, type: string) {
     if (event.target.files.length) {
       this.images[type] = event.target.files[0];
@@ -150,7 +148,6 @@ export class EditorComponent implements OnInit {
     console.log(type);
   }
 
-  // submitでFireStoreへ記事投稿するメソッド
   submit() {
     const formData = this.form.value;
     this.articleService
