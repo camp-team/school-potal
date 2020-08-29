@@ -137,7 +137,13 @@ export class EditComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    this.article$.subscribe((article) => this.form.patchValue(article));
+    this.article$.subscribe((article) => {
+      this.tags = article.tags;
+      this.form.patchValue({
+        ...article,
+        tags: null,
+      });
+    });
   }
 
   add(event: MatChipInputEvent): void {
