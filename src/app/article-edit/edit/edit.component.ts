@@ -7,8 +7,9 @@ import { Observable } from 'rxjs';
 import { Article } from 'src/app/interfaces/article';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap, tap, map } from 'rxjs/operators';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { AuthService } from 'src/app/services/auth.service';
+import { ENTER, COMMA } from '@angular/cdk/keycodes';
+import { MatChipInputEvent } from '@angular/material/chips';
 
 interface Category {
   value: string;
@@ -29,7 +30,6 @@ export class EditComponent implements OnInit {
     private snackBar: MatSnackBar,
     private route: ActivatedRoute,
     private router: Router,
-    private db: AngularFirestore,
     private authService: AuthService
   ) {
     this.authService.user$
@@ -55,17 +55,8 @@ export class EditComponent implements OnInit {
     return this.form.get('title') as FormControl;
   }
 
-  get featureTitle1(): FormControl {
-    return this.form.get('featureTitle1') as FormControl;
-  }
-  get featureBody1(): FormControl {
-    return this.form.get('featureBody1') as FormControl;
-  }
-  get featureTitle2(): FormControl {
-    return this.form.get('featureTitle2') as FormControl;
-  }
-  get featureBody2(): FormControl {
-    return this.form.get('featureBody2') as FormControl;
+  get feature(): FormControl {
+    return this.form.get('feature') as FormControl;
   }
 
   get plan(): FormControl {
@@ -80,6 +71,10 @@ export class EditComponent implements OnInit {
     return this.form.get('type') as FormControl;
   }
 
+  get tagsControl(): FormControl {
+    return this.form.get('tags') as FormControl;
+  }
+
   article$: Observable<Article> = this.route.paramMap.pipe(
     switchMap((param) => {
       const articleId = param.get('articleId');
@@ -89,6 +84,13 @@ export class EditComponent implements OnInit {
       console.log(article);
     })
   );
+
+  visible = true;
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
+  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+  tags: string[] = [];
 
   categoryGroup: Category[] = [
     { value: 'プログラミング', viewValue: 'プログラミング' },
@@ -107,15 +109,13 @@ export class EditComponent implements OnInit {
     name: ['', [Validators.required, Validators.maxLength(50)]],
     category: ['', [Validators.required]],
     title: ['', [Validators.required, Validators.maxLength(150)]],
-    featureTitle1: ['', [Validators.required, Validators.maxLength(50)]],
-    featureBody1: ['', [Validators.required, Validators.maxLength(200)]],
-    featureTitle2: ['', [Validators.required, Validators.maxLength(50)]],
-    featureBody2: ['', [Validators.required, Validators.maxLength(200)]],
+    feature: [''],
     plan: ['', [Validators.required, Validators.maxLength(400)]],
     serviceURL: [''],
     type: [''],
     id: [''],
     teacherId: [''],
+    tags: [['']],
   });
 
   id: string;
@@ -123,29 +123,48 @@ export class EditComponent implements OnInit {
   images: {
     thumbnailURL?: File;
     logo?: File;
-    image1?: File;
-    image2?: File;
   } = {
     thumbnailURL: null,
     logo: null,
-    image1: null,
-    image2: null,
   };
 
   srcs: {
     thumbnailURL?: File;
     logo?: File;
-    image1?: File;
-    image2?: File;
   } = {
     thumbnailURL: null,
     logo: null,
-    image1: null,
-    image2: null,
   };
 
   ngOnInit(): void {
-    this.article$.subscribe((article) => this.form.patchValue(article));
+    this.article$.subscribe((article) => {
+      this.tags = article.tags;
+      this.form.patchValue({
+        ...article,
+        tags: null,
+      });
+    });
+  }
+
+  add(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+
+    if ((value || '').trim()) {
+      this.tags.push(value.trim());
+    }
+
+    if (input) {
+      input.value = '';
+    }
+  }
+
+  remove(tag: string): void {
+    const index = this.tags.indexOf(tag);
+
+    if (index >= 0) {
+      this.tags.splice(index, 1);
+    }
   }
 
   convertImage(file: File, type: string) {
@@ -173,15 +192,13 @@ export class EditComponent implements OnInit {
           title: formData.title,
           category: formData.category,
           updatedAt: firestore.Timestamp.now(),
-          featureTitle1: formData.featureTitle1,
-          featureBody1: formData.featureBody1,
-          featureTitle2: formData.featureTitle2,
-          featureBody2: formData.featureBody2,
+          feature: formData.feature,
           plan: formData.plan,
           serviceURL: formData.serviceURL,
           type: formData.type,
           id: formData.id,
           teacherId: formData.teacherId,
+          tags: this.tags,
         },
         this.images
       )

@@ -5,7 +5,7 @@
         <mat-icon>search</mat-icon>検索ワード：<span
           class="result-header__keyword result-header__keyword--col"
         >
-          {{ searchQuery }}</span
+          {{ category }}</span
         >
       </h2>
     </div>
@@ -16,7 +16,7 @@
         </h2>
       </ng-container>
       <ng-container *ngIf="result?.hits.length; else notFound">
-        <div *ngFor="let article of articles$ | async">
+        <div *ngFor="let article of articles">
           <div class="result-list__item">
             <div class="result-list__thumbnail">
               <a routerLink="/article-detail/{{ article.id }}">
@@ -26,7 +26,6 @@
                 </div></a
               >
             </div>
-
             <div class="result-list__body">
               <a routerLink="/article-detail/{{ article.id }}"
                 >{{ article.title }}
@@ -35,10 +34,9 @@
                 </p></a
               >
             </div>
-
             <div class="result-list__footer">
               <mat-icon>today</mat-icon>
-              <p>{{ article.updatedAt.toDate() | date: 'yyyy/MM/dd' }}</p>
+              <p>{{ article.createdAt | date: 'yyyy/MM/dd' }}</p>
             </div>
           </div>
           <mat-divider></mat-divider>

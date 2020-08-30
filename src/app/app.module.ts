@@ -31,6 +31,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { SearchDialogComponent } from './search-dialog/search-dialog.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { QuillModule } from 'ngx-quill';
+import { TagSearchResultComponent } from './tag-search-result/tag-search-result.component';
+import { CategorySearchResultComponent } from './category-search-result/category-search-result.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +42,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     NavigationComponent,
     SearchResultComponent,
     SearchDialogComponent,
+    TagSearchResultComponent,
+    CategorySearchResultComponent,
   ],
   imports: [
     CommonModule,
@@ -66,6 +71,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatDialogModule,
     MatInputModule,
     MatFormFieldModule,
+    QuillModule.forRoot(),
   ],
   providers: [{ provide: REGION, useValue: 'asia-northeast1' }],
   bootstrap: [AppComponent],

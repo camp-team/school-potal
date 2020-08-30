@@ -107,7 +107,9 @@ export class SettingComponent implements OnInit {
 
   openDeleteDialod() {
     this.dialog
-      .open(DeleteDialogComponent)
+      .open(DeleteDialogComponent, {
+        data: { title: '退会しますか？' },
+      })
       .afterClosed()
       .subscribe((result) => {
         if (result) {

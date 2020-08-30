@@ -21,6 +21,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CommentListComponent } from './comment-list/comment-list.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SharedModule } from '../shared/shared.module';
+import { QuillModule } from 'ngx-quill';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,8 @@ import { SharedModule } from '../shared/shared.module';
     FormsModule,
     MatSnackBarModule,
     SharedModule,
+    QuillModule,
+    MatChipsModule,
   ],
 })
 export class ArticleDetailModule {}

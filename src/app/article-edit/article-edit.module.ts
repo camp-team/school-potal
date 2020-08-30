@@ -13,6 +13,8 @@ import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatChipsModule } from '@angular/material/chips';
+import { QuillModule } from 'ngx-quill';
 
 @NgModule({
   declarations: [ArticleEditComponent, EditComponent],
@@ -29,6 +31,8 @@ import { MatRadioModule } from '@angular/material/radio';
     FormsModule,
     MatButtonModule,
     MatRadioModule,
+    MatChipsModule,
+    QuillModule,
   ],
 })
 export class ArticleEditModule {}

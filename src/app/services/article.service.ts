@@ -20,20 +20,15 @@ export class ArticleService {
   ) {}
 
   async createArtile(
-    article: Omit<
-      Article,
-      'id' | 'thumbnailURL' | 'logo' | 'image1' | 'image2' | 'updatedAt'
-    >,
+    article: Omit<Article, 'id' | 'thumbnailURL' | 'logo' | 'updatedAt'>,
     images: {
       thumbnailURL: File;
       logo: File;
-      image1?: File;
-      image2?: File;
     }
   ) {
     const id = this.db.createId();
     const urls = await this.uploadImage(id, Object.values(images));
-    const [thumbnailURL, logo, image1, image2] = urls;
+    const [thumbnailURL, logo] = urls;
     return this.db
       .doc<Article>(`articles/${id}`)
       .set({
@@ -42,8 +37,6 @@ export class ArticleService {
         updatedAt: firestore.Timestamp.now(),
         thumbnailURL,
         logo,
-        image1,
-        image2,
       })
       .then(() => {
         const teacherId = article.teacherId;
@@ -77,11 +70,7 @@ export class ArticleService {
   }
 
   getArticles(): Observable<Article[]> {
-    return this.db
-      .collection<Article>('articles', (ref) => {
-        return ref.limit(15);
-      })
-      .valueChanges();
+    return this.db.collection<Article>('articles').valueChanges();
   }
 
   getSchools(): Observable<Article[]> {
@@ -113,15 +102,10 @@ export class ArticleService {
   }
 
   async updateArticle(
-    article: Omit<
-      Article,
-      'thumbnailURL' | 'logo' | 'image1' | 'image2' | 'createdAt'
-    >,
+    article: Omit<Article, 'thumbnailURL' | 'logo' | 'createdAt'>,
     images?: {
       thumbnailURL?: File;
       logo?: File;
-      image1?: File;
-      image2?: File;
     }
   ): Promise<void> {
     if (!Object.values(images).filter((item) => !!item).length) {
@@ -142,14 +126,12 @@ export class ArticleService {
         article.id,
         Object.values(images).filter((item) => item !== null)
       );
-      const [thumbnailURL, logo, image1, image2]: Array<string | null> = urls;
+      const [thumbnailURL, logo]: Array<string | null> = urls;
 
       const data = {
         ...article,
         thumbnailURL,
         logo,
-        image1,
-        image2,
       };
 
       Object.keys(data).forEach((key) => {

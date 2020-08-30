@@ -71,3 +71,11 @@
     }
   }
 }
+
+app-tag-list {
+  display: block;
+  margin: 80px auto;
+  @include sp {
+    margin: 16px auto;
+  }
+}

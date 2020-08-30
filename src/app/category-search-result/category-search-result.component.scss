@@ -39,7 +39,6 @@
     display: grid;
     grid-template-columns: 30% 50% 1fr;
     gap: 16px;
-    overflow: hidden;
     @include sp {
       display: block;
     }
