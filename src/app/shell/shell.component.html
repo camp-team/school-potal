@@ -1,0 +1,16 @@
+<app-header></app-header>
+
+<mat-sidenav-container>
+  <mat-sidenav
+    #sidenav
+    [opened]="opened$ | async"
+    fixedInViewport
+    [fixedTopGap]="73"
+    class="sidenav"
+  >
+    <app-navigation></app-navigation>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

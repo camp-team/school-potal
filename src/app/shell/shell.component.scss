@@ -1,0 +1,34 @@
+.sidenav {
+  background: #212121;
+}
+
+.mat-icon {
+  margin: 0 24px 0 16px;
+  opacity: 0.8;
+}
+
+.divider {
+  margin: 16px 0;
+}
+
+.footer {
+  margin: 24px;
+  font-weight: 300;
+  color: rgba(#ffffff, 0.8);
+  &__copy {
+    color: rgba(#ffffff, 0.38);
+    margin-top: 24px;
+  }
+}
+
+mat-nav-list a {
+  margin-right: 16px;
+}
+
+mat-nav-list h3 {
+  margin-left: 16px;
+}
+
+mat-sidenav-content {
+  padding-top: 73px;
+}
