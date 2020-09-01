@@ -12,7 +12,6 @@ export class DrawerService {
   constructor() {}
 
   toggle() {
-    console.log('check');
     this.isOpened = !this.isOpened;
     this.isOpenSource.next(this.isOpened);
   }
