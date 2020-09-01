@@ -6,6 +6,11 @@ import { CategorySearchResultComponent } from './category-search-result/category
 
 const routes: Routes = [
   {
+    path: '',
+    pathMatch: 'full',
+    loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
+  },
+  {
     path: 'search',
     component: SearchResultComponent,
   },
@@ -16,11 +21,6 @@ const routes: Routes = [
   {
     path: 'categories/:category',
     component: CategorySearchResultComponent,
-  },
-  {
-    path: '',
-    pathMatch: 'full',
-    loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
   },
   {
     path: 'intl',
