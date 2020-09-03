@@ -32,8 +32,6 @@ import { SearchDialogComponent } from './search-dialog/search-dialog.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { QuillModule } from 'ngx-quill';
-import { TagSearchResultComponent } from './tag-search-result/tag-search-result.component';
-import { CategorySearchResultComponent } from './category-search-result/category-search-result.component';
 import { ShellComponent } from './shell/shell.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
@@ -44,8 +42,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
     NavigationComponent,
     SearchResultComponent,
     SearchDialogComponent,
-    TagSearchResultComponent,
-    CategorySearchResultComponent,
     ShellComponent,
     NotFoundComponent,
   ],
