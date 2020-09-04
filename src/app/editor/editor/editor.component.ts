@@ -145,7 +145,6 @@ export class EditorComponent implements OnInit {
       this.images[type] = event.target.files[0];
       this.convertImage(this.images[type], type);
     }
-    console.log(type);
   }
 
   submit() {

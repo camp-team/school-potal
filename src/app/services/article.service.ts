@@ -61,7 +61,6 @@ export class ArticleService {
 
   setTeacherData(articleId: string, teacherId: string) {
     const setFn = this.fns.httpsCallable('setTeacherDataById');
-    console.log(articleId, teacherId);
     return setFn({ articleId, teacherId }).toPromise();
   }
 

@@ -36,8 +36,6 @@ export class CommentListComponent implements OnInit {
 
   isEditMode() {
     this.isEditable = true;
-    console.log('check');
-
     this.commentForm.setValue(this.comment.body);
   }
 

@@ -77,9 +77,6 @@ export class EditComponent implements OnInit {
     switchMap((param) => {
       const articleId = param.get('articleId');
       return this.articleService.getArticle(articleId);
-    }),
-    tap((article) => {
-      console.log(article);
     })
   );
 
@@ -177,7 +174,6 @@ export class EditComponent implements OnInit {
     if (event.target.files.length) {
       this.images[type] = event.target.files[0];
       this.convertImage(this.images[type], type);
-      console.log(this.images);
     }
   }
 
