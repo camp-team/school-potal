@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { SearchIndex } from 'algoliasearch/lite';
 import { SearchService } from '../services/search.service';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
 import { Article } from '../interfaces/article';
 import { LoadingService } from '../services/loading.service';
 
@@ -23,26 +22,20 @@ export class SearchResultComponent implements OnInit {
     hits: any[];
   };
 
-  loading: boolean;
-
   constructor(
     private searchService: SearchService,
     private route: ActivatedRoute,
-    private loadingService: LoadingService
+    public loadingService: LoadingService
   ) {}
 
   ngOnInit(): void {
     this.route.queryParamMap.subscribe((param) => {
       this.articles = [];
       this.searchQuery = param.get('searchQuery') || '';
-      console.log(this.searchQuery);
-
       this.tagFilter = (param.get('tag') || '').split('+');
-      console.log(this.tagFilter);
       this.categoryFilter = (param.get('category') || '').split('+');
       this.searchArticles();
     });
-    this.loadingService.toggleLoading(true);
   }
 
   searchArticles() {
@@ -53,7 +46,7 @@ export class SearchResultComponent implements OnInit {
     const searchOptions = {
       facetFilters: [this.tagFilter, this.categoryFilter],
     };
-    this.loading = true;
+    this.loadingService.loading = true;
 
     this.index
       .search(this.searchQuery, searchOptions)
@@ -61,6 +54,6 @@ export class SearchResultComponent implements OnInit {
         this.result = result;
         this.articles = result.hits as any[];
       })
-      .finally(() => (this.loading = false));
+      .finally(() => (this.loadingService.loading = false));
   }
 }
