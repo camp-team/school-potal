@@ -24,24 +24,61 @@ interface Category {
 export class EditComponent implements OnInit {
   uid: string;
 
-  constructor(
-    private fb: FormBuilder,
-    private articleService: ArticleService,
-    private snackBar: MatSnackBar,
-    private route: ActivatedRoute,
-    private router: Router,
-    private authService: AuthService
-  ) {
-    this.authService.user$
-      .pipe(
-        map((user) => {
-          return user.uid;
-        })
-      )
-      .subscribe((uid) => {
-        this.uid = uid;
-      });
-  }
+  visible = true;
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
+  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+  tags: string[] = [];
+
+  categoryGroup: Category[] = [
+    { value: 'プログラミング', viewValue: 'プログラミング' },
+    { value: '外国語', viewValue: '外国語' },
+    { value: 'ビジネス', viewValue: 'ビジネス' },
+    { value: 'スポーツ', viewValue: 'スポーツ' },
+    { value: 'デザイン', viewValue: 'デザイン' },
+    { value: '美容', viewValue: '美容' },
+    { value: '料理', viewValue: '料理' },
+    { value: 'モノづくり', viewValue: 'モノづくり' },
+    { value: '音楽', viewValue: '音楽' },
+    { value: 'その他', viewValue: 'その他' },
+  ];
+
+  form = this.fb.group({
+    name: ['', [Validators.required, Validators.maxLength(50)]],
+    category: ['', [Validators.required]],
+    title: ['', [Validators.required, Validators.maxLength(150)]],
+    feature: [''],
+    plan: ['', [Validators.required, Validators.maxLength(400)]],
+    serviceURL: [''],
+    type: [''],
+    id: [''],
+    teacherId: [''],
+    tags: [['']],
+  });
+
+  images: {
+    thumbnailURL?: File;
+    logo?: File;
+  } = {
+    thumbnailURL: null,
+    logo: null,
+  };
+
+  srcs: {
+    thumbnailURL?: File;
+    logo?: File;
+  } = {
+    thumbnailURL: null,
+    logo: null,
+  };
+
+  article$: Observable<Article> = this.route.paramMap.pipe(
+    switchMap((param) => {
+      const articleId = param.get('articleId');
+      return this.articleService.getArticle(articleId);
+    })
+  );
 
   get name(): FormControl {
     return this.form.get('name') as FormControl;
@@ -75,66 +112,24 @@ export class EditComponent implements OnInit {
     return this.form.get('tags') as FormControl;
   }
 
-  article$: Observable<Article> = this.route.paramMap.pipe(
-    switchMap((param) => {
-      const articleId = param.get('articleId');
-      return this.articleService.getArticle(articleId);
-    }),
-    tap((article) => {
-      console.log(article);
-    })
-  );
-
-  visible = true;
-  selectable = true;
-  removable = true;
-  addOnBlur = true;
-  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  tags: string[] = [];
-
-  categoryGroup: Category[] = [
-    { value: 'プログラミング', viewValue: 'プログラミング' },
-    { value: '外国語', viewValue: '外国語' },
-    { value: 'ビジネス', viewValue: 'ビジネス' },
-    { value: 'スポーツ', viewValue: 'スポーツ' },
-    { value: 'ダンス', viewValue: 'ダンス' },
-    { value: '美容', viewValue: '美容' },
-    { value: '料理', viewValue: '料理' },
-    { value: 'モノづくり', viewValue: 'モノづくり' },
-    { value: '音楽', viewValue: '音楽' },
-    { value: 'その他', viewValue: 'その他' },
-  ];
-
-  form = this.fb.group({
-    name: ['', [Validators.required, Validators.maxLength(50)]],
-    category: ['', [Validators.required]],
-    title: ['', [Validators.required, Validators.maxLength(150)]],
-    feature: [''],
-    plan: ['', [Validators.required, Validators.maxLength(400)]],
-    serviceURL: [''],
-    type: [''],
-    id: [''],
-    teacherId: [''],
-    tags: [['']],
-  });
-
-  id: string;
-
-  images: {
-    thumbnailURL?: File;
-    logo?: File;
-  } = {
-    thumbnailURL: null,
-    logo: null,
-  };
-
-  srcs: {
-    thumbnailURL?: File;
-    logo?: File;
-  } = {
-    thumbnailURL: null,
-    logo: null,
-  };
+  constructor(
+    private fb: FormBuilder,
+    private articleService: ArticleService,
+    private snackBar: MatSnackBar,
+    private route: ActivatedRoute,
+    private router: Router,
+    private authService: AuthService
+  ) {
+    this.authService.user$
+      .pipe(
+        map((user) => {
+          return user.uid;
+        })
+      )
+      .subscribe((uid) => {
+        this.uid = uid;
+      });
+  }
 
   ngOnInit(): void {
     this.article$.subscribe((article) => {
@@ -146,7 +141,7 @@ export class EditComponent implements OnInit {
     });
   }
 
-  add(event: MatChipInputEvent): void {
+  addTag(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
 
@@ -159,7 +154,7 @@ export class EditComponent implements OnInit {
     }
   }
 
-  remove(tag: string): void {
+  removeTag(tag: string): void {
     const index = this.tags.indexOf(tag);
 
     if (index >= 0) {
@@ -179,7 +174,6 @@ export class EditComponent implements OnInit {
     if (event.target.files.length) {
       this.images[type] = event.target.files[0];
       this.convertImage(this.images[type], type);
-      console.log(this.images);
     }
   }
 

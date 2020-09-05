@@ -3,13 +3,12 @@
     <mat-icon>menu</mat-icon>
   </button>
   <a class="logo" routerLink="/"
-    ><object
-      type="image/svg+xml"
-      data="assets/images/logo-grad2.svg"
+    ><img
+      src="assets/images/logo-grad2.svg"
+      alt="スキるぽ"
       width="100px"
       height="32px"
-    ></object
-  ></a>
+  /></a>
   <p class="description">スキル開発ポータルメディア</p>
   <span class="spacer"></span>
 
@@ -44,13 +43,13 @@
     <mat-icon>search</mat-icon>
   </button>
 
-  <ng-template #default>
-    <button mat-button routerLink="/login" class="login">
+  <ng-template #notLogin>
+    <a mat-button routerLink="/login" class="login">
       ログイン
-    </button>
+    </a>
   </ng-template>
 
-  <ng-container *ngIf="user$ | async as user; else default">
+  <ng-container *ngIf="user$ | async as user; else notLogin">
     <button
       class="avatar"
       mat-icon-button
@@ -59,24 +58,24 @@
     ></button>
 
     <mat-menu #menu="matMenu">
-      <button mat-menu-item routerLink="/user/{{ user.uid }}">
+      <a mat-menu-item routerLink="/user/{{ user.uid }}">
         <mat-icon>account_circle</mat-icon>
         <span>マイページ</span>
-      </button>
-      <button mat-menu-item routerLink="/user/{{ user.uid }}/setting">
+      </a>
+      <a mat-menu-item routerLink="/user/{{ user.uid }}/setting">
         <mat-icon>settings</mat-icon>
         <span>設定</span>
-      </button>
+      </a>
       <button mat-menu-item (click)="logout()">
         <mat-icon>exit_to_app</mat-icon>
         <span>ログアウト</span>
       </button>
       <mat-divider class="divider"></mat-divider>
 
-      <button mat-menu-item routerLink="/editor">
+      <a mat-menu-item routerLink="/editor">
         <mat-icon>edit</mat-icon>
         <span>管理者メニュー</span>
-      </button>
+      </a>
     </mat-menu>
   </ng-container>
 </div>

@@ -7,6 +7,7 @@ import { Subject } from 'rxjs';
 export class LoadingService {
   loadingSource = new Subject();
   loading$ = this.loadingSource.asObservable();
+  loading: boolean;
 
   constructor() {}
 

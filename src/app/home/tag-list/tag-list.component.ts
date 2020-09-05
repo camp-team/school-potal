@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SearchService } from 'src/app/services/search.service';
 import { SearchIndex } from 'algoliasearch/lite';
 import { Category } from 'src/app/interfaces/category';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tag-list',
@@ -48,11 +49,25 @@ export class TagListComponent implements OnInit {
     },
   ];
 
-  constructor(private searchService: SearchService) {
+  constructor(private searchService: SearchService, private router: Router) {}
+
+  ngOnInit(): void {
     this.index.searchForFacetValues('tags', '').then((result) => {
       this.tags = result.facetHits;
     });
   }
 
-  ngOnInit(): void {}
+  routeCategoryFilter(category: string) {
+    this.router.navigate(['/search'], {
+      queryParamsHandling: 'merge',
+      queryParams: { category },
+    });
+  }
+
+  routeTagFilter(tag: string) {
+    this.router.navigate(['/search'], {
+      queryParamsHandling: 'merge',
+      queryParams: { tag },
+    });
+  }
 }

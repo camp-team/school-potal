@@ -1,14 +1,16 @@
 <div class="container">
   <div class="result">
-    <div class="result-header">
-      <h2 class="result-header__keyword">
-        <mat-icon>search</mat-icon>検索ワード：<span
-          class="result-header__keyword result-header__keyword--col"
-        >
-          {{ searchQuery }}</span
-        >
-      </h2>
-    </div>
+    <ng-container *ngIf="searchQuery">
+      <div class="result-header">
+        <h2 class="result-header__keyword">
+          <mat-icon>search</mat-icon>検索ワード：<span
+            class="result-header__keyword result-header__keyword--col"
+          >
+            {{ searchQuery }}</span
+          >
+        </h2>
+      </div>
+    </ng-container>
     <div class="result-list">
       <ng-container *ngIf="result?.hits.length">
         <h2 class="result-list__hits">
@@ -16,7 +18,7 @@
         </h2>
       </ng-container>
       <ng-container *ngIf="result?.hits.length; else notFound">
-        <div *ngFor="let article of articles$ | async">
+        <div *ngFor="let article of articles">
           <div class="result-list__item">
             <div class="result-list__thumbnail">
               <a routerLink="/article-detail/{{ article.id }}">
@@ -38,7 +40,7 @@
 
             <div class="result-list__footer">
               <mat-icon>today</mat-icon>
-              <p>{{ article.updatedAt.toDate() | date: 'yyyy/MM/dd' }}</p>
+              <p>{{ article.updatedAt | date: 'yyyy/MM/dd' }}</p>
             </div>
           </div>
           <mat-divider></mat-divider>
@@ -46,16 +48,24 @@
       </ng-container>
 
       <ng-template #notFound>
-        <figure class="not-found">
-          <img src="assets/images/search-01.png" alt="" />
-        </figure>
-        <p>
-          一致するアイテムがありませんでした🙏
-        </p>
-        <p>
-          キーワードを変えて試してみるか、フィルターを削除してみてください。
-        </p>
+        <ng-container *ngIf="!loadingService.loading">
+          <figure class="not-found">
+            <img src="assets/images/search-01.png" alt="" />
+          </figure>
+          <p>
+            一致するアイテムがありませんでした🙏
+          </p>
+          <p>
+            キーワードを変えて試してみるか、フィルターを削除してみてください。
+          </p>
+        </ng-container>
       </ng-template>
+
+      <mat-progress-spinner
+        *ngIf="loadingService.loading"
+        color="primary"
+        [diameter]="40"
+      ></mat-progress-spinner>
     </div>
   </div>
 </div>

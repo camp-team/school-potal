@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchIndex } from 'algoliasearch/lite';
 import { SearchService } from '../services/search.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 import { Article } from '../interfaces/article';
-import { ArticleService } from 'src/app/services/article.service';
-import { map } from 'rxjs/operators';
 import { LoadingService } from '../services/loading.service';
 
 @Component({
@@ -14,52 +11,49 @@ import { LoadingService } from '../services/loading.service';
   styleUrls: ['./search-result.component.scss'],
 })
 export class SearchResultComponent implements OnInit {
-  articles$: Observable<Article[]>;
-
-  index: SearchIndex = this.searchService.index.item;
+  articles: Article[];
   searchQuery: string;
+  tagFilter: string[];
+  categoryFilter: string[];
+  index: SearchIndex = this.searchService.index.item;
 
   result: {
     nbHits: number;
     hits: any[];
   };
 
-  searchOptions = {
-    page: 0,
-    hitsPerPage: 20,
-  };
-
   constructor(
-    private articleService: ArticleService,
     private searchService: SearchService,
     private route: ActivatedRoute,
-    private router: Router,
-    private loadingService: LoadingService
-  ) {
-    this.route.queryParamMap.subscribe((params) => {
-      this.searchQuery = params.get('searchQuery');
-      this.index
-        .search(this.searchQuery)
-        .then((result) => {
-          this.result = result;
-        })
-        .then(() => {
-          if (this.result.hits) {
-            const searchResultIds: string[] = this.result.hits.map(
-              (searchResult) => searchResult.id
-            );
-            this.articles$ = this.articleService.getArticles().pipe(
-              map((articles: Article[]) => {
-                return articles.filter((article: Article) =>
-                  searchResultIds.includes(article.id)
-                );
-              })
-            );
-          }
-        });
+    public loadingService: LoadingService
+  ) {}
+
+  ngOnInit(): void {
+    this.route.queryParamMap.subscribe((param) => {
+      this.articles = [];
+      this.searchQuery = param.get('searchQuery') || '';
+      this.tagFilter = (param.get('tag') || '').split('+');
+      this.categoryFilter = (param.get('category') || '').split('+');
+      this.searchArticles();
     });
-    this.loadingService.toggleLoading(true);
   }
 
-  ngOnInit(): void {}
+  searchArticles() {
+    this.tagFilter = this.tagFilter.map((tag) => `tags: ${tag}`);
+    this.categoryFilter = this.categoryFilter.map(
+      (category) => `category: ${category}`
+    );
+    const searchOptions = {
+      facetFilters: [this.tagFilter, this.categoryFilter],
+    };
+    this.loadingService.loading = true;
+
+    this.index
+      .search(this.searchQuery, searchOptions)
+      .then((result) => {
+        this.result = result;
+        this.articles = result.hits as any[];
+      })
+      .finally(() => (this.loadingService.loading = false));
+  }
 }

@@ -8,6 +8,8 @@ export const createArticle = functions
   .firestore.document('articles/{id}')
   .onCreate((snap) => {
     const data = snap.data();
+    const tmp = data.feature;
+    const removeTag = tmp.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g, '');
     return algolia.saveRecord({
       indexName: 'articles',
       largeConcentKey: 'feature',
@@ -19,7 +21,7 @@ export const createArticle = functions
         createdAt: data.createdAt,
         updatedAt: data.updatedAt,
         type: data.type,
-        feature: data.feature,
+        feature: removeTag,
         thumbnailURL: data.thumbnailURL,
         tags: data.tags,
       },
@@ -44,9 +46,11 @@ export const updateArticle = functions
   .firestore.document('articles/{id}')
   .onUpdate((change) => {
     const data = change.after.data();
+    const tmp = data.feature;
+    const removeTag = tmp.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g, '');
     return algolia.saveRecord({
       indexName: 'articles',
-      largeConcentKey: 'body',
+      largeConcentKey: 'feature',
       isUpdate: true,
       data: {
         id: data.id,
@@ -56,7 +60,7 @@ export const updateArticle = functions
         createdAt: data.createdAt,
         updatedAt: data.updatedAt,
         type: data.type,
-        feature: data.feature,
+        feature: removeTag,
         thumbnailURL: data.thumbnailURL,
         tags: data.tags,
       },

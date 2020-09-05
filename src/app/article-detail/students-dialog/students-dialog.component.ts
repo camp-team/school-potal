@@ -13,9 +13,7 @@ export class StudentsDialogComponent implements OnInit {
     public data: {
       article: Article;
     }
-  ) {
-    console.log(data.article);
-  }
+  ) {}
 
   ngOnInit(): void {}
 }

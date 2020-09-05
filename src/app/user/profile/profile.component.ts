@@ -16,8 +16,7 @@ export class ProfileComponent implements OnInit {
     switchMap((param) => {
       const profileId = param.get('uid');
       return this.userService.getUserData(profileId);
-    }),
-    tap((user) => console.log(user))
+    })
   );
 
   constructor(

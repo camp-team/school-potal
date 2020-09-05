@@ -46,7 +46,7 @@ export class EditorComponent implements OnInit {
     { value: '外国語', viewValue: '外国語' },
     { value: 'ビジネス', viewValue: 'ビジネス' },
     { value: 'スポーツ', viewValue: 'スポーツ' },
-    { value: 'ダンス', viewValue: 'ダンス' },
+    { value: 'デザイン', viewValue: 'デザイン' },
     { value: '美容', viewValue: '美容' },
     { value: '料理', viewValue: '料理' },
     { value: 'モノづくり', viewValue: 'モノづくり' },
@@ -145,7 +145,6 @@ export class EditorComponent implements OnInit {
       this.images[type] = event.target.files[0];
       this.convertImage(this.images[type], type);
     }
-    console.log(type);
   }
 
   submit() {
