@@ -31,6 +31,8 @@ export class EditComponent implements OnInit {
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   tags: string[] = [];
 
+  likeCount: number;
+
   categoryGroup: Category[] = [
     { value: 'プログラミング', viewValue: 'プログラミング' },
     { value: '外国語', viewValue: '外国語' },
@@ -134,6 +136,7 @@ export class EditComponent implements OnInit {
   ngOnInit(): void {
     this.article$.subscribe((article) => {
       this.tags = article.tags;
+      this.likeCount = article.likeCount;
       this.form.patchValue({
         ...article,
         tags: null,
@@ -193,6 +196,7 @@ export class EditComponent implements OnInit {
           id: formData.id,
           teacherId: formData.teacherId,
           tags: this.tags,
+          likeCount: this.likeCount,
         },
         this.images
       )
