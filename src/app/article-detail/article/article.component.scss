@@ -1,4 +1,6 @@
 @import 'mixins';
+@import '~@angular/material/theming';
+@import 'material-custom';
 
 .article {
   max-width: 800px;
@@ -6,7 +8,7 @@
 }
 
 .hero {
-  margin-bottom: 40px;
+  margin-bottom: 24px;
   &__thumbnail {
     max-width: 100%;
     margin: 0 0 8px 0;
@@ -28,6 +30,30 @@
     display: flex;
     align-items: center;
   }
+  &__action {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    padding: 16px;
+  }
+  &__like {
+    margin-right: 8px;
+    background: #424242;
+    &:hover .hero__like-count,
+    &:hover .hero__like-icon {
+      color: mat-color($candy-app-accent);
+    }
+  }
+  &__like-icon {
+    margin-right: 8px;
+  }
+  &__like-count {
+    line-height: 40px;
+  }
+}
+
+mat-divider {
+  margin-bottom: 24px;
 }
 
 h1 {

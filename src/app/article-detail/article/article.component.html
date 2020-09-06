@@ -26,8 +26,37 @@
             article.name
           }}</a>
         </h2>
+        <div class="hero__action">
+          <ng-container *ngIf="isliked; else notYet">
+            <button
+              mat-flat-button
+              (click)="unlikeArticle(uid)"
+              class="hero__like"
+            >
+              <mat-icon class="hero__like-icon" color="accent"
+                >favorite</mat-icon
+              >
+              <p class="hero__like-count">{{ article.likeCount }}</p>
+            </button>
+          </ng-container>
+
+          <ng-template #notYet>
+            <button
+              mat-flat-button
+              (click)="likeArticle(uid)"
+              class="hero__like"
+            >
+              <mat-icon class="hero__like-icon" matTooltip="いいね！"
+                >favorite_border</mat-icon
+              >
+              <p class="hero__like-count">{{ article.likeCount }}</p>
+            </button>
+          </ng-template>
+        </div>
       </div>
     </div>
+
+    <mat-divider></mat-divider>
 
     <div class="teacher">
       <div class="teacher__head">

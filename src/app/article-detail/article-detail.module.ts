@@ -23,6 +23,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SharedModule } from '../shared/shared.module';
 import { QuillModule } from 'ngx-quill';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatRippleModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,8 @@ import { MatChipsModule } from '@angular/material/chips';
     SharedModule,
     QuillModule,
     MatChipsModule,
+    MatTooltipModule,
+    MatRippleModule,
   ],
 })
 export class ArticleDetailModule {}
