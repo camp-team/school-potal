@@ -9,8 +9,9 @@
 h2 {
   font-size: 20px;
   font-weight: 600;
+  margin-bottom: 16px;
   @include sp {
-    margin-bottom: 16px;
+    margin-bottom: 8px;
   }
 }
 
