@@ -32,8 +32,8 @@ export class UserService {
     private router: Router
   ) {}
 
-  getUserData(userId: string) {
-    return this.db.doc<User>(`users/${userId}`).valueChanges();
+  getUserData(uid: string) {
+    return this.db.doc<User>(`users/${uid}`).valueChanges();
   }
 
   isEditable(uid: string, profileId: string): boolean {
