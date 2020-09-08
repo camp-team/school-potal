@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { ArticleService } from 'src/app/services/article.service';
 import { Observable, combineLatest, of } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
@@ -10,6 +10,7 @@ import { Teacher } from 'src/app/interfaces/teacher';
 import { LikeService } from 'src/app/services/like.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { PinService } from 'src/app/services/pin.service';
 
 @Component({
   selector: 'app-article',
@@ -23,6 +24,8 @@ export class ArticleComponent implements OnInit {
   likeCount: number;
   uid: string;
   articleId: string;
+  isPinned: boolean;
+  pinCount: number;
 
   article$: Observable<Article> = this.route.paramMap.pipe(
     switchMap((param) => {
@@ -45,7 +48,10 @@ export class ArticleComponent implements OnInit {
 
   user$ = this.authService.user$;
 
-  isliked$ = combineLatest([this.article$, this.user$]).pipe(
+  isliked$: Observable<boolean> = combineLatest([
+    this.article$,
+    this.user$,
+  ]).pipe(
     switchMap(([article, user]) => {
       if (user) {
         return this.likeService.isLiked(article.id, user.uid);
@@ -55,12 +61,33 @@ export class ArticleComponent implements OnInit {
     })
   );
 
+  isPinned$: Observable<boolean> = combineLatest([
+    this.article$,
+    this.user$,
+  ]).pipe(
+    switchMap(([article, user]) => {
+      if (user) {
+        return this.pinService.isPinned(article.id, user.uid);
+      } else {
+        return of(false);
+      }
+    })
+  );
+
+  @ViewChild('target')
+  target: ElementRef;
+
+  scroll(): void {
+    this.target.nativeElement.scrollIntoView({ behavior: 'smooth' });
+  }
+
   constructor(
     private articleService: ArticleService,
     private route: ActivatedRoute,
     private dialog: MatDialog,
     private likeService: LikeService,
     private snackBar: MatSnackBar,
+    private pinService: PinService,
     public authService: AuthService
   ) {}
 
@@ -68,12 +95,14 @@ export class ArticleComponent implements OnInit {
     this.article$.subscribe((article) => {
       if (this.articleId !== article.id) {
         this.likeCount = article.likeCount;
+        this.pinCount = article.pinCount;
       }
       this.article = article;
       this.articleId = article.id;
     });
 
     this.isliked$.subscribe((isliked) => (this.isliked = isliked));
+    this.isPinned$.subscribe((isPinned) => (this.isPinned = isPinned));
 
     this.uid$.subscribe((uid) => (this.uid = uid));
     this.likeService
@@ -102,8 +131,6 @@ export class ArticleComponent implements OnInit {
     if (this.uid) {
       this.isliked = true;
       this.article.likeCount++;
-      console.log(this.article.id);
-      console.log(uid);
       this.likeService.likeArticle(this.article.id, uid);
     } else {
       this.snackBar.open('ページ右上のボタンからログインしてください', null, {
@@ -117,6 +144,30 @@ export class ArticleComponent implements OnInit {
       this.isliked = false;
       this.article.likeCount--;
       this.likeService.unlikeArticle(this.article.id, uid);
+    } else {
+      this.snackBar.open('ページ右上のボタンからログインしてください', null, {
+        duration: 2500,
+      });
+    }
+  }
+
+  pinnedArticle(uid: string) {
+    if (this.uid) {
+      this.isPinned = true;
+      this.article.pinCount++;
+      this.pinService.pinnedArticle(this.article.id, uid);
+    } else {
+      this.snackBar.open('ページ右上のボタンからログインしてください', null, {
+        duration: 2500,
+      });
+    }
+  }
+
+  unpinnedArticle(uid: string) {
+    if (this.uid) {
+      this.isPinned = false;
+      this.article.pinCount--;
+      this.pinService.unpinnedArticle(this.article.id, uid);
     } else {
       this.snackBar.open('ページ右上のボタンからログインしてください', null, {
         duration: 2500,

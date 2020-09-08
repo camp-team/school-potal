@@ -37,5 +37,17 @@ service cloud.firestore {
       allow update: if resource.data.uid == request.auth.uid;
       allow delete: if resource.data.uid == request.auth.uid;
     }
+    match /articles/{articleId}/pinnedUids/{uid} {
+      allow read: if true;
+      allow create: if request.auth.uid != null;
+      allow update: if resource.data.uid == request.auth.uid;
+      allow delete: if resource.data.uid == request.auth.uid;
+    }
+    match /users/{uid}/pinnedArticles/{articleId} {
+      allow read: if true;
+      allow create: if request.auth.uid != null;
+      allow update: if resource.data.uid == request.auth.uid;
+      allow delete: if resource.data.uid == request.auth.uid;
+    }
   }
 }
