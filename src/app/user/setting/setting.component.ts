@@ -102,6 +102,7 @@ export class SettingComponent implements OnInit {
       links: formData.links,
       tags: this.tags,
       uid: this.user.uid,
+      pinnedArticleIds: this.user.pinnedArticleIds,
     });
   }
 
