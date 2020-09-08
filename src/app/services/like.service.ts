@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable, combineLatest } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -30,8 +30,4 @@ export class LikeService {
       .valueChanges()
       .pipe(map((data) => !!data));
   }
-
-  // getlikedUids(articleId: string): Observable<string[]> {
-  //   return this.db.collection(`articles/${articleId}/likedUids`).valueChanges();
-  // }
 }
