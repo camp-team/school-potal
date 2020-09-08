@@ -16,4 +16,5 @@ export interface Article {
   teacherId: string;
   tags: string[];
   likeCount: number;
+  pinCount: number;
 }

@@ -32,6 +32,7 @@ export class EditComponent implements OnInit {
   tags: string[] = [];
 
   likeCount: number;
+  pinCount: number;
 
   categoryGroup: Category[] = [
     { value: 'プログラミング', viewValue: 'プログラミング' },
@@ -197,6 +198,7 @@ export class EditComponent implements OnInit {
           teacherId: formData.teacherId,
           tags: this.tags,
           likeCount: this.likeCount,
+          pinCount: this.pinCount,
         },
         this.images
       )

@@ -163,6 +163,7 @@ export class EditorComponent implements OnInit {
           teacherId: formData.teacherId,
           tags: this.tags,
           likeCount: 0,
+          pinCount: 0,
         },
         this.images
       )
