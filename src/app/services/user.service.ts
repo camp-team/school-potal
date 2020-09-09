@@ -36,14 +36,6 @@ export class UserService {
     return this.db.doc<User>(`users/${uid}`).valueChanges();
   }
 
-  isEditable(uid: string, profileId: string): boolean {
-    if (uid === profileId) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
   updateUser(
     user: Omit<User, 'photoURL' | 'createdAt' | 'isAdmin' | 'plan' | 'email'>
   ) {

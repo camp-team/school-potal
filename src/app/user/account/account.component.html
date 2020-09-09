@@ -14,11 +14,14 @@
           }}から利用しています
         </p>
       </div>
-      <ng-container *ngIf="isMypage">
-        <button mat-flat-button routerLink="setting">
+      <div *ngIf="isMypage$ | async" class="account__btns">
+        <a mat-flat-button routerLink="setting" class="account__setting">
           編集
-        </button>
-      </ng-container>
+        </a>
+        <a mat-flat-button routerLink="pins" class="account__pin">
+          ピン
+        </a>
+      </div>
     </div>
   </div>
   <router-outlet></router-outlet>

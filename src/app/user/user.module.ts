@@ -12,9 +12,16 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatButtonModule } from '@angular/material/button';
 import { SharedModule } from '../shared/shared.module';
 import { ProfileComponent } from './profile/profile.component';
+import { PinsComponent } from './pins/pins.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
-  declarations: [AccountComponent, SettingComponent, ProfileComponent],
+  declarations: [
+    AccountComponent,
+    SettingComponent,
+    ProfileComponent,
+    PinsComponent,
+  ],
   imports: [
     CommonModule,
     UserRoutingModule,
@@ -26,6 +33,7 @@ import { ProfileComponent } from './profile/profile.component';
     MatChipsModule,
     MatButtonModule,
     SharedModule,
+    MatProgressSpinnerModule,
   ],
 })
 export class UserModule {}
