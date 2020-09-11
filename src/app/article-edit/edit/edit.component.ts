@@ -191,7 +191,7 @@ export class EditComponent implements OnInit {
           serviceURL: formData.serviceURL,
           type: formData.type,
           id: formData.id,
-          teacherId: formData.teacherId,
+          teacherIds: formData.teacherIds,
           tags: this.tags,
         },
         this.images

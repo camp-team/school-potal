@@ -39,9 +39,14 @@ export class ArticleService {
         logo,
       })
       .then(() => {
-        const teacherId = article.teacherId;
-        this.setTeacherData(id, teacherId);
+        const teacherIds = article.teacherIds;
+        this.setTeacherData(id, teacherIds);
       });
+  }
+
+  setTeacherData(articleId: string, teacherIds: string[]) {
+    const setFn = this.fns.httpsCallable('setTeacherDataById');
+    return setFn({ articleId, teacherIds }).toPromise();
   }
 
   async uploadImage(id: string, files: File[]): Promise<string[]> {
@@ -57,11 +62,6 @@ export class ArticleService {
       }
       return urls;
     });
-  }
-
-  setTeacherData(articleId: string, teacherId: string) {
-    const setFn = this.fns.httpsCallable('setTeacherDataById');
-    return setFn({ articleId, teacherId }).toPromise();
   }
 
   getArticle(articleId: string): Observable<Article> {
@@ -117,8 +117,8 @@ export class ArticleService {
           { merge: true }
         )
         .then(() => {
-          const teacherId = article.teacherId;
-          this.setTeacherData(article.id, teacherId);
+          const teacherIds = article.teacherIds;
+          this.setTeacherData(article.id, teacherIds);
         });
     } else {
       const urls = await this.uploadImage(
@@ -147,8 +147,8 @@ export class ArticleService {
           { merge: true }
         )
         .then(() => {
-          const teacherId = article.teacherId;
-          this.setTeacherData(article.id, teacherId);
+          const teacherIds = article.teacherIds;
+          this.setTeacherData(article.id, teacherIds);
         });
     }
   }

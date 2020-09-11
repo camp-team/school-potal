@@ -4,4 +4,5 @@ export interface Teacher {
   screenName: string;
   description: string;
   profileImageUrl: string;
+  twitterUid: string;
 }

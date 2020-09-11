@@ -1,11 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormControl } from '@angular/forms';
+import {
+  FormBuilder,
+  Validators,
+  FormControl,
+  FormArray,
+} from '@angular/forms';
 import { ArticleService } from 'src/app/services/article.service';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { firestore } from 'firebase';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
+import { Article } from 'src/app/interfaces/article';
 
 interface Category {
   value: string;
@@ -18,6 +23,8 @@ interface Category {
   styleUrls: ['./editor.component.scss'],
 })
 export class EditorComponent implements OnInit {
+  article: Article;
+  processing: boolean;
   images: {
     thumbnailURL: File;
     logo: File;
@@ -62,24 +69,9 @@ export class EditorComponent implements OnInit {
     plan: ['', [Validators.required, Validators.maxLength(400)]],
     serviceURL: [''],
     type: [''],
-    teacherId: [''],
+    teacherIds: this.fb.array([]),
     tags: [['']],
   });
-
-  constructor(
-    private fb: FormBuilder,
-    private articleService: ArticleService,
-    private db: AngularFirestore,
-    private snackBar: MatSnackBar
-  ) {}
-
-  convertImage(file: File, type: string) {
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      this.srcs[type] = e.target.result;
-    };
-    reader.readAsDataURL(file);
-  }
 
   get name(): FormControl {
     return this.form.get('name') as FormControl;
@@ -117,9 +109,27 @@ export class EditorComponent implements OnInit {
     return this.form.get('tags') as FormControl;
   }
 
+  get teacherIds(): FormArray {
+    return this.form.get('teacherIds') as FormArray;
+  }
+
+  constructor(
+    private fb: FormBuilder,
+    private articleService: ArticleService,
+    private snackBar: MatSnackBar
+  ) {}
+
   ngOnInit(): void {}
 
-  add(event: MatChipInputEvent): void {
+  addForm() {
+    this.teacherIds.push(new FormControl(''));
+  }
+
+  removeForm(index: number) {
+    this.teacherIds.removeAt(index);
+  }
+
+  addTag(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
 
@@ -132,12 +142,20 @@ export class EditorComponent implements OnInit {
     }
   }
 
-  remove(tag: string): void {
+  removeTag(tag: string): void {
     const index = this.tags.indexOf(tag);
 
     if (index >= 0) {
       this.tags.splice(index, 1);
     }
+  }
+
+  convertImage(file: File, type: string) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      this.srcs[type] = e.target.result;
+    };
+    reader.readAsDataURL(file);
   }
 
   setImage(event, type: string) {
@@ -148,6 +166,7 @@ export class EditorComponent implements OnInit {
   }
 
   submit() {
+    this.processing = true;
     const formData = this.form.value;
     this.articleService
       .createArtile(
@@ -160,7 +179,7 @@ export class EditorComponent implements OnInit {
           plan: formData.plan,
           serviceURL: formData.serviceURL,
           type: formData.type,
-          teacherId: formData.teacherId,
+          teacherIds: formData.teacherIds,
           tags: this.tags,
         },
         this.images
@@ -170,5 +189,6 @@ export class EditorComponent implements OnInit {
           duration: 3000,
         });
       });
+    this.processing = false;
   }
 }

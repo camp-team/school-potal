@@ -126,9 +126,21 @@
       </mat-form-field>
 
       <h2>メンターTwitterID</h2>
-      <mat-form-field appearance="outline">
-        <input matInput formControlName="teacherId" />
-      </mat-form-field>
+
+      <ng-container
+        formArrayName="teacherIds"
+        *ngFor="let ctrl of teacherIds.controls; index as i"
+      >
+        <mat-form-field appearance="outline">
+          <input matInput [formControlName]="i" />
+        </mat-form-field>
+        <button mat-mini-fab type="button" (click)="removeForm(i)">
+          <mat-icon>remove</mat-icon>
+        </button>
+      </ng-container>
+      <button mat-mini-fab type="button" (click)="addForm()">
+        <mat-icon>add</mat-icon>
+      </button>
 
       <h2 class="edit__item">タグ</h2>
       <mat-form-field>
@@ -137,7 +149,7 @@
             *ngFor="let tag of tags"
             [selectable]="selectable"
             [removable]="removable"
-            (removed)="remove(tag)"
+            (removed)="removeTag(tag)"
           >
             {{ tag }}
             <mat-icon matChipRemove>cancel</mat-icon>
@@ -147,7 +159,7 @@
             [matChipInputFor]="chipList"
             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
             [matChipInputAddOnBlur]="addOnBlur"
-            (matChipInputTokenEnd)="add($event)"
+            (matChipInputTokenEnd)="addTag($event)"
             formControlName="tags"
             placeholder="JavaScript, 東京, オンライン..."
           />
@@ -158,7 +170,7 @@
         mat-fab
         color="primary"
         class="submit-button"
-        [disabled]="form.invalid"
+        [disabled]="form.invalid || processing"
       >
         GO
       </button>
