@@ -9,19 +9,15 @@ import { map } from 'rxjs/operators';
 export class LikeService {
   constructor(private db: AngularFirestore) {}
 
-  likeArticle(articleId: string, uid: string): Promise<void[]> {
-    return Promise.all([
-      this.db.doc(`articles/${articleId}/likedUids/${uid}`).set({
-        articleId,
-        uid,
-      }),
-    ]);
+  likeArticle(articleId: string, uid: string): Promise<void> {
+    return this.db.doc(`articles/${articleId}/likedUids/${uid}`).set({
+      articleId,
+      uid,
+    });
   }
 
-  unlikeArticle(articleId: string, uid: string): Promise<void[]> {
-    return Promise.all([
-      this.db.doc(`articles/${articleId}/likedUids/${uid}`).delete(),
-    ]);
+  unlikeArticle(articleId: string, uid: string): Promise<void> {
+    return this.db.doc(`articles/${articleId}/likedUids/${uid}`).delete();
   }
 
   isLiked(articleId: string, uid: string): Observable<boolean> {
