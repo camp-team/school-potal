@@ -43,13 +43,17 @@
       <div *ngIf="teachers$ | async as teachers; else blank">
         <div *ngFor="let teacher of teachers">
           <div class="teacher__hero">
-            <figure>
-              <img
-                class="teacher__avatar"
-                src="{{ teacher.profileImageUrl }}"
-                alt=""
-              />
+            <figure class="teacher__avatar">
+              <img src="{{ teacher.profileImageUrl }}" alt="" />
             </figure>
+            <a
+              href="https://twitter.com/messages/compose?recipient_id={{
+                teacher.twitterUid
+              }}&ref_src=twsrc%5Etfw"
+              mat-mini-fab
+              class="teacher__button"
+              ><mat-icon>send</mat-icon></a
+            >
           </div>
 
           <div class="teacher__body">
@@ -57,11 +61,13 @@
               href="https://twitter.com/{{ teacher.screenName }}"
               target="_blank"
               ><p class="teacher__name">
-                {{ teacher.name }}<br />@{{ teacher.screenName }}
+                {{ teacher.name }}<br />
+                <span class="teacher__screen-name"
+                  >@{{ teacher.screenName }}</span
+                >
               </p>
             </a>
             <p class="teacher__description">{{ teacher.description }}</p>
-            <button mat-flat-button class="teacher__button">話をきく</button>
           </div>
         </div>
       </div>
