@@ -10,7 +10,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { firestore } from 'firebase';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
-import { Article } from 'src/app/interfaces/article';
 
 interface Category {
   value: string;
@@ -23,7 +22,6 @@ interface Category {
   styleUrls: ['./editor.component.scss'],
 })
 export class EditorComponent implements OnInit {
-  article: Article;
   processing: boolean;
   images: {
     thumbnailURL: File;
@@ -99,10 +97,6 @@ export class EditorComponent implements OnInit {
 
   get type(): FormControl {
     return this.form.get('type') as FormControl;
-  }
-
-  get teacherId(): FormControl {
-    return this.form.get('teacherId') as FormControl;
   }
 
   get tagsControl(): FormControl {

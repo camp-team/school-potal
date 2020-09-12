@@ -17,22 +17,28 @@ export const setTeacherDataById = functions
         access_token_key: functions.config().twitter.token_key,
         access_token_secret: functions.config().twitter.token_secret,
       });
-      const TwitterProfile = await twitterClient.get('users/show', {
-        screen_name: param.teacherId,
-      });
 
-      await db
-        .doc(`articles/${param.articleId}/teachers/${param.teacherId}`)
-        .set({
-          name: TwitterProfile.name,
-          screenName: TwitterProfile.screen_name,
-          description: TwitterProfile.description,
-          profileImageUrl: TwitterProfile.profile_image_url_https.replace(
+      const teacherIds = param.teacherIds.join(',');
+      console.log(teacherIds);
+
+      const twitterProfile = await twitterClient.get('users/lookup', {
+        screen_name: teacherIds,
+      });
+      console.log(twitterProfile);
+
+      for (const teacherId of teacherIds) {
+        console.log(teacherId);
+        await db.doc(`articles/${param.articleId}/teachers/${teacherId}`).set({
+          name: twitterProfile.name,
+          screenName: twitterProfile.screen_name,
+          description: twitterProfile.description,
+          profileImageUrl: twitterProfile.profile_image_url_https.replace(
             '_normal',
             ''
           ),
+          twitterUid: twitterProfile.id,
         });
-
+      }
       return true;
     } else {
       throw new Error('認証に失敗しました');

@@ -40,12 +40,16 @@ export class ArticleService {
       })
       .then(() => {
         const teacherIds = article.teacherIds;
+        console.log(teacherIds);
+        console.log(id);
         this.setTeacherData(id, teacherIds);
       });
   }
 
   setTeacherData(articleId: string, teacherIds: string[]) {
     const setFn = this.fns.httpsCallable('setTeacherDataById');
+    console.log(articleId, teacherIds);
+    console.log({ ...teacherIds });
     return setFn({ articleId, teacherIds }).toPromise();
   }
 
