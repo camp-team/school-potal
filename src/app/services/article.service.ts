@@ -39,7 +39,7 @@ export class ArticleService {
         logo,
       })
       .then(() => {
-        const teacherIds = article.teacherIds;
+        const teacherIds: string[] = article.teacherIds;
         console.log(teacherIds);
         console.log(id);
         this.setTeacherData(id, teacherIds);

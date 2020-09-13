@@ -1,6 +1,7 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import * as Twitter from 'twitter';
+import { Teacher } from './interfaces/teacher';
 
 export const db = admin.firestore();
 
@@ -18,17 +19,21 @@ export const setTeacherDataById = functions
         access_token_secret: functions.config().twitter.token_secret,
       });
 
-      const teacherIds = param.teacherIds.join(',');
-      console.log(teacherIds);
+      const teacherIds: string = param.teacherIds.join(',');
 
       const twitterProfile = await twitterClient.get('users/lookup', {
         screen_name: teacherIds,
       });
-      console.log(twitterProfile);
 
-      for (const teacherId of teacherIds) {
+      console.log(teacherIds);
+      console.log(param.articleId);
+
+      param.teacherIds.map((teacherId: string) => {
         console.log(teacherId);
-        await db.doc(`articles/${param.articleId}/teachers/${teacherId}`).set({
+        console.log(param.articleId);
+        console.log(twitterProfile);
+        const teacher: Teacher = {
+          id: teacherId,
           name: twitterProfile.name,
           screenName: twitterProfile.screen_name,
           description: twitterProfile.description,
@@ -36,9 +41,12 @@ export const setTeacherDataById = functions
             '_normal',
             ''
           ),
-          twitterUid: twitterProfile.id,
-        });
-      }
+          twitterUid: twitterProfile.user_id,
+        };
+        return db
+          .doc(`articles/${param.articleId}/teachers/${teacherId}`)
+          .set(teacher);
+      });
       return true;
     } else {
       throw new Error('認証に失敗しました');
