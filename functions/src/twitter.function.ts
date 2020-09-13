@@ -1,7 +1,6 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import * as Twitter from 'twitter';
-import { Teacher } from './interfaces/teacher';
 
 export const db = admin.firestore();
 
@@ -21,32 +20,32 @@ export const setTeacherDataById = functions
 
       const teacherIds: string = param.teacherIds.join(',');
 
-      const twitterProfile = await twitterClient.get('users/lookup', {
-        screen_name: teacherIds,
-      });
+      const twitterProfiles: Twitter.ResponseData = await twitterClient.get(
+        'users/lookup',
+        {
+          screen_name: teacherIds,
+        }
+      );
 
-      console.log(teacherIds);
-      console.log(param.articleId);
-
-      param.teacherIds.map((teacherId: string) => {
-        console.log(teacherId);
-        console.log(param.articleId);
-        console.log(twitterProfile);
-        const teacher: Teacher = {
-          id: teacherId,
-          name: twitterProfile.name,
-          screenName: twitterProfile.screen_name,
-          description: twitterProfile.description,
-          profileImageUrl: twitterProfile.profile_image_url_https.replace(
+      const twitterProfile = twitterProfiles.map((profile: any) => {
+        return {
+          name: profile.name,
+          screenName: profile.screen_name,
+          description: profile.description,
+          profileImageUrl: profile.profile_image_url_https.replace(
             '_normal',
             ''
           ),
-          twitterUid: twitterProfile.user_id,
+          twitterUid: profile.id,
         };
+      });
+
+      await param.teacherIds.map((teacherId: string) => {
         return db
           .doc(`articles/${param.articleId}/teachers/${teacherId}`)
-          .set(teacher);
+          .set({ ...twitterProfile });
       });
+
       return true;
     } else {
       throw new Error('認証に失敗しました');
