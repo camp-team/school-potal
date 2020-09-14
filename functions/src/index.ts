@@ -12,3 +12,7 @@ export {
   deleteArticle,
   updateArticle,
 } from './article.function';
+
+export { countUpLiked, countDownLiked } from './like.function';
+
+export { countUpPin, countDownPin } from './pin.function';

@@ -13,7 +13,7 @@
   </div>
 
   <div class="tags">
-    <h3 class="tags__title">人気のキーワード</h3>
+    <h3 class="tags__title">注目のキーワード</h3>
     <mat-chip-list #chipList aria-label="tag selection">
       <mat-chip *ngFor="let tag of tags" [value]="tag.value">
         <a (click)="routeTagFilter(tag.value)"

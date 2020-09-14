@@ -1,4 +1,6 @@
 @import 'mixins';
+@import '~@angular/material/theming';
+@import 'material-custom';
 
 .article {
   max-width: 800px;
@@ -6,13 +8,23 @@
 }
 
 .hero {
-  margin-bottom: 40px;
+  margin-bottom: 24px;
+  position: relative;
+  @include sp {
+    margin-top: 8px;
+  }
   &__thumbnail {
     max-width: 100%;
     margin: 0 0 8px 0;
   }
   &__category {
-    opacity: 0.6;
+    position: absolute;
+    top: -16px;
+    left: -16px;
+    @include sp {
+      top: -8px;
+      left: -8px;
+    }
   }
   &__logo {
     width: 40px;
@@ -23,11 +35,83 @@
   }
   &__title {
     font-weight: 500;
+    :hover {
+      color: #47c5fc;
+    }
   }
   &__body {
     display: flex;
     align-items: center;
+    @include sp {
+      display: block;
+    }
   }
+  &__body-inner {
+    display: flex;
+    align-items: center;
+  }
+  &__actions {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    padding: 16px;
+  }
+  &__like {
+    margin-right: 8px;
+    background: #424242;
+    height: 36px;
+    &:hover .hero__like-count,
+    &:hover .hero__like-icon {
+      color: mat-color($candy-app-accent);
+    }
+  }
+  &__like-icon {
+    margin-right: 8px;
+    transition: ease-in-out 0.2s;
+  }
+  &__like-count {
+    height: 36px;
+    transition: ease-in-out 0.2s;
+  }
+  &__share {
+    margin-right: 8px;
+    height: 36px;
+    transition: ease-in-out 0.2s;
+    &:hover svg {
+      stroke: #2aa1f1;
+    }
+    svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      transition: ease-in-out 0.2s;
+    }
+  }
+  &__comment {
+    margin-right: 8px;
+    transition: ease-in-out 0.2s;
+    &:hover {
+      color: mat-color($candy-app-primary);
+    }
+  }
+  &__pin {
+    margin-right: 8px;
+    transition: ease-in-out 0.2s;
+    &:hover {
+      color: mat-color($candy-app-warn);
+    }
+  }
+  &__pin-icon {
+    margin-right: 8px;
+    transition: ease-in-out 0.2s;
+  }
+}
+
+mat-divider {
+  margin-bottom: 24px;
 }
 
 h1 {
