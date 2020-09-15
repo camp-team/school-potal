@@ -1,7 +1,12 @@
 <mat-nav-list>
   <a mat-list-item routerLink="/">
-    <mat-icon class="mat-icon">home</mat-icon> ホーム</a
+    <mat-icon class="mat-icon">home</mat-icon>ホーム</a
   >
+  <ng-container *ngIf="user$ | async as user">
+    <a mat-list-item routerLink="user/{{ user.uid }}/pins">
+      <mat-icon class="mat-icon">push_pin</mat-icon>ピン一覧</a
+    >
+  </ng-container>
   <mat-divider class="divider"></mat-divider>
   <h3 mat-subheader>カテゴリー</h3>
   <a mat-list-item (click)="routeCategoryFilter('プログラミング')">

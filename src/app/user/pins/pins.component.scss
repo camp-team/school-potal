@@ -1,27 +1,26 @@
 @import 'mixins';
 
 .container {
+  height: 100vh;
   @include sp {
     padding: 8px;
   }
 }
 
-h2 {
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 16px;
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  @include tab {
+    grid-template-columns: repeat(3, 1fr);
+  }
   @include sp {
-    margin-bottom: 8px;
+    grid-template-columns: 1fr;
   }
 }
 
-.flex {
-  display: flex;
-  max-width: 375px;
-}
-
 .article {
-  margin: 8px 8px 24px 8px;
+  margin: 8px;
   @include sp {
     padding: 0;
   }
@@ -29,8 +28,7 @@ h2 {
     display: flex;
     align-items: center;
     margin-bottom: 8px;
-    padding: 2px;
-    max-width: 160px;
+    cursor: inherit;
   }
   &__category-text {
     opacity: 0.8;
@@ -65,28 +63,17 @@ h2 {
     -webkit-line-clamp: 3;
     display: -webkit-box;
   }
+  &__name {
+    &:hover {
+      color: #47c5fc;
+    }
+  }
   &__price,
   &__up {
     opacity: 0.38;
   }
 }
 
-.loading-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 16px;
-  margin: 96px 0;
-  @include tab {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  @include sp {
-    grid-template-columns: 1fr;
-  }
-}
-
-mat-divider {
-  margin-bottom: 24px;
-  @include sp {
-    margin: 16px;
-  }
+mat-spinner {
+  margin: 48px auto;
 }

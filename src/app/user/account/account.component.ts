@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, combineLatest } from 'rxjs';
 import { switchMap, map, tap } from 'rxjs/operators';
 import { UserService } from 'src/app/services/user.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -12,12 +12,16 @@ import { User } from 'src/app/interfaces/users';
   styleUrls: ['./account.component.scss'],
 })
 export class AccountComponent implements OnInit {
-  profileId: string;
-
   user$: Observable<User> = this.route.paramMap.pipe(
     switchMap((param) => {
       const profileId = param.get('uid');
       return this.userService.getUserData(profileId);
+    })
+  );
+
+  uid$: Observable<string> = this.authService.user$.pipe(
+    map((user) => {
+      return user.uid;
     })
   );
 
@@ -27,18 +31,16 @@ export class AccountComponent implements OnInit {
     })
   );
 
-  isMypage: boolean;
+  isMypage$: Observable<boolean> = combineLatest([
+    this.profileId$,
+    this.uid$,
+  ]).pipe(map(([profileId, uid]) => profileId === uid));
 
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
     private authService: AuthService
-  ) {
-    this.authService.user$.subscribe((user) => {
-      this.profileId$.subscribe((uid) => (this.profileId = uid));
-      this.isMypage = this.userService.isEditable(user.uid, this.profileId);
-    });
-  }
+  ) {}
 
   ngOnInit(): void {}
 }

@@ -8,8 +8,6 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  userId: string;
-
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {}

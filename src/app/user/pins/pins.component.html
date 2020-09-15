@@ -1,0 +1,41 @@
+<div class="container" *ngIf="user$ | async">
+  <div class="grid" *ngIf="articles$ | async as articles; else loading">
+    <div class="article" *ngFor="let article of articles">
+      <button mat-flat-button color="primary" class="article__category">
+        <p>{{ article.category }}</p>
+      </button>
+
+      <a
+        class="article__thumbnail"
+        routerLink="/article-detail/{{ article.id }}"
+      >
+        <img [src]="article.thumbnailURL" alt="" />
+      </a>
+
+      <div class="article__body">
+        <div class="article__top">
+          <img class="article__logo" [src]="article.logo" alt="" />
+          <h2 class="article__title">{{ article.title }}</h2>
+        </div>
+
+        <div class="article__description">
+          <a
+            href="{{ article.serviceURL }}"
+            target="_blank"
+            class="article__name"
+            >{{ article.name }}</a
+          >
+          <p class="article__up">
+            {{ article.updatedAt.toDate() | date: 'yyyy年M月d日' }} UPDATE
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #loading>
+    <div class="loading">
+      <mat-spinner [diameter]="40"></mat-spinner>
+    </div>
+  </ng-template>
+</div>

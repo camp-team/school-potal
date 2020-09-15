@@ -12,4 +12,5 @@ export interface User {
   profile: string;
   links: string[];
   tags: string[];
+  pinnedArticleIds: string[];
 }

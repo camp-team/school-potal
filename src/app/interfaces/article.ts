@@ -15,4 +15,6 @@ export interface Article {
   logo?: string;
   teacherIds: string[];
   tags: string[];
+  likeCount: number;
+  pinCount: number;
 }
