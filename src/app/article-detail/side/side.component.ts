@@ -33,10 +33,10 @@ export class SideComponent implements OnInit {
       )
       .subscribe((article) => {
         this.article = article;
-        const categoryFilter = `category: ${article.category}`;
+        const categoryFilter = `category: ${article?.category}`;
         this.index
           .search('', {
-            facetFilters: [categoryFilter, `id: -${article.id}`],
+            facetFilters: [categoryFilter, `id: -${article?.id}`],
           })
           .then((result) => {
             this.articles = result.hits as any[];
