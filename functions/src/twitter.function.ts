@@ -1,6 +1,7 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import * as Twitter from 'twitter';
+import { Teacher } from './interfaces/teacher';
 
 export const db = admin.firestore();
 
@@ -27,7 +28,7 @@ export const setTeacherDataById = functions
         }
       );
 
-      const twitterProfile = twitterProfiles.map((profile: any) => {
+      const teacherDatas: Teacher[] = twitterProfiles.map((profile: any) => {
         return {
           name: profile.name,
           screenName: profile.screen_name,
@@ -40,10 +41,10 @@ export const setTeacherDataById = functions
         };
       });
 
-      await param.teacherIds.map((teacherId: string) => {
+      await param.teacherIds.map((teacherId: string, i: number) => {
         return db
           .doc(`articles/${param.articleId}/teachers/${teacherId}`)
-          .set({ ...twitterProfile });
+          .set({ ...teacherDatas[i] });
       });
 
       return true;
