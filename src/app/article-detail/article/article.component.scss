@@ -66,47 +66,51 @@ p {
 
 .teacher {
   margin-bottom: 48px;
-  &__head {
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin-bottom: 24px;
+  }
+  &__heading {
     display: flex;
     align-items: center;
-    margin-bottom: 24px;
+    margin-bottom: 32px;
   }
   &__title {
     margin-right: 16px;
   }
-  &__hero {
-    margin-bottom: 24px;
-    box-sizing: border-box;
+  &__head {
     position: relative;
-    @include sp {
-      text-align: center;
-    }
   }
   &__avatar {
     width: 128px;
     height: 128px;
     border-radius: 50%;
     overflow: hidden;
-
+    border: 2px solid #fff;
     @include sp {
       display: block;
       margin: 0 auto;
     }
   }
-  &__body {
-    padding: 16px;
-    background: #424242;
-    border-radius: 8px;
-  }
-  &__button {
+  &__btn {
     background: #424242;
     color: #fff;
     position: absolute;
     bottom: 8px;
     left: 100px;
+    &:hover {
+      background: #2aa1f1;
+    }
     mat-icon {
       font-size: 20px;
     }
+  }
+
+  &__body {
+    padding: 16px;
+    background: #424242;
+    border-radius: 8px;
   }
   &__name {
     font-weight: bold;
@@ -143,4 +147,10 @@ p {
   &__text {
     white-space: pre-wrap;
   }
+}
+
+.line {
+  width: 200px;
+  height: 200px;
+  background: #2aa1f1;
 }

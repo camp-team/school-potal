@@ -29,54 +29,59 @@
       </div>
     </div>
 
-    <div class="teacher">
-      <div class="teacher__head">
+    <div class="teacher" *ngIf="teachers$ | async as teachers; else blank">
+      <div class="teacher__heading">
         <h3 class="teacher__title">講師・メンター</h3>
         <button
           mat-flat-button
-          class="teacher__button"
+          class="teacher__more-btn"
           (click)="openStudentsDialog(article)"
         >
           もっと見る
         </button>
       </div>
-      <div *ngIf="teachers$ | async as teachers; else blank">
-        <div *ngFor="let teacher of teachers">
-          <div class="teacher__hero">
-            <figure class="teacher__avatar">
-              <img src="{{ teacher.profileImageUrl }}" alt="" />
-            </figure>
-            <a
-              href="https://twitter.com/messages/compose?recipient_id={{
-                teacher.twitterUid
-              }}&ref_src=twsrc%5Etfw"
-              mat-mini-fab
-              class="teacher__button"
-              ><mat-icon>send</mat-icon></a
-            >
-          </div>
 
-          <div class="teacher__body">
-            <a
-              href="https://twitter.com/{{ teacher.screenName }}"
-              target="_blank"
-              ><p class="teacher__name">
-                {{ teacher.name }}<br />
-                <span class="teacher__screen-name"
-                  >@{{ teacher.screenName }}</span
-                >
-              </p>
-            </a>
-            <p class="teacher__description">{{ teacher.description }}</p>
-          </div>
+      <div class="teacher__grid">
+        <div *ngFor="let teacher of teachers; index as i" class="teacher__head">
+          <figure class="teacher__avatar" (mouseover)="isActiveTeacher(i)">
+            <img src="{{ teacher.profileImageUrl }}" alt="" />
+          </figure>
+          <a
+            href="https://twitter.com/messages/compose?recipient_id={{
+              teacher.twitterUid
+            }}&ref_src=twsrc%5Etfw"
+            mat-mini-fab
+            class="teacher__btn"
+            ><mat-icon>send</mat-icon></a
+          >
         </div>
       </div>
-      <ng-template #blank>
-        <p>
-          講師・メンターの登録がまだありません🙏
-        </p>
-      </ng-template>
+
+      <div *ngIf="teachers">
+        <div class="teacher__body">
+          <a
+            href="https://twitter.com/{{
+              teachers[selectedTeacherNum].screenName
+            }}"
+            target="_blank"
+            ><p class="teacher__name">
+              {{ teachers[selectedTeacherNum].name }}<br />
+              <span class="teacher__screen-name"
+                >@{{ teachers[selectedTeacherNum].screenName }}</span
+              >
+            </p>
+          </a>
+          <p class="teacher__description">
+            {{ teachers[selectedTeacherNum].description }}
+          </p>
+        </div>
+      </div>
     </div>
+    <ng-template #blank>
+      <p>
+        講師・メンターの登録がまだありません🙏
+      </p>
+    </ng-template>
 
     <div class="feature">
       <h3 class="feature__title">サービスの特徴</h3>
