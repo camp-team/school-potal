@@ -25,6 +25,7 @@ import { QuillModule } from 'ngx-quill';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatRippleModule } from '@angular/material/core';
+import { TeacherDialogComponent } from './teachers-dialog/teachers-dialog.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { MatRippleModule } from '@angular/material/core';
     StudentsDialogComponent,
     CommentFormComponent,
     CommentListComponent,
+    TeacherDialogComponent,
   ],
   imports: [
     CommonModule,

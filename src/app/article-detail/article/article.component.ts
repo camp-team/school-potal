@@ -11,6 +11,7 @@ import { LikeService } from 'src/app/services/like.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { PinService } from 'src/app/services/pin.service';
+import { TeacherDialogComponent } from '../teachers-dialog/teachers-dialog.component';
 
 @Component({
   selector: 'app-article',
@@ -28,6 +29,7 @@ export class ArticleComponent implements OnInit {
   articleId: string;
   isPinned: boolean;
   pinCount: number;
+  teachers: Teacher[];
 
   article$: Observable<Article> = this.route.paramMap.pipe(
     switchMap((param) => {
@@ -118,6 +120,8 @@ export class ArticleComponent implements OnInit {
       .subscribe((article) => {
         this.likeCount = article.likeCount;
       });
+
+    this.teachers$.subscribe((teachers) => (this.teachers = teachers));
   }
 
   isActiveTeacher(i: number): void {
@@ -130,6 +134,18 @@ export class ArticleComponent implements OnInit {
       autoFocus: false,
       restoreFocus: false,
       data: { article },
+    });
+  }
+
+  openTeachersDialog(article: Article) {
+    this.dialog.open(TeacherDialogComponent, {
+      width: '400px',
+      autoFocus: false,
+      restoreFocus: false,
+      data: {
+        article,
+        teachers: this.teachers,
+      },
     });
   }
 
