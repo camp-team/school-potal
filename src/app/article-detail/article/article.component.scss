@@ -154,6 +154,10 @@ p {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     margin-bottom: 24px;
+    @include sp {
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
   }
   &__heading {
     display: flex;
@@ -167,11 +171,11 @@ p {
     position: relative;
   }
   &__avatar {
-    width: 128px;
-    height: 128px;
+    max-width: 128px;
+    max-height: 128px;
     border-radius: 50%;
     overflow: hidden;
-    border: 2px solid #fff;
+    margin-bottom: 16px;
     @include sp {
       display: block;
       margin: 0 auto;
@@ -188,6 +192,21 @@ p {
     }
     mat-icon {
       font-size: 20px;
+    }
+  }
+  &__active-sign {
+    display: block;
+    width: 24px;
+    height: 3px;
+    background: linear-gradient(to right, #6c63fe, #14e3fe);
+    margin-bottom: 16px;
+    position: absolute;
+    bottom: -16px;
+    left: 52px;
+    @include sp {
+      bottom: -20%;
+      left: 50%;
+      transform: translateX(-50%);
     }
   }
 
@@ -231,10 +250,4 @@ p {
   &__text {
     white-space: pre-wrap;
   }
-}
-
-.line {
-  width: 200px;
-  height: 200px;
-  background: #2aa1f1;
 }

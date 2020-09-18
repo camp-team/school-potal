@@ -132,7 +132,11 @@
       </div>
 
       <div class="teacher__grid">
-        <div *ngFor="let teacher of teachers; index as i" class="teacher__head">
+        <div
+          @fade
+          *ngFor="let teacher of teachers | slice: 0:4; index as i"
+          class="teacher__head"
+        >
           <figure class="teacher__avatar" (mouseover)="isActiveTeacher(i)">
             <img src="{{ teacher.profileImageUrl }}" alt="" />
           </figure>
@@ -145,11 +149,14 @@
             class="teacher__btn"
             ><mat-icon>send</mat-icon></a
           >
+          <ng-container *ngIf="teachers[selectedTeacherNum] === teachers[i]">
+            <span @fade class="teacher__active-sign"></span>
+          </ng-container>
         </div>
       </div>
 
-      <div *ngIf="teachers">
-        <div class="teacher__body">
+      <div *ngIf="teachers[selectedTeacherNum]">
+        <div @fade class="teacher__body">
           <a
             href="https://twitter.com/{{
               teachers[selectedTeacherNum].screenName

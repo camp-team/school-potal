@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { ArticleService } from 'src/app/services/article.service';
-import { Observable, combineLatest, of } from 'rxjs';
+import { Observable, combineLatest, of, ReplaySubject, Subject } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { Article } from 'src/app/interfaces/article';
 import { switchMap, take, map } from 'rxjs/operators';
@@ -12,16 +12,18 @@ import { AuthService } from 'src/app/services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { PinService } from 'src/app/services/pin.service';
 import { TeacherDialogComponent } from '../teachers-dialog/teachers-dialog.component';
+import { fade } from '../../animations';
 
 @Component({
   selector: 'app-article',
   templateUrl: './article.component.html',
   styleUrls: ['./article.component.scss'],
+  animations: [fade],
 })
 export class ArticleComponent implements OnInit {
   @Input() article: Article;
+  @ViewChild('target') target: ElementRef;
 
-  isCurrent: boolean;
   selectedTeacherNum = 0;
   isliked: boolean;
   likeCount: number;
@@ -46,7 +48,7 @@ export class ArticleComponent implements OnInit {
 
   uid$ = this.authService.user$.pipe(
     map((user) => {
-      return user.uid;
+      return user?.uid;
     })
   );
 
@@ -77,13 +79,6 @@ export class ArticleComponent implements OnInit {
       }
     })
   );
-
-  @ViewChild('target')
-  target: ElementRef;
-
-  scroll(): void {
-    this.target.nativeElement.scrollIntoView({ behavior: 'smooth' });
-  }
 
   constructor(
     private articleService: ArticleService,
@@ -122,6 +117,10 @@ export class ArticleComponent implements OnInit {
       });
 
     this.teachers$.subscribe((teachers) => (this.teachers = teachers));
+  }
+
+  scroll(): void {
+    this.target.nativeElement.scrollIntoView({ behavior: 'smooth' });
   }
 
   isActiveTeacher(i: number): void {
