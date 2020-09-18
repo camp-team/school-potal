@@ -41,11 +41,13 @@ export const setTeacherDataById = functions
         };
       });
 
-      await param.teacherIds.map((teacherId: string, i: number) => {
-        return db
-          .doc(`articles/${param.articleId}/teachers/${teacherId}`)
-          .set({ ...teacherDatas[i] });
-      });
+      await Promise.all(
+        param.teacherIds.map((teacherId: string, i: number) => {
+          return db
+            .doc(`articles/${param.articleId}/teachers/${teacherId}`)
+            .set({ ...teacherDatas[i] });
+        })
+      );
 
       return true;
     } else {
