@@ -1,12 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  Validators,
+} from '@angular/forms';
 import { ArticleService } from 'src/app/services/article.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { firestore } from 'firebase';
 import { Observable } from 'rxjs';
 import { Article } from 'src/app/interfaces/article';
 import { ActivatedRoute, Router } from '@angular/router';
-import { switchMap, tap, map } from 'rxjs/operators';
+import { switchMap, map } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
@@ -22,8 +27,8 @@ interface Category {
   styleUrls: ['./edit.component.scss'],
 })
 export class EditComponent implements OnInit {
+  processing: boolean;
   uid: string;
-
   visible = true;
   selectable = true;
   removable = true;
@@ -56,7 +61,7 @@ export class EditComponent implements OnInit {
     serviceURL: [''],
     type: [''],
     id: [''],
-    teacherId: [''],
+    teacherIds: this.fb.array([]),
     tags: [['']],
   });
 
@@ -115,6 +120,10 @@ export class EditComponent implements OnInit {
     return this.form.get('tags') as FormControl;
   }
 
+  get teacherIds(): FormArray {
+    return this.form.get('teacherIds') as FormArray;
+  }
+
   constructor(
     private fb: FormBuilder,
     private articleService: ArticleService,
@@ -142,7 +151,19 @@ export class EditComponent implements OnInit {
         ...article,
         tags: null,
       });
+      article.teacherIds.forEach((teacherId) => {
+        const array = new FormControl(teacherId);
+        this.teacherIds.push(array);
+      });
     });
+  }
+
+  addForm() {
+    this.teacherIds.push(new FormControl(''));
+  }
+
+  removeForm(index: number) {
+    this.teacherIds.removeAt(index);
   }
 
   addTag(event: MatChipInputEvent): void {
@@ -197,8 +218,8 @@ export class EditComponent implements OnInit {
           id: formData.id,
           teacherIds: formData.teacherIds,
           tags: this.tags,
-          likeCount: this.likeCount,
-          pinCount: this.pinCount,
+          likeCount: this.likeCount || 0,
+          pinCount: this.pinCount || 0,
         },
         this.images
       )
