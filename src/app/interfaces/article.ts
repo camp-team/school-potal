@@ -13,7 +13,7 @@ export interface Article {
   id?: string;
   thumbnailURL?: string;
   logo?: string;
-  teacherId: string;
+  teacherIds: string[];
   tags: string[];
   likeCount: number;
   pinCount: number;

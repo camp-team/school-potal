@@ -1,0 +1,35 @@
+<h1 matDialogTitle class="dialog-header">{{ data.article.name }}の先生</h1>
+
+<mat-divider></mat-divider>
+
+<mat-dialog-content>
+  <div class="teacher" *ngFor="let teacher of data.teachers">
+    <figure class="teacher__avatar">
+      <img src="{{ teacher.profileImageUrl }}" alt="" />
+    </figure>
+    <a href="https://twitter.com/{{ teacher.screenName }}">
+      <p class="teacher__name">{{ teacher.name }}</p>
+    </a>
+    <p class="teacher__description">
+      {{ teacher.description }}
+    </p>
+    <a
+      href="https://twitter.com/messages/compose?recipient_id={{
+        teacher.twitterUid
+      }}&ref_src=twsrc%5Etfw"
+      mat-flat-button
+      color="primary"
+      class="teacher__btn"
+    >
+      話をきく</a
+    >
+  </div>
+</mat-dialog-content>
+
+<mat-divider></mat-divider>
+
+<mat-dialog-actions>
+  <button mat-mini-fab color="" matDialogClose class="close">
+    <mat-icon class="close__icon">close</mat-icon>
+  </button>
+</mat-dialog-actions>

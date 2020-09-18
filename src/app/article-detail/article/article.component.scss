@@ -150,50 +150,81 @@ p {
 
 .teacher {
   margin-bottom: 48px;
-  &__head {
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin-bottom: 24px;
+    @include sp {
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+  }
+  &__heading {
     display: flex;
     align-items: center;
-    margin-bottom: 24px;
+    margin-bottom: 32px;
   }
   &__title {
     margin-right: 16px;
   }
-  &__hero {
-    margin-bottom: 24px;
-    box-sizing: border-box;
-    @include sp {
-      text-align: center;
-    }
+  &__head {
+    position: relative;
   }
   &__avatar {
-    width: 128px;
-    height: 128px;
+    max-width: 128px;
+    max-height: 128px;
     border-radius: 50%;
     overflow: hidden;
+    margin-bottom: 16px;
     @include sp {
       display: block;
       margin: 0 auto;
     }
   }
+  &__btn {
+    background: #424242;
+    color: #fff;
+    position: absolute;
+    bottom: 8px;
+    left: 100px;
+    &:hover {
+      background: #2aa1f1;
+    }
+    mat-icon {
+      font-size: 20px;
+    }
+  }
+  &__active-sign {
+    display: block;
+    width: 24px;
+    height: 3px;
+    background: linear-gradient(to right, #6c63fe, #14e3fe);
+    margin-bottom: 16px;
+    position: absolute;
+    bottom: -16px;
+    left: 52px;
+    @include sp {
+      bottom: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
   &__body {
-    padding: 8px;
+    padding: 16px;
     background: #424242;
     border-radius: 8px;
   }
-  &__button {
-    width: 100px;
-    line-height: 1;
-    padding: 8px;
-    border-radius: 30px;
-    background: #303030;
-    color: #fff;
-  }
   &__name {
+    font-weight: bold;
     margin-bottom: 8px;
   }
   &__description {
     display: block;
     margin-bottom: 16px;
+  }
+  &__screen-name {
+    opacity: 0.6;
   }
 }
 

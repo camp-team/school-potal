@@ -1,6 +1,7 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import * as Twitter from 'twitter';
+import { Teacher } from './interfaces/teacher';
 
 export const db = admin.firestore();
 
@@ -17,21 +18,36 @@ export const setTeacherDataById = functions
         access_token_key: functions.config().twitter.token_key,
         access_token_secret: functions.config().twitter.token_secret,
       });
-      const TwitterProfile = await twitterClient.get('users/show', {
-        screen_name: param.teacherId,
-      });
 
-      await db
-        .doc(`articles/${param.articleId}/teachers/${param.teacherId}`)
-        .set({
-          name: TwitterProfile.name,
-          screenName: TwitterProfile.screen_name,
-          description: TwitterProfile.description,
-          profileImageUrl: TwitterProfile.profile_image_url_https.replace(
+      const teacherIds: string = param.teacherIds.join(',');
+
+      const twitterProfiles: Twitter.ResponseData = await twitterClient.get(
+        'users/lookup',
+        {
+          screen_name: teacherIds,
+        }
+      );
+
+      const teacherDatas: Teacher[] = twitterProfiles.map((profile: any) => {
+        return {
+          name: profile.name,
+          screenName: profile.screen_name,
+          description: profile.description,
+          profileImageUrl: profile.profile_image_url_https.replace(
             '_normal',
             ''
           ),
-        });
+          twitterUid: profile.id,
+        };
+      });
+
+      await Promise.all(
+        param.teacherIds.map((teacherId: string, i: number) => {
+          return db
+            .doc(`articles/${param.articleId}/teachers/${teacherId}`)
+            .set({ ...teacherDatas[i] });
+        })
+      );
 
       return true;
     } else {

@@ -15,10 +15,20 @@
         </p>
       </div>
       <div *ngIf="isMypage$ | async" class="account__btns">
-        <a mat-flat-button routerLink="setting" class="account__setting">
+        <a
+          mat-flat-button
+          routerLink="setting"
+          routerLinkActive="active"
+          class="account__setting"
+        >
           編集
         </a>
-        <a mat-flat-button routerLink="pins" class="account__pin">
+        <a
+          mat-flat-button
+          routerLink="pins"
+          routerLinkActive="active"
+          class="account__pin"
+        >
           ピン
         </a>
       </div>
