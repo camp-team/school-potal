@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { ArticleService } from 'src/app/services/article.service';
@@ -13,7 +13,7 @@ import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component'
   templateUrl: './editor-article-list.component.html',
   styleUrls: ['./editor-article-list.component.scss'],
 })
-export class EditorArticleListComponent implements OnInit {
+export class EditorArticleListComponent implements OnInit, AfterViewInit {
   articleId: string;
 
   displayedColumns: string[] = [
@@ -27,8 +27,9 @@ export class EditorArticleListComponent implements OnInit {
     'menu',
   ];
   dataSource: MatTableDataSource<Article>;
+  defaultPageSize = 10;
 
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(
     private articleService: ArticleService,
@@ -38,7 +39,9 @@ export class EditorArticleListComponent implements OnInit {
     this.loadingService.toggleLoading(true);
   }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  ngAfterViewInit() {
     this.articleService
       .getArticles()
       .pipe(tap(() => this.loadingService.toggleLoading(false)))
