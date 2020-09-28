@@ -15,11 +15,6 @@ h2 {
   }
 }
 
-.flex {
-  display: flex;
-  max-width: 375px;
-}
-
 .article {
   margin: 8px 8px 24px 8px;
   @include sp {

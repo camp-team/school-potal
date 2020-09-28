@@ -2,7 +2,7 @@
   <h2>新着オンラインサロン</h2>
   <ng-container *ngIf="salons$ | async as salons; else loading">
     <swiper [config]="config" [(index)]="index">
-      <div class="flex swiper-slide" *ngFor="let salon of salons">
+      <div class="swiper-slide" *ngFor="let salon of salons">
         <a routerLink="/article-detail/{{ salon.id }}" href="" class="article">
           <button mat-flat-button color="primary">
             <p class="article__category-text">{{ salon.category }}</p>

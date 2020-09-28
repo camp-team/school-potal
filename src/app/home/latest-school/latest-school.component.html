@@ -2,7 +2,7 @@
   <h2>新着スクール</h2>
   <ng-container *ngIf="schools$ | async as schools; else loading">
     <swiper [config]="config" [(index)]="index">
-      <div class="flex swiper-slide" *ngFor="let school of schools">
+      <div class="swiper-slide" *ngFor="let school of schools">
         <a routerLink="/article-detail/{{ school.id }}" href="" class="article">
           <button mat-flat-button color="primary">
             <p class="article__category-text">{{ school.category }}</p>
