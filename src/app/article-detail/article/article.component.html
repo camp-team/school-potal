@@ -99,7 +99,9 @@
               (click)="unpinnedArticle(uid)"
               class="hero__pin"
             >
-              <mat-icon color="warn" class="hero__pin-icon">push_pin</mat-icon>
+              <mat-icon @bounce color="warn" class="hero__pin-icon"
+                >push_pin</mat-icon
+              >
               <p class="hero__like-count">{{ article.pinCount }}</p>
             </button>
           </ng-container>

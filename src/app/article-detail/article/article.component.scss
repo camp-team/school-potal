@@ -68,6 +68,7 @@
   &__like-icon {
     margin-right: 8px;
     transition: ease-in-out 0.2s;
+    font-size: 24px;
   }
   &__like-count {
     height: 36px;
@@ -79,6 +80,7 @@
     transition: ease-in-out 0.2s;
     &:hover svg {
       stroke: #2aa1f1;
+      fill: #2aa1f1;
     }
     svg {
       position: absolute;
