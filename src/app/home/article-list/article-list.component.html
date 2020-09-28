@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="grid" *ngIf="articles$ | async as articles; else loading">
+  <div class="grid" *ngIf="articles">
     <a
       routerLink="/article-detail/{{ article.id }}"
       href=""
@@ -29,13 +29,18 @@
     </a>
   </div>
 
-  <ng-template #loading>
-    <div class="loading-grid">
-      <div *ngFor="let spin of spins">
-        <div class="loading-grid__item">
-          <mat-spinner [diameter]="40"></mat-spinner>
-        </div>
-      </div>
-    </div>
-  </ng-template>
+  <div
+    infiniteScroll
+    [infiniteScrollDistance]="1"
+    [infiniteScrollThrottle]="100"
+    (scrolled)="getArticlesLimited()"
+  ></div>
+
+  <mat-progress-spinner
+    class="loading"
+    *ngIf="isloading"
+    mode="indeterminate"
+    color="primary"
+    [diameter]="40"
+  ></mat-progress-spinner>
 </div>
