@@ -80,15 +80,13 @@ export class ArticleService {
     return this.db.collection<Article>('articles').valueChanges();
   }
 
-  getArticlesLimited(
-    startAt?: QueryDocumentSnapshot<firestore.DocumentData>
-  ): Observable<QueryDocumentSnapshot<firestore.DocumentData>[]> {
+  getArticlesLimited(startAt?: QueryDocumentSnapshot<firestore.DocumentData>) {
     return this.db
       .collection<Article>('articles', (ref) => {
         if (startAt) {
           return ref.orderBy('createdAt', 'desc').startAfter(startAt).limit(3);
         } else {
-          return ref.orderBy('createdAt', 'desc').limit(3);
+          return ref.orderBy('createdAt', 'desc');
         }
       })
       .snapshotChanges()

@@ -36,11 +36,11 @@
     (scrolled)="getArticlesLimited()"
   ></div>
 
-  <mat-progress-spinner
-    class="loading"
-    *ngIf="isloading"
-    mode="indeterminate"
-    color="primary"
-    [diameter]="40"
-  ></mat-progress-spinner>
+  <ng-container *ngIf="isloading">
+    <mat-progress-spinner
+      mode="indeterminate"
+      color="primary"
+      [diameter]="40"
+    ></mat-progress-spinner>
+  </ng-container>
 </div>

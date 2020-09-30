@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Article } from 'src/app/interfaces/article';
 import { ArticleService } from 'src/app/services/article.service';
-import { Observable } from 'rxjs';
-import { take, tap } from 'rxjs/operators';
-import { LoadingService } from 'src/app/services/loading.service';
+import { UiService } from 'src/app/services/ui.service';
 import { newArray } from '@angular/compiler/src/util';
+import { Article } from 'src/app/interfaces/article';
 
 @Component({
   selector: 'app-article-list',
@@ -15,13 +13,13 @@ export class ArticleListComponent implements OnInit {
   isloading: boolean;
   isComplete: boolean;
   lastDoc;
-  articles = [];
+  articles: Article[] = [];
 
   spins = newArray(5);
 
   constructor(
     private articleService: ArticleService,
-    public loadingService: LoadingService
+    public uiService: UiService
   ) {}
 
   ngOnInit(): void {}
@@ -35,6 +33,7 @@ export class ArticleListComponent implements OnInit {
       this.isloading = false;
       return;
     }
+    this.isloading = true;
     this.articleService
       .getArticlesLimited(this.lastDoc)
       .subscribe((articles) => {
@@ -50,6 +49,9 @@ export class ArticleListComponent implements OnInit {
           this.articles.push(...articlesData);
           this.isloading = false;
           console.log('scroll');
+        } else {
+          this.isComplete = true;
+          this.isloading = false;
         }
       });
   }
