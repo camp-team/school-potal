@@ -1,17 +1,25 @@
 import { Injectable } from '@angular/core';
-import { Observable, ReplaySubject } from 'rxjs';
+import { Observable, ReplaySubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class DrawerService {
+export class UiService {
+  loadingSource = new Subject();
+  loading$ = this.loadingSource.asObservable();
+  loading: boolean;
+
   isOpenSource = new ReplaySubject<boolean>(1);
   isOpen$: Observable<boolean> = this.isOpenSource.asObservable();
   isOpened: boolean;
 
   constructor() {}
 
-  toggle() {
+  toggleLoading(status: boolean) {
+    this.loadingSource.next(status);
+  }
+
+  toggleOpening() {
     this.isOpened = !this.isOpened;
     this.isOpenSource.next(this.isOpened);
   }

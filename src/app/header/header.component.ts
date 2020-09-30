@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DrawerService } from '../services/drawer.service';
 import { AuthService } from '../services/auth.service';
 import { Observable } from 'rxjs';
 import { User } from '../interfaces/users';
@@ -10,6 +9,7 @@ import { Router } from '@angular/router';
 import { startWith, debounceTime } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { SearchDialogComponent } from '../search-dialog/search-dialog.component';
+import { UiService } from '../services/ui.service';
 
 @Component({
   selector: 'app-header',
@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit {
   searchOptions = [];
 
   constructor(
-    private drawerService: DrawerService,
+    private uiService: UiService,
     private authService: AuthService,
     private searchService: SearchService,
     private router: Router,
@@ -47,7 +47,9 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {}
 
   toggle() {
-    this.drawerService.toggle();
+    console.log('check');
+
+    this.uiService.toggleOpening();
   }
 
   logout() {

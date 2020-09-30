@@ -4,7 +4,7 @@ import { ArticleService } from 'src/app/services/article.service';
 import { Observable } from 'rxjs';
 import { switchMap, tap, map } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
-import { LoadingService } from 'src/app/services/loading.service';
+import { UiService } from 'src/app/services/ui.service';
 import { CommentWithUser } from 'src/app/interfaces/comment';
 import { CommentService } from 'src/app/services/comment.service';
 
@@ -26,7 +26,7 @@ export class ArticleDetailComponent implements OnInit {
     switchMap((id) => {
       return this.articleService.getArticle(id);
     }),
-    tap(() => this.loadingService.toggleLoading(false))
+    tap(() => this.uiService.toggleLoading(false))
   );
 
   comments$: Observable<CommentWithUser[]> = this.articleId$.pipe(
@@ -38,10 +38,10 @@ export class ArticleDetailComponent implements OnInit {
   constructor(
     private articleService: ArticleService,
     private route: ActivatedRoute,
-    private loadingService: LoadingService,
+    private uiService: UiService,
     private commentService: CommentService
   ) {
-    this.loadingService.toggleLoading(true);
+    this.uiService.toggleLoading(true);
     this.articleId$.subscribe((id) => (this.articleId = id));
   }
 
