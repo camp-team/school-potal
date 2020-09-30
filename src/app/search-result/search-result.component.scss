@@ -29,6 +29,9 @@
   @include sp {
     margin: 16px auto;
   }
+  &__wrap {
+    margin-bottom: 160px;
+  }
   &__hits {
     font-weight: 500;
     font-size: 16px;
@@ -91,4 +94,8 @@
 
 mat-divider {
   margin: 16px 0;
+}
+
+mat-progress-spinner {
+  margin: 48px auto;
 }
