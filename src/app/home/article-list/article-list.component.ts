@@ -25,11 +25,8 @@ export class ArticleListComponent implements OnInit {
   ngOnInit(): void {}
 
   getArticlesLimited() {
-    console.log('check');
-
     this.isloading = true;
     if (this.isComplete) {
-      console.log('complete');
       this.isloading = false;
       return;
     }
@@ -41,14 +38,12 @@ export class ArticleListComponent implements OnInit {
           if (!articles.length) {
             this.isComplete = true;
             this.isloading = false;
-            console.log('check');
             return;
           }
           this.lastDoc = articles[articles.length - 1];
           const articlesData = articles.map((doc) => doc.data());
           this.articles.push(...articlesData);
           this.isloading = false;
-          console.log('scroll');
         } else {
           this.isComplete = true;
           this.isloading = false;

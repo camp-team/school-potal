@@ -47,8 +47,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {}
 
   toggle() {
-    console.log('check');
-
     this.uiService.toggleOpening();
   }
 

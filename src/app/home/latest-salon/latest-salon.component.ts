@@ -16,10 +16,11 @@ export class LatestSalonComponent implements OnInit {
   config: SwiperConfigInterface = {
     loop: true,
     loopedSlides: 1,
-    slidesPerView: 5,
+    slidesPerView: 4,
     navigation: true,
     observer: true,
     watchOverflow: true,
+    spaceBetween: 24,
     breakpoints: {
       415: {
         slidesPerView: 1,
@@ -27,7 +28,7 @@ export class LatestSalonComponent implements OnInit {
       },
       960: {
         slidesPerView: 3,
-        spaceBetween: 16,
+        spaceBetween: 24,
       },
     },
   };

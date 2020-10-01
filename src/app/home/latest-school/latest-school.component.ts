@@ -15,10 +15,11 @@ import { newArray } from '@angular/compiler/src/util';
 export class LatestSchoolComponent implements OnInit {
   config: SwiperConfigInterface = {
     loop: true,
-    slidesPerView: 5,
+    slidesPerView: 4,
     navigation: true,
     observer: true,
     watchOverflow: true,
+    spaceBetween: 24,
     breakpoints: {
       415: {
         slidesPerView: 1,
