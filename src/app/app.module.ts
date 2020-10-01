@@ -34,6 +34,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { QuillModule } from 'ngx-quill';
 import { ShellComponent } from './shell/shell.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     MatInputModule,
     MatFormFieldModule,
     QuillModule.forRoot(),
+    InfiniteScrollModule,
   ],
   providers: [{ provide: REGION, useValue: 'asia-northeast1' }],
   bootstrap: [AppComponent],

@@ -20,3 +20,18 @@
     </div>
   </div>
 </mat-card>
+
+<div
+  infiniteScroll
+  [infiniteScrollDistance]="1"
+  [infiniteScrollThrottle]="100"
+  (scrolled)="searchArticles()"
+></div>
+
+<ng-container *ngIf="uiService.loading">
+  <mat-progress-spinner
+    mode="indeterminate"
+    color="primary"
+    [diameter]="40"
+  ></mat-progress-spinner>
+</ng-container>

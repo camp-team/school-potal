@@ -14,6 +14,7 @@ import { SwiperModule } from 'ngx-swiper-wrapper';
 import { TagListComponent } from './tag-list/tag-list.component';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatCardModule } from '@angular/material/card';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { MatCardModule } from '@angular/material/card';
     SwiperModule,
     MatChipsModule,
     MatCardModule,
+    InfiniteScrollModule,
   ],
 })
 export class HomeModule {}

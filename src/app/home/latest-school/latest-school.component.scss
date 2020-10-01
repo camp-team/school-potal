@@ -21,7 +21,6 @@ h2 {
 }
 
 .article {
-  margin: 8px 8px 24px 8px;
   @include sp {
     padding: 0;
   }
@@ -85,7 +84,7 @@ h2 {
 }
 
 mat-divider {
-  margin-bottom: 24px;
+  margin: 24px 0;
   @include sp {
     margin: 16px;
   }

@@ -26,6 +26,8 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatRippleModule } from '@angular/material/core';
 import { TeacherDialogComponent } from './teachers-dialog/teachers-dialog.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+
 @NgModule({
   declarations: [
     ArticleDetailComponent,
@@ -57,6 +59,7 @@ import { TeacherDialogComponent } from './teachers-dialog/teachers-dialog.compon
     MatChipsModule,
     MatTooltipModule,
     MatRippleModule,
+    InfiniteScrollModule,
   ],
 })
 export class ArticleDetailModule {}

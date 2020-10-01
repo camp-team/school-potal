@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import {
+  AngularFirestore,
+  QueryDocumentSnapshot,
+} from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Article } from '../interfaces/article';
 import { Observable } from 'rxjs';
@@ -7,6 +10,7 @@ import { firestore } from 'firebase';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Teacher } from '../interfaces/teacher';
 import { AngularFireFunctions } from '@angular/fire/functions';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -40,16 +44,12 @@ export class ArticleService {
       })
       .then(() => {
         const teacherIds: string[] = article.teacherIds;
-        console.log(teacherIds);
-        console.log(id);
         this.setTeacherData(id, teacherIds);
       });
   }
 
   setTeacherData(articleId: string, teacherIds: string[]) {
     const setFn = this.fns.httpsCallable('setTeacherDataById');
-    console.log(articleId, teacherIds);
-    console.log({ ...teacherIds });
     return setFn({ articleId, teacherIds }).toPromise();
   }
 
@@ -76,13 +76,26 @@ export class ArticleService {
     return this.db.collection<Article>('articles').valueChanges();
   }
 
+  getArticlesLimited(startAt?: QueryDocumentSnapshot<firestore.DocumentData>) {
+    return this.db
+      .collection<Article>('articles', (ref) => {
+        if (startAt) {
+          return ref.orderBy('createdAt', 'desc').startAfter(startAt).limit(3);
+        } else {
+          return ref.orderBy('createdAt', 'desc');
+        }
+      })
+      .snapshotChanges()
+      .pipe(map((snaps) => snaps.map((snap) => snap.payload.doc)));
+  }
+
   getSchools(): Observable<Article[]> {
     return this.db
       .collection<Article>('articles', (ref) => {
         return ref
           .where('type', '==', 'school')
           .orderBy('createdAt', 'desc')
-          .limit(8);
+          .limit(12);
       })
       .valueChanges();
   }
@@ -93,7 +106,7 @@ export class ArticleService {
         return ref
           .where('type', '==', 'salon')
           .orderBy('createdAt', 'desc')
-          .limit(8);
+          .limit(12);
       })
       .valueChanges();
   }

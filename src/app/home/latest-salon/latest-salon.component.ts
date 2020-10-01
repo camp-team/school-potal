@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticleService } from 'src/app/services/article.service';
-import { LoadingService } from 'src/app/services/loading.service';
+import { UiService } from 'src/app/services/ui.service';
 import { Observable } from 'rxjs';
 import { Article } from 'src/app/interfaces/article';
 import { tap } from 'rxjs/operators';
@@ -16,10 +16,11 @@ export class LatestSalonComponent implements OnInit {
   config: SwiperConfigInterface = {
     loop: true,
     loopedSlides: 1,
-    slidesPerView: 5,
+    slidesPerView: 4,
     navigation: true,
     observer: true,
     watchOverflow: true,
+    spaceBetween: 24,
     breakpoints: {
       415: {
         slidesPerView: 1,
@@ -27,7 +28,7 @@ export class LatestSalonComponent implements OnInit {
       },
       960: {
         slidesPerView: 3,
-        spaceBetween: 16,
+        spaceBetween: 24,
       },
     },
   };
@@ -38,13 +39,13 @@ export class LatestSalonComponent implements OnInit {
 
   salons$: Observable<Article[]> = this.articleService
     .getSalons()
-    .pipe(tap(() => this.loadingService.toggleLoading(false)));
+    .pipe(tap(() => this.uiService.toggleLoading(false)));
 
   constructor(
     private articleService: ArticleService,
-    private loadingService: LoadingService
+    private uiService: UiService
   ) {
-    this.loadingService.toggleLoading(true);
+    this.uiService.toggleLoading(true);
   }
 
   ngOnInit(): void {}

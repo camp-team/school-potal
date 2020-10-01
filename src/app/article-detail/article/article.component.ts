@@ -12,13 +12,13 @@ import { AuthService } from 'src/app/services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { PinService } from 'src/app/services/pin.service';
 import { TeacherDialogComponent } from '../teachers-dialog/teachers-dialog.component';
-import { fade } from '../../animations';
+import { fade, bounce } from '../../animations';
 
 @Component({
   selector: 'app-article',
   templateUrl: './article.component.html',
   styleUrls: ['./article.component.scss'],
-  animations: [fade],
+  animations: [fade, bounce],
 })
 export class ArticleComponent implements OnInit {
   @Input() article: Article;
