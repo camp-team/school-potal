@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  HostListener,
+  OnInit,
+  Output,
+} from '@angular/core';
 import {
   FormBuilder,
   Validators,
@@ -10,6 +16,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { firestore } from 'firebase';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
+import { Observable } from 'rxjs';
+import { Article } from 'src/app/interfaces/article';
+import { switchMap } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
 
 interface Category {
   value: string;
@@ -22,7 +32,13 @@ interface Category {
   styleUrls: ['./editor.component.scss'],
 })
 export class EditorComponent implements OnInit {
+  @Output() event = new EventEmitter<Article>();
+  article: Article;
+  isComplete: boolean;
   processing: boolean;
+  likeCount: number;
+  pinnedCount: number;
+
   images: {
     thumbnailURL: File;
     logo: File;
@@ -61,7 +77,7 @@ export class EditorComponent implements OnInit {
 
   form = this.fb.group({
     name: ['', [Validators.required, Validators.maxLength(50)]],
-    categorys: ['', [Validators.required]],
+    category: ['', [Validators.required]],
     title: ['', [Validators.required, Validators.maxLength(150)]],
     feature: [''],
     plan: ['', [Validators.required, Validators.maxLength(400)]],
@@ -69,14 +85,22 @@ export class EditorComponent implements OnInit {
     type: [''],
     teacherIds: this.fb.array([]),
     tags: [['']],
+    id: [''],
   });
+
+  article$: Observable<Article> = this.route.paramMap.pipe(
+    switchMap((param) => {
+      const articleId = param.get('articleId');
+      return this.articleService.getArticle(articleId);
+    })
+  );
 
   get name(): FormControl {
     return this.form.get('name') as FormControl;
   }
 
-  get categorys(): FormControl {
-    return this.form.get('categorys') as FormControl;
+  get category(): FormControl {
+    return this.form.get('category') as FormControl;
   }
 
   get title(): FormControl {
@@ -110,10 +134,29 @@ export class EditorComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private articleService: ArticleService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.article$.subscribe((article?) => {
+      this.article = article;
+      if (this.article) {
+        this.tags = article?.tags;
+        this.likeCount = article?.likeCount;
+        this.form.patchValue({
+          ...article,
+          tags: null,
+        });
+        article?.teacherIds.forEach((teacherId) => {
+          const array = new FormControl(teacherId);
+          this.teacherIds.push(array);
+        });
+      }
+      this.event.emit(this.article);
+    });
+  }
 
   addForm() {
     this.teacherIds.push(new FormControl(''));
@@ -127,7 +170,7 @@ export class EditorComponent implements OnInit {
     const input = event.input;
     const value = event.value;
 
-    if (value?.trim()) {
+    if ((value || '').trim()) {
       this.tags.push(value.trim());
     }
 
@@ -162,29 +205,65 @@ export class EditorComponent implements OnInit {
   submit() {
     this.processing = true;
     const formData = this.form.value;
-    this.articleService
-      .createArtile(
-        {
-          name: formData.name,
-          title: formData.title,
-          category: formData.categorys,
-          createdAt: firestore.Timestamp.now(),
-          feature: formData.feature,
-          plan: formData.plan,
-          serviceURL: formData.serviceURL,
-          type: formData.type,
-          teacherIds: formData.teacherIds,
-          tags: this.tags,
-          likeCount: 0,
-          pinCount: 0,
-        },
-        this.images
-      )
-      .then(() => {
-        this.snackBar.open('記事を投稿しました！', null, {
-          duration: 3000,
+
+    if (!this.article) {
+      this.articleService
+        .createArtile(
+          {
+            name: formData.name,
+            title: formData.title,
+            category: formData.category,
+            createdAt: firestore.Timestamp.now(),
+            feature: formData.feature,
+            plan: formData.plan,
+            serviceURL: formData.serviceURL,
+            type: formData.type,
+            teacherIds: formData.teacherIds,
+            tags: formData.tags,
+            likeCount: 0,
+            pinCount: 0,
+          },
+          this.images
+        )
+        .then(() => {
+          this.router.navigateByUrl('/');
+          this.snackBar.open('記事を投稿しました！');
         });
-      });
+    } else {
+      this.articleService
+        .updateArticle(
+          {
+            name: formData.name,
+            title: formData.title,
+            category: formData.category,
+            updatedAt: firestore.Timestamp.now(),
+            feature: formData.feature,
+            plan: formData.plan,
+            serviceURL: formData.serviceURL,
+            type: formData.type,
+            id: formData.id,
+            teacherIds: formData.teacherIds,
+            tags: this.tags,
+            likeCount: this.likeCount || 0,
+            pinCount: this.pinnedCount || 0,
+          },
+          this.images
+        )
+        .then(() => {
+          this.router.navigateByUrl('/');
+          this.snackBar.open('記事を更新しました！');
+        });
+    }
+
+    this.isComplete = true;
     this.processing = false;
+  }
+
+  @HostListener('window:beforeunload', ['$event'])
+  unloadNotification($event: any) {
+    if (this.form.dirty) {
+      $event.preventDefault();
+      $event.returnValue = '作業中の内容が失われますがよろしいですか？';
+    }
   }
 }

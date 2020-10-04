@@ -13,8 +13,8 @@ export interface Article {
   id?: string;
   thumbnailURL?: string;
   logo?: string;
-  teacherIds: string[];
-  tags: string[];
+  teacherIds?: string[];
+  tags?: string[];
   likeCount: number;
   pinCount: number;
 }

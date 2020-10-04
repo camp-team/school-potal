@@ -11,7 +11,7 @@
         <div class="type__category">
           <h2>カテゴリー</h2>
           <mat-form-field>
-            <mat-select formControlName="categorys">
+            <mat-select formControlName="category">
               <mat-option
                 *ngFor="let category of categoryGroup"
                 [value]="category.value"
@@ -40,7 +40,11 @@
         <div class="image__main">
           <h2>メイン画像</h2>
           <div class="main-img">
-            <img *ngIf="srcs?.thumbnailURL" [src]="srcs.thumbnailURL" alt="" />
+            <img
+              *ngIf="srcs?.thumbnailURL || article?.thumbnailURL"
+              [src]="srcs.thumbnailURL || article.thumbnailURL"
+              alt=""
+            />
             <p class="note" *ngIf="!srcs.thumbnailURL">
               ※ 1280px x 720px
             </p>
@@ -68,7 +72,11 @@
         <div class="image__logo">
           <h2>サービスロゴ</h2>
           <div class="logo-img">
-            <img *ngIf="srcs?.logo" [src]="srcs.logo" alt="" />
+            <img
+              *ngIf="srcs?.logo || article?.logo"
+              [src]="srcs.logo || article.logo"
+              alt=""
+            />
             <p class="note" *ngIf="!srcs.logo">
               ※ 800px x 800px
             </p>
@@ -169,6 +177,13 @@
           />
         </mat-chip-list>
       </mat-form-field>
+
+      <ng-container *ngIf="article">
+        <h2>記事ID</h2>
+        <mat-form-field appearance="outline">
+          <input matInput formControlName="id" required />
+        </mat-form-field>
+      </ng-container>
 
       <button
         mat-fab

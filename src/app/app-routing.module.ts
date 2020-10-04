@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { ShellComponent } from './shell/shell.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -35,13 +36,8 @@ const routes: Routes = [
         path: 'editor',
         loadChildren: () =>
           import('./editor/editor.module').then((m) => m.EditorModule),
-      },
-      {
-        path: 'article-edit',
-        loadChildren: () =>
-          import('./article-edit/article-edit.module').then(
-            (m) => m.ArticleEditModule
-          ),
+        canLoad: [AuthGuard],
+        canActivate: [AuthGuard],
       },
       {
         path: 'login',
@@ -52,6 +48,8 @@ const routes: Routes = [
         path: 'user/:uid',
         loadChildren: () =>
           import('./user/user.module').then((m) => m.UserModule),
+        canLoad: [AuthGuard],
+        canActivate: [AuthGuard],
       },
     ],
   },
