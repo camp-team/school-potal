@@ -46,9 +46,7 @@ export class UserService {
         updatedAt: firestore.Timestamp.now(),
       })
       .then(() => {
-        this.snackBar.open('ユーザー情報を更新しました', null, {
-          duration: 3000,
-        });
+        this.snackBar.open('ユーザー情報を更新しました');
         this.router.navigate(['/user', `${user.uid}`]);
       });
   }
@@ -58,9 +56,7 @@ export class UserService {
       .doc(`users/${user.uid}`)
       .delete()
       .then(() => {
-        this.snackBar.open('アカウントを削除しました', null, {
-          duration: 3000,
-        });
+        this.snackBar.open('アカウントを削除しました');
       });
   }
 }

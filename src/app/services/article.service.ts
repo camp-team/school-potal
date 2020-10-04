@@ -175,7 +175,7 @@ export class ArticleService {
       .doc(`articles/${articleId}`)
       .delete()
       .then(() => {
-        this.snackBar.open('記事を削除しました', null, { duration: 3000 });
+        this.snackBar.open('記事を削除しました');
       });
   }
 }

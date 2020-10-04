@@ -68,7 +68,7 @@ export class CommentFormComponent implements OnInit {
         uid: this.uid,
         articleId: this.articleId,
       })
-      .then(() => this.snackBar.open('投稿しました', null, { duration: 2000 }))
+      .then(() => this.snackBar.open('投稿しました'))
       .then(() => (this.isProcessing = false))
       .then(() => this.commentForm.setValue(''));
   }

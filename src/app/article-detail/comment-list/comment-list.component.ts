@@ -49,7 +49,7 @@ export class CommentListComponent implements OnInit {
         updatedAt: firestore.Timestamp.now(),
       })
       .then(() => {
-        this.snackBar.open('コメントを更新しました', null, { duration: 3000 });
+        this.snackBar.open('コメントを更新しました');
       });
   }
 
@@ -59,11 +59,9 @@ export class CommentListComponent implements OnInit {
       .afterClosed()
       .subscribe((result) => {
         if (result) {
-          this.commentService.deleteComment(this.comment).then(() =>
-            this.snackBar.open('コメントを削除しました', null, {
-              duration: 3000,
-            })
-          );
+          this.commentService
+            .deleteComment(this.comment)
+            .then(() => this.snackBar.open('コメントを削除しました'));
         } else {
           return;
         }

@@ -154,9 +154,7 @@ export class ArticleComponent implements OnInit {
       this.article.likeCount++;
       this.likeService.likeArticle(this.article.id, uid);
     } else {
-      this.snackBar.open('ページ右上のボタンからログインしてください', null, {
-        duration: 2500,
-      });
+      this.snackBar.open('ページ右上のボタンからログインしてください');
     }
   }
 
@@ -166,9 +164,7 @@ export class ArticleComponent implements OnInit {
       this.article.likeCount--;
       this.likeService.unlikeArticle(this.article.id, uid);
     } else {
-      this.snackBar.open('ページ右上のボタンからログインしてください', null, {
-        duration: 2500,
-      });
+      this.snackBar.open('ページ右上のボタンからログインしてください');
     }
   }
 
@@ -178,9 +174,7 @@ export class ArticleComponent implements OnInit {
       this.article.pinCount++;
       this.pinService.pinnedArticle(this.article.id, uid);
     } else {
-      this.snackBar.open('ページ右上のボタンからログインしてください', null, {
-        duration: 2500,
-      });
+      this.snackBar.open('ページ右上のボタンからログインしてください');
     }
   }
 
@@ -190,9 +184,7 @@ export class ArticleComponent implements OnInit {
       this.article.pinCount--;
       this.pinService.unpinnedArticle(this.article.id, uid);
     } else {
-      this.snackBar.open('ページ右上のボタンからログインしてください', null, {
-        duration: 2500,
-      });
+      this.snackBar.open('ページ右上のボタンからログインしてください');
     }
   }
 }
