@@ -4,6 +4,8 @@ import { EditorComponent } from './editor/editor.component';
 import { EditorArticleListComponent } from './editor-article-list/editor-article-list.component';
 import { EditorMemberListComponent } from './editor-member-list/editor-member-list.component';
 import { EditorHomeComponent } from './editor-home/editor-home.component';
+import { EditorGuard } from '../guards/editor.guard';
+import { ArticleEditComponent } from '../article-edit/article-edit/article-edit.component';
 
 const routes: Routes = [
   {
@@ -11,16 +13,18 @@ const routes: Routes = [
     component: EditorHomeComponent,
     children: [
       {
-        path: 'editor',
+        path: 'create',
         component: EditorComponent,
+        canDeactivate: [EditorGuard],
       },
       {
         path: 'editor-article-list',
         component: EditorArticleListComponent,
       },
       {
-        path: 'editor-member-list',
-        component: EditorMemberListComponent,
+        path: ':articleId',
+        component: EditorComponent,
+        canDeactivate: [EditorGuard],
       },
     ],
   },
