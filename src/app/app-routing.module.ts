@@ -40,15 +40,6 @@ const routes: Routes = [
         canActivate: [AuthGuard],
       },
       {
-        path: 'article-edit',
-        loadChildren: () =>
-          import('./article-edit/article-edit.module').then(
-            (m) => m.ArticleEditModule
-          ),
-        canLoad: [AuthGuard],
-        canActivate: [AuthGuard],
-      },
-      {
         path: 'login',
         loadChildren: () =>
           import('./login/login.module').then((m) => m.LoginModule),
