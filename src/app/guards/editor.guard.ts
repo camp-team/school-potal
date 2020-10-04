@@ -23,11 +23,8 @@ export class EditorGuard implements CanDeactivate<EditorComponent> {
     | boolean
     | UrlTree {
     if (component.form.pristine || component.isComplete) {
-      console.log('check');
-
       return true;
     }
-    console.log('conf');
 
     const confirmation = window.confirm(
       '作業中の内容が失われますがよろしいですか？'

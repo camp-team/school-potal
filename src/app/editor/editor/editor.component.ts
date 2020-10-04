@@ -169,10 +169,6 @@ export class EditorComponent implements OnInit {
   addTag(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
-    console.log(input);
-    console.log(event);
-    console.log(value);
-    console.log(this.tags);
 
     if ((value || '').trim()) {
       this.tags.push(value.trim());

@@ -39,9 +39,6 @@ export class EditorHomeComponent implements OnInit {
   ngOnInit(): void {}
 
   onReceive(eventData) {
-    console.log('res');
-
     this.childData = eventData;
-    console.log(this.childData);
   }
 }
