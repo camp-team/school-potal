@@ -33,9 +33,7 @@ export class AuthService {
     const provider = new auth.GoogleAuthProvider();
     provider.setCustomParameters({ prompt: 'select_account' });
     this.afAuth.signInWithPopup(provider).then(() => {
-      this.snackBar.open('ログインしました 🎉', null, {
-        duration: 3000,
-      });
+      this.snackBar.open('ログインしました 🎉');
     });
     this.router.navigateByUrl('/');
   }
@@ -44,18 +42,14 @@ export class AuthService {
     const provider = new auth.TwitterAuthProvider();
     provider.setCustomParameters({ prompt: 'select_account' });
     this.afAuth.signInWithRedirect(provider).then(() => {
-      this.snackBar.open('ログインしました 🎉', null, {
-        duration: 3000,
-      });
+      this.snackBar.open('ログインしました 🎉');
     });
     this.router.navigateByUrl('/');
   }
 
   logout() {
     this.afAuth.signOut().then(() => {
-      this.snackBar.open('ログアウトしました 🚪', null, {
-        duration: 3000,
-      });
+      this.snackBar.open('ログアウトしました 🚪');
     });
     this.router.navigateByUrl('/');
   }

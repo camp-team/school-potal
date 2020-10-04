@@ -5,7 +5,6 @@ import { EditorArticleListComponent } from './editor-article-list/editor-article
 import { EditorMemberListComponent } from './editor-member-list/editor-member-list.component';
 import { EditorHomeComponent } from './editor-home/editor-home.component';
 import { EditorGuard } from '../guards/editor.guard';
-import { ArticleEditComponent } from '../article-edit/article-edit/article-edit.component';
 
 const routes: Routes = [
   {
