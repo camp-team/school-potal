@@ -4,11 +4,7 @@
     <swiper [config]="config" [(index)]="index">
       <div class="swiper-slide" *ngFor="let salon of salons">
         <a routerLink="/article-detail/{{ salon.id }}" href="" class="article">
-          <button mat-flat-button color="primary">
-            <p class="article__category-text">{{ salon.category }}</p>
-          </button>
-
-          <figure class="article__thumbnail">
+          <figure @fade class="article__thumbnail">
             <img [src]="salon.thumbnailURL" alt="" />
           </figure>
 
@@ -22,6 +18,9 @@
               <p class="article__up">
                 {{ salon.createdAt.toDate() | date: 'yyyy年M月d日' }} UP
               </p>
+              <button class="article__category">
+                <p class="article__category-text">{{ salon.category }}</p>
+              </button>
             </div>
           </div>
         </a>

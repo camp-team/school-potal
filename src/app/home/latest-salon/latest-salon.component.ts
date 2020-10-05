@@ -6,21 +6,23 @@ import { Article } from 'src/app/interfaces/article';
 import { tap } from 'rxjs/operators';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { newArray } from '@angular/compiler/src/util';
+import { fade } from 'src/app/animations';
 
 @Component({
   selector: 'app-latest-salon',
   templateUrl: './latest-salon.component.html',
   styleUrls: ['./latest-salon.component.scss'],
+  animations: [fade],
 })
 export class LatestSalonComponent implements OnInit {
   config: SwiperConfigInterface = {
     loop: true,
-    loopedSlides: 1,
     slidesPerView: 4,
     navigation: true,
     observer: true,
     watchOverflow: true,
     spaceBetween: 24,
+    centeredSlides: true,
     breakpoints: {
       415: {
         slidesPerView: 1,
@@ -35,7 +37,7 @@ export class LatestSalonComponent implements OnInit {
 
   index: number;
 
-  spins = newArray(5);
+  spins = newArray(4);
 
   salons$: Observable<Article[]> = this.articleService
     .getSalons()

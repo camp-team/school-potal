@@ -8,7 +8,7 @@
 .account {
   max-width: 60%;
   display: grid;
-  grid-template-columns: 80px 1fr;
+  grid-template-columns: 1fr;
   gap: 16px;
   padding: 24px;
   margin: 0 auto 24px;
@@ -20,8 +20,12 @@
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    margin-right: 16px;
+    margin: 0 auto;
     background: no-repeat center/cover;
+  }
+  &__body {
+    color: #fff;
+    text-align: center;
   }
   &__name {
     font-size: 20px;
@@ -36,6 +40,7 @@
     opacity: 0.8;
   }
   &__btns {
+    margin: 0 auto;
     display: flex;
     align-items: center;
   }
@@ -45,6 +50,6 @@
 }
 
 .active {
-  background: linear-gradient(to right bottom, #6c63fe, #14e3fe);
-  color: rgba(black, 0.6);
+  background: linear-gradient(60deg, #ab47bc, #8e24aa);
+  color: #fff;
 }

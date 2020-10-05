@@ -1,7 +1,14 @@
 @import 'mixins';
+@import '~@angular/material/theming';
+
+.container--setting {
+  margin: 48px auto 80px;
+  padding: 24px;
+  background: #fff;
+  @include mat-elevation(8, #000, 0.8);
+}
 
 .edit {
-  max-width: 60%;
   display: grid;
   grid-template-columns: 1fr;
   padding: 24px;
@@ -25,7 +32,6 @@
 }
 
 .unsubscribe {
-  width: 60%;
   margin: 0 auto 24px;
   display: grid;
   @include sp {

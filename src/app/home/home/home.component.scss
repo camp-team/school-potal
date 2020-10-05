@@ -1,4 +1,5 @@
 @import 'mixins';
+@import '~@angular/material/theming';
 
 .hero {
   max-width: 100%;
@@ -18,6 +19,7 @@
   bottom: -30px;
   left: 50%;
   transform: translateX(-50%);
+  @include mat-elevation(2);
   @include tab {
     width: 100%;
     height: 100%;
@@ -61,6 +63,7 @@
     }
     &:hover {
       color: #8e24aa;
+      font-weight: bold;
     }
     mat-icon {
       margin-right: 8px;

@@ -1,4 +1,5 @@
 @import 'mixins';
+@import '~@angular/material/theming';
 
 .container {
   @include sp {
@@ -20,17 +21,23 @@ h2 {
     padding: 0;
   }
   &__category {
-    display: flex;
-    align-items: center;
-    margin-bottom: 8px;
-    padding: 2px;
-    max-width: 160px;
+    border: none;
+    border-radius: 3px;
+    padding: 4px 8px;
+    background: linear-gradient(60deg, #ab47bc, #8e24aa);
+    color: #fff;
+    font-size: 13px;
   }
   &__category-text {
     opacity: 0.8;
   }
   &__thumbnail {
-    padding: 8px 8px 8px 0;
+    padding: 0;
+    margin-bottom: 16px;
+    @include mat-elevation(8);
+    img {
+      vertical-align: bottom;
+    }
   }
   &__body {
     display: grid;
@@ -42,6 +49,7 @@ h2 {
     grid-template-columns: 40px 1fr;
     gap: 8px;
     margin-bottom: 8px;
+    padding-bottom: 24px;
   }
   &__logo {
     width: 40px;
@@ -62,12 +70,17 @@ h2 {
   &__price,
   &__up {
     opacity: 0.38;
+    margin-right: 8px;
+  }
+  &__description {
+    display: flex;
+    align-items: center;
   }
 }
 
 .loading-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 16px;
   margin: 96px 0;
   @include tab {

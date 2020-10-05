@@ -142,6 +142,7 @@ export class EditorComponent implements OnInit {
   ngOnInit(): void {
     this.article$.subscribe((article?) => {
       this.article = article;
+
       if (this.article) {
         this.tags = article?.tags;
         this.likeCount = article?.likeCount;
@@ -149,6 +150,7 @@ export class EditorComponent implements OnInit {
           ...article,
           tags: null,
         });
+
         article?.teacherIds.forEach((teacherId) => {
           const array = new FormControl(teacherId);
           this.teacherIds.push(array);

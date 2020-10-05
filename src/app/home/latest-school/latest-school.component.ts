@@ -6,11 +6,13 @@ import { Article } from 'src/app/interfaces/article';
 import { tap } from 'rxjs/operators';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { newArray } from '@angular/compiler/src/util';
+import { fade } from 'src/app/animations';
 
 @Component({
   selector: 'app-latest-school',
   templateUrl: './latest-school.component.html',
   styleUrls: ['./latest-school.component.scss'],
+  animations: [fade],
 })
 export class LatestSchoolComponent implements OnInit {
   config: SwiperConfigInterface = {
@@ -20,6 +22,7 @@ export class LatestSchoolComponent implements OnInit {
     observer: true,
     watchOverflow: true,
     spaceBetween: 24,
+    centeredSlides: true,
     breakpoints: {
       415: {
         slidesPerView: 1,
@@ -34,7 +37,7 @@ export class LatestSchoolComponent implements OnInit {
 
   index: number;
 
-  spins = newArray(5);
+  spins = newArray(4);
 
   schools$: Observable<Article[]> = this.articleService.getSchools().pipe(
     tap(() => {

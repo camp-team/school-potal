@@ -4,7 +4,7 @@
     <swiper [config]="config" [(index)]="index">
       <div class="swiper-slide" *ngFor="let school of schools">
         <a routerLink="/article-detail/{{ school.id }}" href="" class="article">
-          <figure class="article__thumbnail">
+          <figure @fade class="article__thumbnail">
             <img [src]="school.thumbnailURL" alt="" />
           </figure>
 

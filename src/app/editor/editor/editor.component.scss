@@ -1,19 +1,10 @@
-.grid {
-  display: grid;
-  grid-template-columns: 70% 28%;
-  gap: 24px;
-  margin: 24px;
-  margin-bottom: 80px;
-  &__main {
-    padding: 24px;
-    border-radius: 8px;
-    background: #fff;
-  }
-  &__side {
-    padding: 24px;
-    border-radius: 8px;
-    background: #fff;
-  }
+@import '~@angular/material/theming';
+
+.container--editor {
+  margin: 48px auto 80px;
+  padding: 24px;
+  background: #fff;
+  @include mat-elevation(8, #000, 0.8);
 }
 
 .type,
@@ -61,7 +52,7 @@
   margin: 0 auto;
 }
 
-.img-button {
+.img-btn {
   position: absolute;
   bottom: 0;
   right: -48px;
@@ -70,10 +61,12 @@
 h2 {
   font-size: 18px;
   font-weight: 500;
-  padding: 4px;
+  padding: 8px;
   margin-bottom: 16px;
-  border-left: solid 3px #d500f9;
+  border-left: solid 8px #424242;
+  border-radius: 3px;
   margin-top: 16px;
+  background: #fafafa;
 }
 
 h3 {
@@ -115,4 +108,12 @@ mat-radio-button {
   transform: translate(-50%, -50%);
   font-size: 9px;
   opacity: 0.6;
+}
+
+.remove-btn {
+  margin-bottom: 16px;
+}
+
+.add-btn {
+  margin-left: 16px;
 }
