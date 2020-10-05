@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { ArticleService } from 'src/app/services/article.service';
 
 @Component({
   selector: 'app-editor-home',

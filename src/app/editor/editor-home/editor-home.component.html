@@ -10,11 +10,11 @@
   >
     {{ link.label }}
   </a>
-  <ng-container *ngIf="childData.article">
+  <ng-container *ngIf="childData?.article">
     <a
       class="nav__edit"
       mat-tab-link
-      [routerLink]="childData.article.id"
+      [routerLink]="childData?.article.id"
       routerLinkActive
       #rla="routerLinkActive"
       [active]="rla.isActive"

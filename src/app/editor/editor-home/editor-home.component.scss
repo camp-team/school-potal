@@ -1,9 +1,11 @@
 .nav {
   background: #212121;
-  mat-tab-link {
-    color: #fff;
-  }
   &__edit {
     opacity: 1;
   }
+}
+
+.mat-tab-label,
+.mat-tab-link {
+  color: #fff;
 }
