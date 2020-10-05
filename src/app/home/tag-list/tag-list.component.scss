@@ -1,10 +1,19 @@
 @import 'mixins';
 
 .title {
-  margin-bottom: 24px;
-  font-size: 20px;
-  @include sp {
-    margin-top: 0;
+  h2 {
+    font-family: 'Josefin Sans';
+    font-size: 32px;
+    font-weight: 600;
+    text-align: center;
+    @include sp {
+      margin-bottom: 8px;
+      font-size: 20px;
+    }
+  }
+  p {
+    text-align: center;
+    margin-bottom: 80px;
   }
 }
 
@@ -27,7 +36,8 @@
 .tags {
   margin-top: 24px;
   &__title {
-    font-size: 16px;
+    font-size: 20px;
+    text-align: center;
     display: block;
     margin-bottom: 8px;
   }
@@ -35,4 +45,7 @@
 
 mat-divider {
   margin: 80px 0 24px;
+  @include sp {
+    margin-top: 24px;
+  }
 }

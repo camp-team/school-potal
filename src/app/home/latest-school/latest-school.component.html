@@ -1,5 +1,9 @@
 <div class="container">
-  <h2>新着スクール</h2>
+  <div class="title">
+    <h2>Latest School</h2>
+    <p>新着スクール</p>
+  </div>
+
   <ng-container *ngIf="schools$ | async as schools; else loading">
     <swiper [config]="config" [(index)]="index">
       <div class="swiper-slide" *ngFor="let school of schools">

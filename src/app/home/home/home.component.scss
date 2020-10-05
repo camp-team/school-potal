@@ -4,7 +4,10 @@
 .hero {
   max-width: 100%;
   position: relative;
-  margin-bottom: 48px;
+  margin-bottom: 80px;
+  @include sp {
+    margin-bottom: 24px;
+  }
   img {
     vertical-align: bottom;
   }
@@ -77,7 +80,7 @@
 
 app-tag-list {
   display: block;
-  margin: 80px auto;
+  margin: 56px auto;
   @include sp {
     margin: 16px auto;
   }

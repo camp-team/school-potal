@@ -1,9 +1,12 @@
 <div class="container">
-  <h2>新着オンラインサロン</h2>
+  <div class="title">
+    <h2>Latest Salon</h2>
+    <p>新着オンラインサロン</p>
+  </div>
   <ng-container *ngIf="salons$ | async as salons; else loading">
     <swiper [config]="config" [(index)]="index">
       <div class="swiper-slide" *ngFor="let salon of salons">
-        <a routerLink="/article-detail/{{ salon.id }}" href="" class="article">
+        <a routerLink="/article-detail/{{ salon.id }}" class="article">
           <figure @fade class="article__thumbnail">
             <img [src]="salon.thumbnailURL" alt="" />
           </figure>
@@ -15,7 +18,7 @@
             </div>
 
             <div class="article__description">
-              <p class="article__up">
+              <p class="article__date">
                 {{ salon.createdAt.toDate() | date: 'yyyy年M月d日' }} UP
               </p>
               <button class="article__category">
