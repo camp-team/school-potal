@@ -4,6 +4,7 @@ import { FormControl } from '@angular/forms';
 import { SearchIndex } from 'algoliasearch/lite';
 import { startWith, debounceTime } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-search-dialog',
@@ -22,7 +23,11 @@ export class SearchDialogComponent implements OnInit {
 
   searchOptions = [];
 
-  constructor(private searchService: SearchService, private router: Router) {
+  constructor(
+    private searchService: SearchService,
+    private router: Router,
+    private dialogRef: MatDialogRef<SearchDialogComponent>
+  ) {
     this.searchControl.valueChanges
       .pipe(startWith(''), debounceTime(500))
       .subscribe((key) => {
@@ -45,5 +50,6 @@ export class SearchDialogComponent implements OnInit {
       queryParamsHandling: 'merge',
       queryParams: { searchQuery },
     });
+    this.dialogRef.close();
   }
 }

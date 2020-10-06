@@ -1,3 +1,5 @@
+@import '~@angular/material/theming';
+
 .dialog {
   &__heading {
     width: 100%;
@@ -10,18 +12,17 @@
 .search {
   display: grid;
   align-items: center;
-  height: 40px;
+  height: 60px;
   border-radius: 20px;
   &__input {
-    flex: 1;
-    height: 40px;
-    border-radius: 20px;
-    background: #303030;
-    color: #fff;
+    height: 48px;
+    border-radius: 24px;
+    background: #fafafa;
     font-size: 16px;
     padding: 0 8px;
     border: none;
     outline: none;
-    box-sizing: border-box;
+    // box-sizing: border-box;
+    @include mat-elevation(4);
   }
 }
