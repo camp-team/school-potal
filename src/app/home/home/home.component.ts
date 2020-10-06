@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { SearchDialogComponent } from 'src/app/search-dialog/search-dialog.component';
+import { RequestDialogComponent } from '../request-dialog/request-dialog.component';
 
 @Component({
   selector: 'app-home',
@@ -17,6 +18,14 @@ export class HomeComponent implements OnInit {
       .open(SearchDialogComponent, {
         width: '60%',
         autoFocus: false,
+      })
+      .afterClosed();
+  }
+
+  openRequestDialog() {
+    this.dialog
+      .open(RequestDialogComponent, {
+        width: '60%',
       })
       .afterClosed();
   }
