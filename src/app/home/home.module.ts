@@ -15,12 +15,12 @@ import { TagListComponent } from './tag-list/tag-list.component';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatCardModule } from '@angular/material/card';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-import { RequestDialogComponent } from './request-dialog/request-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { RequestListComponent } from './request-list/request-list.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +29,6 @@ import { RequestListComponent } from './request-list/request-list.component';
     LatestSchoolComponent,
     LatestSalonComponent,
     TagListComponent,
-    RequestDialogComponent,
     RequestListComponent,
   ],
   imports: [
@@ -48,6 +47,7 @@ import { RequestListComponent } from './request-list/request-list.component';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
+    SharedModule,
   ],
 })
 export class HomeModule {}

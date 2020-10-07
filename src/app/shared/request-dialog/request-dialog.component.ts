@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/interfaces/users';
 import { AuthService } from 'src/app/services/auth.service';
 import { RequestService } from 'src/app/services/request.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Request } from 'src/app/interfaces/request';
+import { ActivatedRoute } from '@angular/router';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-request-dialog',
@@ -15,6 +18,7 @@ export class RequestDialogComponent implements OnInit {
   uid: string;
   user$: Observable<User> = this.authService.user$;
   isProcessing: boolean;
+  request: Request;
 
   form = this.fb.group({
     title: ['', [Validators.required, Validators.maxLength(50)]],
@@ -33,23 +37,42 @@ export class RequestDialogComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     private requestService: RequestService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private route: ActivatedRoute,
+    @Inject(MAT_DIALOG_DATA) public data: Request
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.form.patchValue({
+      title: this.data.title,
+      body: this.data.body,
+    });
+    console.log(this.data);
+  }
 
   submit(uid: string) {
-    console.log('check');
-
     this.isProcessing = true;
     const formData = this.form.value;
-    this.requestService
-      .createRequest({
-        title: formData.title,
-        body: formData.body,
-        uid,
-      })
-      .then(() => this.snackBar.open('投稿しました'))
-      .then(() => (this.isProcessing = false));
+    if (this.data) {
+      this.requestService
+        .updateRequest({
+          title: formData.title,
+          body: formData.body,
+          uid,
+          id: this.data.id,
+          createdAt: this.data.createdAt,
+        })
+        .then(() => this.snackBar.open('更新しました'))
+        .then(() => (this.isProcessing = false));
+    } else {
+      this.requestService
+        .createRequest({
+          title: formData.title,
+          body: formData.body,
+          uid,
+        })
+        .then(() => this.snackBar.open('投稿しました'))
+        .then(() => (this.isProcessing = false));
+    }
   }
 }
