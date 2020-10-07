@@ -33,6 +33,39 @@ export class RequestService {
     return this.db.doc<Request>(`requests/${request.id}`).delete();
   }
 
+  getRequest(id: string): Observable<Request> {
+    return this.db.doc<Request>(`requests/${id}`).valueChanges();
+  }
+
+  getRequestWithUserById(id: string): Observable<RequestWithUser> {
+    return this.db
+      .doc<Request>(`requests/${id}`)
+      .valueChanges()
+      .pipe(
+        switchMap((request: Request) => {
+          if (request) {
+            const user$: Observable<User> = this.userService.getUserData(
+              request.uid
+            );
+            return combineLatest([of(request), user$]);
+          } else {
+            return of(null);
+          }
+        }),
+        map(([request, user]) => {
+          if (request && user) {
+            const result: RequestWithUser = {
+              ...request,
+              user,
+            };
+            return result;
+          } else {
+            return null;
+          }
+        })
+      );
+  }
+
   getRequestsWithUser(): Observable<RequestWithUser[]> {
     return this.db
       .collection<Request>(`requests`, (ref) =>
