@@ -39,6 +39,10 @@
   padding: 32px 16px 16px;
   text-align: center;
   position: relative;
+  transition: ease-in-out 0.3s;
+  &:hover {
+    transform: translateY(16px);
+  }
   &__heading {
     margin-bottom: 16px;
   }

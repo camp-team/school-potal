@@ -10,11 +10,13 @@ import { AuthService } from 'src/app/services/auth.service';
 import { RequestService } from 'src/app/services/request.service';
 import { UserService } from 'src/app/services/user.service';
 import { DeleteDialogComponent } from 'src/app/shared/delete-dialog/delete-dialog.component';
+import { fade } from 'src/app/animations';
 
 @Component({
   selector: 'app-request-detail',
   templateUrl: './request-detail.component.html',
   styleUrls: ['./request-detail.component.scss'],
+  animations: [fade],
 })
 export class RequestDetailComponent implements OnInit {
   requestId: string;
