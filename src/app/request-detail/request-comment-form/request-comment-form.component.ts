@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from 'src/app/interfaces/users';
 import { AuthService } from 'src/app/services/auth.service';
+import { RequestService } from 'src/app/services/request.service';
 
 @Component({
   selector: 'app-request-comment-form',
@@ -31,10 +33,35 @@ export class RequestCommentFormComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private requestService: RequestService,
+    private snackBar: MatSnackBar
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.user$
+      .pipe(
+        map((user) => {
+          return user?.uid;
+        })
+      )
+      .subscribe((uid) => {
+        this.uid = uid;
+      });
 
-  submit() {}
+    this.requestId$.subscribe((id) => (this.requestId = id));
+  }
+
+  submit() {
+    const formData = this.commentForm.value;
+    this.requestService
+      .addComment({
+        uid: this.uid,
+        body: formData,
+        requestId: this.requestId,
+      })
+      .then(() => this.snackBar.open('コメントしました'))
+      .then(() => (this.isProcessing = false))
+      .then(() => this.commentForm.setValue(''));
+  }
 }
