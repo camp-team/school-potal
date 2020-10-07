@@ -5,6 +5,10 @@ import { combineLatest, Observable, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { Request, RequestWithUser } from '../interfaces/request';
 import { User } from '../interfaces/users';
+import {
+  RequestComment,
+  RequestCommentWithUser,
+} from '../interfaces/request-comment';
 import { UserService } from './user.service';
 
 @Injectable({
@@ -99,5 +103,83 @@ export class RequestService {
           }
         })
       );
+  }
+
+  addComment(comment: Omit<RequestComment, 'id' | 'updatedAt'>): Promise<void> {
+    const id = this.db.createId();
+    const value: RequestComment = {
+      ...comment,
+      id,
+      updatedAt: firestore.Timestamp.now(),
+    };
+    return this.db
+      .doc<RequestComment>(
+        `requests/${comment.requestId}/requestComments/${value.id}`
+      )
+      .set(value);
+  }
+
+  getCommentsById(requestId: string): Observable<RequestComment[]> {
+    return this.db
+      .collection<RequestComment>(
+        `requests/${requestId}/requestComments`,
+        (ref) => ref.orderBy('updatedAt', 'desc')
+      )
+      .valueChanges();
+  }
+
+  getCommentsWithUserById(
+    requestId: string
+  ): Observable<RequestCommentWithUser[]> {
+    if (requestId === undefined) {
+      return of(null);
+    } else {
+      return this.getCommentsById(requestId).pipe(
+        switchMap((requestComments: RequestComment[]) => {
+          if (requestComments.length) {
+            const unduplicatedUids: string[] = Array.from(
+              new Set(requestComments.map((comment) => comment.uid))
+            );
+            const users$: Observable<User[]> = combineLatest(
+              unduplicatedUids.map((uid) => this.userService.getUserData(uid))
+            );
+            return combineLatest([of(requestComments), users$]);
+          } else {
+            return of([]);
+          }
+        }),
+        map(([requestComments, users]) => {
+          if (requestComments?.length) {
+            return requestComments.map((comment: RequestComment) => {
+              return {
+                ...comment,
+                user: users.find((user: User) => comment.uid === user?.uid),
+              };
+            });
+          } else {
+            return [];
+          }
+        })
+      );
+    }
+  }
+
+  updateComment(comment: RequestComment): Promise<void> {
+    return this.db
+      .doc<RequestComment>(
+        `requests/${comment.requestId}/requestComments/${comment.id}`
+      )
+      .update({
+        ...comment,
+        updatedAt: firestore.Timestamp.now(),
+      });
+  }
+
+  deleteComment(comment: RequestComment): Promise<void> {
+    return this.db
+      .doc<RequestComment>(
+        `requests/${comment.requestId}/requestComments/${comment.id}`
+      )
+      .delete();
   }
 }
