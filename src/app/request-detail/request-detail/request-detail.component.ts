@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { RequestDialogComponent } from 'src/app/shared/request-dialog/request-dialog.component';
 import { Request, RequestWithUser } from 'src/app/interfaces/request';
 import { User } from 'src/app/interfaces/users';
@@ -11,6 +11,7 @@ import { RequestService } from 'src/app/services/request.service';
 import { UserService } from 'src/app/services/user.service';
 import { DeleteDialogComponent } from 'src/app/shared/delete-dialog/delete-dialog.component';
 import { fade } from 'src/app/animations';
+import { RequestCommentWithUser } from 'src/app/interfaces/request-comment';
 
 @Component({
   selector: 'app-request-detail',
@@ -25,10 +26,22 @@ export class RequestDetailComponent implements OnInit {
 
   user$: Observable<User> = this.authservice.user$;
 
+  requestId$: Observable<string> = this.route.paramMap.pipe(
+    map((param) => {
+      return param.get('id');
+    })
+  );
+
   request$: Observable<RequestWithUser> = this.route.paramMap.pipe(
     switchMap((param) => {
       const id = param.get('id');
       return this.requestService.getRequestWithUserById(id);
+    })
+  );
+
+  comments$: Observable<RequestCommentWithUser[]> = this.requestId$.pipe(
+    switchMap((id) => {
+      return this.requestService.getCommentsWithUserById(id);
     })
   );
 

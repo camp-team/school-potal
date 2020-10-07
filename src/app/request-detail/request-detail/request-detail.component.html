@@ -59,6 +59,9 @@
 
   <div class="comment">
     <app-request-comment-form></app-request-comment-form>
-    <app-request-comment-list></app-request-comment-list>
+    <app-request-comment-list
+      *ngFor="let comment of comments$ | async"
+      [comment]="comment"
+    ></app-request-comment-list>
   </div>
 </div>

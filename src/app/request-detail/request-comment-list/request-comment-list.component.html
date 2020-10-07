@@ -1,0 +1,101 @@
+<div class="comment">
+  <a
+    class="comment__avatar"
+    [style.background-image]="'url(' + comment.user?.photoURL + ')'"
+    routerLink="/user/{{ comment.user?.uid }}"
+  ></a>
+  <ng-template #view>
+    <div class="comment__body">
+      <div class="comment__header">
+        <a class="comment__name" routerLink="/user/{{ comment.user?.uid }}">{{
+          comment.user?.name
+        }}</a>
+        <p class="comment__date">
+          {{ comment.updatedAt.toDate() | date: 'yyyy/MM/dd HH:mm' }}
+        </p>
+      </div>
+      <p class="comment__text">
+        {{ comment.body }}
+      </p>
+    </div>
+  </ng-template>
+
+  <ng-container *ngIf="isEditable; else view">
+    <form (ngSubmit)="updateComment()" class="form">
+      <mat-form-field>
+        <textarea
+          matInput
+          [formControl]="commentForm"
+          autocomplete="off"
+          required
+          matTextareaAutosize
+        ></textarea>
+        <mat-error *ngIf="commentForm.hasError('required')"
+          >必須入力です</mat-error
+        >
+        <mat-error *ngIf="commentForm.hasError('maxlength')"
+          >最大文字数を超えています</mat-error
+        >
+        <mat-hint align="end"
+          >{{ commentForm.value.length }}/400文字まで</mat-hint
+        >
+      </mat-form-field>
+      <div class="form__actions">
+        <button
+          class="form__btn"
+          mat-flat-button
+          type="button"
+          (click)="isEditable = false"
+        >
+          キャンセル
+        </button>
+        <button
+          class="form__btn"
+          mat-flat-button
+          [disabled]="commentForm.invalid || commentForm.pristine"
+        >
+          保存
+        </button>
+      </div>
+    </form>
+  </ng-container>
+
+  <ng-container *ngIf="user$ | async as user">
+    <button
+      mat-icon-button
+      [matMenuTriggerFor]="menu"
+      *ngIf="user.uid === comment.uid"
+      class="comment__btn"
+    >
+      <mat-icon>more_vert</mat-icon>
+    </button>
+
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="isEditMode()">
+        <mat-icon>edit</mat-icon>編集
+      </button>
+      <button mat-menu-item (click)="openDeleteDialog()">
+        <mat-icon>delete</mat-icon>削除
+      </button>
+    </mat-menu>
+  </ng-container>
+
+  <ng-container *ngIf="user$ | async as user">
+    <button
+      mat-icon-button
+      [matMenuTriggerFor]="menu"
+      *ngIf="user.uid !== comment.uid"
+      class="comment__btn comment__btn--flag"
+    >
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <a
+        href="https://twitter.com/messages/compose?recipient_id=4912264663&ref_src=twsrc%5Etfw"
+        target="_blank"
+        mat-menu-item
+        ><mat-icon>flag</mat-icon>報告</a
+      >
+    </mat-menu>
+  </ng-container>
+</div>
