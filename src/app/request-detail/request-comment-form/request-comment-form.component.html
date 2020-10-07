@@ -1,0 +1,39 @@
+<div class="comment" *ngIf="user$ | async as user">
+  <div class="comment__body">
+    <figure
+      class="comment__avatar"
+      [style.background-image]="'url(' + user.photoURL + ')'"
+    ></figure>
+
+    <form (ngSubmit)="submit()">
+      <mat-form-field>
+        <textarea
+          matInput
+          placeholder="参加した感想やサービスへの質問など、公開コメントを入力"
+          [formControl]="commentForm"
+          autocomplete="off"
+          required
+          matTextareaAutosize
+        ></textarea>
+        <button
+          mat-icon-button
+          matSuffix
+          [disabled]="commentForm.invalid || isProcessing"
+        >
+          <mat-icon>send</mat-icon>
+        </button>
+        <mat-error *ngIf="commentForm.hasError('required')"
+          >必須入力です</mat-error
+        >
+        <mat-error *ngIf="commentForm.hasError('maxlength')"
+          >最大文字数を超えています</mat-error
+        >
+        <mat-hint align="end"
+          >{{ commentForm.value.length }}/400文字まで</mat-hint
+        >
+      </mat-form-field>
+    </form>
+  </div>
+</div>
+
+<mat-divider></mat-divider>
