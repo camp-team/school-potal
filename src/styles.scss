@@ -1,5 +1,6 @@
 @import 'material-custom';
 @import '~@angular/material/theming';
+@import 'mixins';
 
 /* You can add global styles to this file, and also import other style files */
 html,
@@ -37,6 +38,25 @@ figure {
   max-width: 1200px;
   padding: 0 24px;
   margin: 0 auto;
+  &--editor {
+    margin: 48px auto 80px;
+    padding: 24px;
+    background: #fff;
+    @include mat-elevation(8, #000, 0.8);
+  }
+  &--profile {
+    margin: 48px auto 80px;
+    padding: 24px;
+    background: #fff;
+    height: 100%;
+    @include mat-elevation(8, #000, 0.8);
+  }
+  &--setting {
+    margin: 48px auto 80px;
+    padding: 24px;
+    background: #fff;
+    @include mat-elevation(8, #000, 0.8);
+  }
 }
 
 .swiper-button-next,
