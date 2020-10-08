@@ -1,98 +1,100 @@
-<ng-container *ngIf="user$ | async as user">
-  <form [formGroup]="form" (ngSubmit)="updateUser()" class="edit">
-    <h2 class="edit__item">表示名</h2>
-    <mat-form-field class="edit__form">
-      <input matInput formControlName="name" #name autocomplete="off" />
-      <mat-hint align="end">{{ name.value.length }} / 50文字</mat-hint>
-    </mat-form-field>
+<div class="container container--setting">
+  <ng-container *ngIf="user$ | async as user">
+    <form [formGroup]="form" (ngSubmit)="updateUser()" class="edit">
+      <h2 class="edit__item">表示名</h2>
+      <mat-form-field class="edit__form">
+        <input matInput formControlName="name" #name autocomplete="off" />
+        <mat-hint align="end">{{ name.value.length }} / 50文字</mat-hint>
+      </mat-form-field>
 
-    <h2 class="edit__item">プロフィール</h2>
-    <mat-form-field class="edit__form">
-      <textarea
-        matInput
-        formControlName="profile"
-        placeholder="自己紹介をしましょう"
-        #profile
-        autocomplete="off"
-        matTextareaAutosize
-      ></textarea>
-      <mat-error>必須入力です</mat-error>
-      <mat-error>最大文字数を超えています</mat-error>
-      <mat-hint align="end">{{ profile.value.length }}/400文字</mat-hint>
-    </mat-form-field>
+      <h2 class="edit__item">プロフィール</h2>
+      <mat-form-field class="edit__form">
+        <textarea
+          matInput
+          formControlName="profile"
+          placeholder="自己紹介をしましょう"
+          #profile
+          autocomplete="off"
+          matTextareaAutosize
+        ></textarea>
+        <mat-error>必須入力です</mat-error>
+        <mat-error>最大文字数を超えています</mat-error>
+        <mat-hint align="end">{{ profile.value.length }}/400文字</mat-hint>
+      </mat-form-field>
 
-    <h2 class="edit__item">リンク</h2>
-    <mat-form-field class="edit__form">
-      <textarea
-        matInput
-        formControlName="links"
-        placeholder="SNSやポートフォリオのリンクを共有しましょう"
-        #link
-        autocomplete="off"
-        matTextareaAutosize
-      ></textarea>
-      <mat-error>必須入力です</mat-error>
-      <mat-error>最大文字数を超えています</mat-error>
-      <mat-hint align="end">{{ link.value.length }}/400文字</mat-hint>
-    </mat-form-field>
+      <h2 class="edit__item">リンク</h2>
+      <mat-form-field class="edit__form">
+        <textarea
+          matInput
+          formControlName="links"
+          placeholder="SNSやポートフォリオのリンクを共有しましょう"
+          #link
+          autocomplete="off"
+          matTextareaAutosize
+        ></textarea>
+        <mat-error>必須入力です</mat-error>
+        <mat-error>最大文字数を超えています</mat-error>
+        <mat-hint align="end">{{ link.value.length }}/400文字</mat-hint>
+      </mat-form-field>
 
-    <h2 class="edit__item">スキルリスト</h2>
-    <mat-form-field>
-      <mat-chip-list #chipList aria-label="tag selection">
-        <mat-chip
-          *ngFor="let tag of tags"
-          [selectable]="selectable"
-          [removable]="removable"
-          (removed)="remove(tag)"
-        >
-          {{ tag }}
-          <mat-icon matChipRemove>cancel</mat-icon>
-        </mat-chip>
+      <h2 class="edit__item">スキルリスト</h2>
+      <mat-form-field>
+        <mat-chip-list #chipList aria-label="tag selection">
+          <mat-chip
+            *ngFor="let tag of tags"
+            [selectable]="selectable"
+            [removable]="removable"
+            (removed)="remove(tag)"
+          >
+            {{ tag }}
+            <mat-icon matChipRemove>cancel</mat-icon>
+          </mat-chip>
+          <input
+            placeholder="習得済みのスキルを登録しましょう"
+            #tagsInput
+            [matChipInputFor]="chipList"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            [matChipInputAddOnBlur]="addOnBlur"
+            (matChipInputTokenEnd)="add($event)"
+            formControlName="tags"
+          />
+        </mat-chip-list>
+      </mat-form-field>
+
+      <button
+        class="edit__submit"
+        mat-button
+        [disabled]="form.invalid || form.pristine"
+      >
+        更新
+      </button>
+    </form>
+
+    <div class="unsubscribe">
+      <h2 class="unsubscribe__title">退会</h2>
+      <p class="unsubscribe__text">
+        退会すると利用データが失われ、あとから復元できません。
+      </p>
+
+      <mat-form-field class="unsubscribe__form">
         <input
-          placeholder="習得済みのスキルを登録しましょう"
-          #tagsInput
-          [matChipInputFor]="chipList"
-          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-          [matChipInputAddOnBlur]="addOnBlur"
-          (matChipInputTokenEnd)="add($event)"
-          formControlName="tags"
+          class="unsubscribe__input"
+          matInput
+          placeholder="ユーザー名を入力"
+          #input
+          autocomplete="off"
         />
-      </mat-chip-list>
-    </mat-form-field>
+        <mat-hint align="end">{{ user.name }}</mat-hint>
+      </mat-form-field>
 
-    <button
-      class="edit__submit"
-      mat-button
-      [disabled]="form.invalid || form.pristine"
-    >
-      更新
-    </button>
-  </form>
-
-  <div class="unsubscribe">
-    <h2 class="unsubscribe__title">退会</h2>
-    <p class="unsubscribe__text">
-      退会すると利用データが失われ、あとから復元できません。
-    </p>
-
-    <mat-form-field class="unsubscribe__form">
-      <input
-        class="unsubscribe__input"
-        matInput
-        placeholder="ユーザー名を入力"
-        #input
-        autocomplete="off"
-      />
-      <mat-hint align="end">{{ user.name }}</mat-hint>
-    </mat-form-field>
-
-    <button
-      class="unsubscribe__btn"
-      mat-button
-      [disabled]="user.name !== input.value"
-      (click)="openDeleteDialod()"
-    >
-      退会
-    </button>
-  </div>
-</ng-container>
+      <button
+        class="unsubscribe__btn"
+        mat-button
+        [disabled]="user.name !== input.value"
+        (click)="openDeleteDialod()"
+      >
+        退会
+      </button>
+    </div>
+  </ng-container>
+</div>

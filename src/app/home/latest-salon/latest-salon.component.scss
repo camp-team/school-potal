@@ -1,4 +1,5 @@
 @import 'mixins';
+@import '~@angular/material/theming';
 
 .container {
   @include sp {
@@ -6,12 +7,24 @@
   }
 }
 
-h2 {
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 16px;
-  @include sp {
-    margin-bottom: 8px;
+.title {
+  h2 {
+    font-family: 'Josefin Sans';
+    font-size: 32px;
+    font-weight: 600;
+    text-align: center;
+    @include sp {
+      margin-bottom: 8px;
+      font-size: 20px;
+    }
+  }
+  p {
+    text-align: center;
+    margin-bottom: 80px;
+    @include sp {
+      margin-bottom: 24px;
+      font-size: 13px;
+    }
   }
 }
 
@@ -20,28 +33,34 @@ h2 {
     padding: 0;
   }
   &__category {
-    display: flex;
-    align-items: center;
-    margin-bottom: 8px;
-    padding: 2px;
-    max-width: 160px;
+    border: none;
+    border-radius: 3px;
+    padding: 4px 8px;
+    background: linear-gradient(60deg, #ab47bc, #8e24aa);
+    color: #fff;
+    font-size: 13px;
   }
   &__category-text {
     opacity: 0.8;
   }
   &__thumbnail {
-    padding: 8px 8px 8px 0;
+    padding: 0;
+    margin-bottom: 16px;
+    @include mat-elevation(8);
+    img {
+      vertical-align: bottom;
+    }
   }
   &__body {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-area: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-items: stretch;
   }
   &__top {
     display: grid;
     grid-template-columns: 40px 1fr;
     gap: 8px;
-    margin-bottom: 8px;
+    padding-bottom: 24px;
   }
   &__logo {
     width: 40px;
@@ -52,6 +71,7 @@ h2 {
   &__title {
     font-size: 16px;
     font-weight: 500;
+    line-height: normal;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: wrap;
@@ -59,15 +79,20 @@ h2 {
     -webkit-line-clamp: 3;
     display: -webkit-box;
   }
-  &__price,
-  &__up {
+  &__date {
     opacity: 0.38;
+    margin-right: 8px;
+  }
+  &__description {
+    display: flex;
+    align-items: center;
+    margin-top: auto;
   }
 }
 
 .loading-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 16px;
   margin: 96px 0;
   @include tab {
@@ -79,7 +104,7 @@ h2 {
 }
 
 mat-divider {
-  margin: 24px 0;
+  margin: 56px 0;
   @include sp {
     margin: 16px;
   }

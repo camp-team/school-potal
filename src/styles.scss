@@ -1,4 +1,5 @@
 @import 'material-custom';
+@import '~@angular/material/theming';
 
 /* You can add global styles to this file, and also import other style files */
 html,
@@ -8,22 +9,12 @@ body {
 body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
-  background: #303030;
+  background: #fafafa;
 }
 
 a {
   color: inherit;
   text-decoration: none;
-}
-
-p {
-  margin: 0;
-  padding: 0;
-}
-
-figure {
-  margin: 0;
-  padding: 0;
 }
 
 img {
@@ -33,7 +24,11 @@ img {
 h1,
 h2,
 h3,
-h4 {
+h4,
+p,
+ul,
+li,
+figure {
   padding: 0;
   margin: 0;
 }
@@ -85,4 +80,15 @@ h4 {
   right: 0;
   bottom: 0;
   margin: auto;
+}
+
+[class^='mat-list-'] {
+  &:hover,
+  &.active {
+    background: rgba(255, 255, 255, 0.04);
+  }
+}
+
+.mat-dialog-container {
+  overflow: visible !important;
 }

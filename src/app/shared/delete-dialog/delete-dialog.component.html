@@ -1,6 +1,8 @@
-<h1 matDialogTitle class="dialog-header">
-  {{ data.title }}
-</h1>
+<ng-container *ngIf="data">
+  <h1 matDialogTitle class="dialog-header">
+    {{ data.title }}
+  </h1>
+</ng-container>
 
 <mat-divider></mat-divider>
 

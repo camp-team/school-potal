@@ -1,0 +1,68 @@
+@import 'mixins';
+
+.comment {
+  width: 90%;
+  padding: 16px;
+  margin: 0 auto 32px;
+  display: grid;
+  grid-template-columns: 40px 1fr 40px;
+  gap: 16px;
+  position: relative;
+  &__avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #424242 center/cover;
+    cursor: pointer;
+  }
+  &__body {
+    max-width: 100%;
+    word-break: break-all;
+  }
+  &__header {
+    display: flex;
+    margin-bottom: 8px;
+  }
+  &__name {
+    font-size: 13px;
+    font-weight: 500;
+    margin-right: 8px;
+    cursor: pointer;
+  }
+  &__date {
+    font-size: 13px;
+    color: rgba(#212121, 0.6);
+  }
+  &__btn {
+    display: none;
+    @include sp {
+      display: block;
+    }
+  }
+  &__btn--flag {
+    position: absolute;
+    top: 8px;
+    right: 0;
+  }
+  &:hover &__btn {
+    display: block;
+  }
+  &__text {
+    white-space: pre-wrap;
+  }
+}
+
+.form {
+  width: 100%;
+  display: block;
+  &__actions {
+    float: right;
+  }
+  &__btn {
+    margin-right: 8px;
+  }
+}
+
+mat-form-field {
+  width: 100%;
+}

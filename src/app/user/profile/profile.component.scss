@@ -1,10 +1,19 @@
 @import 'mixins';
+@import '~@angular/material/theming';
+
+.container--profile {
+  margin: 48px auto 80px;
+  padding: 24px;
+  background: #fff;
+  height: 100%;
+  @include mat-elevation(8, #000, 0.8);
+}
 
 .grid {
-  height: 100vh;
+  max-width: 100%;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 60% 40%;
+  grid-template-columns: 60% 37%;
   gap: 32px;
   @include sp {
     grid-template-columns: 1fr;
@@ -16,7 +25,7 @@
   padding: 24px;
   padding-left: 32px;
   position: relative;
-  background: #424242;
+  background: #fafafa;
   margin-bottom: 16px;
   @include sp {
     padding: 16px;
@@ -26,15 +35,17 @@
     height: 40px;
     border-radius: 50%;
     background: #6b1bf6;
+    color: #fff;
     position: absolute;
     top: 8px;
     left: -16px;
     &--pink {
       background: #f50057;
+      color: #fff;
     }
     &--yellow {
       background: #ffea00;
-      color: #182d41;
+      color: #212121;
     }
   }
   &__icon-position {

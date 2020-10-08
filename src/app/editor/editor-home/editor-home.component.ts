@@ -1,9 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
-import { Article } from 'src/app/interfaces/article';
-import { ArticleService } from 'src/app/services/article.service';
-import { EditorComponent } from '../editor/editor.component';
 
 @Component({
   selector: 'app-editor-home',
@@ -12,13 +7,6 @@ import { EditorComponent } from '../editor/editor.component';
 })
 export class EditorHomeComponent implements OnInit {
   childData: any;
-
-  article$ = this.route.paramMap.pipe(
-    switchMap((param) => {
-      const articleId = param.get('articleId');
-      return this.articleService.getArticle(articleId);
-    })
-  );
 
   navLinks = [
     {
@@ -31,10 +19,7 @@ export class EditorHomeComponent implements OnInit {
     },
   ];
 
-  constructor(
-    private route: ActivatedRoute,
-    private articleService: ArticleService
-  ) {}
+  constructor() {}
 
   ngOnInit(): void {}
 

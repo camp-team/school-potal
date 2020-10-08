@@ -1,5 +1,9 @@
 <div class="container">
-  <h2 class="title">ジャンルからさがす</h2>
+  <div class="title">
+    <h2>Genre Search</h2>
+    <p>ジャンルからさがす</p>
+  </div>
+
   <div class="grid">
     <mat-card
       *ngFor="let category of categoryGroup"
@@ -13,7 +17,6 @@
   </div>
 
   <div class="tags">
-    <h3 class="tags__title">注目のキーワード</h3>
     <mat-chip-list #chipList aria-label="tag selection">
       <mat-chip *ngFor="let tag of tags" [value]="tag.value">
         <a (click)="routeTagFilter(tag.value)"
