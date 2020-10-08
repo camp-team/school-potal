@@ -50,6 +50,8 @@
     padding-top: 24px;
     border: none;
     outline: none;
+    cursor: pointer;
+    @include mat-elevation(1);
     span {
       display: block;
     }
