@@ -51,6 +51,13 @@ const routes: Routes = [
         canLoad: [AuthGuard],
         canActivate: [AuthGuard],
       },
+      {
+        path: 'request-detail/:id',
+        loadChildren: () =>
+          import('./request-detail/request-detail.module').then(
+            (m) => m.RequestDetailModule
+          ),
+      },
     ],
   },
   {

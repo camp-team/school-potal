@@ -1,0 +1,93 @@
+@import '~@angular/material/theming';
+
+.request-wrap {
+  max-width: 60%;
+  margin: 80px auto 80px;
+  padding: 24px;
+  background: #fff;
+  position: relative;
+  border-radius: 6px;
+  @include mat-elevation(8, #000, 0.8);
+}
+
+.heading {
+  margin-bottom: 24px;
+  &__top {
+    font-family: 'Josefin Sans';
+    font-size: 24px;
+    text-align: center;
+    width: 90%;
+    background: linear-gradient(60deg, #ec407a, #d81b60);
+    border-radius: 6px;
+    padding: 16px;
+    color: #fff;
+    margin: 0 auto;
+    position: absolute;
+    top: -32px;
+    left: 50%;
+    transform: translateX(-50%);
+    @include mat-elevation(4);
+  }
+}
+
+.request {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.body {
+  margin: 56px auto 80px;
+  &__title {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+  &__body {
+    font-size: 14px;
+  }
+}
+
+.user {
+  max-width: 60%;
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 24px;
+  margin: 0 auto;
+  padding: 24px;
+  border-radius: 6px;
+  background: #303030;
+  color: #fff;
+  &__photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    background: #eee center/cover;
+    transition: ease-out 0.5s;
+    &:hover {
+      @include mat-elevation(4);
+    }
+  }
+  &__name {
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+  &__profile {
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: wrap;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    display: -webkit-box;
+    color: rgba(#fff, 0.8);
+  }
+}
+
+.action {
+  text-align: right;
+}
+
+.comment {
+  max-width: 60%;
+  margin: 0 auto 80px;
+}

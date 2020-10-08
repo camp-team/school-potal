@@ -1,8 +1,11 @@
 @import '~@angular/material/theming';
 
+.wrapper {
+  position: relative;
+}
+
 .heading {
   margin-bottom: 24px;
-  position: relative;
   &__top {
     font-family: 'Josefin Sans';
     font-size: 24px;
@@ -21,23 +24,12 @@
   &__body {
     font-size: 16px;
     text-align: center;
-    padding: 24px 0 24px;
+    padding: 48px 0 24px;
   }
 }
 
-.search {
+.form {
   display: grid;
-  align-items: center;
-  height: 60px;
-  border-radius: 20px;
-  &__input {
-    height: 48px;
-    border-radius: 24px;
-    background: #fafafa;
-    font-size: 16px;
-    padding: 0 8px;
-    border: none;
-    outline: none;
-    @include mat-elevation(4);
-  }
+  grid-template-columns: 1fr;
+  gap: 16px;
 }

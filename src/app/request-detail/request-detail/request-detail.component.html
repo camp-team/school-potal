@@ -1,0 +1,67 @@
+<div class="container">
+  <div @fade class="request-wrap">
+    <ng-container *ngIf="user$ | async as user">
+      <div class="heading">
+        <h1 class="heading__top">
+          口コミ募集
+        </h1>
+      </div>
+
+      <div class="request" *ngIf="request$ | async as request">
+        <div class="body">
+          <h2 class="body__title">
+            {{ request.title }}
+          </h2>
+
+          <p class="body__body">
+            {{ request.body }}
+          </p>
+        </div>
+
+        <div class="action" *ngIf="user.uid === request.uid">
+          <button
+            mat-flat-button
+            matTooltip="編集"
+            (click)="openRequestDialog(request)"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button
+            mat-flat-button
+            matTooltip="削除"
+            (click)="openDeleteDialog(request)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+
+        <div class="user">
+          <figure>
+            <a routerLink="/user/{{ request.user.uid }}">
+              <img class="user__photo" [src]="request.user.photoURL" alt="" />
+            </a>
+          </figure>
+
+          <div class="user__body">
+            <h3 class="user__name">
+              {{ request.user.name }}
+            </h3>
+
+            <p class="user__profile">
+              {{ request.user.profile }}
+            </p>
+            <p class="user__url"></p>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="comment">
+    <app-request-comment-form></app-request-comment-form>
+    <app-request-comment-list
+      *ngFor="let comment of comments$ | async"
+      [comment]="comment"
+    ></app-request-comment-list>
+  </div>
+</div>
