@@ -24,14 +24,14 @@
 
   <div class="btns-wrap">
     <div class="btns">
-      <button mat-flat-button class="btns__btn" (click)="openSearchDialog()">
-        <mat-icon>search</mat-icon>探す
+      <button class="btns__btn" (click)="openSearchDialog()">
+        <mat-icon>search</mat-icon><span>探す</span>
       </button>
-      <button mat-flat-button class="btns__btn" (click)="openRequestDialog()">
-        <mat-icon>hearing</mat-icon>聞く
+      <button class="btns__btn" (click)="openRequestDialog()">
+        <mat-icon>hearing</mat-icon><span>聞く</span>
       </button>
-      <button routerLink="/editor/create" mat-flat-button class="btns__btn">
-        <mat-icon>web</mat-icon>作る
+      <button routerLink="/editor/editor" class="btns__btn">
+        <mat-icon>web</mat-icon><span>作る</span>
       </button>
     </div>
   </div>

@@ -1,12 +1,5 @@
 @import '~@angular/material/theming';
 
-.container--editor {
-  margin: 48px auto 80px;
-  padding: 24px;
-  background: #fff;
-  @include mat-elevation(8, #000, 0.8);
-}
-
 .type,
 .image {
   display: grid;
