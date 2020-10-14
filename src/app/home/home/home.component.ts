@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
+import { User } from 'src/app/interfaces/users';
 import { SearchDialogComponent } from 'src/app/search-dialog/search-dialog.component';
+import { AuthService } from 'src/app/services/auth.service';
 import { RequestDialogComponent } from 'src/app/shared/request-dialog/request-dialog.component';
 
 @Component({
@@ -9,7 +12,9 @@ import { RequestDialogComponent } from 'src/app/shared/request-dialog/request-di
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private dialog: MatDialog) {}
+  user$: Observable<User> = this.authService.user$;
+
+  constructor(private dialog: MatDialog, private authService: AuthService) {}
 
   ngOnInit(): void {}
 

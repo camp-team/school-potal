@@ -4,10 +4,20 @@
       <h2>Requests list</h2>
       <p>口コミ募集</p>
     </div>
+
     <ng-container @fade *ngIf="requests$ | async as requests">
       <swiper [config]="config" [(index)]="index">
         <div class="swiper-slide" *ngFor="let request of requests">
-          <a routerLink="/request-detail/{{ request.id }}" class="request">
+          <a
+            routerLink="/request-detail/{{ request.id }}"
+            class="request"
+            [style.background]="
+              request.uid == user.uid
+                ? 'linear-gradient(60deg, #6E62FB, #D71B60)'
+                : '#fafafa'
+            "
+            [style.color]="request.uid == user.uid ? '#fff' : '#303030'"
+          >
             <div class="request__heading">
               <p class="request__pin">📌</p>
             </div>
