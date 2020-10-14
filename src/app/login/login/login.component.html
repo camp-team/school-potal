@@ -1,18 +1,50 @@
-<div class="login-section">
-  <div class="card">
-    <div class="card__header">
-      <a class="logo"
-        ><img src="assets/images/logo-grad2.svg" width="100%" alt="スキるぽ"
-      /></a>
+<div class="login">
+  <div class="login__wrap">
+    <div class="login__main">
+      <div class="login__message">
+        <p>eduuで、自分にぴったりの</p>
+        <p>学び場を見つけよう。</p>
+      </div>
 
-      <p class="description">ログイン</p>
+      <div class="card">
+        <div class="card__header">
+          <a class="logo"
+            ><img src="assets/images/logo-grad3.svg" width="100%" alt="eduu"
+          /></a>
+
+          <h1 class="card__title">ログイン</h1>
+        </div>
+        <button class="card__login card__login--google" (click)="googleLogin()">
+          Google
+        </button>
+        <p>または</p>
+        <button
+          class="card__login card__login--twitter"
+          (click)="twitterLogin()"
+        >
+          Twitter
+        </button>
+      </div>
     </div>
-    <button class="card__login card__login--google" (click)="googleLogin()">
-      Google
-    </button>
-    <p>または</p>
-    <button class="card__login card__login--twitter" (click)="twitterLogin()">
-      Twitter
-    </button>
+  </div>
+
+  <div class="feature">
+    <div class="feature__message">
+      <h2 class="feature__title">
+        ＼ ログインするとできること ／
+      </h2>
+      <p>アカウントを作成すると、多くのことができるようになります。</p>
+      <ol>
+        <li>
+          🖋マイページが作成され<strong>プロフィールを編集</strong>できます
+        </li>
+        <li>📌気になるサービスを<strong>ピン留め</strong>することができます</li>
+        <li>📝サービスの<strong>口コミを投稿</strong>できます</li>
+        <li>🙏<strong>口コミを募集</strong>することができます</li>
+        <li>
+          👨‍🏫サービスのオーナーは<strong>記事を作れる</strong>ようになります
+        </li>
+      </ol>
+    </div>
   </div>
 </div>

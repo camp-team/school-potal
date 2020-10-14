@@ -1,17 +1,58 @@
 @import 'mixins';
 
-.login-section {
+.login {
   height: 100vh;
+  font-family: 'Josefin Sans';
+  &__wrap {
+    background: url(/assets/images/bg-login.png) no-repeat center/cover;
+    position: relative;
+    z-index: 0;
+    vertical-align: bottom !important;
+    &::before {
+      content: '';
+      position: absolute;
+      top: -5px;
+      bottom: -5px;
+      left: -5px;
+      right: -5px;
+      background: #fff;
+      opacity: 0.8;
+      z-index: -1;
+    }
+  }
+  &__main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 48px;
+    width: 80%;
+    margin: 0 auto;
+  }
+  &__message {
+    display: grid;
+    place-content: center;
+    gap: 16px;
+    p {
+      font-size: 32px;
+      font-weight: 500;
+      color: #fff;
+      background: #303030;
+      padding: 8px 16px;
+      text-align: center;
+    }
+  }
 }
 
 .card {
   max-width: 400px;
   margin: 0 auto;
-  position: absolute;
-  top: calc(50% - 89px);
-  left: 50%;
-  transform: translate(-50%, -50%);
   text-align: center;
+  background: rgba(#303030, 0.8);
+  color: #fff;
+  border-radius: 6px;
+  &__title {
+    font-size: 20px;
+    font-weight: 500;
+  }
   &__header {
     padding: 48px 16px;
   }
@@ -23,26 +64,22 @@
     padding: 2px 25px;
     border-radius: 30px;
     line-height: 48px;
-    color: #fff;
+    color: #303030;
     transition: ease-in-out 0.3s;
     &--google {
-      background: #303030;
-      border: 2px solid #fff;
+      border: 1px solid #303030;
       @include sp {
         border-left: 2px solid #4285f4;
         border-top: 2px solid #db4437;
         border-right: 2px solid #f4b400;
         border-bottom: 2px solid #0f9d58;
-        background: rgba(30, 30, 30, 0.6);
       }
     }
     &--twitter {
-      background: #303030;
-      border: 2px solid #fff;
+      border: 1px solid #303030;
       margin-bottom: 48px;
       @include sp {
         border: 2px solid #2aa1f1;
-        background: rgba(30, 30, 30, 0.6);
       }
     }
     &--google:hover {
@@ -51,18 +88,23 @@
       border-top: 2px solid #db4437;
       border-right: 2px solid #f4b400;
       border-bottom: 2px solid #0f9d58;
-      background: rgba(30, 30, 30, 0.6);
     }
     &--twitter:hover {
       cursor: pointer;
       border: 2px solid #2aa1f1;
-      background: rgba(30, 30, 30, 0.6);
     }
   }
 }
 
-p {
+.feature {
   text-align: center;
+  padding: 48px;
+  &__title {
+    font-size: 24px;
+  }
+  p {
+    margin-bottom: 16px;
+  }
 }
 
 button {
