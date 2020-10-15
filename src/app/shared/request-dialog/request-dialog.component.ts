@@ -6,7 +6,6 @@ import { AuthService } from 'src/app/services/auth.service';
 import { RequestService } from 'src/app/services/request.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Request } from 'src/app/interfaces/request';
-import { ActivatedRoute } from '@angular/router';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
@@ -15,10 +14,8 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./request-dialog.component.scss'],
 })
 export class RequestDialogComponent implements OnInit {
-  uid: string;
   user$: Observable<User> = this.authService.user$;
   isProcessing: boolean;
-  request: Request;
 
   form = this.fb.group({
     title: ['', [Validators.required, Validators.maxLength(50)]],
@@ -38,16 +35,16 @@ export class RequestDialogComponent implements OnInit {
     private authService: AuthService,
     private requestService: RequestService,
     private snackBar: MatSnackBar,
-    private route: ActivatedRoute,
     @Inject(MAT_DIALOG_DATA) public data: Request
   ) {}
 
   ngOnInit(): void {
-    this.form.patchValue({
-      title: this.data.title,
-      body: this.data.body,
-    });
-    console.log(this.data);
+    if (this.data) {
+      this.form.patchValue({
+        title: this.data.title,
+        body: this.data.body,
+      });
+    }
   }
 
   submit(uid: string) {
