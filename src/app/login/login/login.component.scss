@@ -1,17 +1,67 @@
 @import 'mixins';
 
-.login-section {
+.login {
   height: 100vh;
+  font-family: 'Josefin Sans';
+  &__wrap {
+    background: url(/assets/images/bg-login.png) no-repeat center/cover;
+    position: relative;
+    z-index: 0;
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #fff;
+      opacity: 0.8;
+      z-index: -1;
+    }
+  }
+  &__main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 48px;
+    width: 80%;
+    margin: 0 auto;
+    @include sp {
+      grid-template-columns: 1fr;
+    }
+  }
+  &__message {
+    display: grid;
+    place-content: center;
+    gap: 16px;
+    @include sp {
+      margin-bottom: 48px;
+    }
+    p {
+      font-size: 32px;
+      font-weight: 500;
+      color: #fff;
+      background: #303030;
+      padding: 8px 16px;
+      text-align: center;
+      @include sp {
+        font-size: 20px;
+        padding: 16px 28px;
+      }
+    }
+  }
 }
 
 .card {
   max-width: 400px;
   margin: 0 auto;
-  position: absolute;
-  top: calc(50% - 89px);
-  left: 50%;
-  transform: translate(-50%, -50%);
   text-align: center;
+  background: rgba(#303030, 0.8);
+  color: #fff;
+  border-radius: 6px;
+  &__title {
+    font-size: 20px;
+    font-weight: 500;
+  }
   &__header {
     padding: 48px 16px;
   }
@@ -23,26 +73,22 @@
     padding: 2px 25px;
     border-radius: 30px;
     line-height: 48px;
-    color: #fff;
+    color: #303030;
     transition: ease-in-out 0.3s;
     &--google {
-      background: #303030;
-      border: 2px solid #fff;
+      border: 2px solid #303030;
       @include sp {
         border-left: 2px solid #4285f4;
         border-top: 2px solid #db4437;
         border-right: 2px solid #f4b400;
         border-bottom: 2px solid #0f9d58;
-        background: rgba(30, 30, 30, 0.6);
       }
     }
     &--twitter {
-      background: #303030;
-      border: 2px solid #fff;
+      border: 2px solid #303030;
       margin-bottom: 48px;
       @include sp {
         border: 2px solid #2aa1f1;
-        background: rgba(30, 30, 30, 0.6);
       }
     }
     &--google:hover {
@@ -51,18 +97,51 @@
       border-top: 2px solid #db4437;
       border-right: 2px solid #f4b400;
       border-bottom: 2px solid #0f9d58;
-      background: rgba(30, 30, 30, 0.6);
     }
     &--twitter:hover {
       cursor: pointer;
       border: 2px solid #2aa1f1;
-      background: rgba(30, 30, 30, 0.6);
     }
   }
 }
 
-p {
+.feature {
   text-align: center;
+  padding: 48px;
+  &__title {
+    font-size: 24px;
+    @include sp {
+      font-size: 18px;
+    }
+  }
+  &__sub {
+    margin-bottom: 40px;
+  }
+  ol {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+    @include sp {
+      grid-template-columns: 1fr;
+    }
+  }
+  &__image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #fafafa;
+    font-size: 40px;
+    text-align: center;
+    display: grid;
+    place-items: center;
+    margin-bottom: 16px;
+  }
+  li {
+    display: grid;
+    place-items: center;
+    padding: 32px 16px;
+    background: #fff;
+  }
 }
 
 button {

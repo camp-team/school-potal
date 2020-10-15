@@ -33,11 +33,12 @@ interface Category {
 })
 export class EditorComponent implements OnInit {
   @Output() event = new EventEmitter<Article>();
+  private likeCount: number;
+  private pinnedCount: number;
+
   article: Article;
   isComplete: boolean;
   processing: boolean;
-  likeCount: number;
-  pinnedCount: number;
 
   images: {
     thumbnailURL: File;
@@ -59,8 +60,9 @@ export class EditorComponent implements OnInit {
   selectable = true;
   removable = true;
   addOnBlur = true;
-  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   tags: string[] = [];
+
+  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
   categoryGroup: Category[] = [
     { value: 'プログラミング', viewValue: 'プログラミング' },
@@ -155,8 +157,8 @@ export class EditorComponent implements OnInit {
           const array = new FormControl(teacherId);
           this.teacherIds.push(array);
         });
+        this.event.emit(this.article);
       }
-      this.event.emit(this.article);
     });
   }
 
@@ -221,7 +223,7 @@ export class EditorComponent implements OnInit {
             serviceURL: formData.serviceURL,
             type: formData.type,
             teacherIds: formData.teacherIds,
-            tags: formData.tags,
+            tags: this.tags,
             likeCount: 0,
             pinCount: 0,
           },

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { Observable } from 'rxjs';
 import { fade } from 'src/app/animations';
 import { RequestWithUser } from 'src/app/interfaces/request';
+import { User } from 'src/app/interfaces/users';
 import { RequestService } from 'src/app/services/request.service';
 
 @Component({
@@ -12,6 +13,7 @@ import { RequestService } from 'src/app/services/request.service';
   animations: [fade],
 })
 export class RequestListComponent implements OnInit {
+  @Input() user: User;
   requests$: Observable<
     RequestWithUser[]
   > = this.requestService.getRequestsWithUser();
