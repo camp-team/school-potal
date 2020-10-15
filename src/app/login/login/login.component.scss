@@ -7,14 +7,13 @@
     background: url(/assets/images/bg-login.png) no-repeat center/cover;
     position: relative;
     z-index: 0;
-    vertical-align: bottom !important;
     &::before {
       content: '';
       position: absolute;
-      top: -5px;
-      bottom: -5px;
-      left: -5px;
-      right: -5px;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
       background: #fff;
       opacity: 0.8;
       z-index: -1;
@@ -26,11 +25,17 @@
     padding: 48px;
     width: 80%;
     margin: 0 auto;
+    @include sp {
+      grid-template-columns: 1fr;
+    }
   }
   &__message {
     display: grid;
     place-content: center;
     gap: 16px;
+    @include sp {
+      margin-bottom: 48px;
+    }
     p {
       font-size: 32px;
       font-weight: 500;
@@ -38,6 +43,10 @@
       background: #303030;
       padding: 8px 16px;
       text-align: center;
+      @include sp {
+        font-size: 20px;
+        padding: 16px 28px;
+      }
     }
   }
 }
@@ -67,7 +76,7 @@
     color: #303030;
     transition: ease-in-out 0.3s;
     &--google {
-      border: 1px solid #303030;
+      border: 2px solid #303030;
       @include sp {
         border-left: 2px solid #4285f4;
         border-top: 2px solid #db4437;
@@ -76,7 +85,7 @@
       }
     }
     &--twitter {
-      border: 1px solid #303030;
+      border: 2px solid #303030;
       margin-bottom: 48px;
       @include sp {
         border: 2px solid #2aa1f1;
@@ -101,9 +110,37 @@
   padding: 48px;
   &__title {
     font-size: 24px;
+    @include sp {
+      font-size: 18px;
+    }
   }
-  p {
+  &__sub {
+    margin-bottom: 40px;
+  }
+  ol {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+    @include sp {
+      grid-template-columns: 1fr;
+    }
+  }
+  &__image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #fafafa;
+    font-size: 40px;
+    text-align: center;
+    display: grid;
+    place-items: center;
     margin-bottom: 16px;
+  }
+  li {
+    display: grid;
+    place-items: center;
+    padding: 32px 16px;
+    background: #fff;
   }
 }
 
