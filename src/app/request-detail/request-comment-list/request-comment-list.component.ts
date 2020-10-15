@@ -34,9 +34,7 @@ export class RequestCommentListComponent implements OnInit {
     private dialog: MatDialog
   ) {}
 
-  ngOnInit(): void {
-    console.log(this.comment);
-  }
+  ngOnInit(): void {}
 
   isEditMode() {
     this.isEditable = true;

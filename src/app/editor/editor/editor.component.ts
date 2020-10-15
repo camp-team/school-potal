@@ -211,8 +211,6 @@ export class EditorComponent implements OnInit {
     const formData = this.form.value;
 
     if (!this.article) {
-      console.log(this.form);
-
       this.articleService
         .createArtile(
           {
