@@ -1,0 +1,88 @@
+@import '~@angular/material/theming';
+@import 'mixins';
+
+.wrapper {
+  max-width: 100%;
+  background: #fff;
+  @include mat-elevation(8, #000, 0.8);
+  padding: 80px;
+  @include sp {
+    padding: 16px;
+  }
+}
+
+.footer {
+  width: 100%;
+  height: 10%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 48px auto 80px;
+  color: #303030;
+  &__title {
+    font-size: 32px;
+    font-family: 'Josefin Sans';
+    margin-bottom: 8px;
+    @include sp {
+      font-size: 20px;
+    }
+  }
+  &__copy {
+    margin-bottom: 16px;
+    @include sp {
+      font-size: 13px;
+    }
+  }
+  &__icon {
+    margin-right: 16px;
+    img {
+      width: 32px;
+      height: 32px;
+      @include sp {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+  &__sub {
+    padding-top: 56px;
+    @include sp {
+      padding-top: 16px;
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+    }
+  }
+  &__mail {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 16px;
+    mat-icon {
+      margin-left: 16px;
+      @include sp {
+        margin-left: 8px;
+      }
+    }
+    @include sp {
+      font-size: 13px;
+      line-height: 13px;
+      margin-bottom: 8px;
+    }
+  }
+  &__btn {
+    @include sp {
+      font-size: 13px;
+    }
+  }
+  &__logo {
+    display: grid;
+    place-items: end;
+    img {
+      width: 120px;
+      @include sp {
+        width: 80px;
+      }
+    }
+  }
+}
