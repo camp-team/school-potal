@@ -13,14 +13,11 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class SearchDialogComponent implements OnInit {
   searchControl: FormControl = new FormControl();
-
   index: SearchIndex = this.searchService.index.item;
-
   result: {
     nbHits: number;
     hits: any[];
   };
-
   searchOptions = [];
 
   constructor(

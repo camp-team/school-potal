@@ -11,14 +11,12 @@ import { Router } from '@angular/router';
 })
 export class TagListComponent implements OnInit {
   index: SearchIndex = this.searchService.index.item;
-
   tags: {
     value: string;
     highlighted: string;
     count: number;
     selected?: boolean;
   }[];
-
   searchQuery: string;
 
   categoryGroup: Category[] = [

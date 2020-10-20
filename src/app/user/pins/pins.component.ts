@@ -14,6 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PinsComponent implements OnInit {
   user$: Observable<User> = this.authService.user$;
+
   articles$: Observable<Article[]> = this.route.parent.paramMap.pipe(
     switchMap((map) => {
       const uid = map.get('uid');
