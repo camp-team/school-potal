@@ -18,7 +18,8 @@ import { DeleteDialogComponent } from 'src/app/shared/delete-dialog/delete-dialo
 export class RequestCommentListComponent implements OnInit {
   @Input() comment: RequestCommentWithUser;
   isEditable: boolean;
-  MAX_COMMENT_LENGTH = 400;
+
+  readonly MAX_COMMENT_LENGTH = 400;
 
   commentForm = new FormControl('', [
     Validators.maxLength(this.MAX_COMMENT_LENGTH),

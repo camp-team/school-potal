@@ -14,12 +14,21 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./request-dialog.component.scss'],
 })
 export class RequestDialogComponent implements OnInit {
-  user$: Observable<User> = this.authService.user$;
+  readonly MAX_TITLE_LENGTH = 50;
+  readonly MAX_BODY_LENGTH = 400;
+
   isProcessing: boolean;
+  user$: Observable<User> = this.authService.user$;
 
   form = this.fb.group({
-    title: ['', [Validators.required, Validators.maxLength(50)]],
-    body: ['', [Validators.required, Validators.maxLength(400)]],
+    title: [
+      '',
+      [Validators.required, Validators.maxLength(this.MAX_TITLE_LENGTH)],
+    ],
+    body: [
+      '',
+      [Validators.required, Validators.maxLength(this.MAX_BODY_LENGTH)],
+    ],
   });
 
   get title(): FormControl {
