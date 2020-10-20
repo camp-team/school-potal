@@ -3,7 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { CommentService } from 'src/app/services/comment.service';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-import { map, switchMap, tap, take } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/interfaces/users';
 import { MatSnackBar } from '@angular/material/snack-bar';
