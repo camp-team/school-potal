@@ -23,6 +23,15 @@
             required
             matTextareaAutosize
           />
+          <mat-error *ngIf="form.controls['title'].hasError('required')"
+            >必須入力です</mat-error
+          >
+          <mat-error *ngIf="form.controls['title'].hasError('maxlength')"
+            >最大文字数を超えています</mat-error
+          >
+          <mat-hint align="end"
+            >{{ title.value.length }} / {{ MAX_TITLE_LENGTH }}文字</mat-hint
+          >
         </mat-form-field>
         <mat-form-field appearance="outline" class="form__body">
           <textarea
@@ -35,6 +44,15 @@
             matTextareaAutosize
             [matAutosizeMinRows]="10"
           ></textarea>
+          <mat-error *ngIf="form.controls['body'].hasError('required')"
+            >必須入力です</mat-error
+          >
+          <mat-error *ngIf="form.controls['body'].hasError('maxlength')"
+            >最大文字数を超えています</mat-error
+          >
+          <mat-hint align="end"
+            >{{ body.value.length }} / {{ MAX_BODY_LENGTH }}文字</mat-hint
+          >
         </mat-form-field>
       </mat-dialog-content>
 
