@@ -7,10 +7,6 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent implements OnInit {
-  isProcessing: boolean;
-
-  commentForm = new FormControl('', [Validators.required, Validators.email]);
-
   constructor() {}
 
   ngOnInit(): void {}

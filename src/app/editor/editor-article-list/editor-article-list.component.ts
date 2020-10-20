@@ -14,9 +14,7 @@ import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component'
   styleUrls: ['./editor-article-list.component.scss'],
 })
 export class EditorArticleListComponent implements OnInit, AfterViewInit {
-  articleId: string;
-
-  displayedColumns: string[] = [
+  readonly displayedColumns: string[] = [
     'number',
     'status',
     'id',
@@ -26,6 +24,7 @@ export class EditorArticleListComponent implements OnInit, AfterViewInit {
     'category',
     'menu',
   ];
+
   dataSource: MatTableDataSource<Article>;
   defaultPageSize = 10;
 
@@ -48,6 +47,7 @@ export class EditorArticleListComponent implements OnInit, AfterViewInit {
       .subscribe((data) => {
         this.dataSource = new MatTableDataSource<Article>(data);
         this.dataSource.paginator = this.paginator;
+        this.paginator.page.subscribe();
       });
   }
 

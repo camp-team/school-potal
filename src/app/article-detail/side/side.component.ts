@@ -4,7 +4,7 @@ import { ArticleService } from 'src/app/services/article.service';
 import { SearchIndex } from 'algoliasearch/lite';
 import { SearchService } from 'src/app/services/search.service';
 import { ActivatedRoute } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, tap } from 'rxjs/operators';
 import { UiService } from 'src/app/services/ui.service';
 
 @Component({
@@ -54,6 +54,7 @@ export class SideComponent implements OnInit {
       )
       .subscribe((article) => {
         this.article = article;
+
         const categoryFilter = `category: ${article?.category}`;
 
         if (!this.maxPage || this.maxPage > this.page) {
