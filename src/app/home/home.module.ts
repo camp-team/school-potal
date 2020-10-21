@@ -22,6 +22,7 @@ import { MatInputModule } from '@angular/material/input';
 import { RequestListComponent } from './request-list/request-list.component';
 import { SharedModule } from '../shared/shared.module';
 import { FooterComponent } from '../footer/footer.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { FooterComponent } from '../footer/footer.component';
     MatFormFieldModule,
     MatInputModule,
     SharedModule,
+    MatAutocompleteModule,
   ],
 })
 export class HomeModule {}
