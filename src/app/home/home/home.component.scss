@@ -4,12 +4,24 @@
 .hero {
   max-width: 100%;
   position: relative;
-  margin-bottom: 80px;
   @include sp {
     margin-bottom: 24px;
   }
   img {
     vertical-align: bottom;
+  }
+  &__description {
+    font-size: 24px;
+    color: #fafafa;
+    padding: 40px;
+    position: absolute;
+    top: 20%;
+    p {
+      text-shadow: 1px 2px 8px rgba(#303030, 0.38);
+      &:nth-of-type(2) {
+        margin-bottom: 16px;
+      }
+    }
   }
 }
 
@@ -23,6 +35,7 @@
   place-content: center;
   place-items: center;
   border-radius: 2px;
+  transform: translateY(-50px);
   @include mat-elevation(4, #000, 0.4);
   &__head {
     width: 20%;
@@ -51,7 +64,7 @@
   &__submit {
     width: 10%;
     height: 50px;
-    background: linear-gradient(60deg, #ab47bc, #8e24aa);
+    background: linear-gradient(60deg, #40c4ff, #00a1dd);
     color: #fff;
     border-radius: 2px;
     text-align: center;
