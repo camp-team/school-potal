@@ -1,57 +1,46 @@
 <div class="header">
-  <button class="nav" mat-icon-button (click)="toggle()">
+  <button class="header__nav" mat-icon-button (click)="toggleNav()">
     <mat-icon>menu</mat-icon>
   </button>
-  <a class="logo" routerLink="/"
+  <a class="header__logo" routerLink="/"
     ><img
       src="assets/images/logo-grad3.svg"
-      alt="スキるぽ"
+      alt="eduu"
       width="100px"
       height="32px"
   /></a>
-  <p class="description">学びの場レビューメディア</p>
-  <span class="spacer"></span>
+  <p class="header__description">学びの場レビューメディア</p>
+  <span class="header__spacer"></span>
 
-  <form class="search" (ngSubmit)="routeSearch(searchControl.value)">
-    <input
-      class="search__input"
-      type="text"
-      placeholder="スキルや場所、人名で探す"
-      autocomplete="off"
-      [matAutocomplete]="auto"
-      [formControl]="searchControl"
-    />
-    <button
-      type="submit"
-      (click)="routeSearch(searchControl.value)"
-      mat-icon-button
-    >
+  <div class="menu">
+    <button class="menu__btn" (click)="openSearchDialog()">
       <mat-icon>search</mat-icon>
+      <p>検索する</p>
     </button>
-  </form>
-  <mat-autocomplete
-    #auto="matAutocomplete"
-    (optionActivated)="setSearchQuery($event.option?.value)"
-    (optionSelected)="routeSearch($event.option?.value)"
-  >
-    <mat-option *ngFor="let option of searchOptions" [value]="option.name">{{
-      option.name
-    }}</mat-option>
-  </mat-autocomplete>
-
-  <button (click)="openSearchDialog()" mat-icon-button class="search-sp">
-    <mat-icon>search</mat-icon>
-  </button>
+    <button class="menu__btn" (click)="openRequestDialog()">
+      <mat-icon>hearing</mat-icon>
+      <p>質問する</p>
+    </button>
+    <button routerLink="/editor/editor" class="menu__btn">
+      <mat-icon>web</mat-icon>
+      <p>ページを作る</p>
+    </button>
+  </div>
 
   <ng-template #notLogin>
-    <a mat-button routerLink="/login" class="login">
-      ログイン
-    </a>
+    <button
+      [disabled]="authService.isProcessing"
+      mat-button
+      routerLink="/login"
+      class="header__login"
+    >
+      {{ authService.isProcessing ? 'ログイン中' : 'ログイン' }}
+    </button>
   </ng-template>
 
   <ng-container *ngIf="user$ | async as user; else notLogin">
     <button
-      class="avatar"
+      class="header__avatar"
       mat-icon-button
       [matMenuTriggerFor]="menu"
       [style.background-image]="'url(' + user.photoURL + ')'"
