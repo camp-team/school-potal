@@ -17,8 +17,11 @@ import { fade } from 'src/app/animations';
 export class LatestSalonComponent implements OnInit {
   config: SwiperConfigInterface = {
     loop: true,
-    slidesPerView: 4,
-    navigation: true,
+    slidesPerView: 3,
+    navigation: {
+      nextEl: '.swiper-button-next-salon',
+      prevEl: '.swiper-button-prev-salon',
+    },
     observer: true,
     watchOverflow: true,
     spaceBetween: 24,
@@ -30,12 +33,12 @@ export class LatestSalonComponent implements OnInit {
       },
       960: {
         slidesPerView: 3,
-        spaceBetween: 24,
+        spaceBetween: 16,
       },
     },
   };
   index: number;
-  spins = newArray(4);
+  spins = newArray(3);
 
   salons$: Observable<Article[]> = this.articleService
     .getSalons()

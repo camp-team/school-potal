@@ -3,35 +3,39 @@
     <h2>＼ Latest Salon ／</h2>
     <p>新着オンラインサロン</p>
   </div>
-  <ng-container *ngIf="salons$ | async as salons; else loading">
-    <swiper [config]="config" [(index)]="index">
-      <div class="swiper-slide" *ngFor="let salon of salons">
-        <a routerLink="/article-detail/{{ salon.id }}" class="article">
-          <figure @fade class="article__thumbnail">
-            <img [src]="salon.thumbnailURL" alt="" />
-          </figure>
+  <div class="swiper-container-wrapper">
+    <div class="swiper-button-wrapper">
+      <div class="swiper-button-prev-salon"></div>
+      <div class="swiper-button-next-salon"></div>
+    </div>
+    <ng-container *ngIf="salons$ | async as salons; else loading">
+      <swiper [config]="config" [(index)]="index">
+        <div class="swiper-slide" *ngFor="let salon of salons">
+          <a routerLink="/article-detail/{{ salon.id }}" class="article">
+            <figure @fade class="article__thumbnail">
+              <img [src]="salon.thumbnailURL" alt="" />
+            </figure>
 
-          <div class="article__body">
-            <div class="article__top">
-              <img class="article__logo" [src]="salon.logo" alt="" />
-              <h3 class="article__title">{{ salon.title }}</h3>
+            <div class="article__body">
+              <div class="article__top">
+                <h3 class="article__name">{{ salon.name }}</h3>
+                <h3 class="article__title">{{ salon.title }}</h3>
+              </div>
+
+              <div class="article__description">
+                <p class="article__date">
+                  {{ salon.createdAt.toDate() | date: 'yyyy/MM/dd' }} 追加
+                </p>
+                <button class="article__category">
+                  <p class="article__category-text">{{ salon.category }}</p>
+                </button>
+              </div>
             </div>
-
-            <div class="article__description">
-              <p class="article__date">
-                {{ salon.createdAt.toDate() | date: 'yyyy年M月d日' }} UP
-              </p>
-              <button class="article__category">
-                <p class="article__category-text">{{ salon.category }}</p>
-              </button>
-            </div>
-          </div>
-        </a>
-      </div>
-    </swiper>
-  </ng-container>
-
-  <mat-divider></mat-divider>
+          </a>
+        </div>
+      </swiper>
+    </ng-container>
+  </div>
 
   <ng-template #loading>
     <div class="loading-grid">
