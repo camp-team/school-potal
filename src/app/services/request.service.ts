@@ -38,7 +38,7 @@ export class RequestService {
     });
   }
 
-  deleteRequest(request: Request): Promise<boolean | void> {
+  async deleteRequest(request: Request): Promise<boolean | void> {
     return this.db
       .doc<Request>(`requests/${request.id}`)
       .delete()
@@ -81,7 +81,7 @@ export class RequestService {
   getRequestsWithUser(): Observable<RequestWithUser[]> {
     return this.db
       .collection<Request>(`requests`, (ref) =>
-        ref.orderBy('createdAt', 'desc').limit(30)
+        ref.orderBy('createdAt', 'desc')
       )
       .valueChanges()
       .pipe(

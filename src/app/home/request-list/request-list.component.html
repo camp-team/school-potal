@@ -6,42 +6,50 @@
     </div>
 
     <ng-container @fade *ngIf="requests$ | async as requests">
-      <swiper [config]="config" [(index)]="index">
-        <div class="swiper-slide" *ngFor="let request of requests">
-          <a
-            routerLink="/request-detail/{{ request.id }}"
-            class="request"
-            [style.background]="
-              request.uid == user.uid
-                ? 'linear-gradient(60deg, #6E62FB, #D71B60)'
-                : '#fafafa'
-            "
-            [style.color]="request.uid == user.uid ? '#fff' : '#303030'"
-          >
-            <div class="request__heading">
-              <p class="request__pin">📌</p>
-            </div>
-            <div class="request__body">
-              <p>{{ request.body }}</p>
-            </div>
+      <div *ngFor="let request of requests | slice: 0:7">
+        <a
+          routerLink="/request-detail/{{ request.id }}"
+          class="request"
+          [style.background]="
+            request.uid == user.uid
+              ? 'linear-gradient(60deg, #6E62FB, #D71B60)'
+              : '#fafafa'
+          "
+          [style.color]="request.uid == user.uid ? '#fff' : '#303030'"
+        >
+          <div class="request__heading">
+            <p class="request__icon">🤔</p>
+          </div>
 
+          <div class="request__main">
             <h3 class="request__title">{{ request.title }}</h3>
+            <p class="request__body">{{ request.body }}</p>
 
             <div class="request__description">
               <p class="request__date">
-                {{ request.createdAt.toDate() | date: 'yyyy年M月d日' }} UP
+                <mat-icon>schedule</mat-icon
+                >{{ request.createdAt.toDate() | date: 'yyyy/MM/dd/' }} 投稿
               </p>
-              <a
-                class="request__photo"
-                [style.background-image]="'url(' + request.user.photoURL + ')'"
-                routerLink="/user/{{ request.user?.uid }}"
-              ></a>
+              <p class="request__category">
+                <mat-icon>local_offer</mat-icon>{{ request.category }}
+              </p>
             </div>
-          </a>
-        </div>
-      </swiper>
+          </div>
+
+          <div class="request__user">
+            <button
+              class="request__photo"
+              [style.background-image]="'url(' + request.user.photoURL + ')'"
+              routerLink="/user/{{ request.user?.uid }}"
+            ></button>
+            <p class="request__name">
+              {{ request.user.name }}
+            </p>
+          </div>
+        </a>
+      </div>
     </ng-container>
 
-    <mat-divider></mat-divider>
+    <a class="request__more" routerLink="/all-request">全ての質問を見る</a>
   </div>
 </div>
