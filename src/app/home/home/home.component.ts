@@ -17,7 +17,6 @@ import { RequestDialogComponent } from 'src/app/shared/request-dialog/request-di
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  user$: Observable<User> = this.authService.user$;
   searchControl: FormControl = new FormControl();
   index: SearchIndex = this.searchService.index.item;
   searchOptions = [];
@@ -25,6 +24,8 @@ export class HomeComponent implements OnInit {
     nbHits: number;
     hits: any[];
   };
+
+  user$: Observable<User> = this.authService.user$;
 
   constructor(
     private dialog: MatDialog,
