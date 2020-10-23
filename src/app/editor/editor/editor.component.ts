@@ -71,7 +71,7 @@ export class EditorComponent implements OnInit {
     { value: '料理', viewValue: '料理' },
     { value: 'モノづくり', viewValue: 'モノづくり' },
     { value: '音楽', viewValue: '音楽' },
-    { value: 'その他', viewValue: 'その他' },
+    { value: '医療', viewValue: '医療' },
   ];
 
   form = this.fb.group({
