@@ -38,6 +38,7 @@ import { QuillModule } from 'ngx-quill';
 import { ShellComponent } from './shell/shell.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -77,6 +78,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     MatFormFieldModule,
     QuillModule.forRoot(),
     InfiniteScrollModule,
+    MatSelectModule,
   ],
   providers: [
     { provide: REGION, useValue: 'asia-northeast1' },
