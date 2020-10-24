@@ -1,4 +1,4 @@
-<div class="list-container" *ngIf="dataSource; else loading">
+<div class="list-container mat-elevation-z8" *ngIf="dataSource; else loading">
   <table mat-table [dataSource]="dataSource">
     <ng-container matColumnDef="number">
       <th mat-header-cell *matHeaderCellDef>No.</th>
@@ -73,7 +73,7 @@
 
   <mat-paginator
     [pageSizeOptions]="[10, 20, 50]"
-    [length]="dataSource.data.length"
+    [length]="dataSource?.data.length"
     [pageSize]="defaultPageSize"
     showFirstLastButtons
   ></mat-paginator>

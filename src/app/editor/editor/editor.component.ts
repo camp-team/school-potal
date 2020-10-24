@@ -20,11 +20,7 @@ import { Observable } from 'rxjs';
 import { Article } from 'src/app/interfaces/article';
 import { switchMap } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
-
-interface Category {
-  value: string;
-  viewValue: string;
-}
+import { Category } from 'src/app/interfaces/category';
 
 @Component({
   selector: 'app-editor',
@@ -35,12 +31,7 @@ export class EditorComponent implements OnInit {
   @Output() event = new EventEmitter<Article>();
   private likeCount: number;
   private pinnedCount: number;
-
-  article: Article;
-  isComplete: boolean;
-  processing: boolean;
-
-  images: {
+  private images: {
     thumbnailURL: File;
     logo: File;
   } = {
@@ -48,6 +39,9 @@ export class EditorComponent implements OnInit {
     logo: null,
   };
 
+  article: Article;
+  isComplete: boolean;
+  processing: boolean;
   srcs: {
     thumbnailURL: File;
     logo: File;
@@ -56,13 +50,16 @@ export class EditorComponent implements OnInit {
     logo: null,
   };
 
+  readonly MAX_NAME_LENGTH = 50;
+  readonly MAX_TITLE_LENGTH = 150;
+  readonly MAX_PLAN_LENGTH = 400;
+  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+
   visible = true;
   selectable = true;
   removable = true;
   addOnBlur = true;
   tags: string[] = [];
-
-  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
   categoryGroup: Category[] = [
     { value: 'プログラミング', viewValue: 'プログラミング' },
@@ -78,13 +75,29 @@ export class EditorComponent implements OnInit {
   ];
 
   form = this.fb.group({
-    name: ['', [Validators.required, Validators.maxLength(50)]],
+    name: [
+      '',
+      [Validators.required, Validators.maxLength(this.MAX_NAME_LENGTH)],
+    ],
     category: ['', [Validators.required]],
-    title: ['', [Validators.required, Validators.maxLength(150)]],
+    title: [
+      '',
+      [Validators.required, Validators.maxLength(this.MAX_TITLE_LENGTH)],
+    ],
     feature: [''],
-    plan: ['', [Validators.required, Validators.maxLength(400)]],
-    serviceURL: [''],
-    type: [''],
+    plan: [
+      '',
+      [Validators.required, Validators.maxLength(this.MAX_PLAN_LENGTH)],
+    ],
+    serviceURL: [
+      '',
+      [
+        Validators.pattern(
+          '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?'
+        ),
+      ],
+    ],
+    type: ['', [Validators.required]],
     teacherIds: this.fb.array([]),
     tags: [['']],
     id: [''],

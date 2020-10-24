@@ -18,14 +18,14 @@ import { DeleteDialogComponent } from 'src/app/shared/delete-dialog/delete-dialo
 export class CommentListComponent implements OnInit {
   @Input() comment: CommentWithUser;
 
+  isEditable: boolean;
+
   user$: Observable<User> = this.authService.user$;
 
   commentForm = new FormControl('', [
     Validators.maxLength(400),
     Validators.required,
   ]);
-
-  isEditable: boolean;
 
   constructor(
     private commentService: CommentService,

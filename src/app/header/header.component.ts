@@ -17,16 +17,15 @@ import { UiService } from '../services/ui.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  user$: Observable<User> = this.authService.user$;
   searchControl: FormControl = new FormControl();
   index: SearchIndex = this.searchService.index.item;
-
+  searchOptions = [];
   result: {
     nbHits: number;
     hits: any[];
   };
 
-  searchOptions = [];
+  user$: Observable<User> = this.authService.user$;
 
   constructor(
     private uiService: UiService,

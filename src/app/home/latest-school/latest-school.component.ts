@@ -36,7 +36,6 @@ export class LatestSchoolComponent implements OnInit {
   };
 
   index: number;
-
   spins = newArray(4);
 
   schools$: Observable<Article[]> = this.articleService.getSchools().pipe(

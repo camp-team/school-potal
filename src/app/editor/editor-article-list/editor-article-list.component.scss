@@ -1,5 +1,6 @@
 .list-container {
-  height: 100vh;
+  width: 90%;
+  margin: 24px auto 0;
 }
 
 mat-spinner {
@@ -11,8 +12,7 @@ mat-spinner {
 }
 
 table {
-  width: 90%;
-  margin: 24px auto 0;
+  width: 100%;
 }
 
 mat-paginator {

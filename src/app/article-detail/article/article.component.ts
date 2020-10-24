@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { ArticleService } from 'src/app/services/article.service';
-import { Observable, combineLatest, of, ReplaySubject, Subject } from 'rxjs';
+import { Observable, combineLatest, of } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { Article } from 'src/app/interfaces/article';
 import { switchMap, take, map } from 'rxjs/operators';
@@ -24,14 +24,15 @@ export class ArticleComponent implements OnInit {
   @Input() article: Article;
   @ViewChild('target') target: ElementRef;
 
+  private articleId: string;
+  private teachers: Teacher[];
+
+  uid: string;
   selectedTeacherNum = 0;
   isliked: boolean;
   likeCount: number;
-  uid: string;
-  articleId: string;
   isPinned: boolean;
   pinCount: number;
-  teachers: Teacher[];
 
   article$: Observable<Article> = this.route.paramMap.pipe(
     switchMap((param) => {

@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class EditorHomeComponent implements OnInit {
   childData: any;
 
-  navLinks = [
+  readonly navLinks = [
     {
       label: '新規作成',
       path: 'create',

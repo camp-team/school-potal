@@ -3,7 +3,9 @@
     <h2>サービス名</h2>
     <mat-form-field appearance="outline">
       <input matInput formControlName="name" #name required />
-      <mat-hint align="end">{{ name.value.length }} / 50文字</mat-hint>
+      <mat-hint align="end"
+        >{{ name.value.length }} / {{ MAX_NAME_LENGTH }}文字</mat-hint
+      >
     </mat-form-field>
 
     <div class="type">
@@ -109,7 +111,9 @@
     <h2>記事タイトル</h2>
     <mat-form-field appearance="outline">
       <input matInput formControlName="title" #title required />
-      <mat-hint align="end">{{ title.value.length }} / 150文字</mat-hint>
+      <mat-hint align="end"
+        >{{ title.value.length }} / {{ MAX_TITLE_LENGTH }}文字</mat-hint
+      >
     </mat-form-field>
 
     <h2>サービスの特徴</h2>
@@ -127,7 +131,9 @@
         matTextareaAutosize
         [matAutosizeMinRows]="10"
       ></textarea>
-      <mat-hint align="end">{{ plan.value.length }} / 400文字</mat-hint>
+      <mat-hint align="end"
+        >{{ plan.value.length }} / {{ MAX_PLAN_LENGTH }}文字</mat-hint
+      >
     </mat-form-field>
 
     <h2>サービスURL</h2>

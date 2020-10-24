@@ -10,12 +10,17 @@ import {
   RequestCommentWithUser,
 } from '../interfaces/request-comment';
 import { UserService } from './user.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RequestService {
-  constructor(private db: AngularFirestore, private userService: UserService) {}
+  constructor(
+    private db: AngularFirestore,
+    private userService: UserService,
+    private router: Router
+  ) {}
 
   createRequest(request: Omit<Request, 'id' | 'createdAt'>): Promise<void> {
     const id = this.db.createId();
@@ -33,8 +38,11 @@ export class RequestService {
     });
   }
 
-  deleteRequest(request: Request): Promise<void> {
-    return this.db.doc<Request>(`requests/${request.id}`).delete();
+  deleteRequest(request: Request): Promise<boolean | void> {
+    return this.db
+      .doc<Request>(`requests/${request.id}`)
+      .delete()
+      .then(() => this.router.navigateByUrl('/'));
   }
 
   getRequest(id: string): Observable<Request> {

@@ -34,9 +34,7 @@ export class LatestSalonComponent implements OnInit {
       },
     },
   };
-
   index: number;
-
   spins = newArray(4);
 
   salons$: Observable<Article[]> = this.articleService

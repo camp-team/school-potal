@@ -22,25 +22,17 @@ import { DeleteDialogComponent } from 'src/app/shared/delete-dialog/delete-dialo
 })
 export class SettingComponent implements OnInit {
   user: User;
-  user$: Observable<User> = this.authService.user$;
-
-  constructor(
-    private fb: FormBuilder,
-    private authService: AuthService,
-    private userService: UserService,
-    private dialog: MatDialog
-  ) {
-    this.user$.subscribe((user) => {
-      this.user = user;
-    });
-  }
-
   form: FormGroup = this.fb.group({
     name: ['', Validators.maxLength(50)],
     profile: ['', Validators.maxLength(400)],
     links: ['', Validators.maxLength(400)],
     tags: [['']],
   });
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
+  tags: string[] = [];
+  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
   get nameControl(): FormControl {
     return this.form.get('name') as FormControl;
@@ -55,12 +47,18 @@ export class SettingComponent implements OnInit {
     return this.form.get('tags') as FormControl;
   }
 
-  visible = true;
-  selectable = true;
-  removable = true;
-  addOnBlur = true;
-  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  tags: string[] = [];
+  user$: Observable<User> = this.authService.user$;
+
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private userService: UserService,
+    private dialog: MatDialog
+  ) {
+    this.user$.subscribe((user) => {
+      this.user = user;
+    });
+  }
 
   add(event: MatChipInputEvent): void {
     const input = event.input;

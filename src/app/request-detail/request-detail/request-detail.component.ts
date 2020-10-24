@@ -8,7 +8,6 @@ import { Request, RequestWithUser } from 'src/app/interfaces/request';
 import { User } from 'src/app/interfaces/users';
 import { AuthService } from 'src/app/services/auth.service';
 import { RequestService } from 'src/app/services/request.service';
-import { UserService } from 'src/app/services/user.service';
 import { DeleteDialogComponent } from 'src/app/shared/delete-dialog/delete-dialog.component';
 import { fade } from 'src/app/animations';
 import { RequestCommentWithUser } from 'src/app/interfaces/request-comment';
@@ -22,7 +21,6 @@ import { RequestCommentWithUser } from 'src/app/interfaces/request-comment';
 export class RequestDetailComponent implements OnInit {
   requestId: string;
   request: Request;
-  uid: string;
 
   user$: Observable<User> = this.authservice.user$;
 
@@ -49,7 +47,6 @@ export class RequestDetailComponent implements OnInit {
     private authservice: AuthService,
     private route: ActivatedRoute,
     private requestService: RequestService,
-    private userService: UserService,
     private dialog: MatDialog
   ) {}
 
@@ -77,7 +74,7 @@ export class RequestDetailComponent implements OnInit {
       .afterClosed()
       .subscribe((result) => {
         if (result) {
-          this.requestService.deleteRequest(result.id);
+          this.requestService.deleteRequest(request);
         } else {
           return;
         }

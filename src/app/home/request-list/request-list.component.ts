@@ -14,9 +14,6 @@ import { RequestService } from 'src/app/services/request.service';
 })
 export class RequestListComponent implements OnInit {
   @Input() user: User;
-  requests$: Observable<
-    RequestWithUser[]
-  > = this.requestService.getRequestsWithUser();
 
   config: SwiperConfigInterface = {
     loop: true,
@@ -37,8 +34,11 @@ export class RequestListComponent implements OnInit {
       },
     },
   };
-
   index: number;
+
+  requests$: Observable<
+    RequestWithUser[]
+  > = this.requestService.getRequestsWithUser();
 
   constructor(private requestService: RequestService) {}
 

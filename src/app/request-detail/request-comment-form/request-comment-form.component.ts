@@ -18,9 +18,11 @@ export class RequestCommentFormComponent implements OnInit {
   requestId: string;
   isProcessing: boolean;
 
+  readonly MAX_COMMENT_LENGTH = 400;
+
   commentForm = new FormControl('', [
     Validators.required,
-    Validators.maxLength(400),
+    Validators.maxLength(this.MAX_COMMENT_LENGTH),
   ]);
 
   user$: Observable<User> = this.authService.user$;
@@ -53,6 +55,7 @@ export class RequestCommentFormComponent implements OnInit {
   }
 
   submit() {
+    this.isProcessing = true;
     const formData = this.commentForm.value;
     this.requestService
       .addComment({

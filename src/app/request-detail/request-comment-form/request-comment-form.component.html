@@ -33,7 +33,9 @@
           >最大文字数を超えています</mat-error
         >
         <mat-hint align="end"
-          >{{ commentForm.value.length }}/400文字まで</mat-hint
+          >{{ commentForm.value.length }}/{{
+            MAX_COMMENT_LENGTH
+          }}文字まで</mat-hint
         >
       </mat-form-field>
     </form>

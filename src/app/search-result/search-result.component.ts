@@ -13,22 +13,21 @@ import { UiService } from '../services/ui.service';
 export class SearchResultComponent implements OnInit {
   articles: Article[];
   searchQuery: string;
-  tagFilter: string[];
-  categoryFilter: string[];
-  tagsFilter: string;
-  categoriesFilter: string;
   index: SearchIndex = this.searchService.index.item;
-
   result: {
     nbHits: number;
     hits: any[];
   };
-
-  page = 0;
   nbPages: number;
-  maxPage: number;
-  requestOptions: any = {};
-  isInit = true;
+
+  private page = 0;
+  private maxPage: number;
+  private requestOptions: any = {};
+  private isInit = true;
+  private tagFilter: string[];
+  private categoryFilter: string[];
+  private tagsFilter: string;
+  private categoriesFilter: string;
 
   constructor(
     private searchService: SearchService,
