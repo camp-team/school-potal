@@ -73,10 +73,10 @@
     padding: 2px 25px;
     border-radius: 30px;
     line-height: 48px;
-    color: #303030;
+    color: #fafafa;
     transition: ease-in-out 0.3s;
     &--google {
-      border: 2px solid #303030;
+      border: 2px solid #fafafa;
       @include sp {
         border-left: 2px solid #4285f4;
         border-top: 2px solid #db4437;
@@ -85,7 +85,7 @@
       }
     }
     &--twitter {
-      border: 2px solid #303030;
+      border: 2px solid #fafafa;
       margin-bottom: 48px;
       @include sp {
         border: 2px solid #2aa1f1;

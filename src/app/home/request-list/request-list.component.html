@@ -12,7 +12,7 @@
           class="request"
           [style.background]="
             request.uid == user.uid
-              ? 'linear-gradient(60deg, #6E62FB, #D71B60)'
+              ? 'linear-gradient(60deg, #40c4ff, #00a1dd)'
               : '#fafafa'
           "
           [style.color]="request.uid == user.uid ? '#fff' : '#303030'"
@@ -26,11 +26,17 @@
             <p class="request__body">{{ request.body }}</p>
 
             <div class="request__description">
-              <p class="request__date">
+              <p
+                class="request__date"
+                [style.color]="request.uid == user.uid ? '#fafafa' : '#303030'"
+              >
                 <mat-icon>schedule</mat-icon
                 >{{ request.createdAt.toDate() | date: 'yyyy/MM/dd/' }} 投稿
               </p>
-              <p class="request__category">
+              <p
+                class="request__category"
+                [style.color]="request.uid == user.uid ? '#fafafa' : '#303030'"
+              >
                 <mat-icon>local_offer</mat-icon>{{ request.category }}
               </p>
             </div>
@@ -50,6 +56,8 @@
       </div>
     </ng-container>
 
-    <a class="request__more" routerLink="/all-request">全ての質問を見る</a>
+    <a class="request__more" routerLink="/all-request"
+      ><span>全ての質問を見る</span></a
+    >
   </div>
 </div>
