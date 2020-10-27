@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { SearchIndex } from 'algoliasearch/lite';
+import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { Observable } from 'rxjs';
 import { debounceTime, startWith } from 'rxjs/operators';
 import { User } from 'src/app/interfaces/users';
@@ -18,11 +19,31 @@ import { RequestDialogComponent } from 'src/app/shared/request-dialog/request-di
 })
 export class HomeComponent implements OnInit {
   searchControl: FormControl = new FormControl();
+
   index: SearchIndex = this.searchService.index.item;
   searchOptions = [];
   result: {
     nbHits: number;
     hits: any[];
+  };
+
+  config: SwiperConfigInterface = {
+    loop: true,
+    slidesPerView: 1,
+    effect: 'fade',
+    autoplay: {
+      delay: 6000,
+      disableOnInteraction: true,
+    },
+    speed: 1000,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next-hero',
+      prevEl: '.swiper-button-prev-hero',
+    },
   };
 
   user$: Observable<User> = this.authService.user$;
@@ -33,6 +54,14 @@ export class HomeComponent implements OnInit {
     private searchService: SearchService,
     private router: Router
   ) {}
+
+  autoplayStop() {
+    this.config.autoplay = false;
+  }
+
+  autoplayStart() {
+    this.config.autoplay = true;
+  }
 
   ngOnInit(): void {
     this.searchControl.valueChanges

@@ -77,16 +77,46 @@ button {
   position: relative;
 }
 
+.swiper-container {
+  position: static !important;
+}
+
 .swiper-button-wrapper {
   display: flex;
   justify-content: flex-end;
   padding-bottom: 16px;
 }
 
+.swiper-button-next-hero {
+  width: 32px;
+  height: 32px;
+  display: inline-block;
+  border: solid #fff;
+  border-width: 3px 0 0 3px;
+  transform: rotate(135deg) translateY(50%);
+  position: absolute;
+  top: 50%;
+  right: 2%;
+  cursor: pointer;
+}
+.swiper-button-prev-hero {
+  width: 32px;
+  height: 32px;
+  display: inline-block;
+  border: solid #fff;
+  border-width: 3px 0 0 3px;
+  transform: rotate(-45deg) translateY(-50%);
+  position: absolute;
+  top: 50%;
+  left: 2%;
+  cursor: pointer;
+}
+
 .swiper-button-next-school,
 .swiper-button-prev-school,
 .swiper-button-next-salon,
 .swiper-button-prev-salon {
+  display: block;
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -145,10 +175,23 @@ button {
   margin: auto;
 }
 
+.hero {
+  .swiper-container {
+    box-sizing: border-box;
+    transform: translateX(0);
+    padding: 0 !important;
+    box-sizing: border-box;
+  }
+  .swiper.s-wrapper .swiper-pagination .swiper-pagination-handle {
+    margin: 8px;
+  }
+}
+
 .swiper-container {
   padding: 0 16px !important;
   margin: 0 !important;
   transform: translateX(-24px);
+  display: flex !important;
 }
 
 .swiper.s-wrapper .swiper-wrapper .swiper-slide {
@@ -160,9 +203,21 @@ button {
   border: 1px solid #e4e4e4;
   border-top: none;
   overflow: hidden !important;
+  z-index: -1 !important;
+  height: 100% !important;
   &:hover {
     @include mat-elevation(1, #303030, 0.38);
   }
+}
+
+.swiper-pagination {
+  position: relative;
+  bottom: 80px !important;
+}
+
+.swiper-pagination-clickable .swiper-pagination-bullet {
+  background: #fff;
+  position: absolute;
 }
 
 [class^='mat-list-'] {
