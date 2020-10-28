@@ -52,6 +52,13 @@ const routes: Routes = [
         canActivate: [AuthGuard],
       },
       {
+        path: 'all-request',
+        loadChildren: () =>
+          import('./all-request/all-request.module').then(
+            (m) => m.AllRequestModule
+          ),
+      },
+      {
         path: 'request-detail/:id',
         loadChildren: () =>
           import('./request-detail/request-detail.module').then(

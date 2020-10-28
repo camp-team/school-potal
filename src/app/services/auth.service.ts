@@ -12,6 +12,8 @@ import { User } from '../interfaces/users';
   providedIn: 'root',
 })
 export class AuthService {
+  isProcessing: boolean;
+
   user$: Observable<User> = this.afAuth.authState.pipe(
     switchMap((afUser) => {
       if (afUser) {
@@ -30,21 +32,25 @@ export class AuthService {
   ) {}
 
   googleLogin() {
+    this.isProcessing = true;
     const provider = new auth.GoogleAuthProvider();
     provider.setCustomParameters({ prompt: 'select_account' });
     this.afAuth.signInWithPopup(provider).then(() => {
       this.snackBar.open('ログインしました 🎉');
     });
     this.router.navigateByUrl('/');
+    this.isProcessing = false;
   }
 
   twitterLogin() {
+    this.isProcessing = true;
     const provider = new auth.TwitterAuthProvider();
     provider.setCustomParameters({ prompt: 'select_account' });
     this.afAuth.signInWithRedirect(provider).then(() => {
       this.snackBar.open('ログインしました 🎉');
     });
     this.router.navigateByUrl('/');
+    this.isProcessing = false;
   }
 
   logout() {

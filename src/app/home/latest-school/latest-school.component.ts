@@ -17,8 +17,11 @@ import { fade } from 'src/app/animations';
 export class LatestSchoolComponent implements OnInit {
   config: SwiperConfigInterface = {
     loop: true,
-    slidesPerView: 4,
-    navigation: true,
+    slidesPerView: 3,
+    navigation: {
+      nextEl: '.swiper-button-next-school',
+      prevEl: '.swiper-button-prev-school',
+    },
     observer: true,
     watchOverflow: true,
     spaceBetween: 24,
@@ -36,7 +39,7 @@ export class LatestSchoolComponent implements OnInit {
   };
 
   index: number;
-  spins = newArray(4);
+  spins = newArray(3);
 
   schools$: Observable<Article[]> = this.articleService.getSchools().pipe(
     tap(() => {

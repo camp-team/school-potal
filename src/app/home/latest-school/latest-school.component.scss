@@ -11,7 +11,7 @@
   h2 {
     font-family: 'Josefin Sans';
     font-size: 32px;
-    font-weight: 600;
+    font-weight: normal;
     text-align: center;
     @include sp {
       margin-bottom: 8px;
@@ -20,7 +20,7 @@
   }
   p {
     text-align: center;
-    margin-bottom: 80px;
+    margin-bottom: 24px;
     @include sp {
       margin-bottom: 24px;
       font-size: 13px;
@@ -29,83 +29,77 @@
 }
 
 .article {
+  display: flex;
+  flex-flow: column;
+  &:hover &__thumbnail {
+    filter: brightness(80%);
+  }
   @include sp {
     padding: 0;
-  }
-  &__category {
-    border: none;
-    border-radius: 3px;
-    padding: 4px 8px;
-    background: linear-gradient(60deg, #ab47bc, #8e24aa);
-    color: #fff;
-    font-size: 13px;
-  }
-  &__category-text {
-    opacity: 0.8;
   }
   &__thumbnail {
     padding: 0;
     margin-bottom: 16px;
-    @include mat-elevation(8);
+    border-radius: 6px 6px 0 0;
+    transition: 0.5s ease;
     img {
+      border-radius: 6px 6px 0 0;
       vertical-align: bottom;
     }
   }
   &__body {
     display: flex;
-    flex-direction: column;
-    justify-items: stretch;
+    flex-flow: column;
   }
   &__top {
-    display: grid;
-    grid-template-columns: 40px 1fr;
-    gap: 8px;
-    margin-bottom: 8px;
-    padding-bottom: 24px;
+    flex: 1;
+    min-height: 88px;
   }
-  &__logo {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    overflow: hidden;
+  &__name {
+    font-size: 16px;
+    font-weight: normal;
+    padding: 0 16px 8px;
+    margin: 0;
   }
   &__title {
     font-size: 16px;
-    font-weight: 500;
+    font-weight: normal;
+    color: rgba(#303030, 0.6);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: wrap;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 2;
     display: -webkit-box;
+    padding: 0 16px 8px;
   }
-  &__price,
-  &__up {
+  &__date {
+    font-size: 13px;
     opacity: 0.38;
     margin-right: 8px;
   }
   &__description {
     display: flex;
     align-items: center;
+    padding: 8px 16px;
+    border-top: 1px dashed #e4e4e4;
+  }
+  &__category {
+    border: none;
+    padding: 4px 8px;
+    font-size: 13px;
+  }
+  &__category-text {
+    opacity: 0.38;
   }
 }
 
 .loading-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   margin: 96px 0;
-  @include tab {
-    grid-template-columns: repeat(3, 1fr);
-  }
   @include sp {
     grid-template-columns: 1fr;
-  }
-}
-
-mat-divider {
-  margin: 56px 0;
-  @include sp {
-    margin: 16px;
   }
 }

@@ -1,38 +1,125 @@
 <div class="hero">
-  <picture>
-    <source
-      media="(min-width: 1366px)"
-      srcset="../assets/images/hero-pc.png"
-      sizes="1920px"
-    />
-    <source
-      media="(min-width: 960px)"
-      srcset="../assets/images/hero-pc.png"
-      sizes="100vw"
-    />
-    <source
-      media="(min-width: 641px)"
-      srcset="../assets/images/hero-tab.png"
-      sizes="100vw"
-    />
-    <img
-      media="(min-width: 640px)"
-      srcset="../assets/images/hero-sp.png"
-      sizes="100vw"
-    />
-  </picture>
+  <swiper
+    [config]="config"
+    (mouseover)="autoplayStop()"
+    (mouseout)="autoplayStart()"
+  >
+    <div class="swiper-button-wrapper">
+      <div class="swiper-button-prev-hero"></div>
+      <div class="swiper-button-next-hero"></div>
+    </div>
+    <picture class="swiper-slide">
+      <span class="swiper-text"
+        >レビューから<span></span>自分にぴったりの<span
+        ></span>学び場が見つかる。</span
+      >
+      <source
+        media="(min-width: 1366px)"
+        srcset="assets/images/hero-pc1.png 1920w"
+        sizes="100vw"
+      />
+      <source
+        media="(min-width: 960px)"
+        srcset="assets/images/hero-pc1.png"
+        sizes="100vw"
+      />
+      <source
+        media="(min-width: 641px)"
+        srcset="assets/images/hero-tab.png"
+        sizes="100vw"
+      />
+      <img
+        media="(min-width: 640px)"
+        srcset="assets/images/hero-sp.png"
+        sizes="100vw"
+      />
+    </picture>
+    <picture>
+      <span class="swiper-text swiper-text--custom"
+        >分からないことは<span></span>相談して<span
+        ></span>クリアにできる。</span
+      >
+      <source
+        media="(min-width: 1366px)"
+        srcset="assets/images/hero-pc2.png 1920w"
+        sizes="100vw"
+      />
+      <source
+        media="(min-width: 960px)"
+        srcset="assets/images/hero-pc2.png"
+        sizes="100vw"
+      />
+      <source
+        media="(min-width: 641px)"
+        srcset="assets/images/hero-tab.png"
+        sizes="100vw"
+      />
+      <img
+        media="(min-width: 640px)"
+        srcset="assets/images/hero-sp.png"
+        sizes="100vw"
+      />
+    </picture>
+    <picture>
+      <span class="swiper-text"
+        >チャレンジを<span></span>応援したい<span></span>人がつながる。</span
+      >
+      <source
+        media="(min-width: 1366px)"
+        srcset="assets/images/hero-pc3.png 1920w"
+        sizes="100vw"
+      />
+      <source
+        media="(min-width: 960px)"
+        srcset="assets/images/hero-pc3.png"
+        sizes="100vw"
+      />
+      <source
+        media="(min-width: 641px)"
+        srcset="assets/images/hero-tab.png"
+        sizes="100vw"
+      />
+      <img
+        media="(min-width: 640px)"
+        srcset="assets/images/hero-sp.png"
+        sizes="100vw"
+      />
+    </picture>
+  </swiper>
 
-  <div class="btns-wrap">
-    <div class="btns">
-      <button class="btns__btn" (click)="openSearchDialog()">
-        <mat-icon>search</mat-icon><span>検索する</span>
+  <div class="container">
+    <div class="search-box">
+      <h2 class="search-box__head">スキル・エリアから探す</h2>
+      <form
+        class="search-box__form"
+        (ngSubmit)="routeSearch(searchControl.value)"
+      >
+        <input
+          class="search-box__input"
+          type="text"
+          placeholder="キーワード [ 例：渋谷、JavaScript、実践... ]"
+          autocomplete="off"
+          [matAutocomplete]="auto"
+          [formControl]="searchControl"
+        />
+      </form>
+      <button
+        class="search-box__submit"
+        (click)="routeSearch(searchControl.value)"
+      >
+        <span>検索</span>
       </button>
-      <button class="btns__btn" (click)="openRequestDialog()">
-        <mat-icon>hearing</mat-icon><span>質問する</span>
-      </button>
-      <button routerLink="/editor/editor" class="btns__btn">
-        <mat-icon>web</mat-icon><span>ページを作る</span>
-      </button>
+      <mat-autocomplete
+        #auto="matAutocomplete"
+        (optionActivated)="setSearchQuery($event.option?.value)"
+        (optionSelected)="routeSearch($event.option?.value)"
+      >
+        <mat-option
+          *ngFor="let option of searchOptions"
+          [value]="option.name"
+          >{{ option.name }}</mat-option
+        >
+      </mat-autocomplete>
     </div>
   </div>
 </div>

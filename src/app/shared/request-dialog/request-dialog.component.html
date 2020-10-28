@@ -5,18 +5,19 @@
         Request
       </h2>
       <p class="heading__body">
-        知りたいスクールの情報がありませんでしたか？<br />
-        このフォームから口コミや評判を募集することができます。
+        求めているスクールの情報がありませんでしたか？<br />
+        このフォームから口コミや評判を募集してみましょう。
       </p>
     </div>
 
     <form [formGroup]="form" (ngSubmit)="submit(user.uid)">
       <mat-dialog-content class="form">
+        <h2>質問タイトル</h2>
         <mat-form-field appearance="outline" class="form__title">
           <input
             type="text"
             matInput
-            placeholder="XXXスクール、XXXサロンなどのサービス名を入力"
+            placeholder="XXXスクール、XXXサロンなどのサービス名、または質問タイトルを入力"
             formControlName="title"
             #title
             autocomplete="off"
@@ -33,10 +34,26 @@
             >{{ title.value.length }} / {{ MAX_TITLE_LENGTH }}文字</mat-hint
           >
         </mat-form-field>
+
+        <div class="type__category">
+          <h2>質問のカテゴリー</h2>
+          <mat-form-field>
+            <mat-select formControlName="category">
+              <mat-option
+                *ngFor="let category of categoryGroup"
+                [value]="category.value"
+              >
+                {{ category.value }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <h2>聞きたいこと</h2>
         <mat-form-field appearance="outline" class="form__body">
           <textarea
             matInput
-            placeholder="スクールやサロンを特定できる情報、知りたい情報などを入力"
+            placeholder="スクールやサロンを特定できる情報、知りたい内容を入力"
             formControlName="body"
             #body
             autocomplete="off"

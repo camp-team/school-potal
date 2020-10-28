@@ -7,6 +7,7 @@ export interface Request {
   body: string;
   createdAt: firestore.Timestamp;
   uid: string;
+  category: string;
 }
 
 export interface RequestWithUser extends Request {
