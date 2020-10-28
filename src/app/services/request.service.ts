@@ -81,7 +81,7 @@ export class RequestService {
   getRequestsWithUser(): Observable<RequestWithUser[]> {
     return this.db
       .collection<Request>(`requests`, (ref) =>
-        ref.orderBy('createdAt', 'desc')
+        ref.orderBy('createdAt', 'desc').limit(6)
       )
       .valueChanges()
       .pipe(
