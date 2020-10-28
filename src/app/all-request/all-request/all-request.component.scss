@@ -3,6 +3,7 @@
 
 .wrapper {
   padding: 48px;
+  margin-bottom: 120px;
 }
 
 .title {
@@ -125,4 +126,8 @@
       }
     }
   }
+}
+
+mat-progress-spinner {
+  margin: 24px auto;
 }

@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
-import { Request, RequestWithUser } from 'src/app/interfaces/request';
-import { RequestComment } from 'src/app/interfaces/request-comment';
+import { take } from 'rxjs/operators';
+import { RequestWithUser } from 'src/app/interfaces/request';
 import { User } from 'src/app/interfaces/users';
 import { AuthService } from 'src/app/services/auth.service';
 import { RequestService } from 'src/app/services/request.service';
@@ -16,8 +16,8 @@ export class AllRequestComponent implements OnInit, OnDestroy {
   user: User;
   isloading: boolean;
   isComplete: boolean;
-  lastDoc: any;
-  requests: Request[] = [];
+  lastDoc: RequestWithUser;
+  requests: RequestWithUser[] = [];
 
   requests$: Observable<
     RequestWithUser[]
@@ -36,6 +36,9 @@ export class AllRequestComponent implements OnInit, OnDestroy {
         this.user = user;
       })
     );
+    this.requests$.subscribe((requests) => {
+      this.requests = requests;
+    });
     this.getRequestsLimited();
   }
 
@@ -43,31 +46,26 @@ export class AllRequestComponent implements OnInit, OnDestroy {
     this.isloading = true;
     if (this.isComplete) {
       this.isloading = false;
-      console.log('complete');
-
       return;
     }
-    this.isloading = true;
-    this.requestService.getRequestsWithUser().subscribe((requests) => {
-      if (requests) {
-        if (!requests.length) {
-          this.isComplete = true;
+    this.requestService
+      .getRequestsWithUserLimited(this.lastDoc)
+      .pipe(take(1))
+      .subscribe((requests) => {
+        if (requests) {
+          if (!requests.length) {
+            this.isComplete = true;
+            this.isloading = false;
+            return;
+          }
+          this.lastDoc = requests[requests.length - 1];
+          this.requests.push(...requests);
           this.isloading = false;
-          console.log('no-length');
-
-          return;
+        } else {
+          this.isComplete = true;
+          this.isloading = true;
         }
-        this.lastDoc = requests[requests.length - 1];
-        const requestData = requests.forEach((doc) => doc);
-        this.requests.push(...requests);
-        console.log('push');
-
-        this.isloading = false;
-      } else {
-        this.isComplete = true;
-        this.isloading = true;
-      }
-    });
+      });
   }
 
   ngOnDestroy() {

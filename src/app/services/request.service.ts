@@ -113,6 +113,51 @@ export class RequestService {
       );
   }
 
+  getRequestsWithUserLimited(
+    startAt?: RequestWithUser
+  ): Observable<RequestWithUser[]> {
+    console.log(startAt);
+    return this.db
+      .collection<Request>('requests', (ref) => {
+        if (startAt) {
+          return ref
+            .orderBy('createdAt', 'desc')
+            .startAfter(startAt.createdAt)
+            .limit(6);
+        } else {
+          return ref.orderBy('createdAt', 'desc').limit(6);
+        }
+      })
+      .valueChanges()
+      .pipe(
+        switchMap((requests: Request[]) => {
+          if (requests.length) {
+            const unduplicatedUids: string[] = Array.from(
+              new Set(requests.map((request) => request.uid))
+            );
+            const users$: Observable<User[]> = combineLatest(
+              unduplicatedUids.map((uid) => this.userService.getUserData(uid))
+            );
+            return combineLatest([of(requests), users$]);
+          } else {
+            return of([]);
+          }
+        }),
+        map(([requests, users]) => {
+          if (requests?.length) {
+            return requests.map((request: Request) => {
+              return {
+                ...request,
+                user: users.find((user: User) => request.uid === user?.uid),
+              };
+            });
+          } else {
+            return [];
+          }
+        })
+      );
+  }
+
   addComment(comment: Omit<RequestComment, 'id' | 'updatedAt'>): Promise<void> {
     const id = this.db.createId();
     const value: RequestComment = {
