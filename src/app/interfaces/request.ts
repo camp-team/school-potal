@@ -8,6 +8,7 @@ export interface Request {
   createdAt: firestore.Timestamp;
   uid: string;
   category: string;
+  commentCount: number;
 }
 
 export interface RequestWithUser extends Request {

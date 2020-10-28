@@ -88,6 +88,7 @@ export class RequestDialogComponent implements OnInit {
           id: this.data.id,
           createdAt: this.data.createdAt,
           category: this.data.category,
+          commentCount: this.data.commentCount,
         })
         .then(() => this.snackBar.open('更新しました'))
         .then(() => (this.isProcessing = false));
@@ -98,6 +99,7 @@ export class RequestDialogComponent implements OnInit {
           body: formData.body,
           uid,
           category: formData.category,
+          commentCount: 0,
         })
         .then(() => this.snackBar.open('投稿しました'))
         .then(() => (this.isProcessing = false));

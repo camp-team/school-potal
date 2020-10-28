@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Request } from 'src/app/interfaces/request';
 import { User } from 'src/app/interfaces/users';
 import { AuthService } from 'src/app/services/auth.service';
 import { RequestService } from 'src/app/services/request.service';
@@ -14,6 +15,7 @@ import { RequestService } from 'src/app/services/request.service';
   styleUrls: ['./request-comment-form.component.scss'],
 })
 export class RequestCommentFormComponent implements OnInit {
+  @Input() request: Request;
   uid: string;
   requestId: string;
   isProcessing: boolean;
@@ -57,6 +59,7 @@ export class RequestCommentFormComponent implements OnInit {
   submit() {
     this.isProcessing = true;
     const formData = this.commentForm.value;
+    this.request.commentCount++;
     this.requestService
       .addComment({
         uid: this.uid,
