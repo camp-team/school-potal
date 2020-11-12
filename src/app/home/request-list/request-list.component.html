@@ -18,7 +18,14 @@
           [style.color]="request.uid == user.uid ? '#fff' : '#303030'"
         >
           <div class="request__heading">
-            <p class="request__icon">🤔</p>
+            <button
+              class="request__photo"
+              [style.background-image]="'url(' + request.user.photoURL + ')'"
+              routerLink="/user/{{ request.user?.uid }}"
+            ></button>
+            <p class="request__name">
+              {{ request.user.name }}
+            </p>
           </div>
 
           <div class="request__main">
@@ -40,17 +47,6 @@
                 <mat-icon>local_offer</mat-icon>{{ request.category }}
               </p>
             </div>
-          </div>
-
-          <div class="request__user">
-            <button
-              class="request__photo"
-              [style.background-image]="'url(' + request.user.photoURL + ')'"
-              routerLink="/user/{{ request.user?.uid }}"
-            ></button>
-            <p class="request__name">
-              {{ request.user.name }}
-            </p>
           </div>
         </a>
       </div>
