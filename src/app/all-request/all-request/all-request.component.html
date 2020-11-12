@@ -5,11 +5,18 @@
       <p>コメント募集中の質問</p>
     </div>
 
-    <ng-container @fade *ngIf="requests">
-      <div *ngFor="let request of requests">
+    <ng-container *ngIf="requests">
+      <div @fade *ngFor="let request of requests">
         <div class="request">
           <div class="request__heading">
-            <p class="request__icon">🤔</p>
+            <button
+              class="request__photo"
+              [style.background-image]="'url(' + request.user.photoURL + ')'"
+              routerLink="/user/{{ request.user?.uid }}"
+            ></button>
+            <p class="request__name">
+              {{ request.user.name }}
+            </p>
           </div>
 
           <div class="request__main">
@@ -25,27 +32,20 @@
               <p class="request__category">
                 <mat-icon>local_offer</mat-icon>{{ request.category }}
               </p>
-              <p class="request__comment">
-                <mat-icon>comment</mat-icon>コメント
-                <strong>{{ request.commentCount }}</strong> 件
-              </p>
+            </div>
+          </div>
+
+          <div class="request__action">
+            <div class="request__comment">
+              <p>コメント</p>
+              <mat-icon>comment</mat-icon>
+              <p>{{ request.commentCount }}件</p>
             </div>
             <a
               routerLink="/request-detail/{{ request.id }}"
               class="request__btn"
               >詳細を見る</a
             >
-          </div>
-
-          <div class="request__user">
-            <button
-              class="request__photo"
-              [style.background-image]="'url(' + request.user.photoURL + ')'"
-              routerLink="/user/{{ request.user?.uid }}"
-            ></button>
-            <p class="request__name">
-              {{ request.user.name }}
-            </p>
           </div>
         </div>
       </div>

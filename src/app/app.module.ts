@@ -39,7 +39,6 @@ import { ShellComponent } from './shell/shell.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { MatSelectModule } from '@angular/material/select';
-import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +49,6 @@ import { FooterComponent } from './footer/footer.component';
     SearchDialogComponent,
     ShellComponent,
     NotFoundComponent,
-    FooterComponent,
   ],
   imports: [
     CommonModule,

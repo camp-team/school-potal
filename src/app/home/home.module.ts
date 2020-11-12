@@ -23,6 +23,7 @@ import { RequestListComponent } from './request-list/request-list.component';
 import { SharedModule } from '../shared/shared.module';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { CategoryPipe } from '../pipes/category.pipe';
+import { FooterComponent } from '../footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { CategoryPipe } from '../pipes/category.pipe';
     TagListComponent,
     RequestListComponent,
     CategoryPipe,
+    FooterComponent,
   ],
   imports: [
     CommonModule,

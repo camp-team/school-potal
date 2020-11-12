@@ -9,18 +9,18 @@
       <div class="swiper-button-next-hero"></div>
     </div>
     <picture class="swiper-slide">
-      <span class="swiper-text"
-        >レビューから<span></span>自分にぴったりの<span
-        ></span>学び場が見つかる。</span
-      >
+      <p class="swiper-text">
+        リアルなレビュー
+        <span>自分にぴったりの学び場が見つかる</span>
+      </p>
       <source
         media="(min-width: 1366px)"
-        srcset="assets/images/hero-pc1.png 1920w"
+        srcset="assets/images/bg-pc-1.png 1920w"
         sizes="100vw"
       />
       <source
         media="(min-width: 960px)"
-        srcset="assets/images/hero-pc1.png"
+        srcset="assets/images/bg-pc-1.png"
         sizes="100vw"
       />
       <source
@@ -34,19 +34,20 @@
         sizes="100vw"
       />
     </picture>
+
     <picture>
-      <span class="swiper-text swiper-text--custom"
-        >分からないことは<span></span>相談して<span
-        ></span>クリアにできる。</span
-      >
+      <p class="swiper-text swiper-text--custom">
+        質問リクエスト
+        <span>あなたの知りたいが他の人の役に立つ</span>
+      </p>
       <source
         media="(min-width: 1366px)"
-        srcset="assets/images/hero-pc2.png 1920w"
+        srcset="assets/images/bg-pc-2.png 1920w"
         sizes="100vw"
       />
       <source
         media="(min-width: 960px)"
-        srcset="assets/images/hero-pc2.png"
+        srcset="assets/images/bg-pc-2.png"
         sizes="100vw"
       />
       <source
@@ -60,18 +61,20 @@
         sizes="100vw"
       />
     </picture>
+
     <picture>
-      <span class="swiper-text"
-        >チャレンジを<span></span>応援したい<span></span>人がつながる。</span
-      >
+      <p class="swiper-text">
+        ページ作成
+        <span>自分のサービスを知ってもらえる</span>
+      </p>
       <source
         media="(min-width: 1366px)"
-        srcset="assets/images/hero-pc3.png 1920w"
+        srcset="assets/images/bg-pc-3.png 1920w"
         sizes="100vw"
       />
       <source
         media="(min-width: 960px)"
-        srcset="assets/images/hero-pc3.png"
+        srcset="assets/images/bg-pc-3.png"
         sizes="100vw"
       />
       <source
@@ -131,3 +134,5 @@
   *ngIf="user$ | async as user"
   [user]="user"
 ></app-request-list>
+
+<app-footer></app-footer>
