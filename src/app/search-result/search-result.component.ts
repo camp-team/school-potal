@@ -4,11 +4,13 @@ import { SearchService } from '../services/search.service';
 import { ActivatedRoute } from '@angular/router';
 import { Article } from '../interfaces/article';
 import { UiService } from '../services/ui.service';
+import { fade } from '../animations';
 
 @Component({
   selector: 'app-search-result',
   templateUrl: './search-result.component.html',
   styleUrls: ['./search-result.component.scss'],
+  animations: [fade],
 })
 export class SearchResultComponent implements OnInit {
   articles: Article[];
@@ -19,13 +21,13 @@ export class SearchResultComponent implements OnInit {
     hits: any[];
   };
   nbPages: number;
+  tagFilter: string[];
+  categoryFilter: string[];
 
   private page = 0;
   private maxPage: number;
   private requestOptions: any = {};
   private isInit = true;
-  private tagFilter: string[];
-  private categoryFilter: string[];
   private tagsFilter: string;
   private categoriesFilter: string;
 

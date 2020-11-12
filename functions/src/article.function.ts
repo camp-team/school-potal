@@ -24,6 +24,8 @@ export const createArticle = functions
         feature: removeTag,
         thumbnailURL: data.thumbnailURL,
         tags: data.tags,
+        likeCount: data.likeCount,
+        pinCount: data.pinCount,
       },
     });
   });
@@ -63,6 +65,8 @@ export const updateArticle = functions
         feature: removeTag,
         thumbnailURL: data.thumbnailURL,
         tags: data.tags,
+        likeCount: data.likeCount,
+        pinCount: data.pinCount,
       },
     });
   });
