@@ -143,8 +143,11 @@ p {
 .link-button a {
   display: block;
   width: 60%;
-  border-radius: 25px;
+  border-radius: 4px;
   margin: 48px auto;
+  padding: 8px 16px;
+  background: linear-gradient(60deg, #40c4ff, #00a1dd);
+  color: #fff;
   @include sp {
     width: 80%;
   }
@@ -214,12 +217,15 @@ p {
       transform: translateX(-50%);
     }
   }
-
   &__body {
     padding: 16px;
     background: #fff;
     border-radius: 8px;
-    @include mat-elevation(4);
+    border: 1px solid #e6e6e6;
+    transition: ease-out 0.5s;
+    &:hover {
+      @include mat-elevation(1);
+    }
   }
   &__name {
     font-weight: bold;
