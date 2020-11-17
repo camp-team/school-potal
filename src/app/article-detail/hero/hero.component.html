@@ -1,0 +1,44 @@
+<div
+  class="hero"
+  [style.background-image]="'url(' + article.thumbnailURL + ')'"
+>
+  <div class="container container--article">
+    <div class="hero__inner">
+      <figure class="hero__logo">
+        <img [src]="article.logo" alt="" />
+      </figure>
+      <h1 class="hero__name">
+        <a href="{{ article.serviceURL }}" target="_blank">{{
+          article.name
+        }}</a>
+      </h1>
+    </div>
+
+    <h2 class="hero__title">
+      {{ article.title }}
+    </h2>
+
+    <p class="hero__category">
+      {{ article.category }}
+    </p>
+
+    <div class="hero__data">
+      <p class="hero__star" matTooltip="ユーザー満足度">⭐️⭐️⭐️⭐️⭐️</p>
+      <p class="hero__count">{{ averageRating }}</p>
+
+      <p class="hero__icon" matTooltip="いいね">❤️</p>
+      <p class="hero__count">{{ article.likeCount }}</p>
+
+      <p class="hero__icon" matTooltip="ピン留め">📌</p>
+      <p class="hero__count">{{ article.pinCount }}</p>
+    </div>
+
+    <div class="hero__tag">
+      <mat-chip-list #chiplist>
+        <mat-chip *ngFor="let tag of article.tags">
+          {{ tag }}
+        </mat-chip>
+      </mat-chip-list>
+    </div>
+  </div>
+</div>

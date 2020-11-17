@@ -1,0 +1,82 @@
+@import 'mixins';
+@import '~@angular/material/theming';
+@import 'material-custom';
+
+.hero {
+  margin-bottom: 24px;
+  flex-basis: 30vw;
+  padding: 7vw 0;
+  position: relative;
+  background: no-repeat center/cover fixed;
+  color: #fff;
+  z-index: 0;
+  @include sp {
+    margin-top: 8px;
+  }
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(#303030, 0.38);
+    z-index: -1;
+  }
+  &__inner {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  &__logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-right: 16px;
+    overflow: hidden;
+  }
+  &__name {
+    color: #fff;
+    font-size: 88px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    :hover {
+      color: #47c5fc;
+    }
+  }
+  &__title {
+    font-size: 27px;
+  }
+  &__category {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 24px;
+  }
+  &__star {
+    font-size: 24px;
+    letter-spacing: 8px;
+    margin-right: 8px;
+  }
+  &__data {
+    height: 48px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+  &__icon {
+    margin-right: 16px;
+    transition: ease-out 0.2s;
+    font-size: 24px;
+    height: 36;
+  }
+  &__count {
+    font-size: 24px;
+    line-height: 36px;
+    transition: ease-out 0.2s;
+    margin-right: 16px;
+  }
+  &__tag {
+    max-width: 50%;
+  }
+}
