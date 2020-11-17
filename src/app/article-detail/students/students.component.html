@@ -1,0 +1,24 @@
+<h3 class="title">利用したことのあるユーザー</h3>
+
+<mat-divider></mat-divider>
+
+<div class="student-wrap">
+  <div class="student" *ngFor="let student of students$ | async as students">
+    <a
+      class="student__avatar"
+      [style.background-image]="'url(' + student.user.photoURL + ')'"
+      routerLink="/user/{{ student.user.uid }}"
+    ></a>
+    <div class="student__body">
+      <a class="student__name" routerLink="/user/{{ student.user.uid }}">{{
+        student.user.name
+      }}</a>
+      <p class="student__post">
+        {{ student.user.post }}
+      </p>
+    </div>
+  </div>
+  <button class="more" mat-button (click)="openStudentsDialog(article)">
+    もっと見る
+  </button>
+</div>
