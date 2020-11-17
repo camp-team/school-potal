@@ -1,18 +1,28 @@
-<div class="container">
-  <div class="article">
-    <div *ngIf="article$ | async as article; else loading">
-      <app-article [article]="article"></app-article>
-      <app-comment-form></app-comment-form>
-      <app-comment-list
-        *ngFor="let comment of comments$ | async as comments"
-        [comment]="comment"
-      ></app-comment-list>
+<div *ngIf="article$ | async as article; else loading" class="article">
+  <app-hero [article]="article"></app-hero>
+
+  <div class="container">
+    <div class="grid">
+      <div class="grid__main">
+        <app-article [article]="article"></app-article>
+      </div>
+
+      <div class="grid__sub">
+        <div class="grid__component grid__component--actions">
+          <app-actions [article]="article"></app-actions>
+        </div>
+        <div class="grid__component">
+          <app-students [article]="article"></app-students>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <ng-template #loading>
-      <mat-spinner [diameter]="40"></mat-spinner>
-    </ng-template>
-
+  <div class="relation">
     <app-side></app-side>
   </div>
 </div>
+
+<ng-template #loading>
+  <mat-spinner [diameter]="40"></mat-spinner>
+</ng-template>

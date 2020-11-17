@@ -27,6 +27,12 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatRippleModule } from '@angular/material/core';
 import { TeacherDialogComponent } from './teachers-dialog/teachers-dialog.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { HeroComponent } from './hero/hero.component';
+import { ActionsComponent } from './actions/actions.component';
+import { StudentsComponent } from './students/students.component';
+import { ReviewDialogComponent } from './review-dialog/review-dialog.component';
+import { SwiperModule } from 'ngx-swiper-wrapper';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -37,6 +43,10 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     CommentFormComponent,
     CommentListComponent,
     TeacherDialogComponent,
+    HeroComponent,
+    ActionsComponent,
+    StudentsComponent,
+    ReviewDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -60,6 +70,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     MatTooltipModule,
     MatRippleModule,
     InfiniteScrollModule,
+    SwiperModule,
+    MatSelectModule,
   ],
 })
 export class ArticleDetailModule {}
