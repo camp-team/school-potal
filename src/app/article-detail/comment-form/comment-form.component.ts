@@ -64,7 +64,8 @@ export class CommentFormComponent implements OnInit {
     const formData = this.commentForm.value;
     this.commentService
       .addComment({
-        body: formData,
+        comment: formData,
+        rating: formData,
         uid: this.uid,
         articleId: this.articleId,
       })
