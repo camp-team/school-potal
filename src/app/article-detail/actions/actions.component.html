@@ -27,12 +27,14 @@
     <div (click)="unlikeArticle(uid)" class="actions__btn">
       <mat-icon class="actions__like-icon" color="accent">favorite</mat-icon>
       <span @fadeup>liked!</span>
+      <p class="actions__like-count">{{ article.likeCount }}</p>
     </div>
   </ng-container>
 
   <ng-template #notYet>
     <div (click)="likeArticle(uid)" class="actions__btn" matTooltip="いいね！">
       <mat-icon class="actions__like-icon">favorite_border</mat-icon>
+      <p class="actions__like-count">{{ article.likeCount }}</p>
     </div>
   </ng-template>
 
@@ -71,6 +73,7 @@
       <mat-icon @bounce color="warn" class="actions__pin-icon"
         >push_pin</mat-icon
       >
+      <p class="actions__pin-count">{{ article.pinCount }}</p>
     </div>
   </ng-container>
 
@@ -82,6 +85,7 @@
       matTooltip="気になる"
     >
       <mat-icon class="actions__pin-icon">push_pin</mat-icon>
+      <p class="actions__pin-count">{{ article.pinCount }}</p>
     </div>
   </ng-template>
 </div>
