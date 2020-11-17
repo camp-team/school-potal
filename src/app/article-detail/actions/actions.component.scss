@@ -1,0 +1,92 @@
+@import 'mixins';
+@import '~@angular/material/theming';
+@import 'material-custom';
+
+.review {
+  &__title {
+    font-size: 22px;
+    font-weight: 500;
+  }
+  &__text {
+    font-size: 14px;
+    color: #424242;
+  }
+  &__btn {
+    display: block;
+    width: 100%;
+    border-radius: 4px;
+    margin: 16px auto 8px;
+    padding: 8px 16px;
+    background: linear-gradient(60deg, #40c4ff, #00a1dd);
+    color: #fff;
+    box-shadow: 0 2px 10px rgba(32, 33, 37, 0.06);
+    @include sp {
+      width: 80%;
+    }
+  }
+}
+
+mat-divider {
+  margin: 24px 0;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 16px;
+  &__btn {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #f5f5f5;
+    display: grid;
+    place-content: center;
+    color: #303030;
+    box-shadow: 0 2px 10px rgba(32, 33, 37, 0.06);
+    cursor: pointer;
+    &:hover .actions__like-icon {
+      color: mat-color($candy-app-accent);
+    }
+    span {
+      position: absolute;
+      bottom: 70px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2px;
+      color: transparent;
+      font-weight: 400;
+    }
+    &--twitter:hover svg {
+      stroke: #2aa1f1;
+      fill: #2aa1f1;
+    }
+  }
+  &__icon {
+    margin-right: 8px;
+    transition: ease-out 0.2s;
+    font-size: 24px;
+    height: 36;
+  }
+  &__count {
+    font-size: 24px;
+    line-height: 36px;
+    transition: ease-out 0.2s;
+    margin-right: 8px;
+  }
+  &__share {
+    margin-right: 8px;
+    height: 36px;
+    transition: ease-out 0.2s;
+    svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      transition: ease-in-out 0.2s;
+    }
+  }
+}
