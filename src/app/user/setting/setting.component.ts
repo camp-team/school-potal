@@ -24,6 +24,7 @@ export class SettingComponent implements OnInit {
   user: User;
   form: FormGroup = this.fb.group({
     name: ['', Validators.maxLength(50)],
+    post: ['', Validators.maxLength(20)],
     profile: ['', Validators.maxLength(400)],
     links: ['', Validators.maxLength(400)],
     tags: [['']],
@@ -36,6 +37,9 @@ export class SettingComponent implements OnInit {
 
   get nameControl(): FormControl {
     return this.form.get('name') as FormControl;
+  }
+  get postControl(): FormControl {
+    return this.form.get('post') as FormControl;
   }
   get profileControl(): FormControl {
     return this.form.get('profile') as FormControl;
@@ -100,7 +104,7 @@ export class SettingComponent implements OnInit {
       links: formData.links,
       tags: this.tags,
       uid: this.user.uid,
-      pinnedArticleIds: this.user.pinnedArticleIds,
+      post: formData.post,
     });
   }
 

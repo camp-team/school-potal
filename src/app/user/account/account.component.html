@@ -7,7 +7,7 @@
       ></figure>
       <div class="account__body">
         <h2 class="account__name">{{ user.name }}</h2>
-        <p class="account__plan">プラン：{{ user.plan }}</p>
+        <p class="account__post">{{ user.post }}</p>
         <p class="account__create">
           {{
             user.createdAt.toDate() | date: 'yyyy年MM月dd日'
