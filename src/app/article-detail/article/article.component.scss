@@ -3,141 +3,15 @@
 @import 'material-custom';
 
 .article {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.hero {
-  margin-bottom: 24px;
-  position: relative;
-  @include sp {
-    margin-top: 8px;
-  }
-  &__thumbnail {
-    max-width: 100%;
-    margin: 0 0 8px 0;
-  }
-  &__category {
-    position: absolute;
-    top: -16px;
-    left: -16px;
-    @include sp {
-      top: -8px;
-      left: -8px;
-    }
-  }
-  &__logo {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-right: 16px;
-    overflow: hidden;
-  }
-  &__title {
-    font-weight: 500;
-    :hover {
-      color: #47c5fc;
-    }
-  }
-  &__body {
-    display: flex;
-    align-items: center;
-    @include sp {
-      display: block;
-    }
-  }
-  &__body-inner {
-    display: flex;
-    align-items: center;
-  }
-  &__actions {
-    display: flex;
-    align-items: center;
-    margin-left: auto;
-    padding: 16px;
-  }
-  &__like {
-    margin-right: 8px;
-    background: #fff;
-    height: 36px;
-    &:hover .hero__like-count,
-    &:hover .hero__like-icon {
-      color: mat-color($candy-app-accent);
-    }
-  }
-  &__like-icon {
-    margin-right: 8px;
-    transition: ease-in-out 0.2s;
-    font-size: 24px;
-  }
-  &__like-count {
-    height: 36px;
-    transition: ease-in-out 0.2s;
-  }
-  &__share {
-    margin-right: 8px;
-    height: 36px;
-    transition: ease-in-out 0.2s;
-    &:hover svg {
-      stroke: #2aa1f1;
-      fill: #2aa1f1;
-    }
-    svg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      margin: auto;
-      transition: ease-in-out 0.2s;
-    }
-  }
-  &__comment {
-    margin-right: 8px;
-    transition: ease-in-out 0.2s;
-    &:hover {
-      color: mat-color($candy-app-primary);
-    }
-  }
-  &__pin {
-    margin-right: 8px;
-    transition: ease-in-out 0.2s;
-    &:hover {
-      color: mat-color($candy-app-warn);
-    }
-  }
-  &__pin-icon {
-    margin-right: 8px;
-    transition: ease-in-out 0.2s;
-  }
+  max-width: 100%;
 }
 
 mat-divider {
   margin-bottom: 24px;
 }
 
-h1 {
-  font-size: 20px;
-  margin: 8px 0;
-}
-h2 {
-  font-size: 20px;
-  font-weight: 500;
-  opacity: 0.6;
-}
-h3 {
-  font-size: 20px;
-  font-weight: 500;
-}
-
 p {
   display: inline-block;
-}
-
-.feature {
-  display: grid;
-  grid-template-columns: 1fr;
-  margin-bottom: 48px;
 }
 
 .link-button a {
@@ -154,7 +28,7 @@ p {
 }
 
 .teacher {
-  margin-bottom: 48px;
+  margin: 48px 0;
   &__grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -170,6 +44,8 @@ p {
     margin-bottom: 32px;
   }
   &__title {
+    font-size: 28px;
+    font-weight: 500;
     margin-right: 16px;
   }
   &__head {
@@ -240,7 +116,21 @@ p {
   }
 }
 
+.feature {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-bottom: 48px;
+  &__title {
+    font-size: 28px;
+    font-weight: 500;
+  }
+}
+
 .plan {
+  &__title {
+    font-size: 28px;
+    font-weight: 500;
+  }
   &:hover button {
     display: block;
   }
@@ -261,5 +151,13 @@ p {
   }
   &__text {
     white-space: pre-wrap;
+  }
+}
+
+.review {
+  &__title {
+    font-size: 28px;
+    font-weight: 500;
+    margin-bottom: 24px;
   }
 }
