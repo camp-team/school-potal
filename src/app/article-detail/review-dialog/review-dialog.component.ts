@@ -80,6 +80,9 @@ export class ReviewDialogComponent implements OnInit {
         uid: this.data.uid,
         articleId: this.data.article.id,
       })
+      .then(() =>
+        this.userService.joinAsStudent(this.data.article.id, this.data.uid)
+      )
       .then(() => this.snackBar.open('投稿しました'))
       .then(() => console.log('finish'))
       .finally(() => (this.isProcessing = false));
