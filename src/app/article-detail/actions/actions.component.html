@@ -1,7 +1,15 @@
 <div class="review">
   <ng-container *ngIf="comments$ | async as comments">
-    <p class="review__title">{{ comments.length }}人のユーザーがレビュー済</p>
+    <p class="review__title" *ngIf="comments.length; else default">
+      {{ comments.length }}人のユーザーがレビュー済
+    </p>
   </ng-container>
+  <ng-template #default>
+    <p class="review__title">
+      レビューはまだありません
+    </p>
+  </ng-template>
+
   <p class="review__text">
     {{
       article.name
