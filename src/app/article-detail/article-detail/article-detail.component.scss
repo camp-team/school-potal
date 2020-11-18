@@ -28,13 +28,15 @@
   }
 }
 
-mat-spinner {
-  margin: 64px auto;
+.spinner-wrap {
+  height: 100vh;
+  mat-spinner {
+    margin: 20% auto;
+  }
 }
 
 .relation {
   max-width: 100%;
   background: #f5f5f5;
-  padding: 48px 0;
-  margin-bottom: 80px;
+  padding: 48px 0 80px;
 }
