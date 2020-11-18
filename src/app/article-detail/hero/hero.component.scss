@@ -52,29 +52,23 @@
     font-size: 24px;
     font-weight: 600;
     margin-bottom: 24px;
+    line-height: 1;
   }
   &__star {
-    font-size: 24px;
-    letter-spacing: 8px;
+    display: flex;
+    align-items: center;
     margin-right: 8px;
   }
   &__data {
-    height: 48px;
+    height: 40px;
     display: flex;
     align-items: center;
     margin-bottom: 24px;
   }
-  &__icon {
-    margin-right: 16px;
-    transition: ease-out 0.2s;
-    font-size: 24px;
-    height: 36;
-  }
   &__count {
-    font-size: 24px;
-    line-height: 36px;
+    font-size: 32px;
+    font-weight: 600;
     transition: ease-out 0.2s;
-    margin-right: 16px;
   }
   &__tag {
     max-width: 50%;

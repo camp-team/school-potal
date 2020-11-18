@@ -23,14 +23,12 @@
     </p>
 
     <div class="hero__data">
-      <p class="hero__star" matTooltip="ユーザー満足度">⭐️⭐️⭐️⭐️⭐️</p>
+      <p
+        class="hero__star"
+        matTooltip="ユーザー満足度"
+        [innerHTML]="averageRating | rate"
+      ></p>
       <p class="hero__count">{{ averageRating }}</p>
-
-      <p class="hero__icon" matTooltip="いいね">❤️</p>
-      <p class="hero__count">{{ article.likeCount }}</p>
-
-      <p class="hero__icon" matTooltip="ピン留め">📌</p>
-      <p class="hero__count">{{ article.pinCount }}</p>
     </div>
 
     <div class="hero__tag">
