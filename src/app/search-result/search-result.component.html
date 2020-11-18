@@ -1,14 +1,36 @@
 <div class="container">
-  <div class="result-header">
-    <h2 class="result-header__keyword">
-      <mat-icon>search</mat-icon>検索ワード：<span
-        class="result-header__keyword result-header__keyword--col"
+  <div class="search-box">
+    <p class="search-box__word">検索ワード：</p>
+    <form
+      class="search-box__form"
+      (ngSubmit)="routeSearch(searchControl.value)"
+    >
+      <input
+        class="search-box__input"
+        type="text"
+        placeholder="渋谷、JavaScript、実践..."
+        autocomplete="off"
+        [matAutocomplete]="auto"
+        [formControl]="searchControl"
+      />
+      <button
+        class="search-box__submit"
+        (click)="routeSearch(searchControl.value)"
       >
-        {{ searchQuery || categoryFilter || tagFilter }}</span
-      >
-    </h2>
-    <mat-divider></mat-divider>
+        <mat-icon>search</mat-icon>
+      </button>
+    </form>
+    <mat-autocomplete
+      #auto="matAutocomplete"
+      (optionActivated)="setSearchQuery($event.option?.value)"
+      (optionSelected)="routeSearch($event.option?.value)"
+    >
+      <mat-option *ngFor="let option of searchOptions" [value]="option.name">{{
+        option.name
+      }}</mat-option>
+    </mat-autocomplete>
   </div>
+  <mat-divider></mat-divider>
 
   <div class="result">
     <ng-container *ngIf="result?.hits.length || articles">

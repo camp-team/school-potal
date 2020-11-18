@@ -3,19 +3,35 @@
 .container {
   padding-top: 48px;
 }
-.result-header {
-  &__keyword {
-    font-weight: 500;
-    font-size: 28px;
-    color: #303030;
+
+.search-box {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  &__word {
+    font-size: 32px;
   }
-  &__keyword--col {
-    font-size: 28px;
-    color: #303030;
+  &__form {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 40px;
+  }
+  &__input {
+    font-size: 32px;
+    padding: 0 0 0 8px;
+    background: inherit;
+    opacity: 0.6;
+    border: none;
+    outline: none;
   }
   mat-icon {
-    vertical-align: middle;
-    margin-right: 8px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: grid;
+    place-content: center;
+    background: linear-gradient(60deg, #40c4ff, #00a1dd);
+    color: #fff;
   }
 }
 

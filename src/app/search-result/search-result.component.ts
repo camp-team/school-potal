@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchIndex } from 'algoliasearch/lite';
 import { SearchService } from '../services/search.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Article } from '../interfaces/article';
 import { UiService } from '../services/ui.service';
 import { fade } from '../animations';
+import { FormControl } from '@angular/forms';
+import { debounceTime, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-search-result',
@@ -15,6 +17,7 @@ import { fade } from '../animations';
 export class SearchResultComponent implements OnInit {
   articles: Article[];
   searchQuery: string;
+  searchControl: FormControl = new FormControl();
   index: SearchIndex = this.searchService.index.item;
   result: {
     nbHits: number;
@@ -23,6 +26,7 @@ export class SearchResultComponent implements OnInit {
   nbPages: number;
   tagFilter: string[];
   categoryFilter: string[];
+  searchOptions = [];
 
   private page = 0;
   private maxPage: number;
@@ -34,6 +38,7 @@ export class SearchResultComponent implements OnInit {
   constructor(
     private searchService: SearchService,
     private route: ActivatedRoute,
+    private router: Router,
     public uiService: UiService
   ) {}
 
@@ -50,6 +55,14 @@ export class SearchResultComponent implements OnInit {
       this.searchArticles();
       this.isInit = false;
     });
+
+    this.searchControl.valueChanges
+      .pipe(startWith(''), debounceTime(500))
+      .subscribe((key) => {
+        this.index
+          .search(key)
+          .then((result) => (this.searchOptions = result.hits));
+      });
   }
 
   searchArticles() {
@@ -81,5 +94,18 @@ export class SearchResultComponent implements OnInit {
         this.isInit ? 0 : 1000
       );
     }
+  }
+
+  setSearchQuery(value: string) {
+    this.searchControl.setValue(value, {
+      emitEvent: false,
+    });
+  }
+
+  routeSearch(searchQuery: string) {
+    this.router.navigate(['/search'], {
+      queryParamsHandling: 'merge',
+      queryParams: { searchQuery },
+    });
   }
 }
