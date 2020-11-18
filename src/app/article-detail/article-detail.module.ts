@@ -33,6 +33,7 @@ import { StudentsComponent } from './students/students.component';
 import { ReviewDialogComponent } from './review-dialog/review-dialog.component';
 import { SwiperModule } from 'ngx-swiper-wrapper';
 import { MatSelectModule } from '@angular/material/select';
+import { RatePipe } from '../pipes/rate.pipe';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { MatSelectModule } from '@angular/material/select';
     ActionsComponent,
     StudentsComponent,
     ReviewDialogComponent,
+    RatePipe,
   ],
   imports: [
     CommonModule,
