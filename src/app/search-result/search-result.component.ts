@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { SearchIndex } from 'algoliasearch/lite';
 import { SearchService } from '../services/search.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,7 +20,8 @@ import { debounceTime, startWith } from 'rxjs/operators';
   styleUrls: ['./search-result.component.scss'],
   animations: [fade],
 })
-export class SearchResultComponent implements OnInit {
+export class SearchResultComponent implements OnInit, AfterViewInit {
+  @ViewChild('target') private elementRef: ElementRef;
   articles: Article[];
   searchQuery: string;
   searchControl: FormControl = new FormControl();
@@ -63,6 +70,10 @@ export class SearchResultComponent implements OnInit {
           .search(key)
           .then((result) => (this.searchOptions = result.hits));
       });
+  }
+
+  ngAfterViewInit(): void {
+    this.elementRef.nativeElement.focus();
   }
 
   searchArticles() {

@@ -4,10 +4,15 @@
   padding-top: 48px;
 }
 
+.search-wrap {
+  height: 100vh;
+}
+
 .search-box {
   width: 100%;
   display: flex;
   align-items: center;
+  margin-top: 240px;
   &__word {
     font-size: 32px;
   }
@@ -38,9 +43,10 @@
 .result {
   margin-bottom: 120px;
   &__hits {
+    text-align: center;
     font-size: 21px;
     font-weight: 500;
-    margin-bottom: 16px;
+    margin-bottom: 120px;
   }
 }
 
@@ -142,7 +148,7 @@
 }
 
 mat-divider {
-  margin: 16px 0;
+  margin-bottom: 120px;
 }
 
 mat-progress-spinner {
