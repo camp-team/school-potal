@@ -65,6 +65,16 @@
 
     <div class="feature">
       <h3 class="feature__title">サービスの特徴</h3>
+      <div class="feature__body" *ngFor="let feature of features">
+        <mat-icon class="feature__icon">check_circle_outline</mat-icon>
+        <div class="feature__text">
+          AngularとFirebaseを軸にした最新のSPA開発
+        </div>
+      </div>
+    </div>
+
+    <div class="feature">
+      <h3 class="feature__title">トピックス</h3>
       <div class="feature__body">
         <quill-view-html [content]="article.feature" theme="snow">
         </quill-view-html>
@@ -74,7 +84,7 @@
     <div class="plan">
       <div class="plan__head-wrap">
         <div class="plan__head">
-          <h3 class="plan__title">プラン/料金</h3>
+          <h3 class="plan__title">プラン/コース</h3>
           <p><small>※最新の情報ではない可能性があります。</small></p>
         </div>
         <button mat-icon-button [matMenuTriggerFor]="menu">
@@ -89,8 +99,27 @@
           >
         </mat-menu>
       </div>
-      <div class="plan__body">
-        <p class="plan__text">{{ article.plan }}</p>
+
+      <div
+        class="plan-item"
+        *ngFor="let plan of plans"
+        (click)="isOpen = !isOpen"
+      >
+        <mat-divider></mat-divider>
+        <div class="plan-item__wrap">
+          <div class="plan-item__head">
+            <mat-icon class="plan-item__icon">add</mat-icon>
+            <p class="plan-item__name">お手頃牛カルビBENTO</p>
+          </div>
+          <div class="plan-item__body">
+            <span class="plan-item__spacer"></span>
+            <p class="plan-item__description" [@openClose]="isOpen">
+              お手頃な価格でカルビBENTOを食べてみませんか？玉ねぎと牛バラカルビもりもりのボリューム満点BENTO！
+            </p>
+            <span class="plan-item__spacer"></span>
+            <p class="plan-item__plice">￥650</p>
+          </div>
+        </div>
       </div>
     </div>
 

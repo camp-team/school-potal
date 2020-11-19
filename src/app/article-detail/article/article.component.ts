@@ -8,7 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Teacher } from 'src/app/interfaces/teacher';
 import { AuthService } from 'src/app/services/auth.service';
 import { TeacherDialogComponent } from '../teachers-dialog/teachers-dialog.component';
-import { fade, bounce } from '../../animations';
+import { fade, bounce, openClose } from '../../animations';
 import { CommentWithUser } from 'src/app/interfaces/comment';
 import { CommentService } from 'src/app/services/comment.service';
 
@@ -16,7 +16,7 @@ import { CommentService } from 'src/app/services/comment.service';
   selector: 'app-article',
   templateUrl: './article.component.html',
   styleUrls: ['./article.component.scss'],
-  animations: [fade, bounce],
+  animations: [fade, bounce, openClose],
 })
 export class ArticleComponent implements OnInit {
   @Input() article: Article;
@@ -26,6 +26,9 @@ export class ArticleComponent implements OnInit {
 
   uid: string;
   selectedTeacherNum = 0;
+  features = new Array(5);
+  plans = new Array(5);
+  isOpen = false;
 
   articleId$: Observable<string> = this.route.paramMap.pipe(
     map((param) => {

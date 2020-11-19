@@ -123,6 +123,17 @@ p {
   &__title {
     font-size: 28px;
     font-weight: 500;
+    margin-bottom: 16px;
+  }
+  &__body {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  &__icon {
+    width: 32px;
+    color: #2aa1f1;
+    margin-right: 8px;
   }
 }
 
@@ -149,8 +160,28 @@ p {
     font-size: 12px;
     color: rgba(#303030, 0.6);
   }
-  &__text {
-    white-space: pre-wrap;
+}
+
+.plan-item {
+  cursor: pointer;
+  &__head {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+  }
+  &__body {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    margin-bottom: 24px;
+  }
+  &__spacer {
+    display: block;
+  }
+  &__description {
+    color: rgba(#303030, 0.6);
+    overflow: hidden;
+  }
+  &__plice {
+    color: #2aa1f1;
   }
 }
 

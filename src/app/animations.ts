@@ -1,6 +1,7 @@
 import {
   animate,
   keyframes,
+  state,
   style,
   transition,
   trigger,
@@ -74,5 +75,25 @@ export const fadeup = trigger('fadeup', [
         }),
       ])
     ),
+  ]),
+]);
+
+export const openClose = trigger('openClose', [
+  state(
+    'true',
+    style({
+      height: '*',
+      opacity: 1,
+    })
+  ),
+  state(
+    'false',
+    style({
+      height: 0,
+      opacity: 0,
+    })
+  ),
+  transition('true <=> false', [
+    animate('.23s cubic-bezier(0.35, 0, 0.25, 1)'),
   ]),
 ]);
