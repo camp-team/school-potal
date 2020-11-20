@@ -6,8 +6,13 @@ export interface Article {
   category: string;
   createdAt?: firestore.Timestamp;
   updatedAt: firestore.Timestamp;
-  feature: string;
-  plan: string;
+  features: string[];
+  topics?: string;
+  plans: Array<{
+    planName: string;
+    planBody: string;
+    plice: string;
+  }>;
   serviceURL: string;
   type: 'school' | 'salon' | null;
   id?: string;

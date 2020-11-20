@@ -110,3 +110,20 @@ mat-radio-button {
 .add-btn {
   margin-left: 16px;
 }
+
+.features {
+  display: flex;
+  align-items: center;
+  &__icon {
+    width: 40px;
+    height: 40px;
+    color: #2aa1f1;
+    margin-right: 8px;
+  }
+}
+
+.plan {
+  display: grid;
+  grid-template-columns: 1fr 2fr 120px;
+  gap: 16px;
+}

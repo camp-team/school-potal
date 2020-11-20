@@ -10,6 +10,7 @@ import {
   Validators,
   FormControl,
   FormArray,
+  FormGroup,
 } from '@angular/forms';
 import { ArticleService } from 'src/app/services/article.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -53,6 +54,10 @@ export class EditorComponent implements OnInit {
   readonly MAX_NAME_LENGTH = 50;
   readonly MAX_TITLE_LENGTH = 150;
   readonly MAX_PLAN_LENGTH = 400;
+  readonly MAX_FEATURE_LENGTH = 100;
+  readonly MAX_PLANNAME_LENGTH = 50;
+  readonly MAX_PLANBODY_LENGTH = 150;
+  readonly MAX_PLICE_LENGTH = 7;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
   visible = true;
@@ -62,16 +67,16 @@ export class EditorComponent implements OnInit {
   tags: string[] = [];
 
   categoryGroup: Category[] = [
-    { value: 'プログラミング', viewValue: 'プログラミング' },
-    { value: '外国語', viewValue: '外国語' },
-    { value: 'ビジネス', viewValue: 'ビジネス' },
-    { value: 'スポーツ', viewValue: 'スポーツ' },
-    { value: 'デザイン', viewValue: 'デザイン' },
-    { value: '美容', viewValue: '美容' },
-    { value: '料理', viewValue: '料理' },
-    { value: 'モノづくり', viewValue: 'モノづくり' },
-    { value: '音楽', viewValue: '音楽' },
-    { value: '医療', viewValue: '医療' },
+    { value: 'プログラミング' },
+    { value: '外国語' },
+    { value: 'ビジネス' },
+    { value: 'スポーツ' },
+    { value: 'デザイン' },
+    { value: '美容' },
+    { value: '料理' },
+    { value: 'モノづくり' },
+    { value: '音楽' },
+    { value: '医療' },
   ];
 
   form = this.fb.group({
@@ -84,11 +89,15 @@ export class EditorComponent implements OnInit {
       '',
       [Validators.required, Validators.maxLength(this.MAX_TITLE_LENGTH)],
     ],
-    feature: [''],
-    plan: [
-      '',
-      [Validators.required, Validators.maxLength(this.MAX_PLAN_LENGTH)],
-    ],
+    features: this.fb.array(['', '', '', '', '']),
+    topics: [''],
+    plans: this.fb.array([
+      this.fb.group({
+        planName: [''],
+        planBody: [''],
+        plice: [''],
+      }),
+    ]),
     serviceURL: [
       '',
       [
@@ -98,7 +107,7 @@ export class EditorComponent implements OnInit {
       ],
     ],
     type: ['', [Validators.required]],
-    teacherIds: this.fb.array([]),
+    teacherIds: this.fb.array(['']),
     tags: [['']],
     id: [''],
   });
@@ -122,12 +131,16 @@ export class EditorComponent implements OnInit {
     return this.form.get('title') as FormControl;
   }
 
-  get feature(): FormControl {
-    return this.form.get('featureBody2') as FormControl;
+  get features(): FormArray {
+    return this.form.get('features') as FormArray;
   }
 
-  get plan(): FormControl {
-    return this.form.get('plan') as FormControl;
+  get plans(): FormArray {
+    return this.form.get('plans') as FormArray;
+  }
+
+  get topics(): FormControl {
+    return this.form.get('topics') as FormControl;
   }
 
   get serviceURL(): FormControl {
@@ -175,11 +188,25 @@ export class EditorComponent implements OnInit {
     });
   }
 
-  addForm() {
+  addPlanControl() {
+    this.plans.push(
+      this.fb.group({
+        planName: [''],
+        planBody: [''],
+        plice: [''],
+      })
+    );
+  }
+
+  removePlanControl(index: number) {
+    this.plans.removeAt(index);
+  }
+
+  addTeacherIdControl() {
     this.teacherIds.push(new FormControl(''));
   }
 
-  removeForm(index: number) {
+  removeTeacherIdControl(index: number) {
     this.teacherIds.removeAt(index);
   }
 
@@ -231,8 +258,9 @@ export class EditorComponent implements OnInit {
             title: formData.title,
             category: formData.category,
             createdAt: firestore.Timestamp.now(),
-            feature: formData.feature,
-            plan: formData.plan,
+            features: formData.features,
+            topics: formData.topics,
+            plans: formData.plans,
             serviceURL: formData.serviceURL,
             type: formData.type,
             teacherIds: formData.teacherIds,
@@ -254,8 +282,9 @@ export class EditorComponent implements OnInit {
             title: formData.title,
             category: formData.category,
             updatedAt: firestore.Timestamp.now(),
-            feature: formData.feature,
-            plan: formData.plan,
+            features: formData.features,
+            topics: formData.topics,
+            plans: formData.plans,
             serviceURL: formData.serviceURL,
             type: formData.type,
             id: formData.id,

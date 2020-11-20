@@ -17,7 +17,7 @@
               *ngFor="let category of categoryGroup"
               [value]="category.value"
             >
-              {{ category.viewValue }}
+              {{ category.value }}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -117,24 +117,81 @@
     </mat-form-field>
 
     <h2>サービスの特徴</h2>
+    <div
+      formArrayName="features"
+      *ngFor="let feature of features.controls; index as i"
+      class="features"
+    >
+      <mat-icon class="features__icon">check_circle_outline</mat-icon>
+      <mat-form-field appearance="outline">
+        <input matInput #feature required [formControlName]="i" />
+        <mat-hint align="end"
+          >{{ feature.value.length }} / {{ MAX_FEATURE_LENGTH }}文字</mat-hint
+        >
+      </mat-form-field>
+    </div>
+
+    <h2>トピックス</h2>
     <quill-editor
-      formControlName="feature"
+      formControlName="topics"
       [styles]="{ height: '320px' }"
     ></quill-editor>
 
     <h2>プラン</h2>
-    <mat-form-field appearance="outline" class="feature">
-      <textarea
-        matInput
-        formControlName="plan"
-        #plan
-        matTextareaAutosize
-        [matAutosizeMinRows]="10"
-      ></textarea>
-      <mat-hint align="end"
-        >{{ plan.value.length }} / {{ MAX_PLAN_LENGTH }}文字</mat-hint
-      >
-    </mat-form-field>
+    <ng-container
+      formArrayName="plans"
+      *ngFor="let plan of plans.controls; index as i"
+    >
+      <div [formGroupName]="i" class="plan">
+        <mat-form-field appearance="outline">
+          <mat-label>プラン名</mat-label>
+          <input matInput formControlName="planName" #planName required />
+          <mat-hint align="end"
+            >{{ planName.value.length }} /
+            {{ MAX_PLANNAME_LENGTH }}文字</mat-hint
+          >
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="feature">
+          <mat-label>プラン内容</mat-label>
+          <textarea
+            matInput
+            formControlName="planBody"
+            #planBody
+            matTextareaAutosize
+            [matAutosizeMinRows]="1"
+          ></textarea>
+          <mat-hint align="end"
+            >{{ planBody.value.length }} /
+            {{ MAX_PLANBODY_LENGTH }}文字</mat-hint
+          >
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>価格</mat-label>
+          <input matInput formControlName="plice" #plice required />
+          <mat-hint align="end"
+            >{{ plice.value.length }} / {{ MAX_PLICE_LENGTH }}文字</mat-hint
+          >
+        </mat-form-field>
+        <button
+          mat-mini-fab
+          color="primary"
+          type="button"
+          (click)="removePlanControl(i)"
+          class="remove-btn"
+        >
+          <mat-icon>remove</mat-icon>
+        </button>
+        <button
+          mat-mini-fab
+          color="primary"
+          type="button"
+          (click)="addPlanControl()"
+          class="add-btn"
+        >
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+    </ng-container>
 
     <h2>サービスURL</h2>
     <mat-form-field appearance="outline">
@@ -157,7 +214,7 @@
         mat-mini-fab
         color="primary"
         type="button"
-        (click)="removeForm(i)"
+        (click)="removeTeacherIdControl(i)"
         class="remove-btn"
       >
         <mat-icon>remove</mat-icon>
@@ -167,7 +224,7 @@
       mat-mini-fab
       color="primary"
       type="button"
-      (click)="addForm()"
+      (click)="addTeacherIdControl()"
       class="add-btn"
     >
       <mat-icon>add</mat-icon>
