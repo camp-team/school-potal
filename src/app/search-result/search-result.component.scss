@@ -1,5 +1,14 @@
 @import 'mixins';
 
+mat-divider {
+  max-width: 80%;
+  margin: 0 auto 120px;
+}
+
+mat-progress-spinner {
+  margin: 48px auto;
+}
+
 .container {
   padding-top: 48px;
 }
@@ -9,10 +18,10 @@
 }
 
 .search-box {
-  width: 100%;
+  max-width: 80%;
   display: flex;
   align-items: center;
-  margin-top: 240px;
+  margin: 240px auto 0;
   &__word {
     font-size: 32px;
   }
@@ -145,12 +154,4 @@
 
 .not-found {
   max-width: 80%;
-}
-
-mat-divider {
-  margin-bottom: 120px;
-}
-
-mat-progress-spinner {
-  margin: 48px auto;
 }
