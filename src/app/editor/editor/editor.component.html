@@ -1,6 +1,6 @@
 <form [formGroup]="form" (ngSubmit)="submit()">
   <div class="container container--editor">
-    <h2>サービス名</h2>
+    <h2 class="block-title">サービス名</h2>
     <mat-form-field appearance="outline">
       <input matInput formControlName="name" #name required />
       <mat-hint align="end"
@@ -10,7 +10,7 @@
 
     <div class="type">
       <div class="type__category">
-        <h2>カテゴリー</h2>
+        <h2 class="block-title">カテゴリー</h2>
         <mat-form-field>
           <mat-select formControlName="category">
             <mat-option
@@ -24,7 +24,7 @@
       </div>
 
       <div class="type__type">
-        <h2>タイプ</h2>
+        <h2 class="block-title">タイプ</h2>
         <mat-radio-group
           color="primary"
           aria-label="Select an option"
@@ -39,14 +39,14 @@
 
     <div class="image">
       <div class="image__main">
-        <h2>メイン画像</h2>
-        <div class="main-img">
+        <h2 class="block-title">メイン画像</h2>
+        <div class="image__main-img">
           <img
             *ngIf="srcs?.thumbnailURL || article?.thumbnailURL"
             [src]="srcs.thumbnailURL || article.thumbnailURL"
             alt=""
           />
-          <p class="note" *ngIf="!srcs?.thumbnailURL">
+          <p class="image__note" *ngIf="!srcs?.thumbnailURL">
             ※ 1280px x 720px
           </p>
           <input
@@ -61,12 +61,11 @@
             (click)="thumbnailInput.click()"
             mat-mini-fab
             color="primary"
-            class="img-btn"
           >
             <mat-icon>add_photo_alternate</mat-icon>
           </button>
           <p
-            class="file-name"
+            class="image__file-name"
             *ngIf="!srcs?.thumbnailURL && !article?.thumbnailURL"
           >
             ファイルが選択されていません
@@ -75,14 +74,14 @@
       </div>
 
       <div class="image__logo">
-        <h2>サービスロゴ</h2>
-        <div class="logo-img">
+        <h2 class="block-title">サービスロゴ</h2>
+        <div class="image__logo-img">
           <img
             *ngIf="srcs?.logo || article?.logo"
             [src]="srcs.logo || article.logo"
             alt=""
           />
-          <p class="note" *ngIf="!srcs?.logo">
+          <p class="image__note" *ngIf="!srcs?.logo">
             ※ 800px x 800px
           </p>
           <input
@@ -97,18 +96,17 @@
             (click)="logoInput.click()"
             mat-mini-fab
             color="primary"
-            class="img-btn"
           >
             <mat-icon>add_photo_alternate</mat-icon>
           </button>
-          <p class="file-name" *ngIf="!srcs?.logo && !article?.logo">
+          <p class="image__file-name" *ngIf="!srcs?.logo && !article?.logo">
             ファイルが選択されていません
           </p>
         </div>
       </div>
     </div>
 
-    <h2>記事タイトル</h2>
+    <h2 class="block-title">記事タイトル</h2>
     <mat-form-field appearance="outline">
       <input matInput formControlName="title" #title required />
       <mat-hint align="end"
@@ -116,7 +114,7 @@
       >
     </mat-form-field>
 
-    <h2>サービスの特徴</h2>
+    <h2 class="block-title">サービスの特徴</h2>
     <div
       formArrayName="features"
       *ngFor="let feature of features.controls; index as i"
@@ -131,13 +129,13 @@
       </mat-form-field>
     </div>
 
-    <h2>トピックス</h2>
+    <h2 class="block-title">トピックス</h2>
     <quill-editor
       formControlName="topics"
       [styles]="{ height: '320px' }"
     ></quill-editor>
 
-    <h2>プラン</h2>
+    <h2 class="block-title">プラン</h2>
     <ng-container
       formArrayName="plans"
       *ngFor="let plan of plans.controls; index as i"
@@ -172,65 +170,69 @@
             >{{ plice.value.length }} / {{ MAX_PLICE_LENGTH }}文字</mat-hint
           >
         </mat-form-field>
-        <button
-          mat-mini-fab
-          color="primary"
-          type="button"
-          (click)="removePlanControl(i)"
-          class="remove-btn"
-        >
-          <mat-icon>remove</mat-icon>
-        </button>
-        <button
-          mat-mini-fab
-          color="primary"
-          type="button"
-          (click)="addPlanControl()"
-          class="add-btn"
-        >
-          <mat-icon>add</mat-icon>
-        </button>
+
+        <div class="plan__btns">
+          <button
+            mat-mini-fab
+            color="primary"
+            type="button"
+            (click)="removePlanControl(i)"
+          >
+            <mat-icon>remove</mat-icon>
+          </button>
+          <button
+            mat-mini-fab
+            color="primary"
+            type="button"
+            (click)="addPlanControl()"
+          >
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
       </div>
     </ng-container>
 
-    <h2>サービスURL</h2>
+    <h2 class="block-title">サービスURL</h2>
     <mat-form-field appearance="outline">
       <input matInput formControlName="serviceURL" required />
     </mat-form-field>
 
-    <h2>先生のTwitterID</h2>
+    <h2 class="block-title">講師/メンターのTwitterID</h2>
+
     <ng-container
       formArrayName="teacherIds"
       *ngFor="let ctrl of teacherIds.controls; index as i"
     >
-      <mat-form-field appearance="outline">
-        <input
-          placeholder="Twitter Screen Name"
-          matInput
-          [formControlName]="i"
-        />
-      </mat-form-field>
-      <button
-        mat-mini-fab
-        color="primary"
-        type="button"
-        (click)="removeTeacherIdControl(i)"
-        class="remove-btn"
-      >
-        <mat-icon>remove</mat-icon>
-      </button>
-    </ng-container>
-    <button
-      mat-mini-fab
-      color="primary"
-      type="button"
-      (click)="addTeacherIdControl()"
-      class="add-btn"
-    >
-      <mat-icon>add</mat-icon>
-    </button>
+      <div class="teacher">
+        <mat-form-field appearance="outline">
+          <mat-label>Twitterのスクリーンネーム(@は省略)</mat-label>
+          <input matInput [formControlName]="i" />
+        </mat-form-field>
 
-    <h2>タグ</h2>
+        <div class="teacher__btns">
+          <button
+            mat-mini-fab
+            color="primary"
+            type="button"
+            (click)="removeTeacherIdControl(i)"
+            class="remove-btn"
+          >
+            <mat-icon>remove</mat-icon>
+          </button>
+          <button
+            mat-mini-fab
+            color="primary"
+            type="button"
+            (click)="addTeacherIdControl()"
+            class="add-btn"
+          >
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </div>
+    </ng-container>
+
+    <h2 class="block-title">タグ</h2>
     <mat-form-field>
       <mat-chip-list #chipList aria-label="tag selection">
         <mat-chip
@@ -255,16 +257,16 @@
     </mat-form-field>
 
     <ng-container *ngIf="article">
-      <h2>記事ID</h2>
+      <h2 class="block-title">記事ID</h2>
       <mat-form-field appearance="outline">
         <input matInput formControlName="id" required />
       </mat-form-field>
     </ng-container>
 
     <button
+      class="submit-btn"
       mat-fab
       color="primary"
-      class="submit-button"
       [disabled]="form.invalid || processing"
     >
       GO

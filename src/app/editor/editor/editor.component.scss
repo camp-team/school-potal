@@ -1,5 +1,28 @@
 @import '~@angular/material/theming';
 
+.block-title {
+  font-size: 18px;
+  font-weight: 500;
+  padding: 8px;
+  margin-bottom: 16px;
+  border-left: solid 8px #424242;
+  border-radius: 2px;
+  margin-top: 16px;
+  background: #fafafa;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-divider {
+  margin: 16px;
+}
+
+mat-radio-button {
+  margin-right: 16px;
+}
+
 .type,
 .image {
   display: grid;
@@ -8,6 +31,50 @@
   &__category,
   &__main {
     margin-right: 24px;
+  }
+}
+
+.image {
+  &__main-img {
+    position: relative;
+    width: 320px;
+    height: 180px;
+    border: dashed 1px;
+    margin: 0 auto;
+    button {
+      position: absolute;
+      bottom: 0;
+      right: -48px;
+    }
+  }
+  &__logo-img {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border: dashed 1px;
+    margin: 0 auto;
+    button {
+      position: absolute;
+      bottom: 0;
+      right: -48px;
+    }
+  }
+  &__img-btn {
+    position: absolute;
+    bottom: 0;
+    right: -48px;
+  }
+  &__note {
+    font-size: 9px;
+    opacity: 0.6;
+  }
+  &__file-name {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 9px;
+    opacity: 0.6;
   }
 }
 
@@ -23,94 +90,6 @@
   }
 }
 
-.main-img {
-  position: relative;
-  width: 320px;
-  height: 180px;
-  border: dashed 1px;
-  margin: 0 auto;
-}
-.logo-img {
-  position: relative;
-  width: 100px;
-  height: 100px;
-  border: dashed 1px;
-  margin: 0 auto;
-}
-.sub-img {
-  position: relative;
-  width: 100px;
-  height: 100px;
-  border: dashed 1px;
-  margin: 0 auto;
-}
-
-.img-btn {
-  position: absolute;
-  bottom: 0;
-  right: -48px;
-}
-
-h2 {
-  font-size: 18px;
-  font-weight: 500;
-  padding: 8px;
-  margin-bottom: 16px;
-  border-left: solid 8px #424242;
-  border-radius: 3px;
-  margin-top: 16px;
-  background: #fafafa;
-}
-
-h3 {
-  font-size: 14px;
-  font-weight: 500;
-}
-
-mat-form-field {
-  width: 100%;
-}
-
-mat-divider {
-  margin: 16px;
-}
-
-mat-slide-toggle {
-  float: right;
-}
-
-mat-radio-button {
-  margin-right: 16px;
-}
-
-.note {
-  font-size: 9px;
-  opacity: 0.6;
-}
-
-.submit-button {
-  position: fixed;
-  right: 50px;
-  bottom: 50px;
-}
-
-.file-name {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 9px;
-  opacity: 0.6;
-}
-
-.remove-btn {
-  margin-bottom: 16px;
-}
-
-.add-btn {
-  margin-left: 16px;
-}
-
 .features {
   display: flex;
   align-items: center;
@@ -124,6 +103,41 @@ mat-radio-button {
 
 .plan {
   display: grid;
-  grid-template-columns: 1fr 2fr 120px;
+  grid-template-columns: 1fr 2fr 120px 40px;
   gap: 16px;
+  &__btns {
+    width: 40px;
+    display: grid;
+    place-content: center;
+    button {
+      width: 32px;
+      height: 32px;
+      margin: 0 0 8px 0;
+      display: grid;
+      place-content: center;
+    }
+  }
+}
+
+.teacher {
+  display: grid;
+  grid-template-columns: 1fr 40px;
+  gap: 16px;
+  &__btns {
+    display: grid;
+    place-content: center;
+    button {
+      width: 32px;
+      height: 32px;
+      margin: 0 0 8px 0;
+      display: grid;
+      place-content: center;
+    }
+  }
+}
+
+.submit-btn {
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
 }
