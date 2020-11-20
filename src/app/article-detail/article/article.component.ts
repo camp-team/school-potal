@@ -27,8 +27,7 @@ export class ArticleComponent implements OnInit {
   uid: string;
   selectedTeacherNum = 0;
   features = new Array(5);
-  plans = new Array(5);
-  isOpen = false;
+  isOpen = [];
 
   articleId$: Observable<string> = this.route.paramMap.pipe(
     map((param) => {
@@ -65,6 +64,12 @@ export class ArticleComponent implements OnInit {
 
   ngOnInit(): void {
     this.teachers$.subscribe((teachers) => (this.teachers = teachers));
+    this.article$.subscribe((article) => {
+      this.article.plans = article.plans;
+      this.article.plans.forEach(() => {
+        this.isOpen.push(false);
+      });
+    });
   }
 
   isActiveTeacher(i: number): void {

@@ -65,10 +65,10 @@
 
     <div class="feature">
       <h3 class="feature__title">サービスの特徴</h3>
-      <div class="feature__body" *ngFor="let feature of features">
+      <div class="feature__body" *ngFor="let feature of features; index as i">
         <mat-icon class="feature__icon">check_circle_outline</mat-icon>
         <div class="feature__text">
-          AngularとFirebaseを軸にした最新のSPA開発
+          {{ article.features[i] }}
         </div>
       </div>
     </div>
@@ -102,22 +102,22 @@
 
       <div
         class="plan-item"
-        *ngFor="let plan of plans"
-        (click)="isOpen = !isOpen"
+        *ngFor="let plan of article.plans; index as i"
+        (click)="isOpen[i] = !isOpen[i]"
       >
         <mat-divider></mat-divider>
         <div class="plan-item__wrap">
           <div class="plan-item__head">
             <mat-icon class="plan-item__icon">add</mat-icon>
-            <p class="plan-item__name">お手頃牛カルビBENTO</p>
+            <p class="plan-item__name">{{ article.plans[i].planName }}</p>
           </div>
           <div class="plan-item__body">
             <span class="plan-item__spacer"></span>
-            <p class="plan-item__description" [@openClose]="isOpen">
-              お手頃な価格でカルビBENTOを食べてみませんか？玉ねぎと牛バラカルビもりもりのボリューム満点BENTO！
+            <p class="plan-item__description" [@openClose]="isOpen[i]">
+              {{ article.plans[i].planBody }}
             </p>
             <span class="plan-item__spacer"></span>
-            <p class="plan-item__plice">￥650</p>
+            <p class="plan-item__plice">{{ article.plans[i].plice }}</p>
           </div>
         </div>
       </div>
