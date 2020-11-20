@@ -242,16 +242,23 @@ button {
   font-weight: 400 !important;
 }
 
-.feature__body {
-  .ql-container {
+.ql-container {
+  p {
     font-size: 16px;
   }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-weight: 500;
+  }
 }
+
 .ql-editor .ql-align-center {
   margin-top: 24px;
 }
 
-.ql-video.ql-align-center {
+iframe.ql-video {
   width: 800px;
   height: 440px;
   @include sp {
