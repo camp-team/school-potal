@@ -107,7 +107,7 @@ export class EditorComponent implements OnInit {
       ],
     ],
     type: ['', [Validators.required]],
-    teacherIds: this.fb.array(['']),
+    teacherIds: this.fb.array([]),
     tags: [['']],
     id: [''],
   });
@@ -178,12 +178,16 @@ export class EditorComponent implements OnInit {
           ...article,
           tags: null,
         });
-
-        article?.teacherIds.forEach((teacherId) => {
-          const array = new FormControl(teacherId);
-          this.teacherIds.push(array);
-        });
-        this.event.emit(this.article);
+        if (this.article.teacherIds) {
+          article.teacherIds.forEach((teacherId) => {
+            const array = new FormControl(teacherId);
+            this.teacherIds.push(array);
+          });
+          this.event.emit(this.article);
+        }
+      } else {
+        const array = new FormControl('');
+        this.teacherIds.push(array);
       }
     });
   }
