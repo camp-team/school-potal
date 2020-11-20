@@ -2,7 +2,7 @@
 @include mat-core();
 
 // プライマリカラー
-$candy-app-primary: mat-palette($mat-purple);
+$candy-app-primary: mat-palette($mat-light-blue);
 
 // アクセントカラー
 $candy-app-accent: mat-palette($mat-pink, A200, A100, A400);
