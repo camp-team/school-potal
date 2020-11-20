@@ -57,7 +57,7 @@ export class EditorComponent implements OnInit {
   readonly MAX_FEATURE_LENGTH = 100;
   readonly MAX_PLANNAME_LENGTH = 50;
   readonly MAX_PLANBODY_LENGTH = 150;
-  readonly MAX_PLICE_LENGTH = 7;
+  readonly MAX_PLICE_LENGTH = 10;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
   visible = true;
@@ -93,9 +93,9 @@ export class EditorComponent implements OnInit {
     topics: [''],
     plans: this.fb.array([
       this.fb.group({
-        planName: [''],
-        planBody: [''],
-        plice: [''],
+        planName: ['', [Validators.maxLength(this.MAX_PLANNAME_LENGTH)]],
+        planBody: ['', [Validators.maxLength(this.MAX_PLANBODY_LENGTH)]],
+        plice: ['', [Validators.maxLength(this.MAX_PLICE_LENGTH)]],
       }),
     ]),
     serviceURL: [
@@ -184,6 +184,25 @@ export class EditorComponent implements OnInit {
             this.teacherIds.push(array);
           });
           this.event.emit(this.article);
+        }
+        if (this.article.plans) {
+          article.plans.forEach((plan) => {
+            const formGroup = this.fb.group({
+              planName: [
+                plan.planName,
+                [Validators.maxLength(this.MAX_PLANNAME_LENGTH)],
+              ],
+              planBody: [
+                plan.planBody,
+                [Validators.maxLength(this.MAX_PLANBODY_LENGTH)],
+              ],
+              plice: [
+                plan.plice,
+                [Validators.maxLength(this.MAX_PLICE_LENGTH)],
+              ],
+            });
+            this.plans.push(formGroup);
+          });
         }
       } else {
         const array = new FormControl('');
