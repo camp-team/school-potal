@@ -73,13 +73,15 @@
       </div>
     </div>
 
-    <div class="feature">
-      <h3 class="feature__title">トピックス</h3>
-      <div class="feature__body">
-        <quill-view-html [content]="article.topics" theme="snow">
-        </quill-view-html>
+    <ng-container *ngIf="article.topics">
+      <div class="feature">
+        <h3 class="feature__title">トピックス</h3>
+        <div class="feature__body">
+          <quill-view-html [content]="article.topics" theme="snow">
+          </quill-view-html>
+        </div>
       </div>
-    </div>
+    </ng-container>
 
     <div class="plan">
       <div class="plan__head-wrap">
@@ -117,7 +119,7 @@
               {{ article.plans[i].planBody }}
             </p>
             <span class="plan-item__spacer"></span>
-            <p class="plan-item__plice">{{ article.plans[i].plice }}</p>
+            <p class="plan-item__plice">¥{{ article.plans[i].plice }}</p>
           </div>
         </div>
       </div>
