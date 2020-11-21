@@ -52,7 +52,6 @@
     flex-flow: column;
   }
   &__top {
-    flex: 1;
     min-height: 88px;
   }
   &__name {
@@ -71,7 +70,7 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     display: -webkit-box;
-    padding: 0 16px 8px;
+    padding: 0 16px;
   }
   &__date {
     font-size: 13px;
