@@ -259,11 +259,11 @@ button {
 }
 
 iframe.ql-video {
-  width: 800px;
-  height: 440px;
+  width: 40vw;
+  height: 22vw;
   @include sp {
-    width: 300px;
-    height: 168px;
+    width: 80vw;
+    height: 45vw;
   }
 }
 
