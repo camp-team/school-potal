@@ -86,7 +86,7 @@ export class UserService {
       .valueChanges()
       .pipe(
         switchMap((students: Student[]) => {
-          if (students.length) {
+          if (students?.length) {
             const unduplicatedUids: string[] = Array.from(
               new Set(students.map((student) => student.uid))
             );
@@ -99,7 +99,7 @@ export class UserService {
           }
         }),
         map(([students, users]) => {
-          if (students.length) {
+          if (students?.length) {
             return students.map((student: Student) => {
               return {
                 ...student,
