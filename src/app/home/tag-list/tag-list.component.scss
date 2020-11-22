@@ -39,7 +39,6 @@
     max-width: 220px;
     max-height: 220px;
     border-radius: 4px;
-    overflow: hidden;
   }
   img {
     max-width: 220px;
@@ -47,6 +46,7 @@
     margin: 0 auto;
     border-radius: 4px;
     transition: 0.5s ease;
+    background: #303030;
   }
   &__body {
     padding-top: 16px;

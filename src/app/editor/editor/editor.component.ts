@@ -77,6 +77,7 @@ export class EditorComponent implements OnInit {
     { value: 'モノづくり' },
     { value: '音楽' },
     { value: '医療' },
+    { value: '総合' },
   ];
 
   form = this.fb.group({

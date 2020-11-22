@@ -11,7 +11,11 @@
       class="grid__item"
     >
       <figure>
-        <img src="assets/images/category-{{ category.value | category }}.png" />
+        <img
+          src="assets/images/category-{{ category.value | category }}.png"
+          alt="category"
+          loading="lazy"
+        />
       </figure>
       <div class="grid__body">
         <h3>
