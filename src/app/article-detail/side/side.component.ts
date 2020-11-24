@@ -6,6 +6,7 @@ import { SearchService } from 'src/app/services/search.service';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap, tap } from 'rxjs/operators';
 import { UiService } from 'src/app/services/ui.service';
+import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 
 @Component({
   selector: 'app-side',
@@ -15,18 +16,39 @@ import { UiService } from 'src/app/services/ui.service';
 export class SideComponent implements OnInit {
   article: Article;
   index: SearchIndex = this.searchService.index.item;
-  articles: Article[];
+  articles: Article[] = [];
   result: {
     nbHits: number;
+    hits: any[];
   };
-  page = 0;
   nbPages: number;
-  maxPage: number;
-  isInit = true;
   categoryFilter: string;
   requestOptions = {
     page: 0,
     hitsPerPage: 6,
+  };
+
+  private page = 0;
+  private maxPage: number;
+  private isInit = true;
+
+  config: SwiperConfigInterface = {
+    loop: true,
+    slidesPerView: 5,
+    observer: true,
+    watchOverflow: true,
+    spaceBetween: 24,
+    centeredSlides: true,
+    breakpoints: {
+      415: {
+        slidesPerView: 1,
+        spaceBetween: 16,
+      },
+      960: {
+        slidesPerView: 3,
+        spaceBetween: 16,
+      },
+    },
   };
 
   constructor(
@@ -36,7 +58,6 @@ export class SideComponent implements OnInit {
     public uiService: UiService
   ) {
     this.articles = [];
-    this.maxPage = 0;
     this.searchArticles();
     this.isInit = false;
   }
@@ -44,6 +65,8 @@ export class SideComponent implements OnInit {
   ngOnInit(): void {}
 
   searchArticles() {
+    console.log('first');
+
     this.uiService.loading = true;
     this.route.paramMap
       .pipe(
@@ -54,8 +77,11 @@ export class SideComponent implements OnInit {
       )
       .subscribe((article) => {
         this.article = article;
-
-        const categoryFilter = `category: ${article?.category}`;
+        this.categoryFilter = `category: ${article?.category}`;
+        const searchOptions = {
+          ...this.requestOptions,
+          facetFilters: this.categoryFilter,
+        };
 
         if (!this.maxPage || this.maxPage > this.page) {
           this.requestOptions.page++;
@@ -64,14 +90,12 @@ export class SideComponent implements OnInit {
           setTimeout(
             () => {
               this.index
-                .search('', {
-                  ...this.requestOptions,
-                  facetFilters: [categoryFilter, `id: -${article?.id}`],
-                })
+                .search('', searchOptions)
                 .then((result) => {
                   this.maxPage = result.nbPages;
                   this.result = result;
                   this.articles.push(...(result.hits as any[]));
+                  console.log('check');
                 })
                 .then(() => (this.isInit = false))
                 .finally(() => (this.uiService.loading = false));

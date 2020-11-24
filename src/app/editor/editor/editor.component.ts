@@ -10,6 +10,7 @@ import {
   Validators,
   FormControl,
   FormArray,
+  FormGroup,
 } from '@angular/forms';
 import { ArticleService } from 'src/app/services/article.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -53,6 +54,10 @@ export class EditorComponent implements OnInit {
   readonly MAX_NAME_LENGTH = 50;
   readonly MAX_TITLE_LENGTH = 150;
   readonly MAX_PLAN_LENGTH = 400;
+  readonly MAX_FEATURE_LENGTH = 100;
+  readonly MAX_PLANNAME_LENGTH = 50;
+  readonly MAX_PLANBODY_LENGTH = 150;
+  readonly MAX_PLICE_LENGTH = 10;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
   visible = true;
@@ -84,11 +89,15 @@ export class EditorComponent implements OnInit {
       '',
       [Validators.required, Validators.maxLength(this.MAX_TITLE_LENGTH)],
     ],
-    feature: [''],
-    plan: [
-      '',
-      [Validators.required, Validators.maxLength(this.MAX_PLAN_LENGTH)],
-    ],
+    features: this.fb.array(['', '', '', '', '']),
+    topics: [''],
+    plans: this.fb.array([
+      this.fb.group({
+        planName: ['', [Validators.maxLength(this.MAX_PLANNAME_LENGTH)]],
+        planBody: ['', [Validators.maxLength(this.MAX_PLANBODY_LENGTH)]],
+        plice: ['', [Validators.maxLength(this.MAX_PLICE_LENGTH)]],
+      }),
+    ]),
     serviceURL: [
       '',
       [
@@ -122,12 +131,16 @@ export class EditorComponent implements OnInit {
     return this.form.get('title') as FormControl;
   }
 
-  get feature(): FormControl {
-    return this.form.get('featureBody2') as FormControl;
+  get features(): FormArray {
+    return this.form.get('features') as FormArray;
   }
 
-  get plan(): FormControl {
-    return this.form.get('plan') as FormControl;
+  get plans(): FormArray {
+    return this.form.get('plans') as FormArray;
+  }
+
+  get topics(): FormControl {
+    return this.form.get('topics') as FormControl;
   }
 
   get serviceURL(): FormControl {
@@ -165,21 +178,58 @@ export class EditorComponent implements OnInit {
           ...article,
           tags: null,
         });
-
-        article?.teacherIds.forEach((teacherId) => {
-          const array = new FormControl(teacherId);
-          this.teacherIds.push(array);
-        });
-        this.event.emit(this.article);
+        if (this.article.teacherIds) {
+          article.teacherIds.forEach((teacherId) => {
+            const array = new FormControl(teacherId);
+            this.teacherIds.push(array);
+          });
+          this.event.emit(this.article);
+        }
+        if (this.article.plans) {
+          article.plans.forEach((plan) => {
+            const formGroup = this.fb.group({
+              planName: [
+                plan.planName,
+                [Validators.maxLength(this.MAX_PLANNAME_LENGTH)],
+              ],
+              planBody: [
+                plan.planBody,
+                [Validators.maxLength(this.MAX_PLANBODY_LENGTH)],
+              ],
+              plice: [
+                plan.plice,
+                [Validators.maxLength(this.MAX_PLICE_LENGTH)],
+              ],
+            });
+            this.plans.push(formGroup);
+          });
+        }
+      } else {
+        const array = new FormControl('');
+        this.teacherIds.push(array);
       }
     });
   }
 
-  addForm() {
+  addPlanControl() {
+    this.plans.push(
+      this.fb.group({
+        planName: [''],
+        planBody: [''],
+        plice: [''],
+      })
+    );
+  }
+
+  removePlanControl(index: number) {
+    this.plans.removeAt(index);
+  }
+
+  addTeacherIdControl() {
     this.teacherIds.push(new FormControl(''));
   }
 
-  removeForm(index: number) {
+  removeTeacherIdControl(index: number) {
     this.teacherIds.removeAt(index);
   }
 
@@ -231,8 +281,9 @@ export class EditorComponent implements OnInit {
             title: formData.title,
             category: formData.category,
             createdAt: firestore.Timestamp.now(),
-            feature: formData.feature,
-            plan: formData.plan,
+            features: formData.features,
+            topics: formData.topics,
+            plans: formData.plans,
             serviceURL: formData.serviceURL,
             type: formData.type,
             teacherIds: formData.teacherIds,
@@ -254,8 +305,9 @@ export class EditorComponent implements OnInit {
             title: formData.title,
             category: formData.category,
             updatedAt: firestore.Timestamp.now(),
-            feature: formData.feature,
-            plan: formData.plan,
+            features: formData.features,
+            topics: formData.topics,
+            plans: formData.plans,
             serviceURL: formData.serviceURL,
             type: formData.type,
             id: formData.id,

@@ -13,7 +13,7 @@
   <span class="header__spacer"></span>
 
   <div class="menu">
-    <button class="menu__btn" (click)="openSearchDialog()">
+    <button class="menu__btn" routerLink="/search">
       <mat-icon>search</mat-icon>
       <p>検索する</p>
     </button>
@@ -21,7 +21,7 @@
       <mat-icon>hearing</mat-icon>
       <p>質問する</p>
     </button>
-    <button routerLink="/editor/editor" class="menu__btn">
+    <button routerLink="/editor/create" class="menu__btn">
       <mat-icon>web</mat-icon>
       <p>ページを作る</p>
     </button>

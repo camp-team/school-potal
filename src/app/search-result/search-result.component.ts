@@ -1,37 +1,51 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { SearchIndex } from 'algoliasearch/lite';
 import { SearchService } from '../services/search.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Article } from '../interfaces/article';
 import { UiService } from '../services/ui.service';
+import { fade } from '../animations';
+import { FormControl } from '@angular/forms';
+import { debounceTime, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-search-result',
   templateUrl: './search-result.component.html',
   styleUrls: ['./search-result.component.scss'],
+  animations: [fade],
 })
-export class SearchResultComponent implements OnInit {
+export class SearchResultComponent implements OnInit, AfterViewInit {
+  @ViewChild('target') private elementRef: ElementRef;
   articles: Article[];
   searchQuery: string;
+  searchControl: FormControl = new FormControl();
   index: SearchIndex = this.searchService.index.item;
   result: {
     nbHits: number;
     hits: any[];
   };
   nbPages: number;
+  tagFilter: string[];
+  categoryFilter: string[];
+  searchOptions = [];
 
   private page = 0;
   private maxPage: number;
   private requestOptions: any = {};
   private isInit = true;
-  private tagFilter: string[];
-  private categoryFilter: string[];
   private tagsFilter: string;
   private categoriesFilter: string;
 
   constructor(
     private searchService: SearchService,
     private route: ActivatedRoute,
+    private router: Router,
     public uiService: UiService
   ) {}
 
@@ -48,6 +62,18 @@ export class SearchResultComponent implements OnInit {
       this.searchArticles();
       this.isInit = false;
     });
+
+    this.searchControl.valueChanges
+      .pipe(startWith(''), debounceTime(500))
+      .subscribe((key) => {
+        this.index
+          .search(key)
+          .then((result) => (this.searchOptions = result.hits));
+      });
+  }
+
+  ngAfterViewInit(): void {
+    this.elementRef.nativeElement.focus();
   }
 
   searchArticles() {
@@ -79,5 +105,18 @@ export class SearchResultComponent implements OnInit {
         this.isInit ? 0 : 1000
       );
     }
+  }
+
+  setSearchQuery(value: string) {
+    this.searchControl.setValue(value, {
+      emitEvent: false,
+    });
+  }
+
+  routeSearch(searchQuery: string) {
+    this.router.navigate(['/search'], {
+      queryParamsHandling: 'merge',
+      queryParams: { searchQuery },
+    });
   }
 }

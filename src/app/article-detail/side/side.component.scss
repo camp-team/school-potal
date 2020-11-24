@@ -1,62 +1,56 @@
-.article {
-  display: grid;
-  grid-template-columns: 48% 1fr;
-  gap: 16px;
-  &__thumbnail {
-    width: 100%;
-    position: relative;
-  }
-  &__icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: none;
-  }
-  &__thumbnail:hover img {
-    filter: grayscale(50%) blur(2px);
-  }
-  &__thumbnail:hover &__icon {
-    display: grid;
-    place-items: center;
-    color: #47c5fc;
-  }
+@import 'mixins';
 
-  &__title {
-    max-height: 40px;
-    font-size: 13px;
-    font-weight: 500;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: wrap;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    display: -webkit-box;
-  }
-  &__title:hover {
-    color: #47c5fc;
-  }
-  &__category {
-    font-size: 9px;
-    opacity: 0.38;
-  }
-  &__date {
-    font-size: 9px;
-    opacity: 0.38;
-  }
-}
-
-mat-card {
-  padding: 8px;
-  margin-bottom: 16px;
-  cursor: pointer;
-}
-
-h2 {
-  font-size: 18px;
+.section-title {
+  font-size: 28px;
   font-weight: 500;
   margin-bottom: 24px;
+}
+
+.article {
+  display: flex;
+  flex-flow: column;
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #e4e4e4;
+  border-top: none;
+  overflow: hidden;
+  cursor: pointer;
+  &:hover &__thumbnail {
+    filter: brightness(80%);
+  }
+  @include sp {
+    padding: 0;
+  }
+  &__thumbnail {
+    padding: 0;
+    margin-bottom: 16px;
+    border-radius: 6px 6px 0 0;
+    transition: 0.5s ease;
+    img {
+      border-radius: 6px 6px 0 0;
+      vertical-align: bottom;
+    }
+  }
+  &__body {
+    display: flex;
+    flex-direction: column;
+  }
+  &__title {
+    font-size: 16px;
+    font-weight: normal;
+    color: rgba(#303030, 0.6);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: wrap !important;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    display: -webkit-box;
+    padding: 0 16px 8px;
+    min-height: 72px;
+  }
+  &__name {
+    font-size: 13px;
+    opacity: 0.38;
+    padding: 8px 16px;
+  }
 }

@@ -36,13 +36,14 @@ export class CommentListComponent implements OnInit {
 
   isEditMode() {
     this.isEditable = true;
-    this.commentForm.setValue(this.comment.body);
+    this.commentForm.setValue(this.comment.comment);
   }
 
   updateComment() {
     this.commentService
       .updateComment({
-        body: this.commentForm.value,
+        comment: this.commentForm.value,
+        rating: this.commentForm.value,
         uid: this.comment.uid,
         articleId: this.comment.articleId,
         id: this.comment.id,

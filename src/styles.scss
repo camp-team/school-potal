@@ -22,7 +22,8 @@ img {
   max-width: 100%;
 }
 
-ol {
+ol,
+ul {
   list-style: none;
 }
 
@@ -126,6 +127,7 @@ button {
   outline: none;
   transition: ease 0.5s;
   cursor: pointer;
+  margin-left: 8px;
 }
 .swiper-button-next-school,
 .swiper-button-next-salon {
@@ -238,4 +240,35 @@ button {
   padding: 7px 14px !important;
   border-radius: 4px !important;
   font-weight: 400 !important;
+}
+
+.ql-container {
+  p {
+    font-size: 16px;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-weight: 500;
+  }
+}
+
+.ql-editor .ql-align-center {
+  margin-top: 24px;
+}
+
+iframe.ql-video {
+  width: 40vw;
+  height: 22vw;
+  @include sp {
+    width: 80vw;
+    height: 45vw;
+  }
+}
+
+.hero__star {
+  img {
+    width: 2.5rem;
+  }
 }

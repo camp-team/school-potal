@@ -21,7 +21,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { RequestListComponent } from './request-list/request-list.component';
 import { SharedModule } from '../shared/shared.module';
-import { FooterComponent } from '../footer/footer.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { CategoryPipe } from '../pipes/category.pipe';
 
@@ -33,7 +32,6 @@ import { CategoryPipe } from '../pipes/category.pipe';
     LatestSalonComponent,
     TagListComponent,
     RequestListComponent,
-    FooterComponent,
     CategoryPipe,
   ],
   imports: [

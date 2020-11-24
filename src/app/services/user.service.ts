@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { User } from '../interfaces/users';
-import { Observable, of } from 'rxjs';
+import { combineLatest, Observable, of } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { switchMap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { firestore } from 'firebase';
 import { Router } from '@angular/router';
+import { Student, StudentWithUser } from '../interfaces/student';
 
 @Injectable({
   providedIn: 'root',
@@ -58,5 +59,57 @@ export class UserService {
       .then(() => {
         this.snackBar.open('アカウントを削除しました');
       });
+  }
+
+  joinAsStudent(articleId: string, uid: string) {
+    this.db
+      .doc(`articles/${articleId}/students/${uid}`)
+      .set({
+        articleId,
+        uid,
+      })
+      .then(() => {
+        this.snackBar.open('参加済みユーザーとして登録しました');
+        this.router.navigate(['/article-detail', `${articleId}`]);
+      });
+  }
+
+  getStudents(articleId: string) {
+    return this.db
+      .collection<Student>(`articles/${articleId}/students`)
+      .valueChanges();
+  }
+
+  getStudentsWithUser(articleId: string): Observable<StudentWithUser[]> {
+    return this.db
+      .collection<Student>(`articles/${articleId}/students`)
+      .valueChanges()
+      .pipe(
+        switchMap((students: Student[]) => {
+          if (students?.length) {
+            const unduplicatedUids: string[] = Array.from(
+              new Set(students.map((student) => student.uid))
+            );
+            const users$: Observable<User[]> = combineLatest(
+              unduplicatedUids.map((uid) => this.getUserData(uid))
+            );
+            return combineLatest([of(students), users$]);
+          } else {
+            return of([]);
+          }
+        }),
+        map(([students, users]) => {
+          if (students?.length) {
+            return students.map((student: Student) => {
+              return {
+                ...student,
+                user: users.find((user: User) => student.uid === user?.uid),
+              };
+            });
+          } else {
+            return [];
+          }
+        })
+      );
   }
 }

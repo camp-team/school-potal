@@ -1,20 +1,42 @@
 @import 'mixins';
 
-.container {
-  padding: 0 8px;
+.hero {
+  z-index: 0;
 }
 
-.article {
+.grid {
   display: grid;
-  grid-template-columns: 1fr 400px;
-  gap: 32px;
-  margin: 48px auto;
-  @include sp {
-    display: block;
-    margin: 0 auto;
+  grid-template-columns: 1fr 360px;
+  gap: 24px;
+  position: relative;
+  &__main {
+    margin-bottom: 80px;
+  }
+  &__sub {
+    width: 360px;
+    position: absolute;
+    top: -13vw;
+    right: 0;
+  }
+  &__component {
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(32, 33, 37, 0.06);
+    &--actions {
+      margin-bottom: 24px;
+      padding: 16px;
+    }
   }
 }
 
-mat-spinner {
-  margin: 64px auto;
+.spinner-wrap {
+  height: 100vh;
+  mat-spinner {
+    margin: 20% auto;
+  }
+}
+
+.relation {
+  max-width: 100%;
+  background: #f5f5f5;
+  padding: 48px 0 80px;
 }

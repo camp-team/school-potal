@@ -13,19 +13,20 @@
 }
 
 .swiper-text {
-  font-size: 40px;
-  color: #fafafa;
-  padding: 40px;
   position: absolute;
-  top: 15%;
-  left: 2%;
+  top: 50%;
+  left: 6%;
+  transform: translateY(-50%);
+  font-size: 40px;
+  font-weight: 500;
+  color: #fafafa;
+  padding: 16px 24px;
   span {
     display: block;
-    margin-bottom: 16px;
-  }
-  &--custom {
-    left: initial;
-    right: 2%;
+    font-size: 24px;
+    background: rgba(#303030, 0.6);
+    padding: 8px 16px;
+    margin-top: 8px;
   }
 }
 

@@ -28,7 +28,12 @@ export class EditorArticleListComponent implements OnInit, AfterViewInit {
   dataSource: MatTableDataSource<Article>;
   defaultPageSize = 10;
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatPaginator)
+  set paginator(value: MatPaginator) {
+    if (this.dataSource) {
+      this.dataSource.paginator = value;
+    }
+  }
 
   constructor(
     private articleService: ArticleService,
@@ -47,7 +52,6 @@ export class EditorArticleListComponent implements OnInit, AfterViewInit {
       .subscribe((data) => {
         this.dataSource = new MatTableDataSource<Article>(data);
         this.dataSource.paginator = this.paginator;
-        this.paginator.page.subscribe();
       });
   }
 

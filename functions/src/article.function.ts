@@ -8,11 +8,11 @@ export const createArticle = functions
   .firestore.document('articles/{id}')
   .onCreate((snap) => {
     const data = snap.data();
-    const tmp = data.feature;
+    const tmp = data.topics;
     const removeTag = tmp.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g, '');
     return algolia.saveRecord({
       indexName: 'articles',
-      largeConcentKey: 'feature',
+      largeConcentKey: 'topics',
       data: {
         id: data.id,
         name: data.name,
@@ -21,9 +21,12 @@ export const createArticle = functions
         createdAt: data.createdAt,
         updatedAt: data.updatedAt,
         type: data.type,
-        feature: removeTag,
+        features: data.features,
+        topics: removeTag,
         thumbnailURL: data.thumbnailURL,
         tags: data.tags,
+        likeCount: data.likeCount,
+        pinCount: data.pinCount,
       },
     });
   });
@@ -46,11 +49,11 @@ export const updateArticle = functions
   .firestore.document('articles/{id}')
   .onUpdate((change) => {
     const data = change.after.data();
-    const tmp = data.feature;
+    const tmp = data.topics;
     const removeTag = tmp.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g, '');
     return algolia.saveRecord({
       indexName: 'articles',
-      largeConcentKey: 'feature',
+      largeConcentKey: 'topics',
       isUpdate: true,
       data: {
         id: data.id,
@@ -60,9 +63,12 @@ export const updateArticle = functions
         createdAt: data.createdAt,
         updatedAt: data.updatedAt,
         type: data.type,
-        feature: removeTag,
+        features: data.features,
+        topics: removeTag,
         thumbnailURL: data.thumbnailURL,
         tags: data.tags,
+        likeCount: data.likeCount,
+        pinCount: data.pinCount,
       },
     });
   });

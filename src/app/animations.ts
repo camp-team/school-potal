@@ -1,6 +1,7 @@
 import {
   animate,
   keyframes,
+  state,
   style,
   transition,
   trigger,
@@ -17,7 +18,7 @@ export const fade = trigger('fade', [
 export const bounce = trigger('bounce', [
   transition('void => *', [
     animate(
-      '.5s ease-in-out',
+      '1s ease-in-out',
       keyframes([
         style({
           transform: 'translate3d(0, -40px, 0)',
@@ -46,5 +47,53 @@ export const bounce = trigger('bounce', [
         }),
       ])
     ),
+  ]),
+]);
+
+export const fadeup = trigger('fadeup', [
+  transition('void => *', [
+    animate(
+      '1s ease-in-out',
+      keyframes([
+        style({
+          color: 'transparent',
+          fontSize: '2px',
+          bottom: '30px',
+          offset: 0,
+        }),
+        style({
+          color: '#e23b3b',
+          fontSize: '8px',
+          bottom: '60px',
+          offset: 0.5,
+        }),
+        style({
+          color: 'transparent',
+          fontSize: '14px',
+          bottom: '90px',
+          offset: 1,
+        }),
+      ])
+    ),
+  ]),
+]);
+
+export const openClose = trigger('openClose', [
+  state(
+    'true',
+    style({
+      height: '*',
+      opacity: 1,
+    })
+  ),
+  state(
+    'false',
+    style({
+      height: 0,
+      opacity: 0,
+    })
+  ),
+  transition('true <=> false', [
+    animate('.23s cubic-bezier(0.35, 0, 0.25, 1)'),
   ]),
 ]);

@@ -38,5 +38,8 @@ export class CategoryPipe implements PipeTransform {
     if (value === '美容') {
       return 'beauty';
     }
+    if (value === '総合') {
+      return 'comprehensive';
+    }
   }
 }
