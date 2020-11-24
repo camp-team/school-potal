@@ -1,30 +1,19 @@
 @import '~@angular/material/theming';
 
-.wrapper {
-  position: relative;
-}
-
 .heading {
-  margin-bottom: 24px;
-  &__top {
-    font-family: 'Josefin Sans';
-    font-size: 24px;
-    text-align: center;
-    width: 100%;
-    background: linear-gradient(60deg, #ab47bc, #8e24aa);
-    padding: 16px;
-    color: #fff;
-    margin: 0 auto;
-    position: absolute;
-    top: -56px;
-    left: 50%;
-    transform: translateX(-50%);
-    @include mat-elevation(4);
+  margin: 24px auto 48px;
+  &__icon {
+    width: 48px;
+    height: 48px;
+    font-size: 48px;
+    border-radius: 50%;
+    display: grid;
+    place-content: center;
+    margin: 0 auto 16px;
   }
   &__body {
     font-size: 16px;
     text-align: center;
-    padding: 48px 0 24px;
   }
 }
 
@@ -35,5 +24,23 @@
   h2 {
     font-size: 17px;
     font-weight: normal;
+  }
+}
+
+.actions {
+  display: grid;
+  gap: 16px;
+  padding: 16px;
+  button {
+    width: 100%;
+    &:nth-of-type(2) {
+      background: linear-gradient(60deg, #40c4ff, #00a1dd);
+      color: #fff;
+      margin-bottom: 24px;
+      &.disabled {
+        background: rgb(242, 242, 242);
+        color: rgba(0, 0, 0, 0.38);
+      }
+    }
   }
 }
