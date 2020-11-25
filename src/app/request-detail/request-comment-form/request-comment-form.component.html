@@ -1,7 +1,5 @@
 <div class="comment" *ngIf="user$ | async as user">
-  <p class="comment__title">
-    <span>🖋</span> 参加した感想や投稿した人への質問など、公開コメントを入力
-  </p>
+  <p class="comment__title"><span>🖋</span>公開コメントを入力</p>
   <div class="comment__body">
     <figure
       class="comment__avatar"
@@ -9,7 +7,7 @@
     ></figure>
 
     <form (ngSubmit)="submit()">
-      <mat-form-field appearance="outline">
+      <mat-form-field>
         <textarea
           matInput
           placeholder="例：私も興味があります。参加した方の感想を聞いてみたいですね！"
@@ -17,7 +15,6 @@
           autocomplete="off"
           required
           matTextareaAutosize
-          [matAutosizeMinRows]="3"
         ></textarea>
         <button
           mat-icon-button
@@ -41,5 +38,3 @@
     </form>
   </div>
 </div>
-
-<mat-divider></mat-divider>

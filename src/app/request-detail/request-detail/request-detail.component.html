@@ -1,19 +1,42 @@
-<div class="container">
+<div class="container container--request" *ngIf="request$ | async as request">
   <div @fade class="request-wrap">
     <ng-container *ngIf="user$ | async as user">
       <div class="heading">
-        <h1 class="heading__top">
-          口コミ募集
-        </h1>
+        <div class="user">
+          <a routerLink="/user/{{ request.user.uid }}">
+            <img class="user__photo" [src]="request.user.photoURL" alt="" />
+          </a>
+
+          <div class="user__body">
+            <h3 class="user__name">
+              {{ request.user.name }}
+            </h3>
+
+            <p class="user__post">
+              {{ request.user.post }}
+            </p>
+            <p class="user__date">
+              {{ request.createdAt.toDate() | date: 'yyyy/MM/dd HH:mm' }}投稿
+            </p>
+          </div>
+        </div>
+
+        <div class="count">
+          <ng-container *ngIf="comments$ | async as comments">
+            <p class="count__title">コメント</p>
+            <mat-icon class="count__icon">comment</mat-icon>
+            <p class="count__count">{{ comments.length }}件</p>
+          </ng-container>
+        </div>
       </div>
 
-      <div class="request" *ngIf="request$ | async as request">
-        <div class="body">
-          <h2 class="body__title">
+      <div class="request-body">
+        <div class="request-body__main">
+          <h2 class="request-body__title">
             {{ request.title }}
           </h2>
 
-          <p class="body__body">
+          <p>
             {{ request.body }}
           </p>
         </div>
@@ -34,34 +57,35 @@
             <mat-icon>delete</mat-icon>
           </button>
         </div>
-
-        <div class="user">
-          <figure>
-            <a routerLink="/user/{{ request.user.uid }}">
-              <img class="user__photo" [src]="request.user.photoURL" alt="" />
-            </a>
-          </figure>
-
-          <div class="user__body">
-            <h3 class="user__name">
-              {{ request.user.name }}
-            </h3>
-
-            <p class="user__profile">
-              {{ request.user.profile }}
-            </p>
-            <p class="user__url"></p>
-          </div>
-        </div>
       </div>
     </ng-container>
   </div>
 
   <div class="comment">
-    <app-request-comment-form [request]="request"></app-request-comment-form>
-    <app-request-comment-list
-      *ngFor="let comment of comments$ | async"
-      [comment]="comment"
-    ></app-request-comment-list>
+    <div class="comment__header">
+      <h3 class="comment__title">Comment</h3>
+      <p class="comment__sub">コメント</p>
+    </div>
+    <ng-container *ngIf="comments$ | async as comments">
+      <div class="comment__list" *ngIf="comments.length; else notYet">
+        <app-request-comment-list
+          *ngFor="let comment of comments"
+          [comment]="comment"
+        ></app-request-comment-list>
+      </div>
+    </ng-container>
+
+    <ng-template #notYet>
+      <div class="comment__yet">
+        <img src="" alt="" />
+        <p>まだコメントはありません...</p>
+      </div>
+    </ng-template>
+
+    <mat-divider></mat-divider>
+
+    <div class="comment__form">
+      <app-request-comment-form [request]="request"></app-request-comment-form>
+    </div>
   </div>
 </div>

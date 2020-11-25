@@ -54,23 +54,26 @@ button {
   padding: 0 24px;
   margin: 0 auto;
   &--editor {
-    margin: 48px auto 80px;
+    margin: 48px auto 120px;
     padding: 24px;
     background: #fff;
     @include mat-elevation(8, #000, 0.8);
   }
   &--profile {
-    margin: 48px auto 80px;
+    margin: 48px auto 120px;
     padding: 24px;
     background: #fff;
     height: 100%;
     @include mat-elevation(8, #000, 0.8);
   }
   &--setting {
-    margin: 48px auto 80px;
+    margin: 48px auto 120px;
     padding: 24px;
     background: #fff;
     @include mat-elevation(8, #000, 0.8);
+  }
+  &--request {
+    margin: 80px auto 120px;
   }
 }
 

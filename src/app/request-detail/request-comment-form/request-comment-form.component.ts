@@ -54,12 +54,16 @@ export class RequestCommentFormComponent implements OnInit {
       });
 
     this.requestId$.subscribe((id) => (this.requestId = id));
+    console.log(this.request);
   }
 
   submit() {
     this.isProcessing = true;
     const formData = this.commentForm.value;
     this.request.commentCount++;
+    console.log(this.request);
+    console.log(this.request.commentCount);
+
     this.requestService
       .addComment({
         uid: this.uid,
