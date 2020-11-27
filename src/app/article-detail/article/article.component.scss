@@ -24,17 +24,21 @@ p {
   color: #fff;
   @include sp {
     width: 80%;
+    margin: 16px auto 24px;
   }
 }
 
 .teacher {
   margin: 48px 0;
+  @include sp {
+    margin: 0 0 24px;
+  }
   &__grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     margin-bottom: 24px;
     @include sp {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
       gap: 24px;
     }
   }
@@ -42,18 +46,24 @@ p {
     display: flex;
     align-items: center;
     margin-bottom: 32px;
+    @include sp {
+      margin-bottom: 16px;
+    }
   }
   &__title {
     font-size: 28px;
     font-weight: 500;
     margin-right: 16px;
+    @include sp {
+      font-size: 22px;
+    }
   }
   &__head {
     position: relative;
   }
   &__avatar {
-    max-width: 128px;
-    max-height: 128px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
     overflow: hidden;
     margin-bottom: 16px;
@@ -107,10 +117,6 @@ p {
     font-weight: bold;
     margin-bottom: 8px;
   }
-  &__description {
-    display: block;
-    margin-bottom: 16px;
-  }
   &__screen-name {
     opacity: 0.6;
   }
@@ -120,10 +126,16 @@ p {
   display: grid;
   grid-template-columns: 1fr;
   margin-bottom: 48px;
+  @include sp {
+    margin-bottom: 24px;
+  }
   &__title {
     font-size: 28px;
     font-weight: 500;
     margin-bottom: 16px;
+    @include sp {
+      font-size: 22px;
+    }
   }
   &__body {
     display: flex;
@@ -137,10 +149,28 @@ p {
   }
 }
 
-.plan {
+.topics {
+  margin-bottom: 24px;
   &__title {
     font-size: 28px;
     font-weight: 500;
+    margin-bottom: 16px;
+    @include sp {
+      font-size: 22px;
+    }
+  }
+}
+
+.plan {
+  @include sp {
+    margin-bottom: 8px;
+  }
+  &__title {
+    font-size: 28px;
+    font-weight: 500;
+    @include sp {
+      font-size: 22px;
+    }
   }
   &:hover button {
     display: block;
@@ -149,11 +179,15 @@ p {
     display: grid;
     grid-template-columns: 1fr 40px;
     margin-bottom: 24px;
+    @include sp {
+      margin-bottom: 8px;
+    }
   }
   & button {
     display: none;
     @include sp {
       display: block;
+      margin: 16px auto;
     }
   }
   & small {
@@ -190,5 +224,8 @@ p {
     font-size: 28px;
     font-weight: 500;
     margin-bottom: 24px;
+    @include sp {
+      font-size: 22px;
+    }
   }
 }
