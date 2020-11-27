@@ -5,7 +5,7 @@
   max-width: 100%;
   position: relative;
   @include sp {
-    margin-bottom: 24px;
+    margin-bottom: 16px;
   }
   img {
     vertical-align: bottom;
@@ -19,14 +19,32 @@
   transform: translateY(-50%);
   font-size: 40px;
   font-weight: 500;
-  color: #fafafa;
+  color: #fff;
   padding: 16px 24px;
-  span {
+  @include sp {
+    width: 100%;
+    left: 1%;
+    font-size: 32px;
+    padding: 0;
+    margin: 0;
+  }
+  &__sub {
     display: block;
     font-size: 24px;
     background: rgba(#303030, 0.6);
     padding: 8px 16px;
     margin-top: 8px;
+    @include sp {
+      font-size: 16px;
+      background: initial;
+      padding: 0;
+      margin: 0;
+    }
+  }
+  &__br {
+    @include sp {
+      display: block;
+    }
   }
 }
 
@@ -43,6 +61,12 @@
   transform: translateY(-50px);
   z-index: 10000;
   @include mat-elevation(4, #000, 0.4);
+  @include sp {
+    transform: translateY(0);
+    padding: 0 8px;
+    margin-top: 8px;
+    @include mat-elevation(0);
+  }
   &__head {
     width: 20%;
     line-height: 48px;
@@ -52,6 +76,9 @@
     font-size: 20px;
     font-weight: 600;
     padding-right: 16px;
+    @include sp {
+      display: none;
+    }
   }
   &__form {
     width: 60%;
@@ -60,6 +87,9 @@
     color: #424242;
     border: 1px solid #d6ceb4;
     border-radius: 2px;
+    @include sp {
+      width: 100%;
+    }
   }
   &__input {
     width: 100%;
@@ -87,6 +117,9 @@ app-latest-school,
 app-latest-salon {
   display: block;
   margin-bottom: 48px;
+  @include sp {
+    margin-bottom: 24px;
+  }
 }
 
 app-tag-list {
