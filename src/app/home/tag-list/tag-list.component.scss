@@ -1,17 +1,17 @@
 @import 'mixins';
 
 .title {
-  h2 {
+  &__main {
     font-family: 'Josefin Sans';
     font-size: 32px;
     font-weight: normal;
     text-align: center;
     @include sp {
-      margin-bottom: 8px;
+      margin-bottom: 0;
       font-size: 20px;
     }
   }
-  p {
+  &__sub {
     text-align: center;
     margin-bottom: 48px;
     @include sp {
@@ -21,13 +21,13 @@
   }
 }
 
-.grid {
+.category {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 24px;
   cursor: pointer;
   @include sp {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
   &__item {
     border-radius: 4px;
@@ -35,30 +35,30 @@
       transform: scale(1.1) translate(0);
     }
   }
-  figure {
-    max-width: 220px;
-    max-height: 220px;
+  &__photo {
     border-radius: 4px;
   }
-  img {
-    max-width: 220px;
-    max-height: 220px;
-    margin: 0 auto;
+  &__img {
     border-radius: 4px;
     transition: 0.5s ease;
-    background: #303030;
+    vertical-align: bottom;
   }
   &__body {
     padding-top: 16px;
+    @include sp {
+      padding-top: 8px;
+    }
   }
-  h3 {
+  &__value {
     font-size: 17px;
     font-weight: normal;
     text-align-last: left;
+    @include sp {
+      font-size: 13px;
+    }
   }
-  p {
+  &__count {
     font-size: 13px;
-    font-weight: 400;
     color: rgba(#303030, 0.6);
   }
 }
@@ -72,8 +72,14 @@
     display: inline-block;
     font-size: 20px;
     transform: rotate(45deg);
+    @include sp {
+      display: none;
+    }
   }
-  a {
+  &__text {
     line-height: 20px;
+    @include sp {
+      font-size: 14px;
+    }
   }
 }
