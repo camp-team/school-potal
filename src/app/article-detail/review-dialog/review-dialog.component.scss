@@ -1,3 +1,5 @@
+@import 'mixins';
+
 .dialog {
   &__header {
     text-align: center;
@@ -12,9 +14,15 @@
     place-content: center;
     margin: 0 auto 24px;
   }
-  &__title {
+  &__heading {
     font-weight: 500;
     margin: 0;
+    @include sp {
+      font-size: 18px;
+    }
+  }
+  &__title {
+    font-size: 16px;
   }
   &__content {
     display: grid;
@@ -22,6 +30,9 @@
     gap: 24px;
     margin: 40px 0;
     text-align: center;
+    @include sp {
+      gap: 8px;
+    }
   }
   &__actions {
     display: grid;
