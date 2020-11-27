@@ -3,21 +3,20 @@
 
 .wrapper {
   max-width: 100%;
-  background: url(/assets/images/footer.png) no-repeat center/cover;
-  @include mat-elevation(8, #000, 0.8);
-  padding: 80px;
+  background: #fff;
+  padding: 80px 80px 0;
   @include sp {
-    padding: 16px;
+    padding: 56px 16px 0;
   }
 }
 
 .footer {
-  width: 100%;
-  height: 15%;
+  max-width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 2fr 1fr;
   gap: 16px;
   color: #303030;
+  padding-bottom: 24px;
   &__title {
     font-size: 32px;
     font-family: 'Josefin Sans';
@@ -45,44 +44,27 @@
   }
   &__sub {
     padding-top: 56px;
-    margin-bottom: 80px;
     @include sp {
       padding-top: 16px;
-      position: absolute;
-      bottom: 16px;
-      right: 16px;
     }
   }
   &__mail {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    margin-bottom: 16px;
-    mat-icon {
-      margin-left: 16px;
-      @include sp {
-        margin-left: 8px;
-      }
-    }
+    text-align: right;
     @include sp {
       font-size: 13px;
       line-height: 13px;
       margin-bottom: 8px;
     }
   }
-  &__btn {
-    @include sp {
-      font-size: 13px;
-    }
-  }
   &__logo {
     display: grid;
     place-items: end;
+    margin-bottom: 16px;
     img {
-      width: 120px;
-      @include sp {
-        width: 80px;
-      }
+      width: 160px;
     }
+  }
+  &__img {
+    width: 100%;
   }
 }
