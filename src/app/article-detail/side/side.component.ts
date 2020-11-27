@@ -65,8 +65,6 @@ export class SideComponent implements OnInit {
   ngOnInit(): void {}
 
   searchArticles() {
-    console.log('first');
-
     this.uiService.loading = true;
     this.route.paramMap
       .pipe(
@@ -95,7 +93,6 @@ export class SideComponent implements OnInit {
                   this.maxPage = result.nbPages;
                   this.result = result;
                   this.articles.push(...(result.hits as any[]));
-                  console.log('check');
                 })
                 .then(() => (this.isInit = false))
                 .finally(() => (this.uiService.loading = false));

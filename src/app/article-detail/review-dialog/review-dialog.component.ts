@@ -69,8 +69,6 @@ export class ReviewDialogComponent implements OnInit {
   ngOnInit(): void {}
 
   submit() {
-    console.log('submit');
-
     this.isProcessing = true;
     const formData = this.form.value;
     this.commentService
@@ -84,7 +82,6 @@ export class ReviewDialogComponent implements OnInit {
         this.userService.joinAsStudent(this.data.article.id, this.data.uid)
       )
       .then(() => this.snackBar.open('投稿しました'))
-      .then(() => console.log('finish'))
       .finally(() => (this.isProcessing = false));
   }
 

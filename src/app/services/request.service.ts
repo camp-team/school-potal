@@ -116,7 +116,6 @@ export class RequestService {
   getRequestsWithUserLimited(
     startAt?: RequestWithUser
   ): Observable<RequestWithUser[]> {
-    console.log(startAt);
     return this.db
       .collection<Request>('requests', (ref) => {
         if (startAt) {
