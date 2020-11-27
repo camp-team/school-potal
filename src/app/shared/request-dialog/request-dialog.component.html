@@ -2,14 +2,14 @@
   <div class="heading">
     <mat-icon class="heading__icon">help</mat-icon>
     <p class="heading__body">
-      お探しのスクールが見つかりませんでしたか？<br />
-      口コミや評判を募集してみましょう。
+      探してるスクールが見つからなかった？<br />
+      ここで口コミや評判を募集してみよう。
     </p>
   </div>
 
   <form [formGroup]="form" (ngSubmit)="submit(user.uid)">
     <mat-dialog-content class="form">
-      <h2>質問タイトル</h2>
+      <h2 class="form__title">質問タイトル</h2>
       <mat-form-field appearance="outline" class="form__title">
         <input
           type="text"
@@ -33,7 +33,7 @@
       </mat-form-field>
 
       <div class="type__category">
-        <h2>質問のカテゴリー</h2>
+        <h2 class="form__title">質問のカテゴリー</h2>
         <mat-form-field>
           <mat-select formControlName="category">
             <mat-option
@@ -46,7 +46,7 @@
         </mat-form-field>
       </div>
 
-      <h2>聞きたいこと</h2>
+      <h2 class="form__title">聞きたいこと</h2>
       <mat-form-field appearance="outline" class="form__body">
         <textarea
           matInput

@@ -1,15 +1,20 @@
 @import '~@angular/material/theming';
+@import 'mixins';
 
 .heading {
   margin: 24px auto 48px;
+  @include sp {
+    margin: 16px auto;
+  }
   &__icon {
-    width: 48px;
-    height: 48px;
     font-size: 48px;
     border-radius: 50%;
     display: grid;
     place-content: center;
     margin: 0 auto 16px;
+    @include sp {
+      font-size: 32px;
+    }
   }
   &__body {
     font-size: 16px;
@@ -21,9 +26,12 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 16px;
-  h2 {
+  &__title {
     font-size: 17px;
     font-weight: normal;
+    @include sp {
+      font-size: 14px;
+    }
   }
 }
 
