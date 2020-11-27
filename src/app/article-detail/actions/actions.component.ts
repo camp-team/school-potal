@@ -24,7 +24,6 @@ import { ReviewDialogComponent } from '../review-dialog/review-dialog.component'
 })
 export class ActionsComponent implements OnInit {
   @Input() article: Article;
-
   private articleId: string;
 
   isliked: boolean;

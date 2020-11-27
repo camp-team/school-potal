@@ -2,49 +2,43 @@
 @import '~@angular/material/theming';
 @import 'material-custom';
 
-.review {
+.actions-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  @include sp {
+    gap: 4px;
+  }
+}
+
+.grid-item {
+  display: grid;
+  grid-template-columns: 32px 1fr 120px;
+  gap: 8px;
+  &__icon {
+    width: 24px;
+    display: grid;
+    place-content: center;
+  }
   &__title {
-    font-size: 22px;
+    font-size: 16px;
     font-weight: 500;
-  }
-  &__text {
-    font-size: 14px;
-    color: #424242;
-  }
-  &__btn {
-    display: block;
-    width: 100%;
-    border-radius: 4px;
-    margin: 16px auto 8px;
-    padding: 8px 16px;
-    background: linear-gradient(60deg, #40c4ff, #00a1dd);
-    color: #fff;
-    box-shadow: 0 2px 10px rgba(32, 33, 37, 0.06);
+    display: flex;
+    align-items: center;
     @include sp {
-      width: 80%;
+      font-size: 14px;
     }
   }
-}
-
-mat-divider {
-  margin: 24px 0;
-}
-
-.actions {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 16px;
   &__btn {
     position: relative;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background: #f5f5f5;
+    width: 100%;
+    height: 48px;
+    background: #fafafa;
     display: grid;
     place-content: center;
     color: #303030;
-    box-shadow: 0 2px 10px rgba(32, 33, 37, 0.06);
+    border-radius: 4px;
+    border: 1px solid #ddd;
     cursor: pointer;
     &:hover .actions__like-icon {
       color: mat-color($candy-app-accent);
@@ -58,48 +52,21 @@ mat-divider {
       color: transparent;
       font-weight: 400;
     }
-    &--twitter:hover svg {
+    &--review {
+      width: 100%;
+      display: block;
+      border-radius: 4px;
+      background: linear-gradient(60deg, #40c4ff, #00a1dd);
+      color: #fff;
+      box-shadow: 0 2px 10px rgba(32, 33, 37, 0.06);
+    }
+    &--share:hover svg {
       stroke: #2aa1f1;
       fill: #2aa1f1;
     }
   }
-  &__like-count,
-  &__pin-count {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: #fff;
-    border: 1px solid #e6e6e6;
-    display: grid;
-    place-content: center;
-    position: absolute;
-    bottom: -8px;
-    right: -8px;
-  }
-  &__icon {
-    margin-right: 8px;
-    transition: ease-out 0.2s;
-    font-size: 24px;
-    height: 36;
-  }
-  &__count {
-    font-size: 24px;
-    line-height: 36px;
-    transition: ease-out 0.2s;
-    margin-right: 8px;
-  }
-  &__share {
-    margin-right: 8px;
-    height: 36px;
-    transition: ease-out 0.2s;
-    svg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      margin: auto;
-      transition: ease-in-out 0.2s;
-    }
-  }
+}
+
+mat-divider {
+  margin: 24px 0;
 }

@@ -28,12 +28,12 @@ import { MatRippleModule } from '@angular/material/core';
 import { TeacherDialogComponent } from './teachers-dialog/teachers-dialog.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { HeroComponent } from './hero/hero.component';
-import { ActionsComponent } from './actions/actions.component';
 import { StudentsComponent } from './students/students.component';
 import { ReviewDialogComponent } from './review-dialog/review-dialog.component';
 import { SwiperModule } from 'ngx-swiper-wrapper';
 import { MatSelectModule } from '@angular/material/select';
 import { RatePipe } from '../pipes/rate.pipe';
+import { ActionsComponent } from './actions/actions.component';
 
 @NgModule({
   declarations: [
@@ -45,10 +45,10 @@ import { RatePipe } from '../pipes/rate.pipe';
     CommentListComponent,
     TeacherDialogComponent,
     HeroComponent,
-    ActionsComponent,
     StudentsComponent,
     ReviewDialogComponent,
     RatePipe,
+    ActionsComponent,
   ],
   imports: [
     CommonModule,
