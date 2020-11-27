@@ -4,6 +4,10 @@
   font-size: 28px;
   font-weight: 500;
   margin-bottom: 24px;
+  @include sp {
+    font-size: 22px;
+    padding-left: 16px;
+  }
 }
 
 .article {
@@ -26,6 +30,9 @@
     margin-bottom: 16px;
     border-radius: 6px 6px 0 0;
     transition: 0.5s ease;
+    @include sp {
+      margin-bottom: 8px;
+    }
     img {
       border-radius: 6px 6px 0 0;
       vertical-align: bottom;
@@ -41,16 +48,22 @@
     color: rgba(#303030, 0.6);
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: wrap !important;
+    white-space: wrap;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 2;
     display: -webkit-box;
-    padding: 0 16px 8px;
-    min-height: 72px;
+    padding: 0 16px;
+    @include sp {
+      font-size: 13px;
+      padding: 0 8px;
+    }
   }
   &__name {
     font-size: 13px;
     opacity: 0.38;
     padding: 8px 16px;
+    @include sp {
+      padding: 4px 8px;
+    }
   }
 }
