@@ -1,17 +1,22 @@
+@import 'mixins';
+
 .nav-list {
-  a {
+  &__btn {
+    color: #fff;
+    margin-right: 16px;
+    &--search,
+    &--create {
+      display: none !important;
+      @include sp {
+        display: block !important;
+      }
+    }
+  }
+  &__icon {
+    margin: 0 24px 0 16px;
+    opacity: 0.8;
     color: #fff;
   }
-}
-
-.mat-icon {
-  margin: 0 24px 0 16px;
-  opacity: 0.8;
-  color: #fff;
-}
-
-.divider {
-  margin: 16px 0;
 }
 
 .footer {
@@ -24,16 +29,9 @@
   }
 }
 
-mat-nav-list a {
-  margin-right: 16px;
-}
-
-mat-nav-list h3 {
-  margin-left: 16px;
-}
-
 mat-divider {
   background: rgba(#fff, 0.38);
+  margin: 16px 0;
 }
 
 .mat-subheader {
