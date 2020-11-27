@@ -1,7 +1,7 @@
 <div *ngIf="article$ | async as article; else loading" class="article">
   <app-hero [article]="article"></app-hero>
 
-  <div class="container">
+  <div class="container container--article-detail">
     <div class="grid">
       <div class="grid__main">
         <app-article [article]="article"></app-article>
