@@ -8,7 +8,7 @@
   margin: 0 auto;
   @include sp {
     max-width: 100%;
-    padding: 16px;
+    padding: 0;
   }
   &__item {
     font-size: 16px;
@@ -26,22 +26,26 @@
 
 .unsubscribe {
   margin: 0 auto 24px;
-  display: grid;
+  padding: 24px;
+  text-align: center;
   @include sp {
-    width: 100%;
-    margin: 0 16px 24px;
+    margin: 0;
   }
   &__title {
     font-size: 16px;
     font-weight: 400;
+    opacity: 0.6;
     margin-bottom: 16px;
+    text-align: center;
+    margin-bottom: 16px;
+    cursor: pointer;
   }
   &__text {
     font-size: 13px;
   }
   &__form {
     width: 50%;
-    margin-bottom: 24px;
+    margin: 24px auto;
     @include sp {
       width: 80%;
     }
