@@ -1,8 +1,6 @@
 @import 'mixins';
 
 .comment {
-  width: 90%;
-  padding: 16px;
   margin: 0 auto 32px;
   display: grid;
   grid-template-columns: 40px 1fr 40px;

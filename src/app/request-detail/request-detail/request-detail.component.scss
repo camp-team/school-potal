@@ -1,4 +1,5 @@
 @import '~@angular/material/theming';
+@import 'mixins';
 
 .request-wrap {
   max-width: 60%;
@@ -8,12 +9,19 @@
   position: relative;
   border-radius: 6px;
   box-shadow: 0 2px 10px rgba(32, 33, 37, 0.06);
+  @include sp {
+    max-width: 100%;
+    margin: 0 auto 24px;
+  }
 }
 
 .heading {
   display: grid;
   grid-template-columns: 1fr 80px;
   gap: 16px;
+  @include sp {
+    grid-template-columns: 1fr;
+  }
 }
 
 .user {
@@ -54,12 +62,15 @@
 .count {
   width: 64px;
   height: 64px;
-  background: #eee;
   border-radius: 8px;
+  border: 1px solid #eee;
   display: grid;
   place-content: center;
   place-items: center;
   padding: 8px;
+  @include sp {
+    display: none;
+  }
   &__title {
     font-size: 14px;
   }
@@ -77,6 +88,7 @@
     text-align: center;
   }
   &__title {
+    font-size: 32px;
     margin-bottom: 56px;
   }
 }
@@ -93,6 +105,9 @@
   position: relative;
   border-radius: 6px;
   box-shadow: 0 2px 10px rgba(32, 33, 37, 0.06);
+  @include sp {
+    max-width: 100%;
+  }
   &__header {
     text-align: center;
     padding: 24px;
@@ -105,8 +120,11 @@
     color: rgba(0, 0, 0, 0.38);
   }
   &__yet {
-    background: red;
-    width: 400px;
-    height: 400px;
+    max-width: 300px;
+    margin: 0 auto 48px;
+  }
+  &__text {
+    text-align: center;
+    opacity: 0.6;
   }
 }
