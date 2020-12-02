@@ -18,14 +18,29 @@
       <mat-icon>search</mat-icon>
       <p class="menu__text">検索する</p>
     </button>
+
     <button class="menu__btn menu__btn--question" (click)="openRequestDialog()">
       <mat-icon>hearing</mat-icon>
       <p class="menu__text">質問する</p>
     </button>
-    <button routerLink="/editor/create" class="menu__btn menu__btn--create">
-      <mat-icon>post_add</mat-icon>
-      <p class="menu__text">ページを作る</p>
-    </button>
+
+    <ng-container *ngIf="user$ | async as user">
+      <ng-container *ngIf="user.isAdmin; else default">
+        <button routerLink="/editor/create" class="menu__btn menu__btn--create">
+          <mat-icon>post_add</mat-icon>
+          <p class="menu__text">ページを作る</p>
+        </button>
+      </ng-container>
+      <ng-template #default>
+        <button
+          (click)="openInfoDialog(user)"
+          class="menu__btn menu__btn--create"
+        >
+          <mat-icon>post_add</mat-icon>
+          <p class="menu__text">ページを作る</p>
+        </button>
+      </ng-template>
+    </ng-container>
   </div>
 
   <ng-template #notLogin>
