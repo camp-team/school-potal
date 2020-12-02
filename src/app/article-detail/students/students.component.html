@@ -2,8 +2,8 @@
 
 <mat-divider></mat-divider>
 
-<div class="student-wrap">
-  <div class="student" *ngFor="let student of students$ | async as students">
+<div class="student-wrap" *ngIf="students$ | async as students">
+  <div class="student" *ngFor="let student of students | slice: 0:6">
     <a
       class="student__avatar"
       [style.background-image]="'url(' + student.user.photoURL + ')'"
@@ -18,7 +18,11 @@
       </p>
     </div>
   </div>
-  <button class="more" mat-button (click)="openStudentsDialog(article)">
+  <button
+    class="more"
+    mat-button
+    (click)="openStudentsDialog(article, students)"
+  >
     もっと見る
   </button>
 </div>
