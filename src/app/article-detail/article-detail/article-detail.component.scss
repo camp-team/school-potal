@@ -54,6 +54,7 @@
   max-width: 100%;
   background: #f5f5f5;
   padding: 48px 0 80px;
+  overflow: auto;
   @include sp {
     padding: 24px 0;
   }

@@ -15,22 +15,14 @@ import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 })
 export class SideComponent implements OnInit {
   article: Article;
-  index: SearchIndex = this.searchService.index.item;
+  index: SearchIndex = this.searchService.index.popular;
   articles: Article[] = [];
   result: {
     nbHits: number;
     hits: any[];
   };
-  nbPages: number;
   categoryFilter: string;
-  requestOptions = {
-    page: 0,
-    hitsPerPage: 6,
-  };
-
-  private page = 0;
-  private maxPage: number;
-  private isInit = true;
+  requestOptions: any = {};
 
   config: SwiperConfigInterface = {
     loop: true,
@@ -59,7 +51,6 @@ export class SideComponent implements OnInit {
   ) {
     this.articles = [];
     this.searchArticles();
-    this.isInit = false;
   }
 
   ngOnInit(): void {}
@@ -76,30 +67,20 @@ export class SideComponent implements OnInit {
       .subscribe((article) => {
         this.article = article;
         this.categoryFilter = `category: ${article?.category}`;
+        this.requestOptions = {
+          page: 0,
+          hitsPerPage: 9,
+        };
         const searchOptions = {
           ...this.requestOptions,
-          facetFilters: this.categoryFilter,
+          facetFilters: [this.categoryFilter, `id: -${article.id}`],
         };
-
-        if (!this.maxPage || this.maxPage > this.page) {
-          this.requestOptions.page++;
-          this.uiService.loading = true;
-
-          setTimeout(
-            () => {
-              this.index
-                .search('', searchOptions)
-                .then((result) => {
-                  this.maxPage = result.nbPages;
-                  this.result = result;
-                  this.articles.push(...(result.hits as any[]));
-                })
-                .then(() => (this.isInit = false))
-                .finally(() => (this.uiService.loading = false));
-            },
-            this.isInit ? 0 : 1000
-          );
-        }
+        this.index
+          .search('', searchOptions)
+          .then((result) => {
+            this.articles.push(...(result.hits as any[]));
+          })
+          .finally(() => (this.uiService.loading = false));
       });
   }
 }
