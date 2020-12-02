@@ -10,13 +10,25 @@
     >
       <mat-icon class="nav-list__icon">hearing</mat-icon>質問する
     </button>
-    <a
-      mat-list-item
-      routerLink="/editor/create"
-      class="nav-list__btn nav-list__btn--create"
-    >
-      <mat-icon class="nav-list__icon">post_add</mat-icon>ページを作る
-    </a>
+
+    <ng-container *ngIf="user.isAdmin; else default">
+      <a
+        mat-list-item
+        routerLink="/editor/create"
+        class="nav-list__btn nav-list__btn--create"
+      >
+        <mat-icon class="nav-list__icon">post_add</mat-icon>ページを作る
+      </a>
+    </ng-container>
+    <ng-template #default>
+      <button
+        mat-list-item
+        (click)="openInfoDialog(user)"
+        class="nav-list__btn nav-list__btn--create"
+      >
+        <mat-icon class="nav-list__icon">post_add</mat-icon>ページを作る
+      </button>
+    </ng-template>
     <a
       mat-list-item
       routerLink="user/{{ user.uid }}/pins"
