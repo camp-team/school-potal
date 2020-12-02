@@ -2,7 +2,7 @@
 @import 'mixins';
 
 .heading {
-  margin: 24px auto 48px;
+  margin: 24px auto;
   @include sp {
     margin: 16px auto;
   }
@@ -44,7 +44,6 @@
     &:nth-of-type(2) {
       background: linear-gradient(60deg, #40c4ff, #00a1dd);
       color: #fff;
-      margin-bottom: 24px;
       &.disabled {
         background: rgb(242, 242, 242);
         color: rgba(0, 0, 0, 0.38);
