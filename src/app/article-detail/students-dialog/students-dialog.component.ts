@@ -15,9 +15,7 @@ export class StudentsDialogComponent implements OnInit {
       article: Article;
       students: StudentWithUser[];
     }
-  ) {
-    console.log(this.data.students);
-  }
+  ) {}
 
   ngOnInit(): void {}
 }
