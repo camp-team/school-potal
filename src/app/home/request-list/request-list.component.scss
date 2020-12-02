@@ -4,21 +4,24 @@
 .wrapper {
   background: #303030;
   padding: 48px;
+  @include sp {
+    padding: 16px;
+  }
 }
 
 .title {
-  h2 {
+  &__main {
     font-family: 'Josefin Sans';
     font-size: 32px;
     font-weight: normal;
     text-align: center;
     color: #fff;
     @include sp {
-      margin-bottom: 8px;
+      margin-bottom: 0;
       font-size: 20px;
     }
   }
-  p {
+  &__sub {
     text-align: center;
     margin-bottom: 48px;
     color: #fff;
@@ -38,12 +41,13 @@
   padding: 16px;
   position: relative;
   transition: ease-in-out 0.3s;
+  @include sp {
+    grid-template-columns: 40px 1fr;
+    padding: 8px;
+  }
   &__heading {
     display: grid;
     place-items: center;
-  }
-  &__icon {
-    font-size: 32px;
   }
   &__description {
     display: flex;
@@ -57,9 +61,16 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
     display: -webkit-box;
+    @include sp {
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
   }
   &__title {
     font-weight: normal;
+    @include sp {
+      font-size: 14px;
+    }
   }
   &__date,
   &__category {
@@ -69,15 +80,18 @@
     font-size: 13px;
     color: rgba(#303030, 0.6);
     height: 24px;
-    mat-icon {
-      height: 24px;
-      margin-right: 8px;
+    @include sp {
+      font-size: 10px;
     }
-  }
-  &__user {
-    text-align: center;
-    display: grid;
-    place-content: center;
+    mat-icon {
+      font-size: 24px;
+      margin-right: 8px;
+      @include sp {
+        font-size: 16px;
+        height: 16px;
+        margin-right: 0;
+      }
+    }
   }
   &__photo {
     display: block;
@@ -87,9 +101,16 @@
     background: #eee center/cover;
     margin: 0 auto 8px;
     @include mat-elevation(4);
+    @include sp {
+      width: 32px;
+      height: 32px;
+    }
+  }
+  &__name {
+    font-size: 13px;
   }
   &__more {
-    width: 30%;
+    max-width: 30%;
     padding: 16px;
     border-radius: 4px;
     border: 1px solid #e4e4e4;
@@ -99,6 +120,11 @@
     color: #fff;
     position: relative;
     overflow: hidden;
+    @include sp {
+      max-width: 80%;
+      padding: 8px;
+      margin: 24px auto;
+    }
     span {
       z-index: 20;
     }

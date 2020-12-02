@@ -3,9 +3,9 @@ import { AuthService } from '../services/auth.service';
 import { Observable } from 'rxjs';
 import { User } from '../interfaces/users';
 import { MatDialog } from '@angular/material/dialog';
-import { SearchDialogComponent } from '../search-dialog/search-dialog.component';
 import { UiService } from '../services/ui.service';
 import { RequestDialogComponent } from '../shared/request-dialog/request-dialog.component';
+import { InfoDialogComponent } from '../user/info-dialog/info-dialog.component';
 
 @Component({
   selector: 'app-header',
@@ -31,12 +31,12 @@ export class HeaderComponent implements OnInit {
     this.authService.logout();
   }
 
-  openSearchDialog() {
+  openInfoDialog(user: User) {
     this.dialog
-      .open(SearchDialogComponent, {
+      .open(InfoDialogComponent, {
         maxWidth: '100vw',
         minWidth: '30%',
-        autoFocus: false,
+        data: { ...user },
       })
       .afterClosed();
   }

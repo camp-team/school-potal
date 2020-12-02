@@ -24,7 +24,6 @@ export const sendEmailCreateUser = functions
   .firestore.document('users/{uid}')
   .onCreate((snap) => {
     const user = snap.data();
-    functions.logger.info(user);
     return sendEmail({
       to: user.email,
       templateId: 'd-347a1159a5a44b84a31c3a4694d1c177',

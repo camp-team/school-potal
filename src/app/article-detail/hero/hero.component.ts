@@ -31,10 +31,7 @@ export class HeroComponent implements OnInit {
 
   ngOnInit(): void {
     this.comments$.subscribe((comments) => {
-      console.log(comments);
-
       this.ratings = comments.map((comment) => comment.rating);
-      console.log(this.ratings);
     });
   }
 

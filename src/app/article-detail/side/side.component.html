@@ -3,11 +3,7 @@
 </div>
 
 <swiper [config]="config" [(index)]="index">
-  <div
-    class="swiper-slide"
-    style="transform: translateX(100px);"
-    *ngFor="let article of articles"
-  >
+  <div class="swiper-slide" *ngFor="let article of articles">
     <div class="article">
       <a
         routerLink="/article-detail/{{ article?.id }}"
@@ -22,20 +18,12 @@
         </p>
       </div>
     </div>
+    <ng-container *ngIf="uiService.loading">
+      <mat-progress-spinner
+        mode="indeterminate"
+        color="primary"
+        [diameter]="40"
+      ></mat-progress-spinner>
+    </ng-container>
   </div>
-  <ng-container *ngIf="uiService.loading">
-    <mat-progress-spinner
-      mode="indeterminate"
-      color="primary"
-      [diameter]="40"
-    ></mat-progress-spinner>
-  </ng-container>
 </swiper>
-
-<div
-  infiniteScroll
-  [infiniteScrollDistance]="1"
-  [infiniteScrollThrottle]="100"
-  (scrolled)="searchArticles()"
-  [horizontal]="true"
-></div>

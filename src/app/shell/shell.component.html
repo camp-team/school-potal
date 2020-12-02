@@ -1,11 +1,11 @@
 <app-header></app-header>
 
-<mat-sidenav-container>
+<mat-sidenav-container (backdropClick)="toggleNav()">
   <mat-sidenav
     #sidenav
     [opened]="opened$ | async"
     fixedInViewport
-    [fixedTopGap]="81"
+    [fixedTopGap]="72"
     class="sidenav"
   >
     <app-navigation></app-navigation>

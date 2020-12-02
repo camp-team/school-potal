@@ -10,21 +10,37 @@
       height="32px"
   /></a>
   <p class="header__description">学びの場レビューメディア</p>
+
   <span class="header__spacer"></span>
 
   <div class="menu">
-    <button class="menu__btn" routerLink="/search">
+    <button class="menu__btn menu__btn--search" routerLink="/search">
       <mat-icon>search</mat-icon>
-      <p>検索する</p>
+      <p class="menu__text">検索する</p>
     </button>
-    <button class="menu__btn" (click)="openRequestDialog()">
+
+    <button class="menu__btn menu__btn--question" (click)="openRequestDialog()">
       <mat-icon>hearing</mat-icon>
-      <p>質問する</p>
+      <p class="menu__text">質問する</p>
     </button>
-    <button routerLink="/editor/create" class="menu__btn">
-      <mat-icon>web</mat-icon>
-      <p>ページを作る</p>
-    </button>
+
+    <ng-container *ngIf="user$ | async as user">
+      <ng-container *ngIf="user.isAdmin; else default">
+        <button routerLink="/editor/create" class="menu__btn menu__btn--create">
+          <mat-icon>post_add</mat-icon>
+          <p class="menu__text">ページを作る</p>
+        </button>
+      </ng-container>
+      <ng-template #default>
+        <button
+          (click)="openInfoDialog(user)"
+          class="menu__btn menu__btn--create"
+        >
+          <mat-icon>post_add</mat-icon>
+          <p class="menu__text">ページを作る</p>
+        </button>
+      </ng-template>
+    </ng-container>
   </div>
 
   <ng-template #notLogin>

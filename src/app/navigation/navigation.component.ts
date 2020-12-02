@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { User } from '../interfaces/users';
 import { UiService } from '../services/ui.service';
+import { MatDialog } from '@angular/material/dialog';
+import { RequestDialogComponent } from '../shared/request-dialog/request-dialog.component';
+import { InfoDialogComponent } from '../user/info-dialog/info-dialog.component';
 
 @Component({
   selector: 'app-navigation',
@@ -17,7 +20,8 @@ export class NavigationComponent implements OnInit {
   constructor(
     private uiService: UiService,
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {}
@@ -27,5 +31,25 @@ export class NavigationComponent implements OnInit {
       queryParamsHandling: 'merge',
       queryParams: { category },
     });
+  }
+
+  openInfoDialog(user: User) {
+    this.dialog
+      .open(InfoDialogComponent, {
+        maxWidth: '100vw',
+        minWidth: '30%',
+        data: { ...user },
+      })
+      .afterClosed();
+  }
+
+  openRequestDialog() {
+    this.dialog
+      .open(RequestDialogComponent, {
+        maxWidth: '100vw',
+        minWidth: '30%',
+        autoFocus: false,
+      })
+      .afterClosed();
   }
 }

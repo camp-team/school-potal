@@ -3,6 +3,9 @@
 mat-divider {
   max-width: 80%;
   margin: 0 auto 120px;
+  @include sp {
+    margin: 0 auto 24px;
+  }
 }
 
 mat-progress-spinner {
@@ -13,17 +16,20 @@ mat-progress-spinner {
   padding-top: 48px;
 }
 
-.search-wrap {
-  height: 100vh;
-}
-
 .search-box {
   max-width: 80%;
   display: flex;
   align-items: center;
   margin: 240px auto 0;
+  @include sp {
+    max-width: 90%;
+    margin: 24px auto 0;
+  }
   &__word {
     font-size: 32px;
+    @include sp {
+      font-size: 16px;
+    }
   }
   &__form {
     flex: 1;
@@ -37,6 +43,9 @@ mat-progress-spinner {
     opacity: 0.6;
     border: none;
     outline: none;
+    @include sp {
+      font-size: 16px;
+    }
   }
   mat-icon {
     width: 40px;
@@ -56,6 +65,10 @@ mat-progress-spinner {
     font-size: 21px;
     font-weight: 500;
     margin-bottom: 120px;
+    @include sp {
+      font-size: 16px;
+      margin-bottom: 24px;
+    }
   }
 }
 
@@ -63,6 +76,9 @@ mat-progress-spinner {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
+  @include sp {
+    grid-template-columns: 1fr;
+  }
 }
 
 .article {

@@ -77,30 +77,34 @@
     </form>
 
     <div class="unsubscribe">
-      <h2 class="unsubscribe__title">退会</h2>
-      <p class="unsubscribe__text">
-        退会すると利用データが失われ、あとから復元できません。
-      </p>
+      <h3 class="unsubscribe__title" (click)="isOpen = !isOpen">
+        退会を希望の方はこちら
+      </h3>
+      <div *ngIf="isOpen" @fade>
+        <p class="unsubscribe__text">
+          退会すると利用データが失われ、あとから復元できません。
+        </p>
 
-      <mat-form-field class="unsubscribe__form">
-        <input
-          class="unsubscribe__input"
-          matInput
-          placeholder="ユーザー名を入力"
-          #input
-          autocomplete="off"
-        />
-        <mat-hint align="end">{{ user.name }}</mat-hint>
-      </mat-form-field>
+        <mat-form-field class="unsubscribe__form">
+          <input
+            class="unsubscribe__input"
+            matInput
+            placeholder="ユーザー名を入力"
+            #input
+            autocomplete="off"
+          />
+          <mat-hint align="end">{{ user.name }}</mat-hint>
+        </mat-form-field>
 
-      <button
-        class="unsubscribe__btn"
-        mat-button
-        [disabled]="user.name !== input.value"
-        (click)="openDeleteDialod()"
-      >
-        退会
-      </button>
+        <button
+          class="unsubscribe__btn"
+          mat-button
+          [disabled]="user.name !== input.value"
+          (click)="openDeleteDialod()"
+        >
+          退会
+        </button>
+      </div>
     </div>
   </ng-container>
 </div>

@@ -13,4 +13,8 @@ export class ShellComponent implements OnInit {
   constructor(private uiService: UiService) {}
 
   ngOnInit(): void {}
+
+  toggleNav() {
+    this.uiService.toggleOpening();
+  }
 }

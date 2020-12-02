@@ -28,7 +28,7 @@ export class LatestSalonComponent implements OnInit {
     centeredSlides: true,
     breakpoints: {
       415: {
-        slidesPerView: 1,
+        slidesPerView: 2,
         spaceBetween: 16,
       },
       960: {

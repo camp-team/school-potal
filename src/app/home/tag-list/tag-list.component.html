@@ -1,27 +1,28 @@
-<div class="container">
+<div class="container container--tag-list">
   <div class="title">
-    <h2>Genre Search</h2>
-    <p>ジャンルから探す</p>
+    <h2 class="title__main">Genre Search</h2>
+    <p class="title__sub">ジャンルから探す</p>
   </div>
 
-  <div class="grid">
+  <div class="category">
     <div
       *ngFor="let category of categoryGroup; index as i"
       (click)="routeCategoryFilter(category.value)"
-      class="grid__item"
+      class="category__item"
     >
-      <figure>
+      <figure class="category__photo">
         <img
+          class="category__img"
           src="assets/images/category-{{ category.value | category }}.png"
           alt="category"
           loading="lazy"
         />
       </figure>
-      <div class="grid__body">
-        <h3>
+      <div class="category__body">
+        <h3 class="category__value">
           {{ category?.value }}
         </h3>
-        <p>{{ category?.count }} items</p>
+        <p class="category__count">{{ category?.count }} items</p>
       </div>
     </div>
   </div>
@@ -29,7 +30,7 @@
   <div class="tags">
     <mat-chip-list #chipList aria-label="tag selection">
       <mat-chip *ngFor="let tag of tags" [value]="tag.value">
-        <a (click)="routeTagFilter(tag.value)"
+        <a class="tags__text" (click)="routeTagFilter(tag.value)"
           ><span>🏷</span> {{ tag.value }} ( {{ tag.count }} )</a
         >
       </mat-chip>

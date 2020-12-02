@@ -53,24 +53,66 @@ button {
   max-width: 1200px;
   padding: 0 24px;
   margin: 0 auto;
+  @include sp {
+    padding: 0;
+  }
+  &--hero {
+    @include sp {
+      padding: 16px;
+    }
+  }
+  &--article-detail {
+    @include sp {
+      padding: 0 16px;
+    }
+  }
   &--editor {
-    margin: 48px auto 80px;
+    margin: 48px auto 120px;
     padding: 24px;
     background: #fff;
     @include mat-elevation(8, #000, 0.8);
+    @include sp {
+      margin: 24px auto 80px;
+      padding: 16px;
+      background: #fafafa;
+      @include mat-elevation(0);
+    }
   }
   &--profile {
-    margin: 48px auto 80px;
+    margin: 48px auto 120px;
     padding: 24px;
     background: #fff;
     height: 100%;
     @include mat-elevation(8, #000, 0.8);
+    @include sp {
+      margin: 24px auto 80px;
+      padding: 16px;
+      background: #fafafa;
+      @include mat-elevation(0);
+    }
   }
   &--setting {
-    margin: 48px auto 80px;
+    margin: 48px auto 120px;
     padding: 24px;
     background: #fff;
     @include mat-elevation(8, #000, 0.8);
+    @include sp {
+      margin: 24px auto 80px;
+      padding: 16px;
+      background: #fafafa;
+      @include mat-elevation(0);
+    }
+  }
+  &--request {
+    margin: 80px auto 120px;
+    @include sp {
+      margin: 24px auto 80px;
+    }
+  }
+  &--tag-list {
+    @include sp {
+      padding: 8px;
+    }
   }
 }
 
@@ -99,6 +141,9 @@ button {
   top: 50%;
   right: 2%;
   cursor: pointer;
+  @include sp {
+    display: none;
+  }
 }
 .swiper-button-prev-hero {
   width: 32px;
@@ -111,6 +156,9 @@ button {
   top: 50%;
   left: 2%;
   cursor: pointer;
+  @include sp {
+    display: none;
+  }
 }
 
 .swiper-button-next-school,
@@ -128,6 +176,9 @@ button {
   transition: ease 0.5s;
   cursor: pointer;
   margin-left: 8px;
+  @include sp {
+    display: none;
+  }
 }
 .swiper-button-next-school,
 .swiper-button-next-salon {
@@ -158,6 +209,9 @@ button {
   right: 0;
   bottom: 0;
   margin: auto;
+  @include sp {
+    display: none;
+  }
 }
 .swiper-button-prev-school::after,
 .swiper-button-prev-salon::after {
@@ -175,6 +229,9 @@ button {
   right: 0;
   bottom: 0;
   margin: auto;
+  @include sp {
+    display: none;
+  }
 }
 
 .hero {
@@ -192,7 +249,6 @@ button {
 .swiper-container {
   padding: 0 16px !important;
   margin: 0 !important;
-  transform: translateX(-24px);
   display: flex !important;
 }
 
@@ -215,6 +271,9 @@ button {
 .swiper-pagination {
   position: relative;
   bottom: 80px !important;
+  @include sp {
+    bottom: 0 !important;
+  }
 }
 
 .swiper-pagination-clickable .swiper-pagination-bullet {
@@ -240,6 +299,9 @@ button {
   padding: 7px 14px !important;
   border-radius: 4px !important;
   font-weight: 400 !important;
+  @include sp {
+    font-size: 13px;
+  }
 }
 
 .ql-container {
@@ -270,5 +332,8 @@ iframe.ql-video {
 .hero__star {
   img {
     width: 2.5rem;
+    @include sp {
+      width: 24px;
+    }
   }
 }

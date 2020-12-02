@@ -1,92 +1,86 @@
-<div class="wrapper">
-  <ng-container *ngIf="user$ | async as user">
-    <div class="heading">
-      <h2 class="heading__top">
-        Request
-      </h2>
-      <p class="heading__body">
-        お探しのスクールが見つかりませんでしたか？<br />
-        口コミや評判を募集してみましょう。
-      </p>
-    </div>
+<ng-container *ngIf="user$ | async as user">
+  <div class="heading">
+    <mat-icon class="heading__icon">help</mat-icon>
+    <p class="heading__body">
+      探してるスクールが見つからなかった？<br />
+      ここで口コミや評判を募集してみよう。
+    </p>
+  </div>
 
-    <form [formGroup]="form" (ngSubmit)="submit(user.uid)">
-      <mat-dialog-content class="form">
-        <h2>質問タイトル</h2>
-        <mat-form-field appearance="outline" class="form__title">
-          <input
-            type="text"
-            matInput
-            placeholder="サービス名、または質問概要を入力"
-            formControlName="title"
-            #title
-            autocomplete="off"
-            required
-            matTextareaAutosize
-          />
-          <mat-error *ngIf="form.controls['title'].hasError('required')"
-            >必須入力です</mat-error
-          >
-          <mat-error *ngIf="form.controls['title'].hasError('maxlength')"
-            >最大文字数を超えています</mat-error
-          >
-          <mat-hint align="end"
-            >{{ title.value.length }} / {{ MAX_TITLE_LENGTH }}文字</mat-hint
-          >
-        </mat-form-field>
-
-        <div class="type__category">
-          <h2>質問のカテゴリー</h2>
-          <mat-form-field>
-            <mat-select formControlName="category">
-              <mat-option
-                *ngFor="let category of categoryGroup"
-                [value]="category.value"
-              >
-                {{ category.value }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-
-        <h2>聞きたいこと</h2>
-        <mat-form-field appearance="outline" class="form__body">
-          <textarea
-            matInput
-            placeholder="スクールやサロンを特定できる情報、知りたい内容を入力"
-            formControlName="body"
-            #body
-            autocomplete="off"
-            required
-            matTextareaAutosize
-            [matAutosizeMinRows]="10"
-          ></textarea>
-          <mat-error *ngIf="form.controls['body'].hasError('required')"
-            >必須入力です</mat-error
-          >
-          <mat-error *ngIf="form.controls['body'].hasError('maxlength')"
-            >最大文字数を超えています</mat-error
-          >
-          <mat-hint align="end"
-            >{{ body.value.length }} / {{ MAX_BODY_LENGTH }}文字</mat-hint
-          >
-        </mat-form-field>
-      </mat-dialog-content>
-
-      <mat-dialog-actions align="end">
-        <button mat-mini-fab color="" matDialogClose type="button">
-          <mat-icon>close</mat-icon>
-        </button>
-        <button
-          type="submit"
-          mat-mini-fab
-          [mat-dialog-close]="true"
-          color="primary"
-          [disabled]="form.invalid || form.pristine || isProcessing"
+  <form [formGroup]="form" (ngSubmit)="submit(user.uid)">
+    <mat-dialog-content class="form">
+      <h2 class="form__title">質問タイトル</h2>
+      <mat-form-field appearance="outline" class="form__title">
+        <input
+          type="text"
+          matInput
+          placeholder="サービス名、または質問概要を入力"
+          formControlName="title"
+          #title
+          autocomplete="off"
+          required
+          matTextareaAutosize
+        />
+        <mat-error *ngIf="form.controls['title'].hasError('required')"
+          >必須入力です</mat-error
         >
-          <mat-icon>send</mat-icon>
-        </button>
-      </mat-dialog-actions>
-    </form>
-  </ng-container>
-</div>
+        <mat-error *ngIf="form.controls['title'].hasError('maxlength')"
+          >最大文字数を超えています</mat-error
+        >
+        <mat-hint align="end"
+          >{{ title.value.length }} / {{ MAX_TITLE_LENGTH }}文字</mat-hint
+        >
+      </mat-form-field>
+
+      <div class="type__category">
+        <h2 class="form__title">質問のカテゴリー</h2>
+        <mat-form-field>
+          <mat-select formControlName="category">
+            <mat-option
+              *ngFor="let category of categoryGroup"
+              [value]="category.value"
+            >
+              {{ category.value }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <h2 class="form__title">聞きたいこと</h2>
+      <mat-form-field appearance="outline" class="form__body">
+        <textarea
+          matInput
+          placeholder="スクールやサロンを特定できる情報、知りたい内容を入力"
+          formControlName="body"
+          #body
+          autocomplete="off"
+          required
+          matTextareaAutosize
+          [matAutosizeMinRows]="10"
+        ></textarea>
+        <mat-error *ngIf="form.controls['body'].hasError('required')"
+          >必須入力です</mat-error
+        >
+        <mat-error *ngIf="form.controls['body'].hasError('maxlength')"
+          >最大文字数を超えています</mat-error
+        >
+        <mat-hint align="end"
+          >{{ body.value.length }} / {{ MAX_BODY_LENGTH }}文字</mat-hint
+        >
+      </mat-form-field>
+    </mat-dialog-content>
+
+    <div class="actions">
+      <button type="button" mat-button matDialogClose>キャンセル</button>
+      <button
+        type="submit"
+        mat-button
+        [disabled]="form.invalid || form.pristine || isProcessing"
+        [class.disabled]="form.invalid || form.pristine || isProcessing"
+        [mat-dialog-close]="true"
+      >
+        投稿
+      </button>
+    </div>
+  </form>
+</ng-container>

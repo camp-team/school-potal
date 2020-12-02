@@ -7,7 +7,6 @@
   justify-content: space-between;
   padding: 16px;
   background: #212121;
-  border-bottom: 1px solid rgba(33, 33, 33, 0.38);
   box-shadow: 1px 1px 1px rgba(33, 33, 33, 0.38);
   position: fixed;
   top: 0;
@@ -51,20 +50,35 @@
   display: flex;
   align-items: center;
   &__btn {
-    width: 120px;
-    height: 48px;
     display: flex;
     place-content: center;
     place-items: center;
     background: #212121;
     color: #fff;
-    margin-right: 16px;
     border-radius: 2px;
+    padding: 8px 16px;
+    @include sp {
+      padding: 8px;
+    }
     &:hover {
       background: #303030;
     }
     mat-icon {
       margin-right: 8px;
+      @include sp {
+        margin-right: 0;
+      }
+    }
+    @include sp {
+      &--question,
+      &--create {
+        display: none;
+      }
+    }
+  }
+  &__text {
+    @include sp {
+      display: none;
     }
   }
 }

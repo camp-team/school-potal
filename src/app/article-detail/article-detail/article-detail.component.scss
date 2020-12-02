@@ -9,21 +9,36 @@
   grid-template-columns: 1fr 360px;
   gap: 24px;
   position: relative;
+  @include sp {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
   &__main {
     margin-bottom: 80px;
+    @include sp {
+      margin-bottom: 24px;
+    }
   }
   &__sub {
-    width: 360px;
-    position: absolute;
-    top: -13vw;
-    right: 0;
+    transform: translateY(-10vw);
+    @include sp {
+      transform: translateY(0);
+      grid-row: 1;
+    }
   }
   &__component {
     background: #fff;
     box-shadow: 0 2px 10px rgba(32, 33, 37, 0.06);
+    @include sp {
+      box-shadow: none;
+      background: inherit;
+    }
     &--actions {
       margin-bottom: 24px;
       padding: 16px;
+      @include sp {
+        padding: 0;
+      }
     }
   }
 }
@@ -39,4 +54,14 @@
   max-width: 100%;
   background: #f5f5f5;
   padding: 48px 0 80px;
+  overflow: auto;
+  @include sp {
+    padding: 24px 0;
+  }
+}
+
+app-students {
+  @include sp {
+    display: none;
+  }
 }

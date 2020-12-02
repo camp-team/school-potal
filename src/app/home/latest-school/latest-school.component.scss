@@ -1,28 +1,22 @@
 @import 'mixins';
 @import '~@angular/material/theming';
 
-.container {
-  @include sp {
-    padding: 8px;
-  }
-}
-
 .title {
-  h2 {
+  &__main {
     font-family: 'Josefin Sans';
     font-size: 32px;
     font-weight: normal;
     text-align: center;
     @include sp {
-      margin-bottom: 8px;
+      margin-bottom: 0;
       font-size: 20px;
     }
   }
-  p {
+  &__sub {
     text-align: center;
     margin-bottom: 24px;
     @include sp {
-      margin-bottom: 24px;
+      margin-bottom: 8px;
       font-size: 13px;
     }
   }
@@ -42,6 +36,9 @@
     margin-bottom: 16px;
     border-radius: 6px 6px 0 0;
     transition: 0.5s ease;
+    @include sp {
+      margin-bottom: 8px;
+    }
     img {
       border-radius: 6px 6px 0 0;
       vertical-align: bottom;
@@ -53,12 +50,19 @@
   }
   &__top {
     min-height: 88px;
+    @include sp {
+      min-height: 72px;
+    }
   }
   &__name {
     font-size: 16px;
     font-weight: normal;
     padding: 0 16px 8px;
     margin: 0;
+    @include sp {
+      padding: 0 8px 4px;
+      font-size: 13px;
+    }
   }
   &__title {
     font-size: 16px;
@@ -71,22 +75,35 @@
     -webkit-line-clamp: 2;
     display: -webkit-box;
     padding: 0 16px;
+    @include sp {
+      font-size: 13px;
+      padding: 0 8px;
+    }
   }
   &__date {
     font-size: 13px;
     opacity: 0.38;
     margin-right: 8px;
+    @include sp {
+      font-size: 10px;
+    }
   }
   &__description {
     display: flex;
     align-items: center;
     padding: 8px 16px;
     border-top: 1px dashed #e4e4e4;
+    @include sp {
+      padding: 4px 8px;
+    }
   }
   &__category {
     border: none;
     padding: 4px 8px;
     font-size: 13px;
+    @include sp {
+      font-size: 10px;
+    }
   }
   &__category-text {
     opacity: 0.38;
@@ -98,7 +115,4 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   margin: 96px 0;
-  @include sp {
-    grid-template-columns: 1fr;
-  }
 }

@@ -14,11 +14,13 @@ import { UserService } from 'src/app/services/user.service';
 import { firestore } from 'firebase';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteDialogComponent } from 'src/app/shared/delete-dialog/delete-dialog.component';
+import { fade } from 'src/app/animations';
 
 @Component({
   selector: 'app-setting',
   templateUrl: './setting.component.html',
   styleUrls: ['./setting.component.scss'],
+  animations: [fade],
 })
 export class SettingComponent implements OnInit {
   user: User;
@@ -33,6 +35,8 @@ export class SettingComponent implements OnInit {
   removable = true;
   addOnBlur = true;
   tags: string[] = [];
+  isOpen = false;
+
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
   get nameControl(): FormControl {

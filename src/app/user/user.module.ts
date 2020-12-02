@@ -14,6 +14,8 @@ import { SharedModule } from '../shared/shared.module';
 import { ProfileComponent } from './profile/profile.component';
 import { PinsComponent } from './pins/pins.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { InfoDialogComponent } from './info-dialog/info-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     SettingComponent,
     ProfileComponent,
     PinsComponent,
+    InfoDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -34,6 +37,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatButtonModule,
     SharedModule,
     MatProgressSpinnerModule,
+    MatDialogModule,
   ],
 })
 export class UserModule {}

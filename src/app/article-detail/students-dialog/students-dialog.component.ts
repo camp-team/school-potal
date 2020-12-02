@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Article } from 'src/app/interfaces/article';
+import { StudentWithUser } from 'src/app/interfaces/student';
 
 @Component({
   selector: 'app-students-dialog',
@@ -12,6 +13,7 @@ export class StudentsDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA)
     public data: {
       article: Article;
+      students: StudentWithUser[];
     }
   ) {}
 

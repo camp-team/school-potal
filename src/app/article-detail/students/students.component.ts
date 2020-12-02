@@ -31,12 +31,12 @@ export class StudentsComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  openStudentsDialog(article: Article) {
+  openStudentsDialog(article: Article, students: StudentWithUser[]) {
     this.dialog.open(StudentsDialogComponent, {
       width: '400px',
       autoFocus: false,
       restoreFocus: false,
-      data: { article },
+      data: { article, students },
     });
   }
 }

@@ -1,49 +1,105 @@
 <mat-nav-list class="nav-list">
-  <a mat-list-item routerLink="/">
-    <mat-icon class="mat-icon">home</mat-icon>ホーム</a
+  <a mat-list-item routerLink="/" class="nav-list__btn">
+    <mat-icon class="nav-list__icon">home</mat-icon>ホーム</a
   >
   <ng-container *ngIf="user$ | async as user">
-    <a mat-list-item routerLink="user/{{ user.uid }}/pins">
-      <mat-icon class="mat-icon">push_pin</mat-icon>ピン一覧</a
+    <button
+      mat-list-item
+      class="nav-list__btn nav-list__btn--search"
+      (click)="openRequestDialog()"
+    >
+      <mat-icon class="nav-list__icon">hearing</mat-icon>質問する
+    </button>
+
+    <ng-container *ngIf="user.isAdmin; else default">
+      <a
+        mat-list-item
+        routerLink="/editor/create"
+        class="nav-list__btn nav-list__btn--create"
+      >
+        <mat-icon class="nav-list__icon">post_add</mat-icon>ページを作る
+      </a>
+    </ng-container>
+    <ng-template #default>
+      <button
+        mat-list-item
+        (click)="openInfoDialog(user)"
+        class="nav-list__btn nav-list__btn--create"
+      >
+        <mat-icon class="nav-list__icon">post_add</mat-icon>ページを作る
+      </button>
+    </ng-template>
+    <a
+      mat-list-item
+      routerLink="user/{{ user.uid }}/pins"
+      class="nav-list__btn"
+    >
+      <mat-icon class="nav-list__icon">push_pin</mat-icon>ピン一覧</a
     >
   </ng-container>
-  <mat-divider class="divider"></mat-divider>
+
+  <mat-divider></mat-divider>
+
   <h3 mat-subheader>カテゴリー</h3>
-  <a mat-list-item (click)="routeCategoryFilter('プログラミング')">
-    <mat-icon class="mat-icon">code</mat-icon>プログラミング</a
+  <a
+    mat-list-item
+    (click)="routeCategoryFilter('プログラミング')"
+    class="nav-list__btn"
   >
-  <a mat-list-item (click)="routeCategoryFilter('外国語')">
-    <mat-icon class="mat-icon">language</mat-icon>外国語</a
+    <mat-icon class="nav-list__icon">code</mat-icon>プログラミング</a
   >
-  <a mat-list-item (click)="routeCategoryFilter('ビジネス')">
-    <mat-icon class="mat-icon">business</mat-icon>ビジネス</a
+  <a
+    mat-list-item
+    (click)="routeCategoryFilter('外国語')"
+    class="nav-list__btn"
   >
-  <a mat-list-item (click)="routeCategoryFilter('スポーツ')">
-    <mat-icon class="mat-icon">directions_run</mat-icon>スポーツ</a
+    <mat-icon class="nav-list__icon">language</mat-icon>外国語</a
   >
-  <a mat-list-item (click)="routeCategoryFilter('デザイン')">
-    <mat-icon class="mat-icon">music_note</mat-icon>デザイン</a
+  <a
+    mat-list-item
+    (click)="routeCategoryFilter('ビジネス')"
+    class="nav-list__btn"
   >
-  <a mat-list-item (click)="routeCategoryFilter('美容')">
-    <mat-icon class="mat-icon">accessibility</mat-icon>美容</a
+    <mat-icon class="nav-list__icon">business</mat-icon>ビジネス</a
   >
-  <a mat-list-item (click)="routeCategoryFilter('料理')">
-    <mat-icon class="mat-icon">local_dining</mat-icon>料理</a
+  <a
+    mat-list-item
+    (click)="routeCategoryFilter('スポーツ')"
+    class="nav-list__btn"
   >
-  <a mat-list-item (click)="routeCategoryFilter('医療')">
-    <mat-icon class="mat-icon">medical_services</mat-icon>医療</a
+    <mat-icon class="nav-list__icon">directions_run</mat-icon>スポーツ</a
   >
-  <a mat-list-item (click)="routeCategoryFilter('モノづくり')">
-    <mat-icon class="mat-icon">emoji_objects</mat-icon>モノづくり</a
+  <a
+    mat-list-item
+    (click)="routeCategoryFilter('デザイン')"
+    class="nav-list__btn"
   >
-  <a mat-list-item (click)="routeCategoryFilter('音楽')">
-    <mat-icon class="mat-icon">graphic_eq</mat-icon>音楽</a
+    <mat-icon class="nav-list__icon">music_note</mat-icon>デザイン</a
   >
-  <a mat-list-item (click)="routeCategoryFilter('その他')">
-    <mat-icon class="mat-icon">more_horiz</mat-icon>その他</a
+  <a mat-list-item (click)="routeCategoryFilter('美容')" class="nav-list__btn">
+    <mat-icon class="nav-list__icon">accessibility</mat-icon>美容</a
+  >
+  <a mat-list-item (click)="routeCategoryFilter('料理')" class="nav-list__btn">
+    <mat-icon class="nav-list__icon">local_dining</mat-icon>料理</a
+  >
+  <a mat-list-item (click)="routeCategoryFilter('医療')" class="nav-list__btn">
+    <mat-icon class="nav-list__icon">medical_services</mat-icon>医療</a
+  >
+  <a
+    mat-list-item
+    (click)="routeCategoryFilter('モノづくり')"
+    class="nav-list__btn"
+  >
+    <mat-icon class="nav-list__icon">emoji_objects</mat-icon>モノづくり</a
+  >
+  <a mat-list-item (click)="routeCategoryFilter('音楽')" class="nav-list__btn">
+    <mat-icon class="nav-list__icon">graphic_eq</mat-icon>音楽</a
+  >
+  <a mat-list-item (click)="routeCategoryFilter('総合')" class="nav-list__btn">
+    <mat-icon class="nav-list__icon">more_horiz</mat-icon>総合</a
   >
 
-  <mat-divider class="divider"></mat-divider>
+  <mat-divider></mat-divider>
 </mat-nav-list>
 
 <footer class="footer">
@@ -51,5 +107,5 @@
   <a mat-list-item routerLink="/intl/rule">利用規約</a>
   <a mat-list-item routerLink="/intl/privacy">プライバシーポリシー</a>
   <a mat-list-item routerLink="/intl/legal">特定商取引</a>
-  <p class="footer__copy">©️Yusuke Gunji Works</p>
+  <p class="footer__copy">&copy;Yusuke Gunji Works</p>
 </footer>

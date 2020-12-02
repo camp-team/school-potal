@@ -2,8 +2,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute } from '@angular/router';
 import { firestore } from 'firebase';
 import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+import { Request, RequestWithUser } from 'src/app/interfaces/request';
 import { RequestCommentWithUser } from 'src/app/interfaces/request-comment';
 import { User } from 'src/app/interfaces/users';
 import { AuthService } from 'src/app/services/auth.service';
@@ -32,7 +35,8 @@ export class RequestCommentListComponent implements OnInit {
     private requestService: RequestService,
     private authService: AuthService,
     private snackBar: MatSnackBar,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {}
