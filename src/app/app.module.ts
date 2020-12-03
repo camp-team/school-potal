@@ -40,6 +40,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { MatSelectModule } from '@angular/material/select';
 import { FooterComponent } from './footer/footer.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -81,6 +82,9 @@ import { FooterComponent } from './footer/footer.component';
     QuillModule.forRoot(),
     InfiniteScrollModule,
     MatSelectModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+    }),
   ],
   providers: [
     { provide: REGION, useValue: 'asia-northeast1' },
