@@ -66,6 +66,12 @@ button {
       padding: 0 16px;
     }
   }
+  &--all-request {
+    padding: 24px 16px 120px;
+    @include sp {
+      padding: 24px 16px;
+    }
+  }
   &--editor {
     margin: 48px auto 120px;
     padding: 24px;

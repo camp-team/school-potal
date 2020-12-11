@@ -1,13 +1,8 @@
 @import 'mixins';
 @import '~@angular/material/theming';
 
-.wrapper {
-  padding: 48px;
-  margin-bottom: 120px;
-}
-
 .title {
-  h2 {
+  &__main {
     font-family: 'Josefin Sans';
     font-size: 32px;
     font-weight: normal;
@@ -15,10 +10,10 @@
     color: #303030;
     @include sp {
       margin-bottom: 8px;
-      font-size: 20px;
+      font-size: 24px;
     }
   }
-  p {
+  &__sub {
     text-align: center;
     margin-bottom: 48px;
     color: #303030;
@@ -36,10 +31,15 @@
   display: grid;
   grid-template-columns: 120px 1fr 160px;
   gap: 16px;
+  justify-items: center;
+  align-items: center;
   padding: 16px;
   position: relative;
   transition: ease-in-out 0.3s;
   margin-bottom: 24px;
+  @include sp {
+    grid-template-columns: 1fr;
+  }
   &__heading {
     display: flex;
     flex-flow: column;
@@ -47,12 +47,14 @@
     text-align: center;
   }
   &__icon {
-    font-size: 32px;
+    font-size: 16px;
   }
   &__description {
     display: flex;
     align-items: center;
-    margin-bottom: 16px;
+    @include sp {
+      margin-bottom: 8px;
+    }
   }
   &__body {
     margin-bottom: 16px;
@@ -62,6 +64,9 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     display: -webkit-box;
+    @include sp {
+      font-size: 13px;
+    }
   }
   &__title {
     font-weight: normal;
@@ -74,16 +79,23 @@
     font-size: 13px;
     color: rgba(#303030, 0.6);
     height: 24px;
+    @include sp {
+      font-size: 10px;
+    }
     mat-icon {
       color: rgba(#303030, 0.6);
       height: 24px;
       margin-right: 8px;
     }
   }
+  &__action {
+    display: grid;
+    place-items: center;
+  }
   &__comment {
-    width: 80px;
-    height: 80px;
-    background: #eee;
+    width: 48px;
+    height: 48px;
+    border: 1px solid #e4e4e4;
     border-radius: 4px;
     margin: 0 auto 16px;
     display: flex;
@@ -91,13 +103,20 @@
     place-items: center;
     flex-flow: column;
     padding: 16px;
-    p {
-      font-size: 14px;
-      margin-bottom: 8px;
+    @include sp {
+      padding: 8px;
+      margin: 0;
+      position: absolute;
+      top: 16px;
+      right: 16px;
     }
     mat-icon {
       font-size: 24px;
       margin-bottom: 8px;
+      @include sp {
+        font-size: 16px;
+        margin-bottom: 0;
+      }
     }
   }
   &__user {
@@ -125,6 +144,9 @@
     position: relative;
     overflow: hidden;
     background: linear-gradient(60deg, #40c4ff, #00a1dd);
+    @include sp {
+      width: 100%;
+    }
     &:after {
       background: #fff;
       content: '';

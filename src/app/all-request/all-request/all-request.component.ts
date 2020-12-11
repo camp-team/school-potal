@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
+import { fade } from 'src/app/animations';
 import { RequestWithUser } from 'src/app/interfaces/request';
 import { User } from 'src/app/interfaces/users';
 import { AuthService } from 'src/app/services/auth.service';
@@ -10,6 +11,7 @@ import { RequestService } from 'src/app/services/request.service';
   selector: 'app-all-request',
   templateUrl: './all-request.component.html',
   styleUrls: ['./all-request.component.scss'],
+  animations: [fade],
 })
 export class AllRequestComponent implements OnInit, OnDestroy {
   subscriptions: Subscription = new Subscription();
