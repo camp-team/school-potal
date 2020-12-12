@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Article } from 'src/app/interfaces/article';
 import { ArticleService } from 'src/app/services/article.service';
 import { Observable } from 'rxjs';
-import { switchMap, tap, map } from 'rxjs/operators';
+import { switchMap, tap, map, take } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { UiService } from 'src/app/services/ui.service';
 import { SeoService } from 'src/app/services/seo.service';
@@ -46,7 +46,7 @@ export class ArticleDetailComponent implements OnInit {
     private meta: Meta
   ) {
     this.uiService.toggleLoading(true);
-    this.articleId$.subscribe((id) => (this.articleId = id));
+    this.articleId$.pipe(take(1)).subscribe((id) => (this.articleId = id));
   }
 
   ngOnInit(): void {}
