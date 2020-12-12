@@ -36,6 +36,7 @@ p {
   &__grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
     margin-bottom: 24px;
     @include sp {
       grid-template-columns: 1fr 1fr 1fr;
@@ -62,8 +63,8 @@ p {
     position: relative;
   }
   &__avatar {
-    width: 120px;
-    height: 120px;
+    max-width: 120px;
+    max-height: 120px;
     border-radius: 50%;
     overflow: hidden;
     margin-bottom: 16px;
@@ -80,7 +81,11 @@ p {
     color: #fff;
     position: absolute;
     bottom: 8px;
-    left: 100px;
+    right: 56px;
+    @include sp {
+      bottom: 0;
+      right: -16px;
+    }
     &:hover {
       background: #2aa1f1;
     }

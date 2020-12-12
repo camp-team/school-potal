@@ -1,4 +1,7 @@
-<div class="list-container mat-elevation-z8" *ngIf="dataSource; else loading">
+<div
+  class="container container--editor-article-list mat-elevation-z8"
+  *ngIf="dataSource; else loading"
+>
   <table mat-table [dataSource]="dataSource">
     <ng-container matColumnDef="number">
       <th mat-header-cell *matHeaderCellDef>No.</th>
