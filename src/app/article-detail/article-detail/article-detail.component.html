@@ -1,4 +1,4 @@
-<div *ngIf="article$ | async as article; else loading" class="article">
+<div *ngIf="article$ | async as article; else loading">
   <app-hero [article]="article"></app-hero>
 
   <div class="container container--article-detail">
