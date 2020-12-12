@@ -118,7 +118,9 @@
         class="search-box__form"
         (ngSubmit)="routeSearch(searchControl.value)"
       >
+        <label for="search"></label>
         <input
+          #search
           class="search-box__input"
           type="text"
           placeholder="キーワード [ 例：渋谷、JavaScript、実践... ]"
