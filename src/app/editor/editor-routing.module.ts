@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { EditorComponent } from './editor/editor.component';
 import { EditorArticleListComponent } from './editor-article-list/editor-article-list.component';
-import { EditorMemberListComponent } from './editor-member-list/editor-member-list.component';
 import { EditorHomeComponent } from './editor-home/editor-home.component';
 import { EditorGuard } from '../guards/editor.guard';
 
