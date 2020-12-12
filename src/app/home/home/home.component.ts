@@ -7,7 +7,6 @@ import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { Observable } from 'rxjs';
 import { debounceTime, startWith } from 'rxjs/operators';
 import { User } from 'src/app/interfaces/users';
-import { SearchDialogComponent } from 'src/app/search-dialog/search-dialog.component';
 import { AuthService } from 'src/app/services/auth.service';
 import { SearchService } from 'src/app/services/search.service';
 import { SeoService } from 'src/app/services/seo.service';
@@ -91,16 +90,6 @@ export class HomeComponent implements OnInit {
       queryParamsHandling: 'merge',
       queryParams: { searchQuery },
     });
-  }
-
-  openSearchDialog() {
-    this.dialog
-      .open(SearchDialogComponent, {
-        maxWidth: '100vw',
-        minWidth: '30%',
-        autoFocus: false,
-      })
-      .afterClosed();
   }
 
   openRequestDialog() {

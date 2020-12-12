@@ -31,7 +31,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { SearchDialogComponent } from './search-dialog/search-dialog.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { QuillModule } from 'ngx-quill';
@@ -48,7 +47,6 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     HeaderComponent,
     NavigationComponent,
     SearchResultComponent,
-    SearchDialogComponent,
     ShellComponent,
     NotFoundComponent,
     FooterComponent,
