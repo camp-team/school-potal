@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SeoService } from 'src/app/services/seo.service';
 
 @Component({
   selector: 'app-editor-home',
@@ -19,7 +20,12 @@ export class EditorHomeComponent implements OnInit {
     },
   ];
 
-  constructor() {}
+  constructor(private seoService: SeoService) {
+    this.seoService.setTitleAndMeta(
+      '管理画面 | eduu',
+      'オーナーのダッシュボードページ'
+    );
+  }
 
   ngOnInit(): void {}
 

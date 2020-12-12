@@ -5,6 +5,7 @@ import { switchMap, map, tap } from 'rxjs/operators';
 import { UserService } from 'src/app/services/user.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/interfaces/users';
+import { SeoService } from 'src/app/services/seo.service';
 
 @Component({
   selector: 'app-account',
@@ -16,6 +17,12 @@ export class AccountComponent implements OnInit {
     switchMap((param) => {
       const profileId = param.get('uid');
       return this.userService.getUserData(profileId);
+    }),
+    tap((user) => {
+      this.seoService.setTitleAndMeta(
+        `${user.name} | eduu `,
+        `${user.profile}`
+      );
     })
   );
 
@@ -39,7 +46,8 @@ export class AccountComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
-    private authService: AuthService
+    private authService: AuthService,
+    private seoService: SeoService
   ) {}
 
   ngOnInit(): void {}

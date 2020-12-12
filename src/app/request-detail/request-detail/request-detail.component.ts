@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { map, switchMap, tap } from 'rxjs/operators';
 import { RequestDialogComponent } from 'src/app/shared/request-dialog/request-dialog.component';
 import { Request, RequestWithUser } from 'src/app/interfaces/request';
 import { User } from 'src/app/interfaces/users';
@@ -11,6 +11,7 @@ import { RequestService } from 'src/app/services/request.service';
 import { DeleteDialogComponent } from 'src/app/shared/delete-dialog/delete-dialog.component';
 import { fade } from 'src/app/animations';
 import { RequestCommentWithUser } from 'src/app/interfaces/request-comment';
+import { SeoService } from 'src/app/services/seo.service';
 
 @Component({
   selector: 'app-request-detail',
@@ -34,6 +35,12 @@ export class RequestDetailComponent implements OnInit {
     switchMap((param) => {
       const id = param.get('id');
       return this.requestService.getRequestWithUserById(id);
+    }),
+    tap((param) => {
+      this.seoService.setTitleAndMeta(
+        `${param.title}に関するコメント | eduu`,
+        `${param.body}`
+      );
     })
   );
 
@@ -47,7 +54,8 @@ export class RequestDetailComponent implements OnInit {
     private authservice: AuthService,
     private route: ActivatedRoute,
     private requestService: RequestService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private seoService: SeoService
   ) {}
 
   ngOnInit(): void {}

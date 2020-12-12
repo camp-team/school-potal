@@ -13,6 +13,7 @@ import { UiService } from '../services/ui.service';
 import { fade } from '../animations';
 import { FormControl } from '@angular/forms';
 import { debounceTime, startWith } from 'rxjs/operators';
+import { SeoService } from '../services/seo.service';
 
 @Component({
   selector: 'app-search-result',
@@ -46,7 +47,8 @@ export class SearchResultComponent implements OnInit, AfterViewInit {
     private searchService: SearchService,
     private route: ActivatedRoute,
     private router: Router,
-    public uiService: UiService
+    public uiService: UiService,
+    private seoService: SeoService
   ) {}
 
   ngOnInit(): void {
@@ -59,6 +61,12 @@ export class SearchResultComponent implements OnInit, AfterViewInit {
       };
       this.tagFilter = (param.get('tag') || '').split(',');
       this.categoryFilter = (param.get('category') || '').split(',');
+      if (this.searchQuery) {
+        this.seoService.setTitleAndMeta(
+          `${this.searchQuery}に関するスクール/オンラインサロン | eduu`,
+          `${this.searchQuery}に関する関連記事を表示するページ`
+        );
+      }
       this.searchArticles();
       this.isInit = false;
     });

@@ -6,6 +6,7 @@ import { RequestWithUser } from 'src/app/interfaces/request';
 import { User } from 'src/app/interfaces/users';
 import { AuthService } from 'src/app/services/auth.service';
 import { RequestService } from 'src/app/services/request.service';
+import { SeoService } from 'src/app/services/seo.service';
 
 @Component({
   selector: 'app-all-request',
@@ -29,8 +30,14 @@ export class AllRequestComponent implements OnInit, OnDestroy {
 
   constructor(
     private requestService: RequestService,
-    private authService: AuthService
-  ) {}
+    private authService: AuthService,
+    private seoService: SeoService
+  ) {
+    this.seoService.setTitleAndMeta(
+      '全ての質問リクエスト | eduu',
+      '全ての質問リクエストページ'
+    );
+  }
 
   ngOnInit(): void {
     this.subscriptions.add(
