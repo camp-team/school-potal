@@ -20,6 +20,7 @@ a {
 
 img {
   max-width: 100%;
+  vertical-align: bottom;
 }
 
 ol,
@@ -66,6 +67,12 @@ button {
       padding: 0 16px;
     }
   }
+  &--all-request {
+    padding: 24px 16px 120px;
+    @include sp {
+      padding: 24px 16px;
+    }
+  }
   &--editor {
     margin: 48px auto 120px;
     padding: 24px;
@@ -77,6 +84,10 @@ button {
       background: #fafafa;
       @include mat-elevation(0);
     }
+  }
+  &--editor-article-list {
+    margin: 48px auto;
+    background: #fff;
   }
   &--profile {
     margin: 48px auto 120px;
@@ -286,6 +297,10 @@ button {
   &.active {
     background: rgba(255, 255, 255, 0.04);
   }
+}
+
+.mat-drawer-content {
+  overflow: initial !important;
 }
 
 .mat-dialog-container {

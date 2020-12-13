@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SeoService } from 'src/app/services/seo.service';
 
 @Component({
   selector: 'app-legal',
@@ -6,7 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./legal.component.scss'],
 })
 export class LegalComponent implements OnInit {
-  constructor() {}
+  constructor(private seoService: SeoService) {
+    this.seoService.setTitleAndMeta(
+      '利用規約 | eduu ',
+      'サービスの利用規約ページ'
+    );
+  }
 
   ngOnInit(): void {}
 }

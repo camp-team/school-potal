@@ -15,7 +15,6 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
 import { MatRadioModule } from '@angular/material/radio';
 import { EditorArticleListComponent } from './editor-article-list/editor-article-list.component';
-import { EditorMemberListComponent } from './editor-member-list/editor-member-list.component';
 import { EditorHomeComponent } from './editor-home/editor-home.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -29,7 +28,6 @@ import { MatChipsModule } from '@angular/material/chips';
   declarations: [
     EditorComponent,
     EditorArticleListComponent,
-    EditorMemberListComponent,
     EditorHomeComponent,
     DeleteDialogComponent,
   ],

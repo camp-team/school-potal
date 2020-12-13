@@ -1,142 +1,140 @@
-<section>
-  <div class="article" *ngIf="article">
-    <div class="teacher" *ngIf="teachers$ | async as teachers; else blank">
-      <div class="teacher__heading">
-        <h3 class="teacher__title">講師・メンター</h3>
-        <button
-          mat-flat-button
-          class="teacher__more-btn"
-          (click)="openTeachersDialog(article)"
-        >
-          もっと見る
-        </button>
-      </div>
-
-      <div class="teacher__grid">
-        <div
-          @fade
-          *ngFor="let teacher of teachers | slice: 0:4; index as i"
-          class="teacher__head"
-        >
-          <figure class="teacher__avatar" (mouseover)="isActiveTeacher(i)">
-            <img src="{{ teacher.profileImageUrl }}" alt="" />
-          </figure>
-          <a
-            href="https://twitter.com/messages/compose?recipient_id={{
-              teacher.twitterUid
-            }}&ref_src=twsrc%5Etfw"
-            mat-mini-fab
-            color=""
-            class="teacher__btn"
-            ><mat-icon>send</mat-icon></a
-          >
-          <ng-container *ngIf="teachers[selectedTeacherNum] === teachers[i]">
-            <span @fade class="teacher__active-sign"></span>
-          </ng-container>
-        </div>
-      </div>
-
-      <div *ngIf="teachers[selectedTeacherNum]">
-        <div @fade class="teacher__body">
-          <a
-            href="https://twitter.com/{{
-              teachers[selectedTeacherNum].screenName
-            }}"
-            target="_blank"
-            ><p class="teacher__name">
-              {{ teachers[selectedTeacherNum].name }}<br />
-              <span class="teacher__screen-name"
-                >@{{ teachers[selectedTeacherNum].screenName }}</span
-              >
-            </p>
-          </a>
-          <p class="teacher__description">
-            {{ teachers[selectedTeacherNum].description }}
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <ng-template #blank>
-      <p>
-        講師・メンターの登録がまだありません🙏
-      </p>
-    </ng-template>
-
-    <div class="feature">
-      <h3 class="feature__title">サービスの特徴</h3>
-      <div class="feature__body" *ngFor="let feature of features; index as i">
-        <mat-icon class="feature__icon">check_circle_outline</mat-icon>
-        <div class="feature__text">
-          {{ article.features[i] }}
-        </div>
-      </div>
-    </div>
-
-    <ng-container *ngIf="article.topics">
-      <div class="topics">
-        <h3 class="topics__title">トピックス</h3>
-        <div class="topics__body">
-          <quill-view-html [content]="article.topics" theme="snow">
-          </quill-view-html>
-        </div>
-      </div>
-    </ng-container>
-
-    <div class="plan">
-      <div class="plan__head-wrap">
-        <div class="plan__head">
-          <h3 class="plan__title">プラン/コース</h3>
-          <p><small>※最新の情報ではない可能性があります。</small></p>
-        </div>
-        <button mat-icon-button [matMenuTriggerFor]="menu">
-          <mat-icon class="mat-18">more_vert</mat-icon>
-        </button>
-        <mat-menu #menu="matMenu">
-          <a
-            href="https://twitter.com/messages/compose?recipient_id=4912264663&ref_src=twsrc%5Etfw"
-            target="_blank"
-            mat-menu-item
-            ><mat-icon>flag</mat-icon>報告</a
-          >
-        </mat-menu>
-      </div>
-
-      <div
-        class="plan-item"
-        *ngFor="let plan of article.plans; index as i"
-        (click)="isOpen[i] = !isOpen[i]"
+<ng-container *ngIf="article">
+  <div class="teacher" *ngIf="teachers$ | async as teachers; else blank">
+    <div class="teacher__heading">
+      <h3 class="teacher__title">講師・メンター</h3>
+      <button
+        mat-flat-button
+        class="teacher__more-btn"
+        (click)="openTeachersDialog(article)"
       >
-        <mat-divider></mat-divider>
-        <div class="plan-item__wrap">
-          <div class="plan-item__head">
-            <mat-icon class="plan-item__icon">add</mat-icon>
-            <p class="plan-item__name">{{ article.plans[i].planName }}</p>
-          </div>
-          <div class="plan-item__body">
-            <span class="plan-item__spacer"></span>
-            <p class="plan-item__description" [@openClose]="isOpen[i]">
-              {{ article.plans[i].planBody }}
-            </p>
-            <span class="plan-item__spacer"></span>
-            <p class="plan-item__plice">¥{{ article.plans[i].plice }}</p>
-          </div>
-        </div>
+        もっと見る
+      </button>
+    </div>
+
+    <div class="teacher__grid">
+      <div
+        @fade
+        *ngFor="let teacher of teachers | slice: 0:4; index as i"
+        class="teacher__head"
+      >
+        <figure class="teacher__avatar" (mouseover)="isActiveTeacher(i)">
+          <img src="{{ teacher.profileImageUrl }}" alt="" />
+        </figure>
+        <a
+          href="https://twitter.com/messages/compose?recipient_id={{
+            teacher.twitterUid
+          }}&ref_src=twsrc%5Etfw"
+          mat-mini-fab
+          color=""
+          class="teacher__btn"
+          ><mat-icon>send</mat-icon></a
+        >
+        <ng-container *ngIf="teachers[selectedTeacherNum] === teachers[i]">
+          <span @fade class="teacher__active-sign"></span>
+        </ng-container>
       </div>
     </div>
 
-    <div class="link-button" #target>
-      <a mat-flat-button href="{{ article.serviceURL }}" target="_blank">
-        {{ article.name }} を見てみる
-      </a>
-    </div>
-
-    <div class="review">
-      <h3 class="review__title">レビュー</h3>
-      <app-comment-list
-        *ngFor="let comment of comments$ | async as comments"
-        [comment]="comment"
-      ></app-comment-list>
+    <div *ngIf="teachers[selectedTeacherNum]">
+      <div @fade class="teacher__body">
+        <a
+          href="https://twitter.com/{{
+            teachers[selectedTeacherNum].screenName
+          }}"
+          target="_blank"
+          ><p class="teacher__name">
+            {{ teachers[selectedTeacherNum].name }}<br />
+            <span class="teacher__screen-name"
+              >@{{ teachers[selectedTeacherNum].screenName }}</span
+            >
+          </p>
+        </a>
+        <p class="teacher__description">
+          {{ teachers[selectedTeacherNum].description }}
+        </p>
+      </div>
     </div>
   </div>
-</section>
+
+  <ng-template #blank>
+    <p>
+      講師・メンターの登録がまだありません🙏
+    </p>
+  </ng-template>
+
+  <div class="feature">
+    <h3 class="feature__title">サービスの特徴</h3>
+    <div class="feature__body" *ngFor="let feature of features; index as i">
+      <mat-icon class="feature__icon">check_circle_outline</mat-icon>
+      <div class="feature__text">
+        {{ article.features[i] }}
+      </div>
+    </div>
+  </div>
+
+  <ng-container *ngIf="article.topics">
+    <div class="topics">
+      <h3 class="topics__title">トピックス</h3>
+      <div class="topics__body">
+        <quill-view-html [content]="article.topics" theme="snow">
+        </quill-view-html>
+      </div>
+    </div>
+  </ng-container>
+
+  <div class="plan">
+    <div class="plan__head-wrap">
+      <div class="plan__head">
+        <h3 class="plan__title">プラン/コース</h3>
+        <p><small>※最新の情報ではない可能性があります。</small></p>
+      </div>
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="メニュー">
+        <mat-icon class="mat-18">more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <a
+          href="https://twitter.com/messages/compose?recipient_id=4912264663&ref_src=twsrc%5Etfw"
+          target="_blank"
+          mat-menu-item
+          ><mat-icon>flag</mat-icon>報告</a
+        >
+      </mat-menu>
+    </div>
+
+    <div
+      class="plan-item"
+      *ngFor="let plan of article.plans; index as i"
+      (click)="isOpen[i] = !isOpen[i]"
+    >
+      <mat-divider></mat-divider>
+      <div class="plan-item__wrap">
+        <div class="plan-item__head">
+          <mat-icon class="plan-item__icon">add</mat-icon>
+          <p class="plan-item__name">{{ article.plans[i].planName }}</p>
+        </div>
+        <div class="plan-item__body">
+          <span class="plan-item__spacer"></span>
+          <p class="plan-item__description" [@openClose]="isOpen[i]">
+            {{ article.plans[i].planBody }}
+          </p>
+          <span class="plan-item__spacer"></span>
+          <p class="plan-item__plice">¥{{ article.plans[i].plice }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="link-button" #target>
+    <a mat-flat-button href="{{ article.serviceURL }}" target="_blank">
+      {{ article.name }} を見てみる
+    </a>
+  </div>
+
+  <div class="review">
+    <h3 class="review__title">レビュー</h3>
+    <app-comment-list
+      *ngFor="let comment of comments$ | async as comments"
+      [comment]="comment"
+    ></app-comment-list>
+  </div>
+</ng-container>

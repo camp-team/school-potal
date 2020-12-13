@@ -1,9 +1,5 @@
 @import 'mixins';
 
-.hero {
-  z-index: 0;
-}
-
 .grid {
   display: grid;
   grid-template-columns: 1fr 360px;

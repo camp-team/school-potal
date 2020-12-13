@@ -2,30 +2,8 @@
 @import '~@angular/material/theming';
 @import 'material-custom';
 
-.article {
-  max-width: 100%;
-}
-
 mat-divider {
   margin-bottom: 24px;
-}
-
-p {
-  display: inline-block;
-}
-
-.link-button a {
-  display: block;
-  width: 60%;
-  border-radius: 4px;
-  margin: 48px auto;
-  padding: 8px 16px;
-  background: linear-gradient(60deg, #40c4ff, #00a1dd);
-  color: #fff;
-  @include sp {
-    width: 80%;
-    margin: 16px auto 24px;
-  }
 }
 
 .teacher {
@@ -36,6 +14,7 @@ p {
   &__grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
     margin-bottom: 24px;
     @include sp {
       grid-template-columns: 1fr 1fr 1fr;
@@ -62,8 +41,8 @@ p {
     position: relative;
   }
   &__avatar {
-    width: 120px;
-    height: 120px;
+    max-width: 120px;
+    max-height: 120px;
     border-radius: 50%;
     overflow: hidden;
     margin-bottom: 16px;
@@ -80,7 +59,11 @@ p {
     color: #fff;
     position: absolute;
     bottom: 8px;
-    left: 100px;
+    right: 56px;
+    @include sp {
+      bottom: 0;
+      right: -16px;
+    }
     &:hover {
       background: #2aa1f1;
     }
@@ -216,6 +199,20 @@ p {
   }
   &__plice {
     color: #2aa1f1;
+  }
+}
+
+.link-button a {
+  display: block;
+  width: 60%;
+  border-radius: 4px;
+  margin: 48px auto;
+  padding: 8px 16px;
+  background: linear-gradient(60deg, #40c4ff, #00a1dd);
+  color: #fff;
+  @include sp {
+    width: 80%;
+    margin: 16px auto 24px;
   }
 }
 

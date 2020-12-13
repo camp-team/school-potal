@@ -3,7 +3,7 @@ import { ArticleService } from 'src/app/services/article.service';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { Article } from 'src/app/interfaces/article';
-import { map, switchMap } from 'rxjs/operators';
+import { map, switchMap, take } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { Teacher } from 'src/app/interfaces/teacher';
 import { AuthService } from 'src/app/services/auth.service';
@@ -63,8 +63,10 @@ export class ArticleComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.teachers$.subscribe((teachers) => (this.teachers = teachers));
-    this.article$.subscribe((article) => {
+    this.teachers$
+      .pipe(take(1))
+      .subscribe((teachers) => (this.teachers = teachers));
+    this.article$.pipe(take(1)).subscribe((article) => {
       this.article.plans = article.plans;
       this.article.plans.forEach(() => {
         this.isOpen.push(false);

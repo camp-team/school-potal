@@ -1,69 +1,64 @@
-<div class="wrapper">
-  <div class="container">
-    <div class="title">
-      <h2>＼ Request list ／</h2>
-      <p>コメント募集中の質問</p>
-    </div>
+<div class="container container--all-request">
+  <div class="title">
+    <h2 class="title__main">＼ Request list ／</h2>
+    <p class="title__sub">コメント募集中の質問</p>
+  </div>
 
-    <ng-container *ngIf="requests">
-      <div @fade *ngFor="let request of requests">
-        <div class="request">
-          <div class="request__heading">
-            <button
-              class="request__photo"
-              [style.background-image]="'url(' + request.user.photoURL + ')'"
-              routerLink="/user/{{ request.user?.uid }}"
-            ></button>
-            <p class="request__name">
-              {{ request.user.name }}
+  <ng-container *ngIf="requests">
+    <div @fade *ngFor="let request of requests">
+      <div class="request">
+        <div class="request__heading">
+          <button
+            class="request__photo"
+            [style.background-image]="'url(' + request.user.photoURL + ')'"
+            routerLink="/user/{{ request.user?.uid }}"
+          ></button>
+          <p class="request__name">
+            {{ request.user.name }}
+          </p>
+        </div>
+
+        <div class="request__main">
+          <h3 class="request__title">{{ request.title }}</h3>
+          <p class="request__body">{{ request.body }}</p>
+
+          <div class="request__description">
+            <p class="request__date">
+              <mat-icon>schedule</mat-icon
+              >{{ request.createdAt.toDate() | date: 'yyyy/MM/dd HH:mm' }}
+              投稿
+            </p>
+            <p class="request__category">
+              <mat-icon>local_offer</mat-icon>{{ request.category }}
             </p>
           </div>
+        </div>
 
-          <div class="request__main">
-            <h3 class="request__title">{{ request.title }}</h3>
-            <p class="request__body">{{ request.body }}</p>
-
-            <div class="request__description">
-              <p class="request__date">
-                <mat-icon>schedule</mat-icon
-                >{{ request.createdAt.toDate() | date: 'yyyy/MM/dd HH:mm' }}
-                投稿
-              </p>
-              <p class="request__category">
-                <mat-icon>local_offer</mat-icon>{{ request.category }}
-              </p>
-            </div>
+        <div class="request__action">
+          <div class="request__comment">
+            <mat-icon>comment</mat-icon>
+            <p>{{ request.commentCount }}件</p>
           </div>
-
-          <div class="request__action">
-            <div class="request__comment">
-              <p>コメント</p>
-              <mat-icon>comment</mat-icon>
-              <p>{{ request.commentCount }}件</p>
-            </div>
-            <a
-              routerLink="/request-detail/{{ request.id }}"
-              class="request__btn"
-              >詳細を見る</a
-            >
-          </div>
+          <a routerLink="/request-detail/{{ request.id }}" class="request__btn"
+            >詳細を見る</a
+          >
         </div>
       </div>
-    </ng-container>
+    </div>
+  </ng-container>
 
-    <div
-      infiniteScroll
-      [infiniteScrollDistance]="1"
-      [infiniteScrollThrottle]="1000"
-      (scrolled)="getRequestsLimited()"
-    ></div>
+  <div
+    infiniteScroll
+    [infiniteScrollDistance]="1"
+    [infiniteScrollThrottle]="1000"
+    (scrolled)="getRequestsLimited()"
+  ></div>
 
-    <ng-container *ngIf="isloading">
-      <mat-progress-spinner
-        mode="indeterminate"
-        color="primary"
-        [diameter]="40"
-      ></mat-progress-spinner>
-    </ng-container>
-  </div>
+  <ng-container *ngIf="isloading">
+    <mat-progress-spinner
+      mode="indeterminate"
+      color="primary"
+      [diameter]="40"
+    ></mat-progress-spinner>
+  </ng-container>
 </div>

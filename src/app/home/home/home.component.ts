@@ -7,9 +7,9 @@ import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { Observable } from 'rxjs';
 import { debounceTime, startWith } from 'rxjs/operators';
 import { User } from 'src/app/interfaces/users';
-import { SearchDialogComponent } from 'src/app/search-dialog/search-dialog.component';
 import { AuthService } from 'src/app/services/auth.service';
 import { SearchService } from 'src/app/services/search.service';
+import { SeoService } from 'src/app/services/seo.service';
 import { RequestDialogComponent } from 'src/app/shared/request-dialog/request-dialog.component';
 
 @Component({
@@ -52,8 +52,14 @@ export class HomeComponent implements OnInit {
     private dialog: MatDialog,
     private authService: AuthService,
     private searchService: SearchService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private seoService: SeoService
+  ) {
+    this.seoService.setTitleAndMeta(
+      '新着スクール・オンラインサロン・質問リクエスト一覧 | eduu',
+      '新着スクールや新着オンラインサロン、ユーザーから寄せられた質問リクエスト一覧ページ'
+    );
+  }
 
   autoplayStop() {
     this.config.autoplay = false;
@@ -84,16 +90,6 @@ export class HomeComponent implements OnInit {
       queryParamsHandling: 'merge',
       queryParams: { searchQuery },
     });
-  }
-
-  openSearchDialog() {
-    this.dialog
-      .open(SearchDialogComponent, {
-        maxWidth: '100vw',
-        minWidth: '30%',
-        autoFocus: false,
-      })
-      .afterClosed();
   }
 
   openRequestDialog() {

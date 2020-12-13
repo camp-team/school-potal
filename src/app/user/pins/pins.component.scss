@@ -1,12 +1,5 @@
 @import 'mixins';
 
-.container {
-  height: 100vh;
-  @include sp {
-    padding: 8px;
-  }
-}
-
 .grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
@@ -97,7 +97,7 @@ export class ActionsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.article$.subscribe((article) => {
+    this.article$.pipe(take(1)).subscribe((article) => {
       if (this.articleId !== article.id) {
         this.likeCount = article.likeCount;
         this.pinCount = article.pinCount;

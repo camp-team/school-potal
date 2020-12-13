@@ -55,6 +55,7 @@
   }
   &__title {
     font-size: 27px;
+    text-shadow: 0px 0px 8px rgba(#212121, 0.6);
     @include sp {
       font-size: 16px;
     }

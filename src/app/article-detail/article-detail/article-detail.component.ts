@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Article } from 'src/app/interfaces/article';
 import { ArticleService } from 'src/app/services/article.service';
 import { Observable } from 'rxjs';
-import { switchMap, tap, map } from 'rxjs/operators';
+import { switchMap, tap, map, take } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { UiService } from 'src/app/services/ui.service';
+import { SeoService } from 'src/app/services/seo.service';
+import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-article-detail',
@@ -22,7 +24,16 @@ export class ArticleDetailComponent implements OnInit {
 
   article$: Observable<Article> = this.articleId$.pipe(
     switchMap((id) => {
-      return this.articleService.getArticle(id);
+      return this.articleService.getArticle(id).pipe(
+        tap((article) => {
+          this.seoService.setTitleAndMeta(`${article.title} | eduu`);
+          this.meta.addTags([
+            { property: 'og:title', content: article.title },
+            { name: 'description', content: article.features.join(',') },
+            { property: 'og:image', content: article.thumbnailURL },
+          ]);
+        })
+      );
     }),
     tap(() => this.uiService.toggleLoading(false))
   );
@@ -30,10 +41,12 @@ export class ArticleDetailComponent implements OnInit {
   constructor(
     private articleService: ArticleService,
     private route: ActivatedRoute,
-    private uiService: UiService
+    private uiService: UiService,
+    private seoService: SeoService,
+    private meta: Meta
   ) {
     this.uiService.toggleLoading(true);
-    this.articleId$.subscribe((id) => (this.articleId = id));
+    this.articleId$.pipe(take(1)).subscribe((id) => (this.articleId = id));
   }
 
   ngOnInit(): void {}
