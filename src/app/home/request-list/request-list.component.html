@@ -20,7 +20,7 @@
           <div class="request__heading">
             <button
               class="request__photo"
-              [style.background-image]="'url(' + request.user.photoURL + ')'"
+              [style.background-image]="'url(' + request.user?.photoURL + ')'"
               routerLink="/user/{{ request.user?.uid }}"
             ></button>
           </div>
