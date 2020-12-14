@@ -18,3 +18,5 @@ export { countUpLiked, countDownLiked } from './like.function';
 export { countUpPin, countDownPin } from './pin.function';
 
 export { sendEmailForAuthApply } from './sendgrid.function';
+
+export { backup } from './backup.function';
