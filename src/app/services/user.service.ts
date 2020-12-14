@@ -37,28 +37,21 @@ export class UserService {
     return this.db.doc<User>(`users/${uid}`).valueChanges();
   }
 
-  updateUser(
+  async updateUser(
     user: Omit<User, 'photoURL' | 'createdAt' | 'isAdmin' | 'plan' | 'email'>
   ) {
-    return this.db
-      .doc<User>(`users/${user.uid}`)
-      .update({
-        ...user,
-        updatedAt: firestore.Timestamp.now(),
-      })
-      .then(() => {
-        this.snackBar.open('ユーザー情報を更新しました');
-        this.router.navigate(['/user', `${user.uid}`]);
-      });
+    await this.db.doc<User>(`users/${user.uid}`).update({
+      ...user,
+      updatedAt: firestore.Timestamp.now(),
+    });
+    this.snackBar.open('ユーザー情報を更新しました');
+    this.router.navigate(['/user', `${user.uid}`]);
   }
 
-  deleteUser(user: User) {
-    return this.db
-      .doc(`users/${user.uid}`)
-      .delete()
-      .then(() => {
-        this.snackBar.open('アカウントを削除しました');
-      });
+  async deleteUser(user: User): Promise<void> {
+    await this.db.doc(`users/${user.uid}`).delete();
+    this.snackBar.open('アカウントを削除しました');
+    this.router.navigateByUrl('/');
   }
 
   joinAsStudent(articleId: string, uid: string) {
