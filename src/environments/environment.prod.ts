@@ -1,13 +1,16 @@
 export const environment = {
   production: true,
+  algolia: {
+    appId: 'UPS1QL7MTO',
+    searchKey: 'c442908d021a93f764fbec928abdba56',
+  },
   firebase: {
-    apiKey: 'AIzaSyDp1KDhs5NvmdsItuBoGV9YRtN3tDzlb6E',
-    authDomain: 'school-potal-aaf0b.firebaseapp.com',
-    databaseURL: 'https://school-potal-aaf0b.firebaseio.com',
-    projectId: 'school-potal-aaf0b',
-    storageBucket: 'school-potal-aaf0b.appspot.com',
-    messagingSenderId: '286244257920',
-    appId: '1:286244257920:web:7cdf70fc84176cbf5f2665',
-    measurementId: 'G-0H2YHQ47YQ',
+    apiKey: 'AIzaSyBLE3vnt3w554JhERAbIA93NgdvPVbek3E',
+    authDomain: 'eduu-50fbf.firebaseapp.com',
+    projectId: 'eduu-50fbf',
+    storageBucket: 'eduu-50fbf.appspot.com',
+    messagingSenderId: '981024234635',
+    appId: '1:981024234635:web:b45b00d6a751f78b30488e',
+    measurementId: 'G-MYC7VK8J4M',
   },
 };
