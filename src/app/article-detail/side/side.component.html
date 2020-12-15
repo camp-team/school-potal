@@ -9,7 +9,20 @@
         routerLink="/article-detail/{{ article?.id }}"
         class="article__thumbnail"
       >
-        <img [src]="article?.thumbnailURL" alt="" />
+        <picture @fade class="article__thumbnail">
+          <source
+            media="(min-width: 1366px)"
+            [srcset]="article?.thumbnailURL"
+            sizes="100vw"
+            alt=""
+          />
+          <img
+            media="(min-width: 640px)"
+            [srcset]="article?.spThumbnailURL"
+            sizes="100vw"
+            alt=""
+          />
+        </picture>
       </a>
       <div class="article__body">
         <a class="article__title">{{ article?.title }}</a>
