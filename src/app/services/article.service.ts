@@ -24,15 +24,19 @@ export class ArticleService {
   ) {}
 
   async createArtile(
-    article: Omit<Article, 'id' | 'thumbnailURL' | 'logo' | 'updatedAt'>,
+    article: Omit<
+      Article,
+      'id' | 'thumbnailURL' | 'spThumbnailURL' | 'logo' | 'updatedAt'
+    >,
     images: {
       thumbnailURL: File;
+      spThumbnailURL: File;
       logo: File;
     }
   ) {
     const id = this.db.createId();
-    const urls = await this.uploadImage(id, Object.values(images));
-    const [thumbnailURL, logo] = urls;
+    const urls = await this.uploadImages(id, Object.values(images));
+    const [thumbnailURL, spThumbnailURL, logo] = urls;
     return this.db
       .doc<Article>(`articles/${id}`)
       .set({
@@ -40,6 +44,7 @@ export class ArticleService {
         id,
         updatedAt: firestore.Timestamp.now(),
         thumbnailURL,
+        spThumbnailURL,
         logo,
       })
       .then(() => {
@@ -51,21 +56,6 @@ export class ArticleService {
   setTeacherData(articleId: string, teacherIds: string[]) {
     const setFn = this.fns.httpsCallable('setTeacherDataById');
     return setFn({ articleId, teacherIds }).toPromise();
-  }
-
-  async uploadImage(id: string, files: File[]): Promise<string[]> {
-    return Promise.all(
-      files.map((file, index) => {
-        const ref = this.storage.ref(`articles/${id}-${index}`);
-        return ref.put(file);
-      })
-    ).then(async (tasks) => {
-      const urls = [];
-      for (const task of tasks) {
-        urls.push(await task.ref.getDownloadURL());
-      }
-      return urls;
-    });
   }
 
   getArticle(articleId: string): Observable<Article> {
@@ -117,10 +107,37 @@ export class ArticleService {
       .valueChanges();
   }
 
+  async uploadImages(id: string, files: Array<File | null>): Promise<string[]> {
+    return Promise.all(
+      files.map((file, index) => {
+        if (file == null) {
+          return null;
+        }
+        const ref = this.storage.ref(`articles/${id}-${index}`);
+        return ref.put(file);
+      })
+    ).then(async (tasks) => {
+      const urls = [];
+      for (const task of tasks) {
+        urls.push(await task?.ref.getDownloadURL());
+      }
+      return urls;
+    });
+  }
+
+  async uploadImage(id: string, file: File): Promise<string> {
+    const result = await this.storage.ref(`articles/${id}`).put(file);
+    return await result.ref.getDownloadURL();
+  }
+
   async updateArticle(
-    article: Omit<Article, 'thumbnailURL' | 'logo' | 'createdAt'>,
+    article: Omit<
+      Article,
+      'thumbnailURL' | 'spThumbnailURL' | 'logo' | 'createdAt'
+    >,
     images?: {
       thumbnailURL?: File;
+      spThumbnailURL?: File;
       logo?: File;
     }
   ): Promise<void> {
@@ -138,16 +155,19 @@ export class ArticleService {
           this.setTeacherData(article.id, teacherIds);
         });
     } else {
-      const urls = await this.uploadImage(
+      const urls: Array<string | null> = await this.uploadImages(
         article.id,
-        Object.values(images).filter((item) => item !== null)
+        Object.values(images)
       );
-      const [thumbnailURL, logo]: Array<string | null> = urls;
+      const [thumbnailURL, spThumbnailURL, logoURL]: Array<
+        string | null
+      > = urls;
 
       const data = {
         ...article,
         thumbnailURL,
-        logo,
+        spThumbnailURL,
+        logoURL,
       };
 
       Object.keys(data).forEach((key) => {
@@ -170,8 +190,8 @@ export class ArticleService {
     }
   }
 
-  deleteArticle(articleId: string): Promise<void> {
-    return this.db
+  async deleteArticle(articleId: string): Promise<void> {
+    return await this.db
       .doc(`articles/${articleId}`)
       .delete()
       .then(() => {

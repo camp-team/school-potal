@@ -72,6 +72,40 @@
           </p>
         </div>
       </div>
+      <div class="image__main">
+        <h2 class="block-title">メイン画像(SP)</h2>
+        <div class="image__main-img image__main-img--sp">
+          <img
+            *ngIf="srcs?.spThumbnailURL || article?.spThumbnailURL"
+            [src]="srcs.spThumbnailURL || article.spThumbnailURL"
+            alt=""
+          />
+          <p class="image__note" *ngIf="!srcs?.spThumbnailURL">
+            ※ 640px x 360px
+          </p>
+          <input
+            type="file"
+            style="display: none;"
+            #spThumbnailInput
+            (change)="setImage($event, 'spThumbnailURL')"
+            accept="image/png, image/jpeg"
+          />
+          <button
+            type="button"
+            (click)="spThumbnailInput.click()"
+            mat-mini-fab
+            color="primary"
+          >
+            <mat-icon>add_photo_alternate</mat-icon>
+          </button>
+          <p
+            class="image__file-name"
+            *ngIf="!srcs?.spThumbnailURL && !article?.spThumbnailURL"
+          >
+            ファイルが選択されていません
+          </p>
+        </div>
+      </div>
 
       <div class="image__logo">
         <h2 class="block-title">サービスロゴ</h2>
