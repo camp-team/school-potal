@@ -26,7 +26,7 @@ export class ArticleDetailComponent implements OnInit {
     switchMap((id) => {
       return this.articleService.getArticle(id).pipe(
         tap((article) => {
-          this.seoService.setTitleAndMeta(`${article.title} | eduu`);
+          this.seoService.setTitleAndMeta(`${article?.title} | eduu`);
           this.meta.addTags([
             { property: 'og:title', content: article.title },
             { name: 'description', content: article.features.join(',') },
