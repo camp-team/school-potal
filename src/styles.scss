@@ -194,13 +194,13 @@ button {
 .swiper-button-next-school,
 .swiper-button-next-salon {
   &:hover {
-    transform: translateX(8px);
+    transform: translateX(2px);
   }
 }
 .swiper-button-prev-school,
 .swiper-button-prev-salon {
   &:hover {
-    transform: translateX(-8px);
+    transform: translateX(-2px);
   }
 }
 
@@ -317,6 +317,10 @@ button {
   @include sp {
     font-size: 13px;
   }
+}
+
+.mat-chip.mat-standard-chip::after {
+  background: rgba(0, 0, 0, 0.16);
 }
 
 .ql-container {
