@@ -8,6 +8,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { firestore } from 'firebase';
 import { Router } from '@angular/router';
 import { Student, StudentWithUser } from '../interfaces/student';
+import { AngularFireFunctions } from '@angular/fire/functions';
 
 @Injectable({
   providedIn: 'root',
@@ -30,7 +31,8 @@ export class UserService {
     private db: AngularFirestore,
     private afAuth: AngularFireAuth,
     private snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private fnc: AngularFireFunctions
   ) {}
 
   getUserData(uid: string) {
@@ -49,9 +51,13 @@ export class UserService {
   }
 
   async deleteUser(user: User): Promise<void> {
-    await this.db.doc(`users/${user.uid}`).delete();
-    this.snackBar.open('アカウントを削除しました');
-    this.router.navigateByUrl('/');
+    const callable = this.fnc.httpsCallable('deleteAfUser');
+    return callable(user.uid)
+      .toPromise()
+      .then(() => {
+        this.snackBar.open('ご利用ありがとうございました');
+        this.router.navigateByUrl('/');
+      });
   }
 
   joinAsStudent(articleId: string, uid: string) {
