@@ -1,4 +1,4 @@
-<ng-container *ngIf="user$ | async as user">
+<ng-container *ngIf="user$ | async as user; else default">
   <div class="heading">
     <mat-icon class="heading__icon">help</mat-icon>
     <p class="heading__body">
@@ -83,3 +83,16 @@
     </div>
   </form>
 </ng-container>
+
+<ng-template #default>
+  <div class="login">
+    <p class="login__head">質問するにはログインが必要です</p>
+    <button class="login__btn login__btn--google" (click)="googleLogin()">
+      Google
+    </button>
+    <p class="login__text">または</p>
+    <button class="login__btn login__btn--twitter" (click)="twitterLogin()">
+      Twitter
+    </button>
+  </div>
+</ng-template>
