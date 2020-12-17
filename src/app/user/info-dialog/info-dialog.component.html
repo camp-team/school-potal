@@ -1,6 +1,6 @@
 <h1 class="title" matDialogTitle>承認申請</h1>
 
-<ng-container *ngIf="user$ | async as user">
+<ng-container *ngIf="user$ | async as user; else default">
   <form class="info" [formGroup]="form" (ngSubmit)="submit(user.uid)">
     <div class="info__msg">
       <p>ページを作成するには運営の承認が必要です。</p>
@@ -60,3 +60,14 @@
     </mat-dialog-actions>
   </form>
 </ng-container>
+
+<ng-template #default>
+  <p>承認申請を行うにはログインが必要です</p>
+  <button class="card__login card__login--google" (click)="googleLogin()">
+    Google
+  </button>
+  <p>または</p>
+  <button class="card__login card__login--twitter" (click)="twitterLogin()">
+    Twitter
+  </button>
+</ng-template>
