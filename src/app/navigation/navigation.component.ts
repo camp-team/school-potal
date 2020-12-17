@@ -27,10 +27,12 @@ export class NavigationComponent implements OnInit {
   ngOnInit(): void {}
 
   routeCategoryFilter(category: string) {
-    this.router.navigate(['/search'], {
-      queryParamsHandling: 'merge',
-      queryParams: { category },
-    });
+    this.router
+      .navigate(['/search'], {
+        queryParamsHandling: 'merge',
+        queryParams: { category },
+      })
+      .then(() => this.toggleNav());
   }
 
   openInfoDialog(user: User) {
@@ -51,5 +53,9 @@ export class NavigationComponent implements OnInit {
         autoFocus: false,
       })
       .afterClosed();
+  }
+
+  toggleNav() {
+    this.uiService.toggleOpening();
   }
 }
