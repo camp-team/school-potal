@@ -1,6 +1,6 @@
 <div class="container" *ngIf="user$ | async">
-  <div class="grid" *ngIf="articles$ | async as articles; else loading">
-    <div class="article" *ngFor="let article of articles">
+  <div class="grid" *ngIf="articles$ | async as articles; else default">
+    <div class="article" @fade *ngFor="let article of articles">
       <a
         class="article__thumbnail"
         routerLink="/article-detail/{{ article.id }}"
@@ -29,9 +29,20 @@
     </div>
   </div>
 
-  <ng-template #loading>
+  <ng-template #default>
+    <div class="default">
+      <p class="default__text" *ngIf="!isloading">
+        ピン留めしているサービスはまだありません。
+      </p>
+      <p class="default__text">
+        気になるサービスをピン留めして、すぐチェックできるようにしましょう。
+      </p>
+    </div>
+  </ng-template>
+
+  <ng-container *ngIf="isloading">
     <div class="loading">
       <mat-spinner [diameter]="40"></mat-spinner>
     </div>
-  </ng-template>
+  </ng-container>
 </div>
