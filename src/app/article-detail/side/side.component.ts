@@ -4,14 +4,16 @@ import { ArticleService } from 'src/app/services/article.service';
 import { SearchIndex } from 'algoliasearch/lite';
 import { SearchService } from 'src/app/services/search.service';
 import { ActivatedRoute } from '@angular/router';
-import { switchMap, tap } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 import { UiService } from 'src/app/services/ui.service';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+import { fade } from 'src/app/animations';
 
 @Component({
   selector: 'app-side',
   templateUrl: './side.component.html',
   styleUrls: ['./side.component.scss'],
+  animations: [fade],
 })
 export class SideComponent implements OnInit {
   article: Article;
