@@ -22,6 +22,5 @@ export class ShellComponent implements OnInit {
 
   getScreenSize() {
     this.scrWidth = window.innerWidth;
-    console.log(this.scrWidth);
   }
 }

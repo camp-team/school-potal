@@ -54,8 +54,6 @@ export class SearchResultComponent implements OnInit {
       this.searchService.categoryFilter = (param.get('category') || '').split(
         ','
       );
-      console.log(this.searchService.tagFilter);
-      console.log(this.searchService.categoryFilter);
 
       if (this.searchQuery) {
         this.seoService.setTitleAndMeta(
