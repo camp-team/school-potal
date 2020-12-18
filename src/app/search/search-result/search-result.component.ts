@@ -1,19 +1,13 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
-import { SearchIndex } from 'algoliasearch/lite';
-import { SearchService } from '../services/search.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Article } from '../interfaces/article';
-import { UiService } from '../services/ui.service';
-import { fade } from '../animations';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { SearchIndex } from 'algoliasearch/lite';
 import { debounceTime, startWith } from 'rxjs/operators';
-import { SeoService } from '../services/seo.service';
+import { fade } from 'src/app/animations';
+import { Article } from 'src/app/interfaces/article';
+import { SearchService } from 'src/app/services/search.service';
+import { SeoService } from 'src/app/services/seo.service';
+import { UiService } from 'src/app/services/ui.service';
 
 @Component({
   selector: 'app-search-result',
@@ -21,33 +15,30 @@ import { SeoService } from '../services/seo.service';
   styleUrls: ['./search-result.component.scss'],
   animations: [fade],
 })
-export class SearchResultComponent implements OnInit, AfterViewInit {
-  @ViewChild('target') private elementRef: ElementRef;
+export class SearchResultComponent implements OnInit {
+  @Input() result: {
+    nbHits: number;
+    hits: any[];
+  };
+
   articles: Article[];
   searchQuery: string;
   searchControl: FormControl = new FormControl();
   index: SearchIndex = this.searchService.index.item;
-  result: {
-    nbHits: number;
-    hits: any[];
-  };
   nbPages: number;
-  tagFilter: string[];
-  categoryFilter: string[];
   searchOptions = [];
+  tagsFilter: string;
+  categoriesFilter: string;
 
   private page = 0;
   private maxPage: number;
   private requestOptions: any = {};
   private isInit = true;
-  private tagsFilter: string;
-  private categoriesFilter: string;
 
   constructor(
+    public uiService: UiService,
     private searchService: SearchService,
     private route: ActivatedRoute,
-    private router: Router,
-    public uiService: UiService,
     private seoService: SeoService
   ) {}
 
@@ -59,8 +50,13 @@ export class SearchResultComponent implements OnInit, AfterViewInit {
         page: 0,
         hitsPerPage: 6,
       };
-      this.tagFilter = (param.get('tag') || '').split(',');
-      this.categoryFilter = (param.get('category') || '').split(',');
+      this.searchService.tagFilter = (param.get('tag') || '').split(',');
+      this.searchService.categoryFilter = (param.get('category') || '').split(
+        ','
+      );
+      console.log(this.searchService.tagFilter);
+      console.log(this.searchService.categoryFilter);
+
       if (this.searchQuery) {
         this.seoService.setTitleAndMeta(
           `${this.searchQuery}に関するスクール/オンラインサロン | eduu`,
@@ -80,13 +76,11 @@ export class SearchResultComponent implements OnInit, AfterViewInit {
       });
   }
 
-  ngAfterViewInit(): void {
-    this.elementRef.nativeElement.focus();
-  }
-
   searchArticles() {
-    this.tagsFilter = this.tagFilter.map((tag) => `tags: ${tag}`).join(',');
-    this.categoriesFilter = this.categoryFilter
+    this.tagsFilter = this.searchService.tagFilter
+      .map((tag) => `tags: ${tag}`)
+      .join(',');
+    this.categoriesFilter = this.searchService.categoryFilter
       .map((category) => `category: ${category}`)
       .join(',');
     const searchOptions = {
@@ -113,18 +107,5 @@ export class SearchResultComponent implements OnInit, AfterViewInit {
         this.isInit ? 0 : 1000
       );
     }
-  }
-
-  setSearchQuery(value: string) {
-    this.searchControl.setValue(value, {
-      emitEvent: false,
-    });
-  }
-
-  routeSearch(searchQuery: string) {
-    this.router.navigate(['/search'], {
-      queryParamsHandling: 'merge',
-      queryParams: { searchQuery },
-    });
   }
 }

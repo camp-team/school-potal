@@ -1,66 +1,16 @@
 @import 'mixins';
 
-mat-divider {
-  max-width: 80%;
-  margin: 0 auto 120px;
-  @include sp {
-    margin: 0 auto 24px;
-  }
-}
-
 mat-progress-spinner {
   margin: 48px auto;
 }
 
-.search-box {
-  max-width: 80%;
-  display: flex;
-  align-items: center;
-  margin: 240px auto 0;
-  @include sp {
-    max-width: 90%;
-    margin: 24px auto 0;
-  }
-  &__word {
-    font-size: 32px;
-    @include sp {
-      font-size: 16px;
-    }
-  }
-  &__form {
-    flex: 1;
-    display: grid;
-    grid-template-columns: 1fr 40px;
-  }
-  &__input {
-    font-size: 32px;
-    padding: 0 0 0 8px;
-    background: inherit;
-    opacity: 0.6;
-    border: none;
-    outline: none;
-    @include sp {
-      font-size: 16px;
-    }
-  }
-  mat-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: grid;
-    place-content: center;
-    background: linear-gradient(60deg, #40c4ff, #00a1dd);
-    color: #fff;
-  }
-}
-
 .result {
-  margin-bottom: 120px;
+  margin-bottom: 240px;
   &__hits {
     text-align: center;
     font-size: 21px;
     font-weight: 500;
-    margin-bottom: 120px;
+    margin-bottom: 80px;
     @include sp {
       font-size: 16px;
       margin-bottom: 24px;
@@ -125,23 +75,35 @@ mat-progress-spinner {
     -webkit-line-clamp: 2;
     display: -webkit-box;
     padding: 0 16px;
+    @include sp {
+      font-size: 14px;
+    }
   }
   &__date {
     font-size: 13px;
     opacity: 0.38;
     margin-right: 8px;
+    @include sp {
+      font-size: 10px;
+    }
   }
   &__description {
     display: flex;
     align-items: center;
     padding: 8px 16px;
     border-top: 1px dashed #e4e4e4;
+    @include sp {
+      font-size: 10px;
+    }
   }
   &__category {
     border: none;
     border-radius: 3px;
     padding: 4px 8px;
     font-size: 13px;
+    @include sp {
+      font-size: 10px;
+    }
   }
   &__category-text {
     opacity: 0.38;
@@ -164,5 +126,9 @@ mat-progress-spinner {
 }
 
 .not-found {
-  max-width: 80%;
+  text-align: center;
+  &__img {
+    max-width: 240px;
+    margin: 0 auto;
+  }
 }
