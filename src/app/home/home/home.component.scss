@@ -25,7 +25,7 @@
     width: 100%;
     left: 1%;
     font-size: 32px;
-    padding: 0;
+    padding: 4px;
     margin: 0;
   }
   &__sub {
@@ -37,7 +37,7 @@
     @include sp {
       font-size: 16px;
       background: initial;
-      padding: 0;
+      padding: 4px;
       margin: 0;
     }
   }
@@ -64,7 +64,8 @@
   @include sp {
     transform: translateY(0);
     padding: 0 8px;
-    margin-top: 8px;
+    margin-top: 16px;
+    height: 32px;
     @include mat-elevation(0);
   }
   &__head {
@@ -85,8 +86,10 @@
     height: 48px;
     background: #fff;
     color: #424242;
-    border: 1px solid #d6ceb4;
-    border-radius: 2px;
+    border-top: 1px solid #d6ceb4;
+    border-left: 1px solid #d6ceb4;
+    border-bottom: 1px solid #d6ceb4;
+    border-radius: 2px 0 0 2px;
     @include sp {
       width: 100%;
     }
@@ -103,9 +106,12 @@
     height: 50px;
     background: linear-gradient(60deg, #40c4ff, #00a1dd);
     color: #fff;
-    border-radius: 2px;
+    border-radius: 0 2px 2px 0;
     text-align: center;
     letter-spacing: 8px;
+    @include sp {
+      width: 20%;
+    }
     span {
       display: inline-block;
       transform: translateX(4px);
