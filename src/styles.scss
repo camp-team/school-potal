@@ -137,7 +137,7 @@ button {
 
 .swiper-button-wrapper {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   padding-bottom: 16px;
 }
 
@@ -259,7 +259,6 @@ button {
 }
 
 .swiper-container {
-  padding: 0 16px !important;
   margin: 0 !important;
   display: flex !important;
 }
