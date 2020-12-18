@@ -26,7 +26,10 @@
     z-index: -1;
   }
   &__inner {
-    display: flex;
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 16px;
+    place-content: center;
     align-items: center;
     margin-bottom: 16px;
   }
@@ -36,6 +39,9 @@
     border-radius: 50%;
     margin-right: 16px;
     overflow: hidden;
+    display: grid;
+    place-content: center;
+    place-items: center;
     @include sp {
       width: 40px;
       height: 40px;
