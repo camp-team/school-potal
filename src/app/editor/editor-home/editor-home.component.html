@@ -1,26 +1,28 @@
-<nav mat-tab-nav-bar class="nav">
-  <a
-    mat-tab-link
-    *ngFor="let link of navLinks"
-    [routerLink]="link.path"
-    [routerLinkActiveOptions]="{ exact: true }"
-    routerLinkActive
-    #rla="routerLinkActive"
-    [active]="rla.isActive"
-  >
-    {{ link.label }}
-  </a>
-  <ng-container *ngIf="childData?.article">
+<ng-container *ngIf="user$ | async as user">
+  <nav mat-tab-nav-bar class="nav">
     <a
-      class="nav__edit"
       mat-tab-link
-      [routerLink]="childData?.article.id"
+      *ngFor="let link of navLinks"
+      [routerLink]="link.path"
+      [routerLinkActiveOptions]="{ exact: true }"
       routerLinkActive
       #rla="routerLinkActive"
       [active]="rla.isActive"
-      >記事編集</a
     >
-  </ng-container>
-</nav>
+      {{ link.label }}
+    </a>
+    <ng-container *ngIf="user.isAdmin">
+      <a
+        class="nav__edit"
+        mat-tab-link
+        [routerLink]="childData?.article.id"
+        routerLinkActive
+        #rla="routerLinkActive"
+        [active]="rla.isActive"
+        >記事編集</a
+      >
+    </ng-container>
+  </nav>
 
-<router-outlet (activate)="onReceive($event)"></router-outlet>
+  <router-outlet (activate)="onReceive($event)"></router-outlet>
+</ng-container>
