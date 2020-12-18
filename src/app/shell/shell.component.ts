@@ -9,12 +9,19 @@ import { UiService } from '../services/ui.service';
 })
 export class ShellComponent implements OnInit {
   opened$: Observable<boolean> = this.uiService.isOpen$;
-
+  scrWidth: any;
   constructor(private uiService: UiService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getScreenSize();
+  }
 
   toggleNav() {
     this.uiService.toggleOpening();
+  }
+
+  getScreenSize() {
+    this.scrWidth = window.innerWidth;
+    console.log(this.scrWidth);
   }
 }

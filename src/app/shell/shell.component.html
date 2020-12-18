@@ -5,7 +5,7 @@
     #sidenav
     [opened]="opened$ | async"
     fixedInViewport
-    [fixedTopGap]="72"
+    [fixedTopGap]="scrWidth > 640 ? 72 : 56"
     class="sidenav"
   >
     <app-navigation></app-navigation>
