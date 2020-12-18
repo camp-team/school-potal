@@ -29,7 +29,7 @@ export class ArticleDetailComponent implements OnInit {
           this.seoService.setTitleAndMeta(`${article?.title} | eduu`);
           this.meta.addTags([
             { property: 'og:title', content: article.title },
-            { name: 'description', content: article.features.join(',') },
+            { name: 'description', content: article.features?.join(',') },
             { property: 'og:image', content: article.thumbnailURL },
           ]);
         })
