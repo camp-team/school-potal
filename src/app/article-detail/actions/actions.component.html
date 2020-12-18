@@ -4,9 +4,14 @@
       <div class="grid-item__icon">
         <img src="assets/images/star.png" alt="" />
       </div>
-      <p class="grid-item__title" *ngIf="comments.length">
-        {{ comments.length }}人がレビュー済
-      </p>
+      <ng-container *ngIf="comments.length; else default">
+        <p class="grid-item__title">{{ comments.length }}人がレビュー済</p>
+      </ng-container>
+      <ng-template #default>
+        <p class="grid-item__title">
+          まだありません
+        </p>
+      </ng-template>
       <button
         class="grid-item__btn grid-item__btn--review"
         (click)="openReviewDialog()"
