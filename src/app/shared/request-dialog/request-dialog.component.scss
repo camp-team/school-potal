@@ -51,3 +51,51 @@
     }
   }
 }
+
+.login {
+  &__head {
+    text-align: center;
+    margin: 24px 0 48px;
+  }
+  &__text {
+    text-align: center;
+  }
+  &__btn {
+    display: block;
+    height: 48px;
+    width: 80%;
+    margin: 16px auto;
+    padding: 0 25px;
+    border-radius: 30px;
+    line-height: 48px;
+    color: #212121;
+    transition: ease-in-out 0.3s;
+    &--google {
+      border: 1px solid #212121;
+      @include sp {
+        border-left: 2px solid #4285f4;
+        border-top: 2px solid #db4437;
+        border-right: 2px solid #f4b400;
+        border-bottom: 2px solid #0f9d58;
+      }
+    }
+    &--twitter {
+      border: 1px solid #212121;
+      margin-bottom: 48px;
+      @include sp {
+        border: 2px solid #2aa1f1;
+      }
+    }
+    &--google:hover {
+      cursor: pointer;
+      border-left: 2px solid #4285f4;
+      border-top: 2px solid #db4437;
+      border-right: 2px solid #f4b400;
+      border-bottom: 2px solid #0f9d58;
+    }
+    &--twitter:hover {
+      cursor: pointer;
+      border: 2px solid #2aa1f1;
+    }
+  }
+}

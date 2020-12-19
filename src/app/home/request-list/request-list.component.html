@@ -1,8 +1,8 @@
 <div class="wrapper">
   <div class="container">
     <div class="title">
-      <h2 class="title__main">＼ Request list ／</h2>
-      <p class="title__sub">コメント募集中の質問</p>
+      <h2 class="title__main">＼ Question list ／</h2>
+      <p class="title__sub">みんなの質問</p>
     </div>
 
     <ng-container @fade *ngIf="requests$ | async as requests">
@@ -20,7 +20,7 @@
           <div class="request__heading">
             <button
               class="request__photo"
-              [style.background-image]="'url(' + request.user.photoURL + ')'"
+              [style.background-image]="'url(' + request.user?.photoURL + ')'"
               routerLink="/user/{{ request.user?.uid }}"
             ></button>
           </div>

@@ -17,6 +17,7 @@ export interface Article {
   type: 'school' | 'salon' | null;
   id?: string;
   thumbnailURL?: string;
+  spThumbnailURL?: string;
   logo?: string;
   teacherIds?: string[];
   tags?: string[];

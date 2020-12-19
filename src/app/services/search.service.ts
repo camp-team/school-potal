@@ -16,5 +16,8 @@ export class SearchService {
     popular: searchClient.initIndex('popular'),
   };
 
+  tagFilter: string[];
+  categoryFilter: string[];
+
   constructor() {}
 }

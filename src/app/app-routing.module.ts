@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { SearchResultComponent } from './search-result/search-result.component';
 import { ShellComponent } from './shell/shell.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthGuard } from './guards/auth.guard';
@@ -18,7 +17,8 @@ const routes: Routes = [
       },
       {
         path: 'search',
-        component: SearchResultComponent,
+        loadChildren: () =>
+          import('./search/search.module').then((m) => m.SearchModule),
       },
       {
         path: 'intl',
@@ -77,6 +77,7 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes, {
       scrollPositionRestoration: 'enabled',
+      anchorScrolling: 'enabled',
     }),
   ],
   exports: [RouterModule],

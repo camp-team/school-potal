@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable, combineLatest } from 'rxjs';
+import { Observable, combineLatest, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { Article } from '../interfaces/article';
 import { ArticleService } from './article.service';
@@ -56,6 +56,8 @@ export class PinService {
                 this.articleService.getArticle(item.articleId)
               )
             );
+          } else {
+            return of(null);
           }
         })
       );

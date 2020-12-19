@@ -12,9 +12,20 @@
       <swiper [config]="config" [(index)]="index">
         <div class="swiper-slide" *ngFor="let salon of salons">
           <a routerLink="/article-detail/{{ salon.id }}" class="article">
-            <figure @fade class="article__thumbnail">
-              <img [src]="salon.thumbnailURL" alt="" />
-            </figure>
+            <picture @fade class="article__thumbnail">
+              <source
+                media="(min-width: 1366px)"
+                [srcset]="salon.thumbnailURL"
+                sizes="100vw"
+                alt=""
+              />
+              <img
+                media="(min-width: 640px)"
+                [srcset]="salon.spThumbnailURL"
+                sizes="100vw"
+                alt=""
+              />
+            </picture>
 
             <div class="article__body">
               <div class="article__top">

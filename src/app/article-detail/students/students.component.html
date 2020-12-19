@@ -6,15 +6,15 @@
   <div class="student" *ngFor="let student of students | slice: 0:6">
     <a
       class="student__avatar"
-      [style.background-image]="'url(' + student.user.photoURL + ')'"
-      routerLink="/user/{{ student.user.uid }}"
+      [style.background-image]="'url(' + student.user?.photoURL + ')'"
+      routerLink="/user/{{ student.user?.uid }}"
     ></a>
     <div class="student__body">
-      <a class="student__name" routerLink="/user/{{ student.user.uid }}">{{
-        student.user.name
+      <a class="student__name" routerLink="/user/{{ student.user?.uid }}">{{
+        student.user?.name
       }}</a>
       <p class="student__post">
-        {{ student.user.post }}
+        {{ student.user?.post }}
       </p>
     </div>
   </div>

@@ -1,0 +1,54 @@
+@import 'mixins';
+
+mat-divider {
+  max-width: 80%;
+  margin: 0 auto 320px;
+  @include sp {
+    margin: 0 auto 24px;
+  }
+}
+
+.search-box {
+  max-width: 80%;
+  display: flex;
+  align-items: center;
+  margin: 240px auto 0;
+  @include sp {
+    max-width: 90%;
+    margin: 24px auto 0;
+  }
+  &__word {
+    font-size: 32px;
+    @include sp {
+      display: none;
+    }
+  }
+  &__form {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 40px;
+    &:empty {
+      height: 100vh;
+    }
+  }
+  &__input {
+    font-size: 32px;
+    padding: 0 0 0 8px;
+    background: inherit;
+    opacity: 0.6;
+    border: none;
+    outline: none;
+    @include sp {
+      font-size: 16px;
+    }
+  }
+  mat-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: grid;
+    place-content: center;
+    background: linear-gradient(60deg, #40c4ff, #00a1dd);
+    color: #fff;
+  }
+}

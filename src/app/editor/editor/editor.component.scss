@@ -35,6 +35,9 @@ mat-radio-button {
 }
 
 .image {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
   &__main-img {
     position: relative;
     width: 320px;
@@ -46,11 +49,15 @@ mat-radio-button {
       bottom: 0;
       right: -48px;
     }
+    &--sp {
+      width: 192px;
+      height: 108px;
+    }
   }
   &__logo-img {
     position: relative;
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     border: dashed 1px;
     margin: 0 auto;
     button {

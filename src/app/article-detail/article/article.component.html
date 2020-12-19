@@ -62,7 +62,7 @@
     </p>
   </ng-template>
 
-  <div class="feature">
+  <div class="feature" *ngIf="features">
     <h3 class="feature__title">サービスの特徴</h3>
     <div class="feature__body" *ngFor="let feature of features; index as i">
       <mat-icon class="feature__icon">check_circle_outline</mat-icon>

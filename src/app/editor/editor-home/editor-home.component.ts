@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { User } from 'src/app/interfaces/users';
+import { AuthService } from 'src/app/services/auth.service';
 import { SeoService } from 'src/app/services/seo.service';
 
 @Component({
@@ -8,6 +11,7 @@ import { SeoService } from 'src/app/services/seo.service';
 })
 export class EditorHomeComponent implements OnInit {
   childData: any;
+  user$: Observable<User> = this.authService.user$;
 
   readonly navLinks = [
     {
@@ -20,7 +24,10 @@ export class EditorHomeComponent implements OnInit {
     },
   ];
 
-  constructor(private seoService: SeoService) {
+  constructor(
+    private seoService: SeoService,
+    private authService: AuthService
+  ) {
     this.seoService.setTitleAndMeta(
       '管理画面 | eduu',
       'オーナーのダッシュボードページ'

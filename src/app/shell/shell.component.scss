@@ -1,7 +1,12 @@
+@import 'mixins';
+
 .sidenav {
   background: #212121;
 }
 
 mat-sidenav-content {
-  padding-top: 64px;
+  padding-top: 72px;
+  @include sp {
+    padding-top: 56px;
+  }
 }

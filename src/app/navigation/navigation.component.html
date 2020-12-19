@@ -1,5 +1,5 @@
 <mat-nav-list class="nav-list">
-  <a mat-list-item routerLink="/" class="nav-list__btn">
+  <a mat-list-item routerLink="/" class="nav-list__btn" (click)="toggleNav()">
     <mat-icon class="nav-list__icon">home</mat-icon>ホーム</a
   >
   <ng-container *ngIf="user$ | async as user">
@@ -33,6 +33,7 @@
       mat-list-item
       routerLink="user/{{ user.uid }}/pins"
       class="nav-list__btn"
+      (click)="toggleNav()"
     >
       <mat-icon class="nav-list__icon">push_pin</mat-icon>ピン一覧</a
     >

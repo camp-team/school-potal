@@ -150,12 +150,13 @@ button {
   transform: rotate(135deg) translateY(50%);
   position: absolute;
   top: 50%;
-  right: 2%;
+  right: 18px;
   cursor: pointer;
   @include sp {
     display: none;
   }
 }
+
 .swiper-button-prev-hero {
   width: 32px;
   height: 32px;
@@ -165,7 +166,7 @@ button {
   transform: rotate(-45deg) translateY(-50%);
   position: absolute;
   top: 50%;
-  left: 2%;
+  left: 36px;
   cursor: pointer;
   @include sp {
     display: none;
@@ -194,13 +195,13 @@ button {
 .swiper-button-next-school,
 .swiper-button-next-salon {
   &:hover {
-    transform: translateX(8px);
+    transform: translateX(2px);
   }
 }
 .swiper-button-prev-school,
 .swiper-button-prev-salon {
   &:hover {
-    transform: translateX(-8px);
+    transform: translateX(-2px);
   }
 }
 
@@ -258,7 +259,6 @@ button {
 }
 
 .swiper-container {
-  padding: 0 16px !important;
   margin: 0 !important;
   display: flex !important;
 }
@@ -317,6 +317,10 @@ button {
   @include sp {
     font-size: 13px;
   }
+}
+
+.mat-chip.mat-standard-chip::after {
+  background: rgba(0, 0, 0, 0.16);
 }
 
 .ql-container {

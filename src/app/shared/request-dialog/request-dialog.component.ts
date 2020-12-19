@@ -105,4 +105,12 @@ export class RequestDialogComponent implements OnInit {
         .then(() => (this.isProcessing = false));
     }
   }
+
+  googleLogin() {
+    this.authService.googleLogin();
+  }
+
+  twitterLogin() {
+    this.authService.twitterLogin();
+  }
 }

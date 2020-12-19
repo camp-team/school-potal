@@ -65,4 +65,12 @@ export class InfoDialogComponent implements OnInit {
       .toPromise()
       .then(() => this.snackBar.open('メールを送信しました。'));
   }
+
+  googleLogin() {
+    this.authService.googleLogin();
+  }
+
+  twitterLogin() {
+    this.authService.twitterLogin();
+  }
 }

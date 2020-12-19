@@ -10,7 +10,6 @@ import {
   Validators,
   FormControl,
   FormArray,
-  FormGroup,
 } from '@angular/forms';
 import { ArticleService } from 'src/app/services/article.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -34,9 +33,11 @@ export class EditorComponent implements OnInit {
   private pinnedCount: number;
   private images: {
     thumbnailURL: File;
+    spThumbnailURL: File;
     logo: File;
   } = {
     thumbnailURL: null,
+    spThumbnailURL: null,
     logo: null,
   };
 
@@ -45,9 +46,11 @@ export class EditorComponent implements OnInit {
   processing: boolean;
   srcs: {
     thumbnailURL: File;
+    spThumbnailURL: File;
     logo: File;
   } = {
     thumbnailURL: null,
+    spThumbnailURL: null,
     logo: null,
   };
 

@@ -29,7 +29,6 @@ import {
 import { StudentsDialogComponent } from './article-detail/students-dialog/students-dialog.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { SearchResultComponent } from './search-result/search-result.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -46,7 +45,6 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     AppComponent,
     HeaderComponent,
     NavigationComponent,
-    SearchResultComponent,
     ShellComponent,
     NotFoundComponent,
     FooterComponent,

@@ -13,16 +13,23 @@
   left: 0;
   z-index: 1000;
   box-sizing: border-box;
+  @include sp {
+    padding: 8px;
+  }
   &__logo,
   &__nav {
     color: #fff;
     margin-left: 16px;
     @include sp {
       margin-left: 0;
+      width: 40px;
     }
   }
   &__logo {
     margin-right: 16px;
+    @include sp {
+      width: 80px;
+    }
   }
   &__description {
     font-size: 14px;
@@ -36,9 +43,12 @@
   }
   &__login {
     color: #fff;
-    padding: 16px;
+    padding: 8px 16px;
     line-height: 1;
-    margin-left: 16px;
+    @include sp {
+      font-size: 13px;
+      padding: 4px 8px;
+    }
   }
   &__avatar {
     background: #fff center/cover;
@@ -68,6 +78,11 @@
       @include sp {
         margin-right: 0;
       }
+    }
+    img {
+      width: 24px;
+      height: 24px;
+      margin-right: 8px;
     }
     @include sp {
       &--question,

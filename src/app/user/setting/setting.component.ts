@@ -1,5 +1,5 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/interfaces/users';
 import {
   FormBuilder,
@@ -91,7 +91,7 @@ export class SettingComponent implements OnInit {
 
   ngOnInit(): void {
     this.user$.subscribe((user) => {
-      this.tags = user.tags;
+      this.tags = user?.tags;
       this.form.patchValue({
         ...user,
         tags: null,
