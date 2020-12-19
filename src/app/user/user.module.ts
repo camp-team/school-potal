@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { UserRoutingModule } from './user-routing.module';
 import { AccountComponent } from './account/account.component';
-import { SettingComponent } from './setting/setting.component';
+import { SettingsComponent } from './settings/settings.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -20,7 +20,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 @NgModule({
   declarations: [
     AccountComponent,
-    SettingComponent,
+    SettingsComponent,
     ProfileComponent,
     PinsComponent,
     InfoDialogComponent,

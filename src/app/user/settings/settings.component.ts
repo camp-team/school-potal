@@ -17,12 +17,12 @@ import { DeleteDialogComponent } from 'src/app/shared/delete-dialog/delete-dialo
 import { fade } from 'src/app/animations';
 
 @Component({
-  selector: 'app-setting',
-  templateUrl: './setting.component.html',
-  styleUrls: ['./setting.component.scss'],
+  selector: 'app-settings',
+  templateUrl: './settings.component.html',
+  styleUrls: ['./settings.component.scss'],
   animations: [fade],
 })
-export class SettingComponent implements OnInit {
+export class SettingsComponent implements OnInit {
   user: User;
   form: FormGroup = this.fb.group({
     name: ['', Validators.maxLength(50)],
