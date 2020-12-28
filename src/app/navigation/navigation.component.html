@@ -5,10 +5,11 @@
   <ng-container *ngIf="user$ | async as user">
     <button
       mat-list-item
-      class="nav-list__btn nav-list__btn--search"
+      class="nav-list__btn nav-list__btn--request"
       (click)="openRequestDialog()"
     >
-      <mat-icon class="nav-list__icon">hearing</mat-icon>質問する
+      <img src="assets/icons/question.svg" alt="" class="nav-list__icon" />
+      <p>質問する</p>
     </button>
 
     <ng-container *ngIf="user.isAdmin; else default">
@@ -17,7 +18,7 @@
         routerLink="/editor/create"
         class="nav-list__btn nav-list__btn--create"
       >
-        <mat-icon class="nav-list__icon">post_add</mat-icon>ページを作る
+        <mat-icon class="nav-list__icon">post_add</mat-icon>スクール追加
       </a>
     </ng-container>
     <ng-template #default>
@@ -26,7 +27,7 @@
         (click)="openInfoDialog(user)"
         class="nav-list__btn nav-list__btn--create"
       >
-        <mat-icon class="nav-list__icon">post_add</mat-icon>ページを作る
+        <mat-icon class="nav-list__icon">post_add</mat-icon>スクール追加
       </button>
     </ng-template>
     <a
