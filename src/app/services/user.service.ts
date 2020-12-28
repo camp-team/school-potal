@@ -15,6 +15,7 @@ import { AngularFireFunctions } from '@angular/fire/functions';
 })
 export class UserService {
   uId: string;
+  isProcessing: boolean;
 
   user$: Observable<User> = this.afAuth.authState.pipe(
     switchMap((user) => {
@@ -51,12 +52,16 @@ export class UserService {
   }
 
   async deleteUser(user: User): Promise<void> {
+    this.isProcessing = true;
     const callable = this.fnc.httpsCallable('deleteAfUser');
     return callable(user.uid)
       .toPromise()
       .then(() => {
         this.snackBar.open('ご利用ありがとうございました');
         this.router.navigateByUrl('/');
+      })
+      .finally(() => {
+        this.isProcessing = false;
       });
   }
 
