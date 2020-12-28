@@ -126,7 +126,7 @@ export class ActionsComponent implements OnInit {
   likeArticle(uid: string) {
     if (this.uid) {
       this.isliked = true;
-      this.article.likeCount++;
+      this.likeCount++;
       this.likeService.likeArticle(this.article.id, uid);
     } else {
       this.snackBar.open('ページ右上のボタンからログインしてください');
@@ -136,7 +136,7 @@ export class ActionsComponent implements OnInit {
   unlikeArticle(uid: string) {
     if (this.uid) {
       this.isliked = false;
-      this.article.likeCount--;
+      this.likeCount--;
       this.likeService.unlikeArticle(this.article.id, uid);
     } else {
       this.snackBar.open('ページ右上のボタンからログインしてください');
@@ -146,7 +146,7 @@ export class ActionsComponent implements OnInit {
   pinnedArticle(uid: string) {
     if (this.uid) {
       this.isPinned = true;
-      this.article.pinCount++;
+      this.pinCount++;
       this.pinService.pinnedArticle(this.article.id, uid);
     } else {
       this.snackBar.open('ページ右上のボタンからログインしてください');
@@ -156,7 +156,7 @@ export class ActionsComponent implements OnInit {
   unpinnedArticle(uid: string) {
     if (this.uid) {
       this.isPinned = false;
-      this.article.pinCount--;
+      this.pinCount--;
       this.pinService.unpinnedArticle(this.article.id, uid);
     } else {
       this.snackBar.open('ページ右上のボタンからログインしてください');
