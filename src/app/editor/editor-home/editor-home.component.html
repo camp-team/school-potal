@@ -2,16 +2,27 @@
   <nav mat-tab-nav-bar class="nav">
     <a
       mat-tab-link
-      *ngFor="let link of navLinks"
-      [routerLink]="link.path"
+      routerLink="create"
       [routerLinkActiveOptions]="{ exact: true }"
       routerLinkActive
       #rla="routerLinkActive"
       [active]="rla.isActive"
     >
-      {{ link.label }}
+      新規作成
     </a>
     <ng-container *ngIf="user.isAdmin">
+      <a
+        mat-tab-link
+        routerLink="editor-article-list"
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive
+        #rla="routerLinkActive"
+        [active]="rla.isActive"
+      >
+        記事一覧
+      </a>
+    </ng-container>
+    <ng-container *ngIf="childData?.article">
       <a
         class="nav__edit"
         mat-tab-link
