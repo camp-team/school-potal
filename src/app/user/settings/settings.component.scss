@@ -20,7 +20,7 @@
   }
   &__submit {
     width: 120px;
-    margin-bottom: 96px;
+    margin: 24px auto 96px;
   }
 }
 
@@ -52,5 +52,11 @@
   }
   &__btn {
     width: 120px;
+  }
+  &__message {
+    margin: 24px auto;
+    mat-spinner {
+      margin: 24px auto;
+    }
   }
 }

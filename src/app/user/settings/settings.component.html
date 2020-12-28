@@ -4,7 +4,15 @@
       <h2 class="edit__item">表示名</h2>
       <mat-form-field class="edit__form">
         <input matInput formControlName="name" #name autocomplete="off" />
-        <mat-hint align="end">{{ name.value.length }} / 50文字</mat-hint>
+        <mat-error *ngIf="form.controls['name'].hasError('required')"
+          >必須入力です</mat-error
+        >
+        <mat-error *ngIf="form.controls['name'].hasError('maxlength')"
+          >最大文字数を超えています</mat-error
+        >
+        <mat-hint align="end"
+          >{{ name.value.length }} / {{ MAX_NAME_LENGTH }}文字</mat-hint
+        >
       </mat-form-field>
 
       <h2 class="edit__item">肩書き</h2>
@@ -69,7 +77,8 @@
 
       <button
         class="edit__submit"
-        mat-button
+        mat-flat-button
+        color="primary"
         [disabled]="form.invalid || form.pristine"
       >
         更新
@@ -104,6 +113,11 @@
         >
           退会
         </button>
+      </div>
+
+      <div class="unsubscribe__message" *ngIf="userService.isProcessing">
+        <p>退会処理中です...</p>
+        <mat-spinner [diameter]="40"></mat-spinner>
       </div>
     </div>
   </ng-container>
