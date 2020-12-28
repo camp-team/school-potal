@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
     private seoService: SeoService
   ) {
     this.seoService.setTitleAndMeta(
-      'ログインとサービスの紹介 | eduu',
+      'ログインとサービスの紹介',
       'ログインとサービスの紹介ページ'
     );
   }

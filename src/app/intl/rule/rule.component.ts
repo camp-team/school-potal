@@ -9,7 +9,7 @@ import { SeoService } from 'src/app/services/seo.service';
 export class RuleComponent implements OnInit {
   constructor(private seoService: SeoService) {
     this.seoService.setTitleAndMeta(
-      '特定商取引法に基づく表記 | eduu ',
+      '特定商取引法に基づく表記',
       'サービスの特定商取引法に基づく表記ページ'
     );
   }

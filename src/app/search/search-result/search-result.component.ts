@@ -57,7 +57,7 @@ export class SearchResultComponent implements OnInit {
 
       if (this.searchQuery) {
         this.seoService.setTitleAndMeta(
-          `${this.searchQuery}に関するスクール/オンラインサロン | eduu`,
+          `${this.searchQuery}に関するスクール/オンラインサロン`,
           `${this.searchQuery}に関する関連記事を表示するページ`
         );
       }
