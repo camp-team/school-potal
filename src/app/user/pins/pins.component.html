@@ -1,37 +1,51 @@
 <div class="container" *ngIf="user$ | async">
   <div class="grid" *ngIf="articles$ | async as articles; else default">
-    <div class="article" @fade *ngFor="let article of articles">
-      <a
-        class="article__thumbnail"
-        routerLink="/article-detail/{{ article.id }}"
-      >
-        <img [src]="article.thumbnailURL" alt="" />
-      </a>
+    <ul class="article" @fade *ngFor="let article of articles">
+      <li routerLink="/article-detail/{{ article.id }}" class="article">
+        <picture @fade class="article__thumbnail">
+          <source
+            media="(min-width: 1366px)"
+            [srcset]="article.thumbnailURL"
+            sizes="100vw"
+            alt=""
+          />
+          <img
+            media="(min-width: 640px)"
+            [srcset]="article.spThumbnailURL"
+            sizes="100vw"
+            alt=""
+          />
+        </picture>
 
-      <div class="article__body">
-        <div class="article__top">
-          <img class="article__logo" [src]="article.logo" alt="" />
-          <h2 class="article__title">{{ article.title }}</h2>
-        </div>
+        <div class="article__body">
+          <div class="article__top">
+            <h3 class="article__name">{{ article.name }}</h3>
+            <h4 class="article__title">{{ article.title }}</h4>
+          </div>
 
-        <div class="article__description">
-          <a
-            href="{{ article.serviceURL }}"
-            target="_blank"
-            class="article__name"
-            >{{ article.name }}</a
-          >
-          <p class="article__up">
-            {{ article.updatedAt.toDate() | date: 'yyyy年M月d日' }} UPDATE
-          </p>
+          <div class="article__description">
+            <p class="article__date">
+              {{ article.createdAt.toDate() | date: 'yyyy/MM/dd' }} 追加
+            </p>
+            <button class="article__category">
+              <p class="article__category-text">{{ article.category }}</p>
+            </button>
+            <span class="article__spacer"></span>
+            <p class="article__like">
+              ❤️<span>{{ article.likeCount }}</span>
+            </p>
+            <p class="article__pin">
+              📌<span>{{ article.pinCount }}</span>
+            </p>
+          </div>
         </div>
-      </div>
-    </div>
+      </li>
+    </ul>
   </div>
 
   <ng-template #default>
-    <div class="default">
-      <p class="default__text" *ngIf="!isloading">
+    <div class="default" *ngIf="!isloading">
+      <p class="default__text">
         ピン留めしているサービスはまだありません。
       </p>
       <p class="default__text">
