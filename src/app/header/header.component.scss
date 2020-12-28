@@ -56,6 +56,32 @@
   }
 }
 
+.login-baloon {
+  position: absolute;
+  bottom: -32px;
+  right: 24px;
+  display: inline-block;
+  padding: 8px 12px;
+  min-width: 120px;
+  max-width: 100%;
+  color: rgba(0, 0, 0, 0.8);
+  background: #fff;
+  border-radius: 2px;
+  &:before {
+    content: '';
+    position: absolute;
+    top: -24px;
+    right: 16px;
+    margin-left: -15px;
+    border: 15px solid transparent;
+    border-bottom: 15px solid #fff;
+  }
+  @include sp {
+    font-size: 13px;
+    right: 16px;
+  }
+}
+
 .menu {
   display: flex;
   align-items: center;

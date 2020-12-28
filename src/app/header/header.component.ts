@@ -14,6 +14,7 @@ import { InfoDialogComponent } from '../user/info-dialog/info-dialog.component';
 })
 export class HeaderComponent implements OnInit {
   user$: Observable<User> = this.authService.user$;
+  isShow = true;
 
   constructor(
     private uiService: UiService,
