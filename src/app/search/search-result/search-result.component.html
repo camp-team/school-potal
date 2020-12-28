@@ -46,12 +46,14 @@
     </ul>
   </div>
 
-  <div
-    infiniteScroll
-    [infiniteScrollDistance]="1"
-    [infiniteScrollThrottle]="100"
-    (scrolled)="searchArticles()"
-  ></div>
+  <ng-container *ngIf="result?.hits.length || articles.length">
+    <div
+      infiniteScroll
+      [infiniteScrollDistance]="1"
+      [infiniteScrollThrottle]="100"
+      (scrolled)="searchArticles()"
+    ></div>
+  </ng-container>
 
   <ng-template #notFound>
     <div class="not-found" *ngIf="!uiService.loading">
