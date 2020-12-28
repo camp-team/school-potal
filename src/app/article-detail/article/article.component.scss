@@ -1,6 +1,4 @@
 @import 'mixins';
-@import '~@angular/material/theming';
-@import 'material-custom';
 
 mat-divider {
   margin-bottom: 24px;
@@ -50,9 +48,6 @@ mat-divider {
       display: block;
       margin: 0 auto;
     }
-    &:hover {
-      @include mat-elevation(4);
-    }
   }
   &__btn {
     background: #424242;
@@ -92,16 +87,23 @@ mat-divider {
     border-radius: 8px;
     border: 1px solid #e6e6e6;
     transition: ease-out 0.5s;
-    &:hover {
-      @include mat-elevation(1);
-    }
   }
   &__name {
     font-weight: bold;
     margin-bottom: 8px;
+    display: inline-block;
+    transition: ease-in-out 0.5s;
+    &:hover {
+      color: #40c4ff;
+    }
+  }
+  &__name-inner {
+    display: flex;
+    align-items: center;
+    opacity: 0.6;
   }
   &__screen-name {
-    opacity: 0.6;
+    margin-right: 8px;
   }
 }
 
@@ -167,9 +169,7 @@ mat-divider {
     }
   }
   & button {
-    display: none;
     @include sp {
-      display: block;
       margin: 16px auto;
     }
   }
@@ -183,7 +183,7 @@ mat-divider {
   cursor: pointer;
   &__head {
     display: grid;
-    grid-template-columns: 40px 1fr;
+    grid-template-columns: 1fr 40px;
   }
   &__body {
     display: grid;

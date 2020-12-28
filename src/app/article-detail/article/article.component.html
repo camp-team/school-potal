@@ -42,12 +42,15 @@
             teachers[selectedTeacherNum].screenName
           }}"
           target="_blank"
-          ><p class="teacher__name">
+          ><div class="teacher__name">
             {{ teachers[selectedTeacherNum].name }}<br />
-            <span class="teacher__screen-name"
-              >@{{ teachers[selectedTeacherNum].screenName }}</span
-            >
-          </p>
+            <div class="teacher__name-inner">
+              <span class="teacher__screen-name"
+                >@{{ teachers[selectedTeacherNum].screenName }}</span
+              >
+              <mat-icon>launch</mat-icon>
+            </div>
+          </div>
         </a>
         <p class="teacher__description">
           {{ teachers[selectedTeacherNum].description }}
@@ -109,8 +112,13 @@
       <mat-divider></mat-divider>
       <div class="plan-item__wrap">
         <div class="plan-item__head">
-          <mat-icon class="plan-item__icon">add</mat-icon>
           <p class="plan-item__name">{{ article.plans[i].planName }}</p>
+          <ng-container *ngIf="!isOpen[i]; else open">
+            <mat-icon class="plan-item__icon">add</mat-icon>
+          </ng-container>
+          <ng-template #open>
+            <mat-icon class="plan-item__icon">remove</mat-icon>
+          </ng-template>
         </div>
         <div class="plan-item__body">
           <span class="plan-item__spacer"></span>
