@@ -3,7 +3,7 @@
 <ng-container *ngIf="user$ | async as user; else default">
   <form class="info" [formGroup]="form" (ngSubmit)="submit(user.uid)">
     <div class="info__msg">
-      <p>ページを作成するには運営の承認が必要です。</p>
+      <p>ページ作成には運営の承認が必要です。</p>
       <p>管理者アカウントの申請をしてください。</p>
     </div>
 
