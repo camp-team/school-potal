@@ -88,8 +88,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
       provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
       useValue: {
         duration: 2500,
-        horizontalPosition: 'end',
-        verticalPosition: 'top',
+        panelClass: 'custom-snackbar',
       },
     },
   ],
