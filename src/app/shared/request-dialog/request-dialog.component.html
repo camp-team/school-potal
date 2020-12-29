@@ -1,19 +1,19 @@
 <ng-container *ngIf="user$ | async as user; else default">
   <div class="heading">
-    <mat-icon class="heading__icon">help</mat-icon>
     <p class="heading__body">
-      口コミや評判を募集してみましょう。
+      気になるスクールやスキルについて、<br />
+      何でも聞いてみましょう。
     </p>
   </div>
 
   <form [formGroup]="form" (ngSubmit)="submit(user.uid)">
     <mat-dialog-content class="form">
-      <h2 class="form__title">質問タイトル</h2>
+      <h2 class="form__title">質問のタイトル</h2>
       <mat-form-field appearance="outline" class="form__title">
         <input
           type="text"
           matInput
-          placeholder="サービス名、または質問概要を入力"
+          placeholder="質問概要を入力"
           formControlName="title"
           #title
           autocomplete="off"
@@ -31,7 +31,7 @@
         >
       </mat-form-field>
 
-      <div class="type__category">
+      <div class="from__category">
         <h2 class="form__title">質問のカテゴリー</h2>
         <mat-form-field>
           <mat-select formControlName="category">
