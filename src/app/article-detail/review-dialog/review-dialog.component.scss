@@ -4,25 +4,12 @@
   &__header {
     text-align: center;
   }
-  &__icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: #303030;
-    color: #fff;
-    display: grid;
-    place-content: center;
-    margin: 0 auto 24px;
-  }
   &__heading {
     font-weight: 500;
     margin: 0;
     @include sp {
       font-size: 18px;
     }
-  }
-  &__title {
-    font-size: 16px;
   }
   &__content {
     display: grid;
@@ -32,12 +19,15 @@
     text-align: center;
     @include sp {
       gap: 8px;
+      margin: 16px 0;
     }
+  }
+  &__form {
+    margin-bottom: 16px;
   }
   &__actions {
     display: grid;
     gap: 8px;
-    padding: 16px;
     button {
       width: 100%;
       &:nth-of-type(2),
@@ -51,6 +41,9 @@
       }
       &:nth-of-type(2) {
         margin-bottom: 24px;
+        @include sp {
+          margin-bottom: 16px;
+        }
       }
     }
   }
