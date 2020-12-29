@@ -9,7 +9,7 @@ import { SeoService } from '../services/seo.service';
 export class NotFoundComponent implements OnInit {
   constructor(private seoService: SeoService) {
     this.seoService.setTitleAndMeta(
-      'ページが見つかりません | eduu',
+      'ページが見つかりません',
       'お探しのページは、削除されたかURLが変更された可能性があります。'
     );
   }

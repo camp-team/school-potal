@@ -8,7 +8,7 @@
     <div class="comment__body">
       <div class="comment__header">
         <a class="comment__name" routerLink="/user/{{ comment.user?.uid }}">{{
-          comment.user?.name
+          comment.user ? comment.user.name : '退会済ユーザー'
         }}</a>
         <p class="comment__date">
           {{ comment.updatedAt.toDate() | date: 'yyyy/MM/dd HH:mm' }}

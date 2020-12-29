@@ -6,7 +6,9 @@
           <mat-icon class="card__icon-position">history</mat-icon>
         </div>
         <h3 class="card__title">自己紹介</h3>
-        <p class="card__body">{{ user.profile }}</p>
+        <p class="card__body">
+          {{ user.profile ? user.profile : '自己紹介してみましょう' }}
+        </p>
       </div>
     </div>
     <div class="grid-right">
@@ -19,6 +21,11 @@
           <mat-chip *ngFor="let tag of user.tags">
             {{ tag }}
           </mat-chip>
+          <ng-container *ngIf="!user.tags">
+            <p>
+              身につけたスキルをどんどん追加していきましょう
+            </p>
+          </ng-container>
         </mat-chip-list>
       </div>
       <div class="card">
@@ -31,7 +38,11 @@
           href="{{ user.links }}"
           target="_blank"
         >
-          {{ user.links }}
+          {{
+            user.links
+              ? user.links
+              : 'SNSやポートフォリオなどのリンクを追加しましょう'
+          }}
         </a>
       </div>
     </div>

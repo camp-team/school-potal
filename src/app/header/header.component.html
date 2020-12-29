@@ -28,7 +28,7 @@
       <ng-container *ngIf="user.isAdmin; else default">
         <button routerLink="/editor/create" class="menu__btn menu__btn--create">
           <mat-icon>post_add</mat-icon>
-          <p class="menu__text">ページを作る</p>
+          <p class="menu__text">スクール追加</p>
         </button>
       </ng-container>
       <ng-template #default>
@@ -37,7 +37,7 @@
           class="menu__btn menu__btn--create"
         >
           <mat-icon>post_add</mat-icon>
-          <p class="menu__text">ページを作る</p>
+          <p class="menu__text">スクール追加</p>
         </button>
       </ng-template>
     </ng-container>
@@ -49,9 +49,13 @@
       mat-button
       routerLink="/login"
       class="header__login"
+      (click)="isShow = !isShow"
     >
       {{ authService.isProcessing ? 'ログイン中' : 'ログイン' }}
     </button>
+    <div class="login-baloon" *ngIf="isShow">
+      <p>Google または Twitter で簡単登録！</p>
+    </div>
   </ng-template>
 
   <ng-container *ngIf="user$ | async as user; else notLogin">
@@ -67,7 +71,7 @@
         <mat-icon>account_circle</mat-icon>
         <span>マイページ</span>
       </a>
-      <a mat-menu-item routerLink="/user/{{ user.uid }}/setting">
+      <a mat-menu-item routerLink="/user/{{ user.uid }}/settings">
         <mat-icon>settings</mat-icon>
         <span>設定</span>
       </a>

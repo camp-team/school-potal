@@ -34,7 +34,7 @@ export class AllRequestComponent implements OnInit, OnDestroy {
     private seoService: SeoService
   ) {
     this.seoService.setTitleAndMeta(
-      '全ての質問リクエスト | eduu',
+      '全ての質問リクエスト',
       '全ての質問リクエストページ'
     );
   }

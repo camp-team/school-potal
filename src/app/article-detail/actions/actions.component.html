@@ -25,7 +25,7 @@
     <div class="grid-item__icon">
       <mat-icon color="accent">favorite</mat-icon>
     </div>
-    <p class="grid-item__title">{{ article.likeCount }}人がいいね</p>
+    <p class="grid-item__title">{{ likeCount }}人がいいね</p>
 
     <ng-container *ngIf="isliked; else notYet">
       <div (click)="unlikeArticle(uid)" class="grid-item__btn">
@@ -49,7 +49,7 @@
     <div class="grid-item__icon">
       <mat-icon color="warn">push_pin</mat-icon>
     </div>
-    <p class="grid-item__title">{{ article.pinCount }}人がピンどめ</p>
+    <p class="grid-item__title">{{ pinCount }}人がピンどめ</p>
 
     <ng-container *ngIf="isPinned; else notPin">
       <div (click)="unpinnedArticle(uid)" class="grid-item__btn">

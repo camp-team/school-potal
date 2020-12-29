@@ -8,10 +8,7 @@ import { SeoService } from 'src/app/services/seo.service';
 })
 export class LegalComponent implements OnInit {
   constructor(private seoService: SeoService) {
-    this.seoService.setTitleAndMeta(
-      '利用規約 | eduu ',
-      'サービスの利用規約ページ'
-    );
+    this.seoService.setTitleAndMeta('利用規約', 'サービスの利用規約ページ');
   }
 
   ngOnInit(): void {}

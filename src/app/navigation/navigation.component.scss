@@ -4,12 +4,15 @@
   &__btn {
     color: #fff;
     margin-right: 16px;
-    &--search,
+    &--request,
     &--create {
       display: none !important;
       @include sp {
         display: block !important;
       }
+    }
+    img {
+      width: 24px;
     }
   }
   &__icon {

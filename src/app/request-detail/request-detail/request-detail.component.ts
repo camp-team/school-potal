@@ -38,7 +38,7 @@ export class RequestDetailComponent implements OnInit {
     }),
     tap((param) => {
       this.seoService.setTitleAndMeta(
-        `${param.title}に関するコメント | eduu`,
+        `${param.title}に関するコメント`,
         `${param.body}`
       );
     })

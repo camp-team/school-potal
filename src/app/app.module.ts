@@ -84,7 +84,14 @@ import { ServiceWorkerModule } from '@angular/service-worker';
   ],
   providers: [
     { provide: REGION, useValue: 'asia-northeast1' },
-    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2500 } },
+    {
+      provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
+      useValue: {
+        duration: 2500,
+        horizontalPosition: 'end',
+        verticalPosition: 'top',
+      },
+    },
   ],
   bootstrap: [AppComponent],
   entryComponents: [StudentsDialogComponent],

@@ -29,7 +29,7 @@ export class EditorHomeComponent implements OnInit {
     private authService: AuthService
   ) {
     this.seoService.setTitleAndMeta(
-      '管理画面 | eduu',
+      '管理画面',
       'オーナーのダッシュボードページ'
     );
   }

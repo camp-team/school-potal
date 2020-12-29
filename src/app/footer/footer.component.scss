@@ -49,12 +49,24 @@
     }
   }
   &__mail {
-    text-align: right;
     @include sp {
       font-size: 13px;
       line-height: 13px;
       margin-bottom: 8px;
     }
+    mat-icon {
+      opacity: 0.6;
+      margin-left: 8px;
+      transition: ease-out 0.5s;
+    }
+    &:hover mat-icon {
+      opacity: 1;
+    }
+  }
+  &__flex {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
   }
   &__logo {
     display: grid;

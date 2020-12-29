@@ -15,21 +15,13 @@
         </p>
       </div>
       <div *ngIf="isMypage$ | async" class="account__btns">
-        <a
-          mat-flat-button
-          routerLink="setting"
-          routerLinkActive="active"
-          class="account__setting"
-        >
-          編集
+        <a routerLink="settings" routerLinkActive="active" class="account__btn">
+          <mat-icon>edit</mat-icon>
+          <p>プロフィール編集</p>
         </a>
-        <a
-          mat-flat-button
-          routerLink="pins"
-          routerLinkActive="active"
-          class="account__pin"
-        >
-          ピン
+        <a routerLink="pins" routerLinkActive="active" class="account__btn">
+          <mat-icon>push_pin</mat-icon>
+          <p>ピンどめ一覧</p>
         </a>
       </div>
     </div>

@@ -19,10 +19,7 @@ export class ProfileComponent implements OnInit {
       return this.userService.getUserData(profileId);
     }),
     tap((user) => {
-      this.seoService.setTitleAndMeta(
-        `${user.name} | eduu `,
-        `${user.profile}`
-      );
+      this.seoService.setTitleAndMeta(`${user.name}`, `${user.profile}`);
     })
   );
 

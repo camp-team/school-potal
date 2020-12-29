@@ -56,7 +56,7 @@ export class HomeComponent implements OnInit {
     private seoService: SeoService
   ) {
     this.seoService.setTitleAndMeta(
-      '新着スクール・オンラインサロン・質問リクエスト一覧 | eduu',
+      '新着スクール・オンラインサロン・質問リクエスト一覧',
       '新着スクールや新着オンラインサロン、ユーザーから寄せられた質問リクエスト一覧ページ'
     );
   }

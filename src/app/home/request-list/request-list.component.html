@@ -11,11 +11,11 @@
           routerLink="/request-detail/{{ request.id }}"
           class="request"
           [style.background]="
-            request.uid == user.uid
+            request.uid == user?.uid
               ? 'linear-gradient(60deg, #40c4ff, #00a1dd)'
               : '#fafafa'
           "
-          [style.color]="request.uid == user.uid ? '#fff' : '#303030'"
+          [style.color]="request.uid == user?.uid ? '#fff' : '#303030'"
         >
           <div class="request__heading">
             <button
@@ -32,14 +32,14 @@
             <div class="request__description">
               <p
                 class="request__date"
-                [style.color]="request.uid == user.uid ? '#fafafa' : '#303030'"
+                [style.color]="request.uid == user?.uid ? '#fafafa' : '#303030'"
               >
                 <mat-icon>schedule</mat-icon
                 >{{ request.createdAt.toDate() | date: 'yyyy/MM/dd/' }} 投稿
               </p>
               <p
                 class="request__category"
-                [style.color]="request.uid == user.uid ? '#fafafa' : '#303030'"
+                [style.color]="request.uid == user?.uid ? '#fafafa' : '#303030'"
               >
                 <mat-icon>local_offer</mat-icon>{{ request.category }}
               </p>

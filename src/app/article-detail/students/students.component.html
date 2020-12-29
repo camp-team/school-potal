@@ -11,7 +11,7 @@
     ></a>
     <div class="student__body">
       <a class="student__name" routerLink="/user/{{ student.user?.uid }}">{{
-        student.user?.name
+        student.user ? student.user.name : '退会済ユーザー'
       }}</a>
       <p class="student__post">
         {{ student.user?.post }}

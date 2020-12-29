@@ -17,15 +17,18 @@ import { DeleteDialogComponent } from 'src/app/shared/delete-dialog/delete-dialo
 import { fade } from 'src/app/animations';
 
 @Component({
-  selector: 'app-setting',
-  templateUrl: './setting.component.html',
-  styleUrls: ['./setting.component.scss'],
+  selector: 'app-settings',
+  templateUrl: './settings.component.html',
+  styleUrls: ['./settings.component.scss'],
   animations: [fade],
 })
-export class SettingComponent implements OnInit {
+export class SettingsComponent implements OnInit {
+  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+  readonly MAX_NAME_LENGTH = 50;
+
   user: User;
   form: FormGroup = this.fb.group({
-    name: ['', Validators.maxLength(50)],
+    name: ['', [Validators.required, Validators.maxLength(50)]],
     post: ['', Validators.maxLength(20)],
     profile: ['', Validators.maxLength(400)],
     links: ['', Validators.maxLength(400)],
@@ -36,8 +39,6 @@ export class SettingComponent implements OnInit {
   addOnBlur = true;
   tags: string[] = [];
   isOpen = false;
-
-  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
   get nameControl(): FormControl {
     return this.form.get('name') as FormControl;
@@ -60,7 +61,7 @@ export class SettingComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private userService: UserService,
+    public userService: UserService,
     private dialog: MatDialog
   ) {
     this.user$.subscribe((user) => {

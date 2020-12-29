@@ -9,7 +9,7 @@ import { SeoService } from 'src/app/services/seo.service';
 export class PrivacyComponent implements OnInit {
   constructor(private seoService: SeoService) {
     this.seoService.setTitleAndMeta(
-      'プライバシーポリシー | eduu ',
+      'プライバシーポリシー',
       'サービスのプライバシーポリシーページ'
     );
   }

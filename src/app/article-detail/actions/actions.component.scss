@@ -1,6 +1,4 @@
 @import 'mixins';
-@import '~@angular/material/theming';
-@import 'material-custom';
 
 .actions-grid {
   display: grid;
@@ -41,7 +39,7 @@
     border: 1px solid #ddd;
     cursor: pointer;
     &:hover .actions__like-icon {
-      color: mat-color($candy-app-accent);
+      color: #ff4080;
     }
     span {
       position: absolute;
