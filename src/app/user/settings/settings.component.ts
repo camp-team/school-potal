@@ -23,8 +23,8 @@ import { fade } from 'src/app/animations';
   animations: [fade],
 })
 export class SettingsComponent implements OnInit {
-  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   readonly MAX_NAME_LENGTH = 50;
+  readonly MAX_TAGTEXT_LENGTH = 10;
 
   user: User;
   form: FormGroup = this.fb.group({
@@ -39,6 +39,7 @@ export class SettingsComponent implements OnInit {
   addOnBlur = true;
   tags: string[] = [];
   isOpen = false;
+  separatorKeysCodes: number[] = [ENTER, COMMA];
 
   get nameControl(): FormControl {
     return this.form.get('name') as FormControl;
@@ -69,20 +70,21 @@ export class SettingsComponent implements OnInit {
     });
   }
 
-  add(event: MatChipInputEvent): void {
+  addTag(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
 
-    if ((value || '').trim()) {
+    if ((value || '').trim() && value.length <= this.MAX_TAGTEXT_LENGTH) {
       this.tags.push(value.trim());
     }
 
     if (input) {
       input.value = '';
     }
+    this.tagsControl.patchValue(null);
   }
 
-  remove(tag: string): void {
+  removeTag(tag: string): void {
     const index = this.tags.indexOf(tag);
 
     if (index >= 0) {
@@ -92,7 +94,9 @@ export class SettingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.user$.subscribe((user) => {
-      this.tags = user?.tags;
+      if (user?.tags) {
+        this.tags = user?.tags;
+      }
       this.form.patchValue({
         ...user,
         tags: null,

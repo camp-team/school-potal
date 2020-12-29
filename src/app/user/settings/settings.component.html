@@ -58,7 +58,7 @@
             *ngFor="let tag of tags"
             [selectable]="selectable"
             [removable]="removable"
-            (removed)="remove(tag)"
+            (removed)="removeTag(tag)"
           >
             {{ tag }}
             <mat-icon matChipRemove>cancel</mat-icon>
@@ -69,10 +69,11 @@
             [matChipInputFor]="chipList"
             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
             [matChipInputAddOnBlur]="addOnBlur"
-            (matChipInputTokenEnd)="add($event)"
+            (matChipInputTokenEnd)="addTag($event)"
             formControlName="tags"
           />
         </mat-chip-list>
+        <mat-hint align="end">1つのタグは10文字以内</mat-hint>
       </mat-form-field>
 
       <button

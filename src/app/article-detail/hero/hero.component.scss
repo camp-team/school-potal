@@ -9,7 +9,6 @@
   color: #fff;
   z-index: 0;
   @include sp {
-    margin-top: 8px;
     padding: 14vw 0;
   }
   &:after {
@@ -30,6 +29,9 @@
     place-content: center;
     align-items: center;
     margin-bottom: 16px;
+    @include sp {
+      grid-template-columns: 40px 1fr;
+    }
   }
   &__logo {
     width: 80px;
@@ -60,8 +62,10 @@
   &__title {
     font-size: 27px;
     text-shadow: 0px 0px 8px rgba(#212121, 0.6);
+    margin-bottom: 16px;
     @include sp {
       font-size: 16px;
+      margin-bottom: 8px;
     }
   }
   &__category {
