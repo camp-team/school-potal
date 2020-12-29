@@ -10,6 +10,7 @@ import {
   Validators,
   FormControl,
   FormArray,
+  FormGroup,
 } from '@angular/forms';
 import { ArticleService } from 'src/app/services/article.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -95,13 +96,7 @@ export class EditorComponent implements OnInit {
     ],
     features: this.fb.array(['', '', '', '', '']),
     topics: [''],
-    plans: this.fb.array([
-      this.fb.group({
-        planName: ['', [Validators.maxLength(this.MAX_PLANNAME_LENGTH)]],
-        planBody: ['', [Validators.maxLength(this.MAX_PLANBODY_LENGTH)]],
-        plice: ['', [Validators.maxLength(this.MAX_PLICE_LENGTH)]],
-      }),
-    ]),
+    plans: this.fb.array([]),
     serviceURL: [
       '',
       [
@@ -209,8 +204,14 @@ export class EditorComponent implements OnInit {
           });
         }
       } else {
-        const array = new FormControl('');
-        this.teacherIds.push(array);
+        const idFormControl = new FormControl('');
+        this.teacherIds.push(idFormControl);
+        const planFormGroup = this.fb.group({
+          planName: ['', [Validators.maxLength(this.MAX_PLANNAME_LENGTH)]],
+          planBody: ['', [Validators.maxLength(this.MAX_PLANBODY_LENGTH)]],
+          plice: ['', [Validators.maxLength(this.MAX_PLICE_LENGTH)]],
+        });
+        this.plans.push(planFormGroup);
       }
     });
   }
