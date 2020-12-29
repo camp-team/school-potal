@@ -18,7 +18,7 @@ export interface Article {
   id?: string;
   thumbnailURL?: string;
   spThumbnailURL?: string;
-  logo?: string;
+  logoURL?: string;
   teacherIds?: string[];
   tags?: string[];
   likeCount: number;

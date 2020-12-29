@@ -34,11 +34,11 @@ export class EditorComponent implements OnInit {
   private images: {
     thumbnailURL: File;
     spThumbnailURL: File;
-    logo: File;
+    logoURL: File;
   } = {
     thumbnailURL: null,
     spThumbnailURL: null,
-    logo: null,
+    logoURL: null,
   };
 
   article: Article;
@@ -47,11 +47,11 @@ export class EditorComponent implements OnInit {
   srcs: {
     thumbnailURL: File;
     spThumbnailURL: File;
-    logo: File;
+    logoURL: File;
   } = {
     thumbnailURL: null,
     spThumbnailURL: null,
-    logo: null,
+    logoURL: null,
   };
 
   readonly MAX_NAME_LENGTH = 50;
@@ -80,6 +80,7 @@ export class EditorComponent implements OnInit {
     { value: 'モノづくり' },
     { value: '音楽' },
     { value: '医療' },
+    { value: '総合' },
   ];
 
   form = this.fb.group({

@@ -111,18 +111,18 @@
         <h2 class="block-title">サービスロゴ</h2>
         <div class="image__logo-img">
           <img
-            *ngIf="srcs?.logo || article?.logo"
-            [src]="srcs.logo || article.logo"
+            *ngIf="srcs?.logoURL || article?.logoURL"
+            [src]="srcs.logoURL || article.logoURL"
             alt=""
           />
-          <p class="image__note" *ngIf="!srcs?.logo">
-            ※ 800px x 800px
+          <p class="image__note" *ngIf="!srcs?.logoURL">
+            ※ 400px x 400px
           </p>
           <input
             type="file"
             style="display: none;"
             #logoInput
-            (change)="setImage($event, 'logo')"
+            (change)="setImage($event, 'logoURL')"
             accept="image/png, image/jpeg"
           />
           <button
@@ -133,7 +133,10 @@
           >
             <mat-icon>add_photo_alternate</mat-icon>
           </button>
-          <p class="image__file-name" *ngIf="!srcs?.logo && !article?.logo">
+          <p
+            class="image__file-name"
+            *ngIf="!srcs?.logoURL && !article?.logoURL"
+          >
             ファイルが選択されていません
           </p>
         </div>

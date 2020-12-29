@@ -31,12 +31,12 @@ export class ArticleService {
     images: {
       thumbnailURL: File;
       spThumbnailURL: File;
-      logo: File;
+      logoURL: File;
     }
   ) {
     const id = this.db.createId();
     const urls = await this.uploadImages(id, Object.values(images));
-    const [thumbnailURL, spThumbnailURL, logo] = urls;
+    const [thumbnailURL, spThumbnailURL, logoURL] = urls;
     return this.db
       .doc<Article>(`articles/${id}`)
       .set({
@@ -45,7 +45,7 @@ export class ArticleService {
         updatedAt: firestore.Timestamp.now(),
         thumbnailURL,
         spThumbnailURL,
-        logo,
+        logoURL,
       })
       .then(() => {
         const teacherIds: string[] = article.teacherIds;
@@ -133,12 +133,12 @@ export class ArticleService {
   async updateArticle(
     article: Omit<
       Article,
-      'thumbnailURL' | 'spThumbnailURL' | 'logo' | 'createdAt'
+      'thumbnailURL' | 'spThumbnailURL' | 'logoURL' | 'createdAt'
     >,
     images?: {
       thumbnailURL?: File;
       spThumbnailURL?: File;
-      logo?: File;
+      logoURL?: File;
     }
   ): Promise<void> {
     if (!Object.values(images).filter((item) => !!item).length) {
