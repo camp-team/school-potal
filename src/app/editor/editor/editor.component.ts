@@ -10,6 +10,7 @@ import {
   Validators,
   FormControl,
   FormArray,
+  FormGroup,
 } from '@angular/forms';
 import { ArticleService } from 'src/app/services/article.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -34,11 +35,11 @@ export class EditorComponent implements OnInit {
   private images: {
     thumbnailURL: File;
     spThumbnailURL: File;
-    logo: File;
+    logoURL: File;
   } = {
     thumbnailURL: null,
     spThumbnailURL: null,
-    logo: null,
+    logoURL: null,
   };
 
   article: Article;
@@ -47,11 +48,11 @@ export class EditorComponent implements OnInit {
   srcs: {
     thumbnailURL: File;
     spThumbnailURL: File;
-    logo: File;
+    logoURL: File;
   } = {
     thumbnailURL: null,
     spThumbnailURL: null,
-    logo: null,
+    logoURL: null,
   };
 
   readonly MAX_NAME_LENGTH = 50;
@@ -80,6 +81,7 @@ export class EditorComponent implements OnInit {
     { value: 'モノづくり' },
     { value: '音楽' },
     { value: '医療' },
+    { value: '総合' },
   ];
 
   form = this.fb.group({
@@ -94,13 +96,7 @@ export class EditorComponent implements OnInit {
     ],
     features: this.fb.array(['', '', '', '', '']),
     topics: [''],
-    plans: this.fb.array([
-      this.fb.group({
-        planName: ['', [Validators.maxLength(this.MAX_PLANNAME_LENGTH)]],
-        planBody: ['', [Validators.maxLength(this.MAX_PLANBODY_LENGTH)]],
-        plice: ['', [Validators.maxLength(this.MAX_PLICE_LENGTH)]],
-      }),
-    ]),
+    plans: this.fb.array([]),
     serviceURL: [
       '',
       [
@@ -208,8 +204,14 @@ export class EditorComponent implements OnInit {
           });
         }
       } else {
-        const array = new FormControl('');
-        this.teacherIds.push(array);
+        const idFormControl = new FormControl('');
+        this.teacherIds.push(idFormControl);
+        const planFormGroup = this.fb.group({
+          planName: ['', [Validators.maxLength(this.MAX_PLANNAME_LENGTH)]],
+          planBody: ['', [Validators.maxLength(this.MAX_PLANBODY_LENGTH)]],
+          plice: ['', [Validators.maxLength(this.MAX_PLICE_LENGTH)]],
+        });
+        this.plans.push(planFormGroup);
       }
     });
   }
