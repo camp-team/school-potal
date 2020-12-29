@@ -44,6 +44,7 @@ export class RequestDialogComponent implements OnInit {
     { value: 'モノづくり' },
     { value: '音楽' },
     { value: '医療' },
+    { value: '総合' },
   ];
 
   get title(): FormControl {

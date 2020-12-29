@@ -1,9 +1,8 @@
 <div class="dialog">
   <div class="dialog__header">
-    <mat-icon class="dialog__icon">post_add</mat-icon>
     <ng-container *ngIf="data">
       <h2 class="dialog__heading">
-        {{ data.article.name }}に参加した感想を投稿しよう
+        {{ data.article.name }}に参加した感想を投稿
       </h2>
     </ng-container>
   </div>
@@ -11,20 +10,20 @@
   <form [formGroup]="form" (ngSubmit)="submit()">
     <mat-dialog-content>
       <div class="dialog__content">
-        <h3 class="dialog__title">満足度</h3>
-        <mat-form-field>
+        <mat-form-field class="dialog__form">
+          <mat-label>満足度</mat-label>
           <mat-select formControlName="rating" required>
             <mat-option *ngFor="let rating of ratings" [value]="rating.value">
               {{ rating.viewValue }}
             </mat-option>
           </mat-select>
           <mat-error *ngIf="ratingControl.hasError('required')"
-            >必須入力です</mat-error
+            >必須選択です</mat-error
           >
         </mat-form-field>
 
-        <h3 class="dialog__title">コメント</h3>
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" class="dialog__form">
+          <mat-label>コメント</mat-label>
           <textarea
             matInput
             placeholder="良かったところや、こんな人に合ってると思うなどの感想を入力"

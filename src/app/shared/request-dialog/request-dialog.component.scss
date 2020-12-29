@@ -4,21 +4,14 @@
 .heading {
   margin: 24px auto;
   @include sp {
-    margin: 16px auto;
-  }
-  &__icon {
-    font-size: 48px;
-    border-radius: 50%;
-    display: grid;
-    place-content: center;
-    margin: 0 auto 16px;
-    @include sp {
-      font-size: 32px;
-    }
+    margin: 0 auto 24px;
   }
   &__body {
     font-size: 16px;
     text-align: center;
+    @include sp {
+      font-size: 14px;
+    }
   }
 }
 
@@ -26,11 +19,19 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 16px;
+  @include sp {
+    gap: 8px;
+  }
   &__title {
     font-size: 17px;
     font-weight: normal;
     @include sp {
-      font-size: 14px;
+      font-size: 13px;
+    }
+  }
+  &__body {
+    @include sp {
+      font-size: 13px;
     }
   }
 }
@@ -39,8 +40,15 @@
   display: grid;
   gap: 16px;
   padding: 16px;
+  @include sp {
+    gap: 8px;
+    padding: 8px;
+  }
   button {
     width: 100%;
+    @include sp {
+      font-size: 13px;
+    }
     &:nth-of-type(2) {
       background: linear-gradient(60deg, #40c4ff, #00a1dd);
       color: #fff;
