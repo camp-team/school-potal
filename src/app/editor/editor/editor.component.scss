@@ -83,6 +83,14 @@ mat-radio-button {
     font-size: 9px;
     opacity: 0.6;
   }
+  &__tool {
+    font-size: 14px;
+    color: rgba(#424242, 0.8);
+    text-align: right;
+    a {
+      color: #2aa1f1;
+    }
+  }
 }
 
 .type {
