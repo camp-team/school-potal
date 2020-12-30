@@ -14,7 +14,7 @@ import { InfoDialogComponent } from '../user/info-dialog/info-dialog.component';
 })
 export class HeaderComponent implements OnInit {
   user$: Observable<User> = this.authService.user$;
-  isShow = true;
+  isShow = false;
 
   constructor(
     private uiService: UiService,
@@ -22,7 +22,11 @@ export class HeaderComponent implements OnInit {
     public authService: AuthService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    setTimeout(() => {
+      this.isShow = true;
+    }, 3000);
+  }
 
   toggleNav() {
     this.uiService.toggleOpening();
