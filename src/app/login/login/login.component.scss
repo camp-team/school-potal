@@ -1,70 +1,44 @@
 @import 'mixins';
 
+.spacer {
+  flex: 1;
+}
+
 .login {
   font-family: 'Josefin Sans';
   &__wrap {
     background: url(/assets/images/bg-login.png) no-repeat center/cover;
-    position: relative;
-    z-index: 0;
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: #fff;
-      opacity: 0.8;
-      z-index: -1;
+    height: calc(100vh - 144px);
+    @include sp {
+      background: url(/assets/images/bg-login-sp.png) no-repeat center/cover;
     }
   }
   &__main {
+    width: 50%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    width: 80%;
-    padding: 24px 0;
-    margin: 0 auto;
+    place-items: center;
+    place-content: center;
+    height: calc(100vh - 144px);
     @include sp {
-      grid-template-columns: 1fr;
+      width: 100%;
+      place-items: start;
     }
   }
   &__message {
-    display: grid;
-    place-content: center;
-    gap: 16px;
-    @include sp {
-      display: none;
-    }
+    margin-bottom: 24px;
+    color: #fff;
     p {
-      font-size: 32px;
+      font-size: 48px;
       font-weight: 500;
-      color: #fff;
-      background: rgba(#303030, 0.8);
       border-radius: 6px;
       padding: 8px 16px;
-      text-align: center;
       @include sp {
-        font-size: 20px;
-        padding: 16px 28px;
+        font-size: 32px;
+        padding: 0;
       }
     }
   }
-}
-
-.card {
-  margin: 0 auto;
-  text-align: center;
-  background: rgba(#303030, 0.8);
-  color: #fff;
-  border-radius: 6px;
-  &__title {
-    font-size: 20px;
-    font-weight: 500;
-  }
-  &__header {
-    padding: 48px 16px;
-  }
-  &__login {
+  &__btn {
     display: block;
     height: 48px;
     width: 80%;
@@ -72,8 +46,12 @@
     padding: 0 25px;
     border-radius: 30px;
     line-height: 48px;
-    color: #fafafa;
+    color: #303030;
+    background: #fff;
     transition: ease-in-out 0.3s;
+    @include sp {
+      margin: 16px 0;
+    }
     &--google {
       border: 2px solid #fafafa;
       @include sp {
@@ -102,13 +80,104 @@
       border: 2px solid #2aa1f1;
     }
   }
+  &__btn-text {
+    color: #fff;
+  }
+  &__text {
+    font-size: 13px;
+    color: rgba(#fff, 0.8);
+    a {
+      color: #fff;
+    }
+  }
+}
+
+.skills {
+  margin: 48px auto;
+  @include sp {
+    padding: 16px;
+  }
+  &__title {
+    font-size: 40px;
+    margin-bottom: 32px;
+    @include sp {
+      font-size: 24px;
+    }
+  }
+  &__tags {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    padding: 24px;
+    @include sp {
+      grid-template-columns: repeat(2, 1fr);
+      padding: 8px;
+    }
+  }
+  &__text {
+    padding: 16px;
+    font-size: 16px;
+    margin-bottom: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.16);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: ease-out 0.5s;
+    &:hover {
+      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    }
+    @include sp {
+      font-size: 12px;
+      margin-bottom: 0;
+      padding: 8px;
+    }
+  }
+}
+
+.description-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  margin: 48px auto;
+  @include sp {
+    grid-template-columns: 1fr;
+    position: relative;
+  }
+  &__inner {
+    padding: 48px;
+    @include sp {
+      padding: 16px;
+      order: 2;
+    }
+  }
+  &__title {
+    font-weight: bold;
+    margin-bottom: 40px;
+    @include sp {
+      position: absolute;
+      top: 25%;
+      left: 50%;
+      transform: translate(-25%, -50%);
+      color: #fff;
+    }
+  }
+  &__sub-title {
+    font-size: 40px;
+    margin-bottom: 40px;
+    @include sp {
+      font-size: 24px;
+    }
+  }
 }
 
 .feature {
   text-align: center;
   padding: 48px;
+  margin-bottom: 32px;
   &__title {
-    font-size: 24px;
+    font-size: 40px;
+    font-weight: 500;
     @include sp {
       font-size: 18px;
     }
@@ -118,7 +187,7 @@
   }
   ol {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 16px;
     @include sp {
       grid-template-columns: 1fr;
@@ -144,17 +213,13 @@
 }
 
 .message {
-  display: none;
-  background: #303030;
+  background: #f2f3f5;
   text-align: center;
-  padding: 48px 0;
-  @include sp {
-    display: block;
-  }
+  padding: 80px 0;
   p {
     font-size: 32px;
     font-weight: 500;
-    color: #fff;
+    color: #303030;
     @include sp {
       font-size: 20px;
     }

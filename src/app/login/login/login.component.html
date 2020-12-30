@@ -2,67 +2,105 @@
   <div class="login__wrap">
     <div class="login__main">
       <div class="login__message">
-        <p>eduuで、自分にぴったりの</p>
+        <p>自分にぴったりの</p>
         <p>学び場を見つけよう。</p>
       </div>
 
-      <div class="card">
-        <div class="card__header">
-          <a class="logo"
-            ><img src="assets/images/logo-grad.svg" width="100%" alt="eduu"
-          /></a>
+      <button class="login__btn login__btn--google" (click)="googleLogin()">
+        Googleログイン
+      </button>
+      <p class="login__btn-text">または</p>
+      <button class="login__btn login__btn--twitter" (click)="twitterLogin()">
+        Twitterログイン
+      </button>
 
-          <h1 class="card__title">ログイン</h1>
-        </div>
-        <button class="card__login card__login--google" (click)="googleLogin()">
-          Google
-        </button>
-        <p>または</p>
-        <button
-          class="card__login card__login--twitter"
-          (click)="twitterLogin()"
-        >
-          Twitter
-        </button>
-      </div>
+      <p class="login__text">
+        <a routerLink="/intl/rule">利用規約</a>に同意したものとみなします。
+      </p>
     </div>
   </div>
 
-  <div class="feature">
-    <div class="feature__message">
-      <h2 class="feature__title">
-        ＼ ログインするとできること ／
-      </h2>
-      <p class="feature__sub">
-        アカウントを作成すると、多くのことができるようになります。
+  <div class="container">
+    <div class="skills">
+      <p class="skills__title">
+        どんなスキルを身につけたいですか？
       </p>
-      <ol>
-        <li>
-          <p class="feature__image">👩‍💼</p>
-          <p>マイページが作成され<strong>プロフィールを編集</strong>できます</p>
-        </li>
-        <li>
-          <p class="feature__image">📌</p>
-          <p>気になるサービスを<strong>ピン留め</strong>することができます</p>
-        </li>
-        <li>
-          <p class="feature__image">📝</p>
-          <p>サービスの<strong>レビューを投稿</strong>できます</p>
-        </li>
-        <li>
-          <p class="feature__image">❓</p>
-          <p><strong>レビューを募集したり</strong>質問できます</p>
-        </li>
-        <li>
-          <p class="feature__image">👨‍🏫</p>
-          <p>サービスのオーナーは<strong>記事を作れる</strong>ようになります</p>
-        </li>
-      </ol>
+      <div class="skills__tags">
+        <div *ngFor="let tag of tags | slice: 0:16">
+          <a class="skills__text" (click)="routeTagFilter(tag.value)">
+            <p>{{ tag.value }} ( {{ tag.count }} )</p>
+            <span class="spacer"></span>
+            <mat-icon>keyboard_arrow_right</mat-icon>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="description-card">
+      <div class="description-card__inner">
+        <p class="description-card__title">eduuとは？</p>
+        <p class="description-card__sub-title">ベストな学び場を見つける</p>
+        <p class="description-card__body">
+          人によって最適な環境、学び方は違います。<br />
+          eduuは、スキルを身につけたい、磨きたい人が効率的に<br />
+          自分にぴったりの環境を探せるようにお手伝いします。
+        </p>
+      </div>
+      <img src="assets/images/bg-login-img.png" alt="" />
+    </div>
+
+    <div class="feature">
+      <div class="feature__message">
+        <h2 class="feature__title">
+          ＼ ログインするとできること ／
+        </h2>
+        <p class="feature__sub">
+          アカウントを作成すると、多くのことができるようになります。
+        </p>
+        <ol>
+          <li>
+            <p class="feature__image">👩‍💼</p>
+            <p>
+              <strong>マイページを編集</strong>して<br />
+              スキルをアピールしよう
+            </p>
+          </li>
+          <li>
+            <p class="feature__image">📌</p>
+            <p>
+              気になるサービスを<strong>ブックマーク</strong>して<br />
+              最新の動向をチェックしよう
+            </p>
+          </li>
+          <li>
+            <p class="feature__image">📝</p>
+            <p>
+              <strong>レビューを投稿</strong>して<br />
+              感想をシェアしよう
+            </p>
+          </li>
+          <li>
+            <p class="feature__image">❓</p>
+            <p>
+              <strong>レビューを募集</strong>したり、 <br />
+              気になることを<strong>質問</strong>>したりみよう
+            </p>
+          </li>
+          <li>
+            <p class="feature__image">👨‍🏫</p>
+            <p>
+              <strong>スクールページを作って</strong><br />
+              自分のサービスを知ってもらおう
+            </p>
+          </li>
+        </ol>
+      </div>
     </div>
   </div>
 
   <div class="message">
-    <p>eduuで、自分にぴったりの</p>
-    <p>学び場を見つけよう。</p>
+    <p>みんなで経験をシェアして、</p>
+    <p>それぞれがぴったりの学び場を</p>
+    <p>見つけやすくなるように。</p>
   </div>
 </div>
