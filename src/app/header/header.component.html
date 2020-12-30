@@ -49,11 +49,10 @@
       mat-button
       routerLink="/login"
       class="header__login"
-      (click)="isShow = !isShow"
     >
       {{ authService.isProcessing ? 'ログイン中' : 'ログイン' }}
     </button>
-    <div class="login-baloon" *ngIf="isShow">
+    <div class="login-baloon" [class.active]="isShow">
       <p>Google または Twitter で簡単登録！</p>
     </div>
   </ng-template>
