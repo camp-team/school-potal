@@ -31,26 +31,44 @@ export class AuthService {
     private snackBar: MatSnackBar
   ) {}
 
-  googleLogin() {
+  async googleLogin() {
     this.isProcessing = true;
     const provider = new auth.GoogleAuthProvider();
     provider.setCustomParameters({ prompt: 'select_account' });
-    this.afAuth.signInWithPopup(provider).then(() => {
-      this.snackBar.open('ログインしました 🎉');
-    });
-    this.router.navigateByUrl('/');
-    this.isProcessing = false;
+    this.afAuth
+      .signInWithPopup(provider)
+      .then(() => {
+        this.succeededLogin();
+      })
+      .catch((error) => {
+        this.failedLogin(error);
+      });
   }
 
-  twitterLogin() {
+  async twitterLogin() {
     this.isProcessing = true;
     const provider = new auth.TwitterAuthProvider();
     provider.setCustomParameters({ prompt: 'select_account' });
-    this.afAuth.signInWithRedirect(provider).then(() => {
-      this.snackBar.open('ログインしました 🎉');
-    });
+    this.afAuth
+      .signInWithPopup(provider)
+      .then(() => {
+        this.succeededLogin();
+      })
+      .catch((error) => {
+        this.failedLogin(error);
+      });
+  }
+
+  private succeededLogin() {
     this.router.navigateByUrl('/');
+    this.snackBar.open('ログインしました🎉');
     this.isProcessing = false;
+  }
+
+  private failedLogin(error: { message: any }) {
+    this.isProcessing = false;
+    console.error(error.message);
+    this.snackBar.open('ログインエラーです。数秒後にもう一度お試しください。');
   }
 
   logout() {
